@@ -17,4 +17,9 @@ public class MachineServiceImpl implements MachineService {
     public List<Machine> listMachine() {
         return machineDAO.listMachine();
     }
+
+    @Transactional
+    public Machine getMachine(String productId) {
+        return machineDAO.getMachine(productId);
+    }
 }

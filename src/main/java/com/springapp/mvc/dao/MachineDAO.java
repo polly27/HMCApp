@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface MachineDAO {
     public List<Machine> listMachine();
+    public Machine getMachine(String productId);
 }

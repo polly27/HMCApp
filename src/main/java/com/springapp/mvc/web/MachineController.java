@@ -1,11 +1,12 @@
 package com.springapp.mvc.web;
 
-import com.springapp.mvc.service.MachineService;
 import com.springapp.mvc.domain.Machine;
+import com.springapp.mvc.service.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -16,14 +17,20 @@ public class MachineController {
 
     @RequestMapping(value="/",method = RequestMethod.GET)
     public String home() {
-        return "redirect:/index";
+        return "redirect:/list";
     }
 
-	@RequestMapping(value="/index", method = RequestMethod.GET)
+	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public String productsList(Map<String, Object> map) {
         map.put("machine", new Machine());
         map.put("machineList", machineService.listMachine());
-        return "index";
+        return "list";
+    }
+
+    @RequestMapping(value="/machine", method = RequestMethod.GET)
+    public String machineItem(@RequestParam("productId") String productId, Map<String, Object> map) {
+        map.put("machine", machineService.getMachine(productId));
+        return "machine";
     }
 
 }

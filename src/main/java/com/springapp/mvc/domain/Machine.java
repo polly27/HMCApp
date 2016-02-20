@@ -7,10 +7,6 @@ import java.io.Serializable;
 @Table(name="machines", catalog = "hmc")
 public class Machine implements Serializable{
     @Id
-    @Column(name = "id")
-    @GeneratedValue
-    private int id;
-
     @Column(name = "productId")
     private String productId;
 
@@ -127,10 +123,6 @@ public class Machine implements Serializable{
 
     @Column(name = "fullDescription")
     private String fullDescription;
-
-    public int getId() {
-        return id;
-    }
 
     public String getProductId() {
         return productId;
@@ -286,10 +278,6 @@ public class Machine implements Serializable{
 
     public String getFullDescription() {
         return fullDescription;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setProductId(String productId) {
