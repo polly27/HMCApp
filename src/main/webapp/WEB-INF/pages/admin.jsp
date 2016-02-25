@@ -100,12 +100,13 @@
                 <h1>Add / update machine</h1>
                 <hr width="80%" align="center">
                 <br>
-
+                <form:form method="post" action="admin/add" commandName="adding">
                 <div class="field-row">
                     <label>No file chosen</label>
                     <button type="submit" class="le-button">Choose file with machine</button>
                     <button type="submit" class="le-button huge center">Add / update</button>
                 </div>
+                </form:form>
             </div>
 
             <div class="col-xs-4 col-md-4 admin-actions">

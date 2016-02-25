@@ -24,4 +24,11 @@ public class MachineDAOImpl implements MachineDAO {
         return (Machine)query.uniqueResult();
     }
 
+    @SuppressWarnings("unchecked")
+    public void addMachines(String path) {
+        sessionFactory.getCurrentSession()
+                .createSQLQuery("LOAD DATA LOCAL INFILE :file INTO TABLE hmc.machines \n" +
+                "FIELDS TERMINATED BY ';' ENCLOSED BY '\"' LINES TERMINATED BY '\\n' IGNORE 1 ROWS;")
+                .setString("file",path).executeUpdate();
+    }
 }

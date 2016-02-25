@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -26,9 +27,20 @@ public class MachineController {
         return "list";
     }
 
+    @RequestMapping(value="/machine", method = RequestMethod.GET)
+    public String machineItem(@RequestParam("productId") String productId, Map<String, Object> map) {
+        map.put("machine", machineService.getMachine(productId));
+        return "machine";
+    }
+
     @RequestMapping(value="/admin", method = RequestMethod.GET)
     public String machineItem() {
         return "admin";
     }
 
+    @RequestMapping(value = "/admin/add", method = RequestMethod.POST)
+    public String addMachines(){
+        machineService.addMachines("e:/machine.csv");
+        return "redirect:/list";
+    }
 }

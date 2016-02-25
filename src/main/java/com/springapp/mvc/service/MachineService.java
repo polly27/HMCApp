@@ -7,4 +7,5 @@ import java.util.List;
 public interface MachineService {
     public List<Machine> listMachine();
     public Machine getMachine(String productId);
+    public void addMachines (String path);
 }

@@ -22,4 +22,9 @@ public class MachineServiceImpl implements MachineService {
     public Machine getMachine(String productId) {
         return machineDAO.getMachine(productId);
     }
+
+    @Transactional
+    public void addMachines (String path) {
+        machineDAO.addMachines(path);
+    }
 }
