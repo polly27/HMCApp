@@ -32,6 +32,7 @@ Table of Contents
 21. Pages : 404
 22. Pages : Track Your Order
 23. Sidebar
+23.5. For admin page
 24. Footer
 25. Browser Fixes
 26. Responsive 
@@ -4521,6 +4522,37 @@ input[type='number'] {
 .container-fluid * input {
   padding: 3px;
 }
+/*===================================================================================*/
+/*  For admin page
+/*===================================================================================*/
+.admin-actions h1{
+    text-align: center;
+}
+.admin-actions {
+    padding: 10px;
+    border-color: #3d3d3d;
+    text-align: center;
+}
+.admin-actions hr {
+    border: 1px solid #3d3d3d;
+    margin-top: 2px;
+}
+.admin-actions .field-row * {
+    margin: 6px;
+    text-transform: none;
+}
+.admin-actions button {
+    font-weight: normal;
+    font-size: 18px;
+    margin: 6px;
+}
+
+.center {
+    text-align: center;
+}
+/*===================================================================================*/
+/*  For admin page end
+/*===================================================================================*/
 
 /*===================================================================================*/
 /*  Footer
