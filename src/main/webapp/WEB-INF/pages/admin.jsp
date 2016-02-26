@@ -97,16 +97,22 @@
     <section id="admin">
         <div class="container">
             <div class="col-xs-4 col-md-4 admin-actions">
-                <h1>Add / update machine</h1>
+                <h1 class="center">Add / update machine</h1>
                 <hr width="80%" align="center">
                 <br>
-                <form:form method="post" action="admin/add" commandName="adding">
-                <div class="field-row">
-                    <label>No file chosen</label>
-                    <button type="submit" class="le-button">Choose file with machine</button>
-                    <button type="submit" class="le-button huge center">Add / update</button>
-                </div>
+                <form:form method="post" action="/add" enctype="multipart/form-data">
+                    <div class="field-row">
+                        <input type="text" id="filename" class="filename" disabled/>
+                        <div class="file-upload">
+                            <label>
+                                <input type="file" name="textFile"/>
+                                <span>Choose the file with machines</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="le-button huge">Add / update</button>
+                    </div>
                 </form:form>
+
             </div>
 
             <div class="col-xs-4 col-md-4 admin-actions">
@@ -171,6 +177,16 @@
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
+
+<script type="text/javascript">
+    $(document).ready( function() {
+        $(".file-upload input[type=file]").change(function(){
+            var filename = $(this).val().replace(/.*\\/, "");
+            $("#filename").val(filename);
+        });
+    });
+</script>
+
 
 </body>
 </html>

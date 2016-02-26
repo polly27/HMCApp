@@ -4525,28 +4525,67 @@ input[type='number'] {
 /*===================================================================================*/
 /*  For admin page
 /*===================================================================================*/
-.admin-actions h1{
-    text-align: center;
-}
 .admin-actions {
     padding: 10px;
-    border-color: #3d3d3d;
     text-align: center;
+    font-weight: normal;
 }
 .admin-actions hr {
     border: 1px solid #3d3d3d;
     margin-top: 2px;
+    font-weight: 600;
 }
-.admin-actions .field-row * {
+.admin-actions .field-row {
     margin: 6px;
     text-transform: none;
 }
-.admin-actions button {
-    font-weight: normal;
+.admin-actions button{
     font-size: 18px;
     margin: 6px;
 }
+.admin-actions .file-upload {
+    position: relative; /* Даем возможность делать позиционирование, внутри данного элемента */
+    overflow: hidden; /* Все что выходит за пределы - скрываем */
+    width: 90%; /* Задаем ширину кнопки выбора файла */
+    height: 40px; /* Задаем высоту кнопки выбора файла */
+    background: #59b210;
+    color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 6px;
+}
+.admin-actions .file-upload:hover {
+    background: #60c011;
+}
+.admin-actions .file-upload input[type="file"]{
+    display: none; /* Обязательно скрываем настоящий Input File */
+}
+.admin-actions .field-row input[type="text"]{
+    padding-left: 6px;
+}
 
+.admin-actions .file-upload label {
+    /* Растягиваем label на всю возможную площадь блока .file-upload */
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.admin-actions .file-upload span {
+    line-height: 40px;
+    color: white;
+    font-size: 18px;
+}
+.admin-actions .filename {
+    background: #fff;
+    border: 0;
+}
+.admin-actions .field-row * {
+    font-weight: normal;
+}
 .center {
     text-align: center;
 }

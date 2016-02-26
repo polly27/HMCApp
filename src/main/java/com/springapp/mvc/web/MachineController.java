@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Map;
 
 @Controller
@@ -21,26 +23,24 @@ public class MachineController {
     }
 
 	@RequestMapping(value="/list", method = RequestMethod.GET)
-	public String productsList(Map<String, Object> map) {
+	public void productsList(Map<String, Object> map) {
         map.put("machine", new Machine());
         map.put("machineList", machineService.listMachine());
-        return "list";
     }
 
     @RequestMapping(value="/machine", method = RequestMethod.GET)
-    public String machineItem(@RequestParam("productId") String productId, Map<String, Object> map) {
+    public void machineItem(@RequestParam("productId") String productId, Map<String, Object> map) {
         map.put("machine", machineService.getMachine(productId));
-        return "machine";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addMachines(@RequestParam("textFile") MultipartFile file) throws IOException {
+        if (!file.isEmpty()) {
+            machineService.addMachines(file.getOriginalFilename());
+        }
+        return "redirect:/list";
     }
 
     @RequestMapping(value="/admin", method = RequestMethod.GET)
-    public String machineItem() {
-        return "admin";
-    }
-
-    @RequestMapping(value = "/admin/add", method = RequestMethod.POST)
-    public String addMachines(){
-        machineService.addMachines("e:/machine.csv");
-        return "redirect:/list";
-    }
+    public void machineItem() {}
 }
