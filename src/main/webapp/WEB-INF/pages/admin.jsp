@@ -96,14 +96,14 @@
 
     <section id="admin">
         <div class="container">
-            <div class="col-xs-4 col-md-4 admin-actions">
-                <h1 class="center">Add / update machine</h1>
-                <hr width="80%" align="center">
+            <div class="col-xs-6 col-md-6 admin-actions">
+                <h1>Add / update machine</h1>
+                <hr width="65%" align="center">
                 <br>
                 <form:form method="post" action="/add" enctype="multipart/form-data">
                     <div class="field-row">
-                        <input type="text" id="filename" class="filename" disabled/>
-                        <div class="file-upload">
+                        <input type="text" id="filename" class="filename" style="padding-left: 20%" disabled/>
+                        <div class="file-upload" style="width:60%; margin-left: 20%;">
                             <label>
                                 <input type="file" name="textFile"/>
                                 <span>Choose the file with machines</span>
@@ -115,30 +115,24 @@
 
             </div>
 
-            <div class="col-xs-4 col-md-4 admin-actions">
-                <h1>Update prices</h1>
-                <hr width="60%" align="center">
-                <br>
-
-                <div class="field-row">
-                    <label>No file chosen</label>
-                    <button type="submit" class="le-button">Choose price list</button>
-                    <button type="submit" class="le-button huge center">Update</button>
-                </div>
-            </div>
-
-            <div class="col-xs-4 col-md-4 admin-actions">
+            <div class="col-xs-6 col-md-6 admin-actions">
                 <h1>Load photos</h1>
-                <hr width="60%" align="center">
+                <hr width="50%" align="center">
                 <br>
-
-                <div class="field-row">
-                    <label>No file chosen</label>
-                    <button type="submit" class="le-button">Choose photo</button>
-                    <br>
-                    <button type="submit" class="le-button huge center">Load</button>
-                </div>
+                <form:form method="post" action="/add" enctype="multipart/form-data">
+                    <div class="field-row">
+                        <input type="text" id="photoName" class="filename" style="padding-left: 30%" disabled/>
+                        <div class="file-upload" style="width:40%; margin-left: 30%;">
+                            <label>
+                                <input type="file" name="textFile"/>
+                                <span>Choose photo</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="le-button huge">Load</button>
+                    </div>
+                </form:form>
             </div>
+
         </div>
     </section>
 

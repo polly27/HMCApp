@@ -25,6 +25,7 @@ public class MachineServiceImpl implements MachineService {
 
     @Transactional
     public void addMachines (String path) {
-        machineDAO.addMachines(path);
+        machineDAO.addMachines(path
+        );
     }
 }

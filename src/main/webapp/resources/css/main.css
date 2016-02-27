@@ -4546,7 +4546,6 @@ input[type='number'] {
 .admin-actions .file-upload {
     position: relative; /* Даем возможность делать позиционирование, внутри данного элемента */
     overflow: hidden; /* Все что выходит за пределы - скрываем */
-    width: 90%; /* Задаем ширину кнопки выбора файла */
     height: 40px; /* Задаем высоту кнопки выбора файла */
     background: #59b210;
     color: white;
@@ -4559,9 +4558,6 @@ input[type='number'] {
 }
 .admin-actions .file-upload input[type="file"]{
     display: none; /* Обязательно скрываем настоящий Input File */
-}
-.admin-actions .field-row input[type="text"]{
-    padding-left: 6px;
 }
 
 .admin-actions .file-upload label {
