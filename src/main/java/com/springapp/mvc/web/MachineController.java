@@ -2,7 +2,6 @@ package com.springapp.mvc.web;
 
 import com.springapp.mvc.domain.Machine;
 import com.springapp.mvc.service.MachineService;
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
-import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
@@ -25,7 +23,7 @@ public class MachineController {
 
     @RequestMapping(value="/",method = RequestMethod.GET)
     public String home() {
-        return "redirect:/admin";
+        return "redirect:/list";
     }
 
 	@RequestMapping(value="/list", method = RequestMethod.GET)
@@ -39,18 +37,27 @@ public class MachineController {
         map.put("machine", machineService.getMachine(productId));
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addMachines(@RequestParam("textFile") MultipartFile multipartFile) throws IOException {
+    @RequestMapping(value = "/admin/addCSV", method = RequestMethod.POST)
+    public String addMachines(@RequestParam("textFile") MultipartFile multipartFile){
         if (!multipartFile.isEmpty()) {
-            String fileName = servletContext.getRealPath("/WEB-INF/") + File.separator +
-                    "files" + File.separator + "machines.csv";
-            File file = new File(fileName);
-            FileUtils.writeByteArrayToFile(file, multipartFile.getBytes());
-            machineService.addMachines(file.getPath());
+            try {
+                String uploadedFilePath = machineService.uploadMachinesFile(multipartFile);
+                machineService.addMachines(uploadedFilePath);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return "redirect:/list";
+    }
+
+    @RequestMapping(value = "/addPhotos", method = RequestMethod.POST)
+    public String addPhotos(@RequestParam("photosCollection") MultipartFile[] photos) {
+        if (photos != null && photos.length > 0) {
+            machineService.uploadPhotos(photos);
         }
         return "redirect:/list";
     }
 
     @RequestMapping(value="/admin", method = RequestMethod.GET)
-    public void machineItem() {}
+    public void admin() {}
 }

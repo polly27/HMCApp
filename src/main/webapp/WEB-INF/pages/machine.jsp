@@ -187,36 +187,47 @@
 
                 <div id="owl-single-product">
                     <div class="single-product-gallery-item" id="slide1">
-                        <a data-rel="prettyphoto" href="resources/images/products/example.jpg">
-                            <img class="img-responsive" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/example.jpg"/>
+                        <a data-rel="prettyphoto" href="resources/images/products/${machine.photo1}">
+                            <img class="img-responsive" alt="" src="resources/images/blank.gif"
+                                 data-echo="resources/images/products/${machine.photo1}" />
                         </a>
-                    </div>
-                </div>
+                    </div><!-- /.single-product-gallery-item -->
+
+                    <div class="single-product-gallery-item" id="slide2">
+                        <a data-rel="prettyphoto" href="resources/images/products/${machine.photo2}">
+                            <img class="img-responsive" alt="" src="resources/images/blank.gif"
+                                 data-echo="resources/images/products/${machine.photo2}" />
+                        </a>
+                    </div><!-- /.single-product-gallery-item -->
+
+                    <div class="single-product-gallery-item" id="slide3">
+                        <a data-rel="prettyphoto" href="resources/images/products/${machine.photo3}">
+                            <img class="img-responsive" alt="" src="resources/images/blank.gif"
+                                 data-echo="resources/images/products/${machine.photo3}" />
+                        </a>
+                    </div><!-- /.single-product-gallery-item -->
+                </div><!-- /.single-product-slider -->
 
                 <div class="single-product-gallery-thumbs gallery-thumbs">
 
                     <div id="owl-single-product-thumbnails">
-                        <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0"
-                           href="#slide1">
-                            <img width="67" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/example.jpg"/>
+                        <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0" href="#slide1">
+                            <img width="67" alt="" src="resources/images/blank.gif" data-echo="resources/images/products/${machine.photo1}" />
                         </a>
 
                         <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
-                            <img width="67" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/example.jpg"/>
+                            <img width="67" alt="" src="resources/images/blank.gif" data-echo="resources/images/products/${machine.photo2}" />
                         </a>
 
                         <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
-                            <img width="67" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/example.jpg"/>
+                            <img width="67" alt="" src="resources/images/blank.gif" data-echo="resources/images/products/${machine.photo3}" />
                         </a>
-                    </div>
-                </div>
+                    </div><!-- /#owl-single-product-thumbnails -->
 
-            </div>
-        </div>
+                </div><!-- /.gallery-thumbs -->
+
+            </div><!-- /.single-product-gallery -->
+        </div><!-- /.gallery-holder -->
 
         <div class="no-margin col-xs-12 col-sm-7 body-holder">
             <div class="body">

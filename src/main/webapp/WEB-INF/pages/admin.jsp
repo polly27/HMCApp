@@ -62,7 +62,7 @@
             <div class="row">
 
                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 logo-holder">
-                    <a href="list.jsp">
+                    <a href="list">
                         <img alt="logo" src="resources/images/logo.png" class="img-responsive"/>
                     </a>
                 </div>
@@ -100,12 +100,12 @@
                 <h1>Add / update machine</h1>
                 <hr width="65%" align="center">
                 <br>
-                <form:form method="post" action="/add" enctype="multipart/form-data">
+                <form:form method="post" action="/admin/addCSV" enctype="multipart/form-data">
                     <div class="field-row">
-                        <input type="text" id="filename" class="filename" style="padding-left: 20%" disabled/>
+                        <input type="text" id="textFileName" class="filename" style="padding-left: 20%" disabled/>
                         <div class="file-upload" style="width:60%; margin-left: 20%;">
                             <label>
-                                <input type="file" name="textFile"/>
+                                <input type="file" name="textFile" id="textFile" required/>
                                 <span>Choose the file with machines</span>
                             </label>
                         </div>
@@ -118,19 +118,20 @@
             <div class="col-xs-6 col-md-6 admin-actions">
                 <h1>Load photos</h1>
                 <hr width="50%" align="center">
-                <br>
-                <form:form method="post" action="/add" enctype="multipart/form-data">
+
+                <form:form method="post" action="/addPhotos" enctype="multipart/form-data">
                     <div class="field-row">
-                        <input type="text" id="photoName" class="filename" style="padding-left: 30%" disabled/>
+                        <textarea id="photosNameList" cols="25" rows="2" class="filename" disabled></textarea>
                         <div class="file-upload" style="width:40%; margin-left: 30%;">
                             <label>
-                                <input type="file" name="textFile"/>
-                                <span>Choose photo</span>
+                                <input type="file" name="photosCollection" id="photosFile" multiple required/>
+                                <span>Choose photos</span>
                             </label>
                         </div>
                         <button type="submit" class="le-button huge">Load</button>
                     </div>
                 </form:form>
+
             </div>
 
         </div>
@@ -174,9 +175,18 @@
 
 <script type="text/javascript">
     $(document).ready( function() {
-        $(".file-upload input[type=file]").change(function(){
-            var filename = $(this).val().replace(/.*\\/, "");
-            $("#filename").val(filename);
+        $("#textFile").change(function(){
+            var fileName = $(this).val().replace(/.*\\/, "");
+            $("#textFileName").val(fileName);
+        });
+        $("#photosFile").change(function(){
+            var files = $(this)[0].files;
+            var nameList = "";
+            for (var i = 0; i < files.length; i++) {
+                nameList += files[i].name.replace(/.*\\/, "") + ", ";
+            }
+            nameList = nameList.substr(0, nameList.length - 2);
+            $("#photosNameList").val(nameList);
         });
     });
 </script>

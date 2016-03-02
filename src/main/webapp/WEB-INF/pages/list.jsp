@@ -64,9 +64,7 @@
 
             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 logo-holder">
                 <div class="logo">
-                    <a href="list">
-                        <img alt="logo" src="resources/images/logo.png" class="img-responsive"/>
-                    </a>
+                    <img alt="logo" src="resources/images/logo.png" class="img-responsive"/>
                 </div>
             </div>
 
@@ -352,12 +350,13 @@
                                         <div class="product-item">
                                             <div class="image">
                                                 <img alt="" src="resources/images/blank.gif"
-                                                     data-echo="resources/images/products/example.jpg"/>
+                                                     data-echo="resources/images/products/${machine.photo1}" />
                                             </div>
                                             <div class="body">
                                                 <div class="label-discount clear"></div>
                                                 <div class="title">
-                                                    <a href="machine?productId=${machine.productId}">${machine.type}<br>${machine.model}
+                                                    <a href="machine?productId=${machine.productId}">
+                                                    ${machine.type}<br>${machine.model}
                                                     </a>
                                                 </div>
                                                 <div class="brand">

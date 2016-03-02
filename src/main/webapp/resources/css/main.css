@@ -4579,6 +4579,9 @@ input[type='number'] {
     background: #fff;
     border: 0;
 }
+textarea {
+    resize: none;
+}
 .admin-actions .field-row * {
     font-weight: normal;
 }
