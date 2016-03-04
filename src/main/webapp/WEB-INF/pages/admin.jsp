@@ -119,7 +119,7 @@
                 <h1>Load photos</h1>
                 <hr width="50%" align="center">
 
-                <form:form method="post" action="/addPhotos" enctype="multipart/form-data">
+                <form:form method="post" action="/admin/addPhotos" enctype="multipart/form-data">
                     <div class="field-row">
                         <textarea id="photosNameList" cols="25" rows="2" class="filename" disabled></textarea>
                         <div class="file-upload" style="width:40%; margin-left: 30%;">

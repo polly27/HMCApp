@@ -9,17 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletContext;
-import java.io.IOException;
 import java.util.Map;
 
 @Controller
 public class MachineController {
     @Autowired
     private MachineService machineService;
-
-    @Autowired
-    private ServletContext servletContext;
 
     @RequestMapping(value="/",method = RequestMethod.GET)
     public String home() {
@@ -40,17 +35,12 @@ public class MachineController {
     @RequestMapping(value = "/admin/addCSV", method = RequestMethod.POST)
     public String addMachines(@RequestParam("textFile") MultipartFile multipartFile){
         if (!multipartFile.isEmpty()) {
-            try {
-                String uploadedFilePath = machineService.uploadMachinesFile(multipartFile);
-                machineService.addMachines(uploadedFilePath);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+            machineService.uploadMachinesFile(multipartFile);
         }
         return "redirect:/list";
     }
 
-    @RequestMapping(value = "/addPhotos", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/addPhotos", method = RequestMethod.POST)
     public String addPhotos(@RequestParam("photosCollection") MultipartFile[] photos) {
         if (photos != null && photos.length > 0) {
             machineService.uploadPhotos(photos);

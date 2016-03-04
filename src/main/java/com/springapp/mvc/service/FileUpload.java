@@ -7,26 +7,33 @@ import java.io.File;
 import java.io.IOException;
 
 public class FileUpload {
-    private static String path;
+    private static String pathToSrc;
+    private static String pathToTarget;
 
     static {
         String tmp = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+
         File file = new File(new File(tmp).getParentFile().getParentFile().getParentFile()
                 .getParentFile().getAbsolutePath() + "/src/main/webapp/resources/images/products/");
-        path = file.getAbsolutePath();
+        pathToSrc = file.getAbsolutePath();
+
+        file = new File(new File(tmp).getParentFile().getParentFile().getAbsolutePath()
+                + "/resources/images/products/");
+        pathToTarget = file.getAbsolutePath();
     }
 
-    public static String uploadCSV(MultipartFile multipartFile) throws IOException{
-        File file = new File(path + "/machines.csv");
+    private static String upload(String path, MultipartFile multipartFile) throws IOException{
+        File file = new File(path);
         FileUtils.writeByteArrayToFile(file, multipartFile.getBytes());
         return file.getAbsolutePath();
     }
 
-    public static String uploadPhoto(MultipartFile photo) throws IOException{
-        String fileName =  path + File.separator + photo.getOriginalFilename();
-        File file = new File(fileName);
-        FileUtils.writeByteArrayToFile(file, photo.getBytes());
-        return fileName;
+    public static String uploadCSV(MultipartFile multipartFile) throws IOException{
+        return upload(pathToTarget + "/machines.csv", multipartFile);
     }
 
+    public static void uploadPhoto(MultipartFile photo) throws IOException{
+        upload(pathToSrc + File.separator + photo.getOriginalFilename(), photo);
+        upload(pathToTarget + File.separator + photo.getOriginalFilename(), photo);
+    }
 }

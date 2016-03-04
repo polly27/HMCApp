@@ -26,21 +26,21 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Transactional
-    public void addMachines (String path) {
-        machineDAO.addMachines(path);
-    }
-
-    @Transactional
-    public String uploadMachinesFile(MultipartFile multipartFile) throws IOException{
-        return FileUpload.uploadCSV(multipartFile);
+    public void uploadMachinesFile (MultipartFile multipartFile) {
+        try {
+            String path = FileUpload.uploadCSV(multipartFile);
+            machineDAO.addMachines(path);
+        } catch (IOException e) {
+            System.out.println("Failed to upload CSV file: " + e.getMessage());
+        }
     }
 
     @Transactional
     public void uploadPhotos(MultipartFile[] photos) {
         for (int i = 0; i < photos.length; i++) {
             try {
-                String fileName = FileUpload.uploadPhoto(photos[i]);
-                System.out.println("Successfully uploaded " + fileName);
+                FileUpload.uploadPhoto(photos[i]);
+                System.out.println("Successfully uploaded photo: " + photos[i].getOriginalFilename());
             } catch (IOException e) {
                 System.out.println("Failed to upload photo: " + e.getMessage());
             }
