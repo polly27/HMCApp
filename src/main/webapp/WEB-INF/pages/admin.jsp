@@ -3,194 +3,180 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
-<html lang="en">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
 <head>
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name='robots' content='all, follow' />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>Great admin</title>
+    <link href="resources/admin/css/default.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="resources/admin/css/gray.css" rel="stylesheet" type="text/css" media="screen" /> <!-- color skin: blue / red / green / dark -->
+    <link href="resources/admin/css/datePicker.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="resources/admin/css/wysiwyg.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="resources/admin/css/fancybox-1.3.1.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="resources/admin/css/visualize.css" rel="stylesheet" type="text/css" media="screen" />
 
-    <title>Admin</title>
+    <script type="text/javascript" src="resources/admin/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="resources/admin/js/jquery.dimensions.min.js"></script>
 
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <!-- // Tabs // -->
+    <script type="text/javascript" src="resources/admin/js/ui.core.js"></script>
+    <script type="text/javascript" src="resources/admin/js/jquery.ui.tabs.min.js"></script>
 
-    <!-- Customizable CSS -->
-    <link rel="stylesheet" href="resources/css/main.css">
-    <link rel="stylesheet" href="resources/css/green.css">
-    <link rel="stylesheet" href="resources/css/owl.carousel.css">
-    <link rel="stylesheet" href="resources/css/owl.transitions.css">
-    <link rel="stylesheet" href="resources/css/animate.min.css">
+    <!-- // Table drag and drop rows // -->
+    <script type="text/javascript" src="resources/admin/js/tablednd.js"></script>
 
-    <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- // Date Picker // -->
+    <script type="text/javascript" src="resources/admin/js/date.js"></script>
+    <!--[if IE]><script type="text/javascript" src="public/js/jquery.bgiframe.js"></script><[endif]-->
+    <script type="text/javascript" src="resources/admin/js/jquery.datePicker.js"></script>
 
-    <!-- Icons/Glyphs -->
-    <link rel="stylesheet" href="resources/css/font-awesome.min.css">
+    <!-- // Wysiwyg // -->
+    <script type="text/javascript" src="resources/admin/js/jquery.wysiwyg.js"></script>
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="resources/images/favicon.ico">
+    <!-- // Graphs // -->
+    <script type="text/javascript" src="resources/admin/js/excanvas.js"></script>
+    <script type="text/javascript" src="resources/admin/js/jquery.visualize.js"></script>
 
+    <!-- // Fancybox // -->
+    <script type="text/javascript" src="resources/admin/js/jquery.fancybox-1.3.1.js"></script>
+
+    <!-- // File upload // -->
+    <script type="text/javascript" src="resources/admin/js/jquery.filestyle.js"></script>
+
+    <script type="text/javascript" src="resources/admin/js/init.js"></script>
 </head>
 <body>
-
-<div class="wrapper">
-    <!-- ============================================== TOP NAVIGATION ======================================= -->
-    <nav class="top-bar animate-dropdown">
-        <div class="container">
-            <div class="col-xs-12 col-sm-6 no-margin">
-                <ul>
-                    <li><a href="list.jsp">Catalog</a></li>
-                    <li><a href="admin.jsp">Admin page</a></li>
-                </ul>
-            </div>
-
-            <div class="col-xs-12 col-sm-6 no-margin">
-                <ul class="right">
-                    <li><a href="authentication.html">Log out</a></li>
-                </ul>
-            </div>
+<div id="main">
+    <!-- #header -->
+    <div id="header">
+        <!-- #logo -->
+        <div id="logo">
+            <a href="adminEntry" title="Go to Homepage"><span>Great Admin</span></a>
         </div>
-    </nav>
-    <!-- ================================================ TOP NAVIGATION : END ========================================= -->
+        <!-- /#logo -->
+        <!-- #user -->
+        <div id="user">
+            <h2>Forest Gump <span>(admin)</span></h2>
+            <a href="#">Logout</a>
+        </div>
+        <!-- /#user -->
+    </div>
+    <!-- /header -->
+    <!-- #content -->
+    <div id="content">
 
-    <!-- ================================================ HEADER ======================================================= -->
-    <header class="no-padding">
-        <div class="container no-padding">
+        <!-- breadcrumbs -->
+        <div class="breadcrumbs">
+            <ul>
+                <li class="home"><a href="">Homepage</a></li>
+                <li>Uploading</li>
+            </ul>
+        </div>
+        <!-- /breadcrumbs -->
 
-            <div class="row">
+        <!-- box -->
+        <div id="tabs-statistic" class="box">
+            <ul class="bookmarks">
+                <li><a href="#upload-file">Upload machines</a></li>
+                <li><a href="#upload-photo">Load photos</a></li>
+            </ul>
+            <div class="box-content">
 
-                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 logo-holder">
-                    <a href="list">
-                        <img alt="logo" src="resources/images/logo.png" class="img-responsive"/>
-                    </a>
-                </div>
+                <div id="upload-file">
+                    <form:form class="formBox" method="post" action="/admin/addCSV" enctype="multipart/form-data">
 
-                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 top-search-holder">
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12">
-
-                            <div class="contact-row">
-                                <div class="phone inline">
-                                    <i class="fa fa-phone"></i> +375 29 255-88-88
-                                </div>
-                                <div class="contact inline">
-                                    <i class="fa fa-envelope"></i><span class="le-color">MachineCenters@gmail.com</span>
+                        <fieldset>
+                            <div class="clearfix file">
+                                <div class="lab"><label for="textFile">Upload file with machines</label></div>
+                                <div class="con">
+                                    <input type="file" name="textFile" class="upload-file" id="textFile" required/>
                                 </div>
                             </div>
+                            <br><br><br>
+                            <div class="btn-submit"><!-- Submit form -->
+                                <input type="submit" value="Add / update" class="button" />
+                            </div>
+                        </fieldset>
 
-                        </div>
-                    </div>
-
+                    </form:form>
                 </div>
-                <!-- /.top-cart-row -->
 
-            </div>
-        </div>
-        <!-- /.container -->
 
-    </header>
-    <!-- =============================================== HEADER : END ================================================ -->
-    <hr>
+                <div id="upload-photo">
+                    <form class="formBox" method="post" action="/admin/addPhotos" enctype="multipart/form-data">
 
-    <section id="admin">
-        <div class="container">
-            <div class="col-xs-6 col-md-6 admin-actions">
-                <h1>Add / update machine</h1>
-                <hr width="65%" align="center">
-                <br>
-                <form:form method="post" action="/admin/addCSV" enctype="multipart/form-data">
-                    <div class="field-row">
-                        <input type="text" id="textFileName" class="filename" style="padding-left: 20%" disabled/>
-                        <div class="file-upload" style="width:60%; margin-left: 20%;">
-                            <label>
-                                <input type="file" name="textFile" id="textFile" required/>
-                                <span>Choose the file with machines</span>
-                            </label>
-                        </div>
-                        <button type="submit" class="le-button huge">Add / update</button>
-                    </div>
-                </form:form>
+                        <fieldset>
+                            <div class="clearfix file">
+                                <div class="lab"><label for="photosFile">Upload photos</label></div>
+                                <div class="con">
+                                    <input type="file" name="photosCollection" class="upload-file" id="photosFile" multiple required/>
+                                </div>
+                            </div>
+                            <br><br><br>
+                            <div class="btn-submit"><!-- Submit form -->
+                                <input type="submit" value="Load" class="button" />
+                            </div>
+                        </fieldset>
 
-            </div>
-
-            <div class="col-xs-6 col-md-6 admin-actions">
-                <h1>Load photos</h1>
-                <hr width="50%" align="center">
-
-                <form:form method="post" action="/admin/addPhotos" enctype="multipart/form-data">
-                    <div class="field-row">
-                        <textarea id="photosNameList" cols="25" rows="2" class="filename" disabled></textarea>
-                        <div class="file-upload" style="width:40%; margin-left: 30%;">
-                            <label>
-                                <input type="file" name="photosCollection" id="photosFile" multiple required/>
-                                <span>Choose photos</span>
-                            </label>
-                        </div>
-                        <button type="submit" class="le-button huge">Load</button>
-                    </div>
-                </form:form>
-
-            </div>
-
-        </div>
-    </section>
-
-    <br>
-    <!-- ================================================= FOOTER ========================================== -->
-    <footer id="footer" class="color-bg">
-        <div class="copyright-bar">
-            <div class="container">
-                <div class="col-xs-12 col-sm-6 no-margin">
-                    <div class="copyright">
-                        &copy; HMC - all rights reserved
-                    </div>
+                    </form>
                 </div>
-            </div>
+
+            </div><!-- box-content -->
         </div>
-    </footer>
-    <!-- ============================================================= FOOTER : END ============================================================= -->
+        <!-- /box -->
+
+    </div>
+    <!-- /#content -->
+    <!-- #sidebar -->
+    <div id="sidebar">
+
+        <!-- mainmenu -->
+        <ul id="floatMenu" class="mainmenu">
+            <li class="first"><a href="#">Dashboard</a></li>
+            <li><a href="#">Uploading</a>
+                <ul class="submenu">
+                    <li><a href="#upload-file">machines</a></li>
+                    <li><a href="#upload-photo">photos</a></li>
+                </ul>
+            </li>
+            <li class="last"><a href="http://themeforest.net/item/great-admin-theme/114528?ref=ClearHead" class="link">ThemeForest</a></li>
+        </ul>
+        <!-- /.mainmenu -->
+
+    </div>
+    <!-- /#sidebar -->
+    <!-- #footer -->
+    <br><br><br><br><br><br>
+    <div id="footer">
+        <p>© VMC & HMC | 2016 | <a href="#main">Top</a></p>
+    </div>
+    <!-- /#footer -->
+
 
 </div>
-
-<!-- JavaScripts placed at the end of the document so the pages load faster -->
-<script src="resources/js/jquery-1.10.2.min.js"></script>
-<script src="resources/js/jquery-migrate-1.2.1.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-<script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-<script src="resources/js/gmap3.min.js"></script>
-<script src="resources/js/bootstrap-hover-dropdown.min.js"></script>
-<script src="resources/js/owl.carousel.min.js"></script>
-<script src="resources/js/css_browser_selector.min.js"></script>
-<script src="resources/js/echo.min.js"></script>
-<script src="resources/js/jquery.easing-1.3.min.js"></script>
-<script src="resources/js/bootstrap-slider.min.js"></script>
-<script src="resources/js/jquery.raty.min.js"></script>
-<script src="resources/js/jquery.prettyPhoto.min.js"></script>
-<script src="resources/js/jquery.customSelect.min.js"></script>
-<script src="resources/js/wow.min.js"></script>
-<script src="resources/js/scripts.js"></script>
-<script src="http://w.sharethis.com/button/buttons.js"></script>
+<!-- /#main -->
 
 <script type="text/javascript">
     $(document).ready( function() {
         $("#textFile").change(function(){
             var fileName = $(this).val().replace(/.*\\/, "");
-            $("#textFileName").val(fileName);
+            $(this).parent().parent().children(":first-child").val(fileName);
         });
         $("#photosFile").change(function(){
             var files = $(this)[0].files;
             var nameList = "";
-            for (var i = 0; i < files.length; i++) {
+            for (var i = 0; i != files.length; i++) {
                 nameList += files[i].name.replace(/.*\\/, "") + ", ";
             }
             nameList = nameList.substr(0, nameList.length - 2);
-            $("#photosNameList").val(nameList);
+            $(this).parent().parent().children(":first-child").val(nameList);
         });
     });
 </script>
-
 
 </body>
 </html>

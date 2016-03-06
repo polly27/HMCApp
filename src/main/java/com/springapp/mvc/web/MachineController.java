@@ -32,6 +32,9 @@ public class MachineController {
         map.put("machine", machineService.getMachine(productId));
     }
 
+    @RequestMapping(value="/admin", method = RequestMethod.GET)
+    public void admin() {}
+
     @RequestMapping(value = "/admin/addCSV", method = RequestMethod.POST)
     public String addMachines(@RequestParam("textFile") MultipartFile multipartFile){
         if (!multipartFile.isEmpty()) {
@@ -48,6 +51,12 @@ public class MachineController {
         return "redirect:/list";
     }
 
-    @RequestMapping(value="/admin", method = RequestMethod.GET)
-    public void admin() {}
+    @RequestMapping(value="/adminEntry", method = RequestMethod.GET)
+    public void adminEntry() {}
+
+    @RequestMapping(value="/adminEntry", method = RequestMethod.POST)
+    public String goToAdmin() {
+        return "redirect:/admin";
+    }
+
 }
