@@ -46,4 +46,11 @@ public class MachineServiceImpl implements MachineService {
             }
         }
     }
+
+    @Transactional
+    public List<Machine> listFiltered(String brands, String locations) {
+        String[] brandArr = (brands != null) ? brands.split(",") : null;
+        String[] locationArr = (locations != null) ? locations.split(",") : null;
+        return machineDAO.listFiltered(brandArr, locationArr);
+    }
 }

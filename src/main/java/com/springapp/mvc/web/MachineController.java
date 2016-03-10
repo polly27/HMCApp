@@ -1,6 +1,5 @@
 package com.springapp.mvc.web;
 
-import com.springapp.mvc.domain.Machine;
 import com.springapp.mvc.service.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,13 +22,27 @@ public class MachineController {
 
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public void productsList(Map<String, Object> map) {
-        map.put("machine", new Machine());
         map.put("machineList", machineService.listMachine());
+    }
+
+    @RequestMapping(value="/list", method = RequestMethod.POST)
+    public void productsListFiltered(@RequestParam(value = "brand", required = false) String brands,
+                                     @RequestParam(value = "location", required = false) String locations,
+                                     Map<String, Object> map) {
+        map.put("machineList", machineService.listFiltered(brands, locations));
     }
 
     @RequestMapping(value="/machine", method = RequestMethod.GET)
     public void machineItem(@RequestParam("productId") String productId, Map<String, Object> map) {
         map.put("machine", machineService.getMachine(productId));
+    }
+
+    @RequestMapping(value="/adminEntry", method = RequestMethod.GET)
+    public void adminEntry() {}
+
+    @RequestMapping(value="/adminEntry", method = RequestMethod.POST)
+    public String goToAdmin() {
+        return "redirect:/admin";
     }
 
     @RequestMapping(value="/admin", method = RequestMethod.GET)
@@ -51,12 +64,5 @@ public class MachineController {
         return "redirect:/list";
     }
 
-    @RequestMapping(value="/adminEntry", method = RequestMethod.GET)
-    public void adminEntry() {}
-
-    @RequestMapping(value="/adminEntry", method = RequestMethod.POST)
-    public String goToAdmin() {
-        return "redirect:/admin";
-    }
 
 }

@@ -8,4 +8,5 @@ public interface MachineDAO {
     public List<Machine> listMachine();
     public Machine getMachine(String productId);
     public void addMachines(String path);
+    public List<Machine> listFiltered(String[] brandArr, String[] locationArr);
 }

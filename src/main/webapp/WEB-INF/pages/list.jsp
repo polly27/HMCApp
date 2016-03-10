@@ -70,104 +70,33 @@
     <div class="widget">
         <h1>Product Filters</h1>
 
-        <div class="body bordered">
+        <form:form id="filterForm" method="post" action="/list">
+            <div class="body bordered">
 
-            <div class="category-filter">
-                <h2>Brands</h2>
-                <ul>
-                    <li><input checked="checked" class="le-checkbox" type="checkbox"/> <label>Samsung</label></li>
-                    <li><input class="le-checkbox" type="checkbox"/> <label>DECKEL-MAHO</label></li>
-                </ul>
-            </div>
+                <div class="category-filter">
+                    <h2>Brands</h2>
+                    <ul>
+                        <li><input class="le-checkbox" name="brand" type="checkbox" value="samsung"/> <label>Samsung</label></li>
+                        <li><input class="le-checkbox" name="brand" type="checkbox" value="deckel-maho"/> <label>Deckel-maho</label></li>
+                    </ul>
+                </div>
 
-            <div class="price-filter">
-                <h2>Release year</h2>
+                <div class="category-filter">
+                    <h2>Location</h2>
+                    <ul>
+                        <li><input class="le-checkbox" name="location" type="checkbox" value="italy"/> <label>Italy</label></li>
+                        <li><input class="le-checkbox" name="location" type="checkbox" value="russia"/> <label>Russia</label></li>
+                    </ul>
+                </div>
 
-                <div class="price-range-holder">
-                    <input type="text" class="price-slider" value="">
+                <hr>
 
-                <span class="min-max">
-                    from <span>1990</span> to <span>2016</span>
-                </span>
+                <div class="filter-button">
+                    <a href="#" id="filterSubmit" onclick="submitFilter()">Filter</a>
                 </div>
             </div>
+        </form:form>
 
-            <div class="price-filter">
-                <h2>Price</h2>
-
-                <div class="price-range-holder">
-
-                    <input type="text" class="price-slider" value="">
-
-                <span class="min-max">
-                    from $<span>89</span> to $<span>2899</span>
-                </span>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="category-filter">
-                <h2>Location</h2>
-                <ul>
-                    <li><input class="le-checkbox" type="checkbox"/> <label>Belarus</label></li>
-                    <li><input class="le-checkbox" type="checkbox"/> <label>Russia</label></li>
-                </ul>
-            </div>
-
-            <hr>
-
-            <div class="category-filter">
-                <h2>CNC</h2>
-                <ul>
-                    <li><input class="le-checkbox" type="checkbox"/> <label>Siemens</label></li>
-                </ul>
-            </div>
-
-            <div class="price-filter">
-                <h2>X&timesY&timesZ sizes, mm </h2>
-                <div class="price-range-holder">
-                    <input type="text" class="price-slider" value="">
-                    <span class="min-max">
-                        X: from <span>250</span>mm to <span>1500</span>mm
-                    </span>
-                </div>
-                <div class="price-range-holder">
-                    <input type="text" class="price-slider" value="">
-                    <span class="min-max">
-                        Y: from <span>250</span>mm to <span>1500</span>mm
-                    </span>
-                </div>
-                <div class="price-range-holder">
-                    <input type="text" class="price-slider" value="">
-                    <span class="min-max">
-                        Z: from <span>250</span>mm to <span>1500</span>mm
-                    </span>
-                </div>
-            </div>
-
-            <div class="price-filter">
-                <h2>Table size, mm </h2>
-                <div class="price-range-holder">
-                    <input type="text" class="price-slider" value="">
-                    <span class="min-max">
-                        X: from <span>250</span>mm to <span>1500</span>mm
-                    </span>
-                </div>
-                <div class="price-range-holder">
-                    <input type="text" class="price-slider" value="">
-                    <span class="min-max">
-                        Y: from <span>250</span>mm to <span>1500</span>mm
-                    </span>
-                </div>
-            </div>
-
-            <hr>
-            <div class="filter-button">
-                <a href="#">Filter</a>
-            </div>
-
-        </div>
         <!-- /.body -->
     </div>
     <!-- /.widget -->
@@ -185,7 +114,9 @@
             <div class="tab-content">
                 <div id="grid-view" class="products-grid fade tab-pane in active">
 
-                    <div class="product-grid-holder">
+                    <div id="prtCnt"></div>
+
+                    <div class="product-grid-holder" id="list">
                         <c:if test="${!empty machineList}">
                             <div class="row no-margin">
                                 <c:forEach items="${machineList}" var="machine">
@@ -199,7 +130,7 @@
                                                 <div class="label-discount clear"></div>
                                                 <div class="title">
                                                     <a href="machine?productId=${machine.productId}">
-                                                    ${machine.type}<br>${machine.model}
+                                                            ${machine.type}<br>${machine.model}
                                                     </a>
                                                 </div>
                                                 <div class="brand">
@@ -288,6 +219,43 @@
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        loadSettings();
+    });
+
+    function submitFilter() {
+        saveSettings();
+        $('#filterForm').submit();
+    }
+
+    function loadSettings() {
+        loadCheckbox('brand',sessionStorage.brand);
+        loadCheckbox('location',sessionStorage.location);
+    }
+
+    function loadCheckbox(name,data) {
+        var i = 0;
+        $('input[name=' + name + ']').each(function(){
+            $(this).prop('checked',data.charAt(i++) == '1');
+        });
+    }
+
+    function saveSettings() {
+        sessionStorage.brand = saveCheckbox('brand');
+        sessionStorage.location = saveCheckbox('location');
+    }
+
+    function saveCheckbox(name) {
+        var data = "";
+        $('input[name=' + name + ']').each(function(){
+            data += this.checked ? "1" : "0";
+        });
+        return data;
+    }
+
+</script>
 
 </body>
 </html>

@@ -10,4 +10,5 @@ public interface MachineService {
     public Machine getMachine(String productId);
     public void uploadMachinesFile(MultipartFile multipartFile);
     public void uploadPhotos(MultipartFile[] multipartFile);
+    public List<Machine> listFiltered(String brands, String locations);
 }
