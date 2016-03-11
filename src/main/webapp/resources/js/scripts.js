@@ -181,7 +181,7 @@
             items: 4,
             pagination: false,
             itemsTablet: [768,3],
-            itemsDesktopSmall: [1199,3],
+            itemsDesktopSmall: [1199,3]
         });
 
         $("#owl-brands").owlCarousel({
@@ -209,7 +209,7 @@
             items: 4,
             pagination: false,
             itemsTablet: [768, 3],
-            itemsDesktopSmall: [1199,3],
+            itemsDesktopSmall: [1199,3]
         });
 
         $('.single-product-slider').owlCarousel({
@@ -325,12 +325,24 @@
         // Price Slider
         if ($('.price-slider').length > 0) {
             $('.price-slider').slider({
+
                 min: 100,
                 max: 700,
                 step: 10,
                 value: [100, 400],
                 handle: "square"
+            });
+        }
 
+        // Year Slider
+        if ($('.year-slider').length > 0) {
+            $('.year-slider').slider({
+
+                min: 1990,
+                max: 2016,
+                step: 1,
+                value: [1990, 2016],
+                handle: "square"
             });
         }
 

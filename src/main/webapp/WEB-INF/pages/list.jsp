@@ -81,12 +81,38 @@
                     </ul>
                 </div>
 
+                <hr>
+
                 <div class="category-filter">
                     <h2>Location</h2>
                     <ul>
                         <li><input class="le-checkbox" name="location" type="checkbox" value="italy"/> <label>Italy</label></li>
                         <li><input class="le-checkbox" name="location" type="checkbox" value="russia"/> <label>Russia</label></li>
                     </ul>
+                </div>
+
+                <div class="year-filter">
+                    <h2>Release year</h2>
+
+                    <div class="year-range-holder">
+                        <input type="text" class="year-slider" id="year-slider">
+
+                        <span class="min-max">
+                            from <span>1990</span> to <span>2016</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="price-filter">
+                    <h2>Price</h2>
+
+                    <div class="price-range-holder">
+                        <input type="text" class="price-slider">
+
+                        <span class="min-max">
+                            from <span>---</span> to <span>---</span>
+                        </span>
+                    </div>
                 </div>
 
                 <hr>
@@ -222,7 +248,9 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        loadSettings();
+        if(sessionStorage.length != 0) {
+            loadSettings();
+        }
     });
 
     function submitFilter() {
@@ -233,6 +261,7 @@
     function loadSettings() {
         loadCheckbox('brand',sessionStorage.brand);
         loadCheckbox('location',sessionStorage.location);
+        loadSlider('year',sessionStorage.year);
     }
 
     function loadCheckbox(name,data) {
@@ -242,9 +271,14 @@
         });
     }
 
+    function loadSlider(name,data) {
+        $('#' + name + '-slider').slider('setValue',data);
+    }
+
     function saveSettings() {
         sessionStorage.brand = saveCheckbox('brand');
         sessionStorage.location = saveCheckbox('location');
+        sessionStorage.year = saveSlider('year');
     }
 
     function saveCheckbox(name) {
@@ -253,6 +287,10 @@
             data += this.checked ? "1" : "0";
         });
         return data;
+    }
+
+    function saveSlider(name) {
+        return $('#' + name + '-slider').val();
     }
 
 </script>
