@@ -61,165 +61,204 @@
 <!-- =============================================== HEADER : END ================================================ -->
 
 <section id="category-grid">
-<div class="container">
+    <div class="container">
 
-<!-- ========================================= SIDEBAR ========================================= -->
-<div class="col-xs-12 col-sm-3 no-margin sidebar narrow">
+        <!-- ========================================= SIDEBAR ========================================= -->
+        <div class="col-xs-12 col-sm-3 no-margin sidebar narrow">
 
-    <!-- ========================================= PRODUCT FILTER ========================================= -->
-    <div class="widget">
-        <h1>Product Filters</h1>
+            <!-- ========================================= PRODUCT FILTER ========================================= -->
+            <div class="widget">
+                <h1>Product Filters</h1>
 
-        <form:form id="filterForm" method="post" action="/list">
-            <div class="body bordered">
+                <form:form id="filterForm" method="post" action="/list">
+                    <div class="body bordered">
 
-                <div class="category-filter">
-                    <h2>Brands</h2>
-                    <ul>
-                        <li><input class="le-checkbox" name="brand" type="checkbox" value="samsung"/> <label>Samsung</label></li>
-                        <li><input class="le-checkbox" name="brand" type="checkbox" value="deckel-maho"/> <label>Deckel-maho</label></li>
-                    </ul>
-                </div>
+                        <div class="category-filter">
+                            <h2>Brands</h2>
+                            <ul>
+                                <li><input class="le-checkbox" name="brand" type="checkbox" value="samsung"/>
+                                    <label>Samsung</label></li>
+                                <li><input class="le-checkbox" name="brand" type="checkbox" value="deckel-maho"/>
+                                    <label>Deckel-maho</label></li>
+                            </ul>
+                        </div>
 
-                <hr>
+                        <div class="price-filter">
+                            <h2>Release year</h2>
+                            <div class="price-range-holder">
+                                <input type="text" class="price-slider" id="year-slider" name="yearRange">
+                                <span class="min-max">from 1990 to 2016</span>
+                            </div>
+                        </div>
 
-                <div class="category-filter">
-                    <h2>Location</h2>
-                    <ul>
-                        <li><input class="le-checkbox" name="location" type="checkbox" value="italy"/> <label>Italy</label></li>
-                        <li><input class="le-checkbox" name="location" type="checkbox" value="russia"/> <label>Russia</label></li>
-                    </ul>
-                </div>
+                        <div class="price-filter">
+                            <h2>Price</h2>
+                            <div class="price-range-holder">
+                                <input type="text" class="price-slider" id="price-slider" name="priceRange">
+                                <span class="min-max">from 1000$ to 20000$</span>
+                            </div>
+                        </div>
 
-                <div class="year-filter">
-                    <h2>Release year</h2>
+                        <hr>
 
-                    <div class="year-range-holder">
-                        <input type="text" class="year-slider" id="year-slider">
+                        <div class="category-filter">
+                            <h2>Location</h2>
+                            <ul>
+                                <li><input class="le-checkbox" name="location" type="checkbox" value="italy"/>
+                                    <label>Italy</label></li>
+                                <li><input class="le-checkbox" name="location" type="checkbox" value="russia"/>
+                                    <label>Russia</label></li>
+                            </ul>
+                        </div>
 
-                        <span class="min-max">
-                            from <span>1990</span> to <span>2016</span>
-                        </span>
+                        <hr>
+
+                        <div class="category-filter">
+                            <h2>CNC</h2>
+                            <ul>
+                                <li><input class="le-checkbox" name="cnc" type="checkbox" value="siemens"/>
+                                    <label>Siemens</label></li>
+                            </ul>
+                        </div>
+
+                        <div class="price-filter">
+                            <h2>X&timesY&timesZ motion, mm </h2>
+
+                            <div class="price-range-holder">
+                                <input type="text" class="price-slider" id="x-motion-slider" name="xMotionRange">
+                                <span class="min-max">X: from 200mm to 1500mm</span>
+                            </div>
+                            <div class="price-range-holder">
+                                <input type="text" class="price-slider" id="y-motion-slider" name="yMotionRange">
+                                <span class="min-max">Y: from 200mm to 1500mm</span>
+                            </div>
+                            <div class="price-range-holder">
+                                <input type="text" class="price-slider" id="z-motion-slider" name="zMotionRange">
+                                <span class="min-max">Z: from 200mm to 1500mm</span>
+                            </div>
+                        </div>
+
+                        <div class="price-filter">
+                            <h2>Table size, mm </h2>
+                            <div class="price-range-holder">
+                                <input type="text" class="price-slider" id="x-table-slider" name="xTableRange">
+                                <span class="min-max">X: from 200mm to 1500mm</span>
+                            </div>
+                            <div class="price-range-holder">
+                                <input type="text" class="price-slider" id="y-table-slider" name="yTableRange">
+                                <span class="min-max">Y: from 200mm to 1500mm</span>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="filter-button">
+                            <a href="#" id="filterSubmit" onclick="submitFilter()">Filter</a>
+                        </div>
                     </div>
-                </div>
+                </form:form>
 
-                <div class="price-filter">
-                    <h2>Price</h2>
-
-                    <div class="price-range-holder">
-                        <input type="text" class="price-slider">
-
-                        <span class="min-max">
-                            from <span>---</span> to <span>---</span>
-                        </span>
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="filter-button">
-                    <a href="#" id="filterSubmit" onclick="submitFilter()">Filter</a>
-                </div>
+                <!-- /.body -->
             </div>
-        </form:form>
+            <!-- /.widget -->
+            <!-- ========================================= PRODUCT FILTER : END ========================================= -->
+        </div>
+        <!-- ========================================= SIDEBAR : END ========================================= -->
 
-        <!-- /.body -->
-    </div>
-    <!-- /.widget -->
-    <!-- ========================================= PRODUCT FILTER : END ========================================= -->
-</div>
-<!-- ========================================= SIDEBAR : END ========================================= -->
+        <!-- ========================================= CONTENT ========================================= -->
 
-<!-- ========================================= CONTENT ========================================= -->
+        <div class="col-xs-12 col-sm-9 no-margin wide sidebar">
 
-<div class="col-xs-12 col-sm-9 no-margin wide sidebar">
+            <section id="gaming">
+                <div class="grid-list-products">
 
-    <section id="gaming">
-        <div class="grid-list-products">
+                    <div class="tab-content">
+                        <div id="grid-view" class="products-grid fade tab-pane in active">
 
-            <div class="tab-content">
-                <div id="grid-view" class="products-grid fade tab-pane in active">
+                            <div id="prtCnt"></div>
 
-                    <div id="prtCnt"></div>
-
-                    <div class="product-grid-holder" id="list">
-                        <c:if test="${!empty machineList}">
-                            <div class="row no-margin">
-                                <c:forEach items="${machineList}" var="machine">
-                                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover">
-                                        <div class="product-item">
-                                            <div class="image">
-                                                <img alt="" src="resources/images/blank.gif"
-                                                     data-echo="resources/images/products/${machine.photo1}" />
-                                            </div>
-                                            <div class="body">
-                                                <div class="label-discount clear"></div>
-                                                <div class="title">
-                                                    <a href="machine?productId=${machine.productId}">
-                                                            ${machine.type}<br>${machine.model}
-                                                    </a>
+                            <div class="product-grid-holder" id="list">
+                                <c:if test="${!empty machineList}">
+                                    <div class="row no-margin">
+                                        <c:forEach items="${machineList}" var="machine">
+                                            <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover">
+                                                <div class="product-item">
+                                                    <div class="image">
+                                                        <img alt="" src="resources/images/blank.gif"
+                                                             data-echo="resources/images/products/${machine.photo1}"/>
+                                                    </div>
+                                                    <div class="body">
+                                                        <div class="label-discount clear"></div>
+                                                        <div class="title">
+                                                            <a href="machine?productId=${machine.productId}">
+                                                                    ${machine.type}<br>${machine.model}
+                                                            </a>
+                                                        </div>
+                                                        <div class="brand">
+                                                                ${machine.producer}<br>
+                                                                ${machine.producingCountry}
+                                                        </div>
+                                                    </div>
+                                                    <div class="prices">
+                                                        <div class="price-current pull-right">$${machine.cost}.00
+                                                        </div>
+                                                    </div>
+                                                    <div class="hover-area">
+                                                        <div class="add-cart-button">
+                                                            <a href="machine?productId=${machine.productId}"
+                                                               class="le-button">add to cart</a>
+                                                        </div>
+                                                        <div class="wish-compare">
+                                                            <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                                                            <a class="btn-add-to-compare" href="#">compare</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="brand">
-                                                        ${machine.producer}<br>
-                                                        ${machine.producingCountry}
-                                                </div>
                                             </div>
-                                            <div class="prices">
-                                                <div class="price-current pull-right">$${machine.cost}.00</div>
-                                            </div>
-                                            <div class="hover-area">
-                                                <div class="add-cart-button">
-                                                    <a href="machine?productId=${machine.productId}" class="le-button">add
-                                                        to cart</a>
-                                                </div>
-                                                <div class="wish-compare">
-                                                    <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
-                                                    <a class="btn-add-to-compare" href="#">compare</a>
-                                                </div>
-                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                    <!-- /.row -->
+                                </c:if>
+                                <c:if test="${empty machineList}">
+                                    Please, change the filter parameters.
+                                </c:if>
+                            </div>
+                            <!-- /.product-grid-holder -->
+
+                            <div class="pagination-holder">
+                                <div class="row">
+
+                                    <div class="col-xs-6 text-left">
+                                        <ul class="pagination ">
+                                            <li class="current"><a href="#">1</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-xs-6">
+                                        <div class="result-counter">
+                                            Showing <span>1-9</span> of <span>11</span> results
                                         </div>
                                     </div>
-                                </c:forEach>
-                            </div>
-                            <!-- /.row -->
-                        </c:if>
-                    </div>
-                    <!-- /.product-grid-holder -->
 
-                    <div class="pagination-holder">
-                        <div class="row">
-
-                            <div class="col-xs-6 text-left">
-                                <ul class="pagination ">
-                                    <li class="current"><a href="#">1</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="col-xs-6">
-                                <div class="result-counter">
-                                    Showing <span>1-9</span> of <span>11</span> results
                                 </div>
+                                <!-- /.row -->
                             </div>
-
+                            <!-- /.pagination-holder -->
                         </div>
-                        <!-- /.row -->
+                        <!-- /.products-grid #grid-view -->
+
                     </div>
-                    <!-- /.pagination-holder -->
+                    <!-- /.tab-content -->
                 </div>
-                <!-- /.products-grid #grid-view -->
+                <!-- /.grid-list-products -->
 
-            </div>
-            <!-- /.tab-content -->
+            </section>
+            <!-- /#gaming -->
         </div>
-        <!-- /.grid-list-products -->
-
-    </section>
-    <!-- /#gaming -->
-</div>
-<!-- /.col -->
-<!-- ========================================= CONTENT : END ========================================= -->
-</div>
-<!-- /.container -->
+        <!-- /.col -->
+        <!-- ========================================= CONTENT : END ========================================= -->
+    </div>
+    <!-- /.container -->
 </section>
 <!-- /#category-grid -->
 <!-- ================================================= FOOTER ========================================== -->
@@ -245,55 +284,7 @@
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        if(sessionStorage.length != 0) {
-            loadSettings();
-        }
-    });
-
-    function submitFilter() {
-        saveSettings();
-        $('#filterForm').submit();
-    }
-
-    function loadSettings() {
-        loadCheckbox('brand',sessionStorage.brand);
-        loadCheckbox('location',sessionStorage.location);
-        loadSlider('year',sessionStorage.year);
-    }
-
-    function loadCheckbox(name,data) {
-        var i = 0;
-        $('input[name=' + name + ']').each(function(){
-            $(this).prop('checked',data.charAt(i++) == '1');
-        });
-    }
-
-    function loadSlider(name,data) {
-        $('#' + name + '-slider').slider('setValue',data);
-    }
-
-    function saveSettings() {
-        sessionStorage.brand = saveCheckbox('brand');
-        sessionStorage.location = saveCheckbox('location');
-        sessionStorage.year = saveSlider('year');
-    }
-
-    function saveCheckbox(name) {
-        var data = "";
-        $('input[name=' + name + ']').each(function(){
-            data += this.checked ? "1" : "0";
-        });
-        return data;
-    }
-
-    function saveSlider(name) {
-        return $('#' + name + '-slider').val();
-    }
-
-</script>
+<script src="resources/js/filters-list.js"></script>
 
 </body>
 </html>

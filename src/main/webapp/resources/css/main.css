@@ -4380,12 +4380,12 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 .sidebar.wide {
   width: 77%;
 }
-.sidebar .price-filter, .sidebar .year-filter {
+.sidebar .price-filter {
   border-top: 1px solid #e0e0e0;
   margin: 10px 0 0 0;
   padding: 5px 0 0 0;
 }
-.sidebar .price-range-holder, .sidebar .year-range-holder {
+.sidebar .price-range-holder {
   padding: 18px 0px 25px 0px;
   position: relative;
 }
@@ -4395,8 +4395,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 .sidebar .filter-button a:hover {
   color: black;
 }
-.sidebar .price-range-holder .min-max,.sidebar .year-range-holder .min-max,
-.sidebar .price-range-holder, .sidebar .year-range-holder {
+.sidebar .price-range-holder .min-max, .sidebar .price-range-holder {
   margin: 0;
   font-size: 13px;
 }
@@ -4405,22 +4404,22 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   font-size: 30px; 
   text-align: center;
 }
-.sidebar .price-range-holder .price-slider, .sidebar .year-range-holder .year-slider {
+.sidebar .price-range-holder .price-slider {
   visibility: hidden;
 }
-.sidebar .price-range-holder .price-range.in, .sidebar .year-range-holder .year-range.in {
+.sidebar .price-range-holder .price-range.in {
   overflow: visible;
 }
-.sidebar .price-range-holder .slider .tooltip, .sidebar .year-range-holder .slider .tooltip {
+.sidebar .price-range-holder .slider .tooltip {
   margin-top: 55px;
 }
-.sidebar .price-range-holder .min-max, .sidebar .year-range-holder .min-max {
+.sidebar .price-range-holder .min-max {
   float: left;
 }
-.sidebar .price-range-holder .filter-button, .sidebar .year-range-holder .filter-button {
+.sidebar .price-range-holder .filter-button {
   float: right;
 }
-.sidebar .price-range-holder .filter-button a, .sidebar .year-range-holder .filter-button a {
+.sidebar .price-range-holder .filter-button a {
   font-weight: 700 !important;
   font-weight: 800;
   text-transform: capitalize;
@@ -4504,8 +4503,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   margin: 0;
   line-height: 20px;
 }
-.sidebar .widget .category-filter h2, .sidebar .widget .price-filter h2,
-.sidebar .widget .category-filter h2, .sidebar .widget .year-filter h2{
+.sidebar .widget .category-filter h2, .sidebar .widget .price-filter h2{
   text-transform: none;
 }
 input[type=number]::-webkit-inner-spin-button, 

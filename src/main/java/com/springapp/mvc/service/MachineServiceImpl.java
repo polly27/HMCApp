@@ -26,7 +26,7 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Transactional
-    public void uploadMachinesFile (MultipartFile multipartFile) {
+    public void uploadMachinesFile(MultipartFile multipartFile) {
         try {
             String path = FileUpload.uploadCSV(multipartFile);
             machineDAO.addMachines(path);
@@ -48,9 +48,27 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Transactional
-    public List<Machine> listFiltered(String brands, String locations) {
+    public List<Machine> listFiltered(String brands, String yearRange, String priceRange,
+            String locations, String cncs,String xMotionRange, String yMotionRange,
+            String zMotionRange, String xTableRange, String yTableRange) {
         String[] brandArr = (brands != null) ? brands.split(",") : null;
+        int[] yearRangeArr = getRangeArr(yearRange);
+        int[] priceRangeArr = getRangeArr(priceRange);
         String[] locationArr = (locations != null) ? locations.split(",") : null;
-        return machineDAO.listFiltered(brandArr, locationArr);
+        String[] cncArr = (cncs != null) ? cncs.split(",") : null;
+        int[] xMotionRangeArr = getRangeArr(xMotionRange);
+        int[] yMotionRangeArr = getRangeArr(yMotionRange);
+        int[] zMotionRangeArr = getRangeArr(zMotionRange);
+        int[] xTableRangeArr = getRangeArr(xTableRange);
+        int[] yTableRangeArr = getRangeArr(xTableRange);
+        return machineDAO.listFiltered(brandArr, yearRangeArr, priceRangeArr, locationArr,
+                cncArr, xMotionRangeArr, yMotionRangeArr, zMotionRangeArr, xTableRangeArr, yTableRangeArr);
+    }
+
+    private int[] getRangeArr(String range) {
+        if (range.isEmpty()) {
+            return null;
+        }
+        return new int[] { Integer.valueOf(range.split(",")[0]), Integer.valueOf(range.split(",")[1]) };
     }
 }

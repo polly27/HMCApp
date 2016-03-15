@@ -27,9 +27,18 @@ public class MachineController {
 
     @RequestMapping(value="/list", method = RequestMethod.POST)
     public void productsListFiltered(@RequestParam(value = "brand", required = false) String brands,
+                                     @RequestParam(value = "yearRange", required = false) String yearRange,
+                                     @RequestParam(value = "priceRange", required = false) String priceRange,
                                      @RequestParam(value = "location", required = false) String locations,
+                                     @RequestParam(value = "cnc", required = false) String cncs,
+                                     @RequestParam(value = "xMotionRange", required = false) String xMotionRange,
+                                     @RequestParam(value = "yMotionRange", required = false) String yMotionRange,
+                                     @RequestParam(value = "zMotionRange", required = false) String zMotionRange,
+                                     @RequestParam(value = "xTableRange", required = false) String xTableRange,
+                                     @RequestParam(value = "yTableRange", required = false) String yTableRange,
                                      Map<String, Object> map) {
-        map.put("machineList", machineService.listFiltered(brands, locations));
+        map.put("machineList", machineService.listFiltered(brands, yearRange, priceRange, locations, cncs,
+                xMotionRange, yMotionRange, zMotionRange, xTableRange, yTableRange));
     }
 
     @RequestMapping(value="/machine", method = RequestMethod.GET)
