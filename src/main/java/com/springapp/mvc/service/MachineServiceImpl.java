@@ -66,9 +66,6 @@ public class MachineServiceImpl implements MachineService {
     }
 
     private int[] getRangeArr(String range) {
-        if (range.isEmpty()) {
-            return null;
-        }
-        return new int[] { Integer.valueOf(range.split(",")[0]), Integer.valueOf(range.split(",")[1]) };
+        return range.isEmpty() ? null : new int[] {Integer.valueOf(range.split(",")[0]), Integer.valueOf(range.split(",")[1])};
     }
 }
