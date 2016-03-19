@@ -6,5 +6,9 @@
 <hibernate-configuration>
     <session-factory>
         <mapping class="com.springapp.mvc.domain.Machine" />
+        <mapping class="com.springapp.mvc.domain.MachineLocationFilter" />
+        <mapping class="com.springapp.mvc.domain.ProducerFilter" />
+        <mapping class="com.springapp.mvc.domain.SlidersFilter" />
+        <mapping class="com.springapp.mvc.domain.SystemCNCFilter" />
     </session-factory>
 </hibernate-configuration>

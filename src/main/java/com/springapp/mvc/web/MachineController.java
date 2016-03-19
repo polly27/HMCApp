@@ -1,5 +1,6 @@
 package com.springapp.mvc.web;
 
+import com.springapp.mvc.service.FiltersService;
 import com.springapp.mvc.service.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class MachineController {
     @Autowired
     private MachineService machineService;
 
+    @Autowired
+    private FiltersService filtersService;
+
     @RequestMapping(value="/",method = RequestMethod.GET)
     public String home() {
         return "redirect:/list";
@@ -23,6 +27,10 @@ public class MachineController {
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public void productsList(Map<String, Object> map) {
         map.put("machineList", machineService.listMachine());
+        map.put("producerList", filtersService.listProducerFilter());
+        map.put("machineLocationList", filtersService.listMachineLocationFilter());
+        map.put("cncList", filtersService.listSystemCNCFilter());
+        map.put("slidersList", filtersService.listSlidersFilter());
     }
 
     @RequestMapping(value="/list", method = RequestMethod.POST)
@@ -39,6 +47,10 @@ public class MachineController {
                                      Map<String, Object> map) {
         map.put("machineList", machineService.listFiltered(brands, yearRange, priceRange, locations, cncs,
                 xMotionRange, yMotionRange, zMotionRange, xTableRange, yTableRange));
+        map.put("producerList", filtersService.listProducerFilter());
+        map.put("machineLocationList", filtersService.listMachineLocationFilter());
+        map.put("cncList", filtersService.listSystemCNCFilter());
+        map.put("slidersList", filtersService.listSlidersFilter());
     }
 
     @RequestMapping(value="/machine", method = RequestMethod.GET)
@@ -61,6 +73,7 @@ public class MachineController {
     public String addMachines(@RequestParam("textFile") MultipartFile multipartFile){
         if (!multipartFile.isEmpty()) {
             machineService.uploadMachinesFile(multipartFile);
+            filtersService.renewFilters();
         }
         return "redirect:/list";
     }

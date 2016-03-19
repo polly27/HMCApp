@@ -60,7 +60,7 @@ public class MachineServiceImpl implements MachineService {
         int[] yMotionRangeArr = getRangeArr(yMotionRange);
         int[] zMotionRangeArr = getRangeArr(zMotionRange);
         int[] xTableRangeArr = getRangeArr(xTableRange);
-        int[] yTableRangeArr = getRangeArr(xTableRange);
+        int[] yTableRangeArr = getRangeArr(yTableRange);
         return machineDAO.listFiltered(brandArr, yearRangeArr, priceRangeArr, locationArr,
                 cncArr, xMotionRangeArr, yMotionRangeArr, zMotionRangeArr, xTableRangeArr, yTableRangeArr);
     }

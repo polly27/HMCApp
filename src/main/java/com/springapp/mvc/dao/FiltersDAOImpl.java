@@ -1,4 +1,145 @@
 package com.springapp.mvc.dao;
 
+import com.springapp.mvc.domain.MachineLocationFilter;
+import com.springapp.mvc.domain.ProducerFilter;
+import com.springapp.mvc.domain.SlidersFilter;
+import com.springapp.mvc.domain.SystemCNCFilter;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Repository
 public class FiltersDAOImpl implements FiltersDAO {
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    @SuppressWarnings("unchecked")
+    public List<ProducerFilter> listProducerFilter() {
+        return sessionFactory.getCurrentSession().createQuery("from ProducerFilter").list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<MachineLocationFilter> listMachineLocationFilter(){
+        return sessionFactory.getCurrentSession().createQuery("from MachineLocationFilter").list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<SystemCNCFilter> listSystemCNCFilter(){
+        return sessionFactory.getCurrentSession().createQuery("from SystemCNCFilter").list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<SlidersFilter> listSlidersFilter() {
+        return sessionFactory.getCurrentSession().createQuery("from SlidersFilter").list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public void renewProducerFilter() {
+        Session session = sessionFactory.getCurrentSession();
+        session.createQuery("delete from ProducerFilter").executeUpdate();
+        List<String> listProducers = session.createQuery("select M.producer from Machine M").list();
+        Set<String> setProducers = new HashSet<String>();
+        for(String val : listProducers) {
+            setProducers.add(val.toLowerCase());
+        }
+        for (String s : setProducers){
+            ProducerFilter pf = new ProducerFilter();
+            pf.setProducer(s);
+            session.save(pf);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void renewMachineLocationFilter() {
+        Session session = sessionFactory.getCurrentSession();
+        session.createQuery("delete from MachineLocationFilter").executeUpdate();
+        List<String> listLocations = session.createQuery("select M.machineLocation from Machine M").list();
+        Set<String> setLocations = new HashSet<String>();
+        for(String val : listLocations) {
+            setLocations.add(val.toLowerCase());
+        }
+        for (String s : setLocations){
+            MachineLocationFilter mlf = new MachineLocationFilter();
+            mlf.setMachineLocation(s);
+            session.save(mlf);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void renewSystemCNCFilter() {
+        Session session = sessionFactory.getCurrentSession();
+        session.createQuery("delete from SystemCNCFilter").executeUpdate();
+        List<String> listCNC = session.createQuery("select M.systemCNC from Machine M").list();
+        Set<String> setCNC = new HashSet<String>();
+        for(String val : listCNC) {
+            setCNC.add(val.toLowerCase());
+        }
+        for (String s : setCNC){
+            SystemCNCFilter cnc = new SystemCNCFilter();
+            cnc.setSystemCNC(s);
+            session.save(cnc);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void renewSlidersFilter() {
+        Session session = sessionFactory.getCurrentSession();
+        session.createQuery("delete from SlidersFilter").executeUpdate();
+        List<Integer> listYear = session.createQuery("select M.year from Machine M").list();
+        List<Integer> listCost = session.createQuery("select M.cost from Machine M").list();
+        List<Integer> listXMotion = session.createQuery("select M.xMotion from Machine M").list();
+        List<Integer> listYMotion = session.createQuery("select M.yMotion from Machine M").list();
+        List<Integer> listZMotion = session.createQuery("select M.zMotion from Machine M").list();
+        List<Integer> listXTableSize = session.createQuery("select M.xTableSize from Machine M").list();
+        List<Integer> listYTableSize = session.createQuery("select M.yTableSize from Machine M").list();
+        int[] minMaxYear = getMinMax(listYear);
+        int[] minMaxCost = roundToNum(getMinMax(listCost), 500);
+        int[] minMaxXMotion = roundToNum(getMinMax(listXMotion), 100);
+        int[] minMaxYMotion = roundToNum(getMinMax(listYMotion), 100);
+        int[] minMaxZMotion = roundToNum(getMinMax(listZMotion), 100);
+        int[] minMaxXTableSize = roundToNum(getMinMax(listXTableSize), 100);
+        int[] minMaxYTableSize = roundToNum(getMinMax(listYTableSize), 100);
+        SlidersFilter sf = new SlidersFilter();
+        sf.setId(1);
+        sf.setYear(getString(minMaxYear));
+        sf.setCost(getString(minMaxCost));
+        sf.setxMotion(getString(minMaxXMotion));
+        sf.setyMotion(getString(minMaxYMotion));
+        sf.setzMotion(getString(minMaxZMotion));
+        sf.setxTableSize(getString(minMaxXTableSize));
+        sf.setyTableSize(getString(minMaxYTableSize));
+        session.save(sf);
+    }
+
+    private int[] getMinMax(List<Integer> listParam) {
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for(Integer param : listParam) {
+            min = Math.min(min, param);
+            max = Math.max(max, param);
+        }
+        return new int[]{min,max};
+    }
+
+    private int[] roundToNum(int[] minMax, int num) {
+        if(minMax[0] % num != 0) {
+            minMax[0] -= minMax[0] % num;
+        }
+        if(minMax[1] % num != 0) {
+            minMax[1] += (num - minMax[1] % num);
+        }
+        if(minMax[0] == minMax[1]) {
+            minMax[0] -= num;
+        }
+        return minMax;
+    }
+
+    private String getString(int[] minMax) {
+        return "" + minMax[0] + "," + minMax[1];
+    }
 }

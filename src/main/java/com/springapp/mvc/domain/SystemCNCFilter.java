@@ -1,4 +1,4 @@
-package com.springapp.mvc.filters;
+package com.springapp.mvc.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,19 +9,8 @@ import javax.persistence.Table;
 @Table(name="systemcnc_filter", catalog = "hmc")
 public class SystemCNCFilter {
     @Id
-    @Column(name = "id")
-    private int id;
-
     @Column(name = "systemCNC")
     private String systemCNC;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getSystemCNC() {
         return systemCNC;

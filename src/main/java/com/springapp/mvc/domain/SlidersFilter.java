@@ -1,4 +1,4 @@
-package com.springapp.mvc.filters;
+package com.springapp.mvc.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
