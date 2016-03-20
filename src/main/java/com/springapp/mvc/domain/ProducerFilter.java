@@ -10,6 +10,17 @@ public class ProducerFilter implements Serializable{
     @Column(name = "producer")
     private String producer;
 
+    @Column(name = "num")
+    private int num;
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
     public String getProducer() {
         return producer;
     }

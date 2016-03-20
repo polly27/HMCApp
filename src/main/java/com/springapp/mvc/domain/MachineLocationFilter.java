@@ -4,11 +4,22 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="machinelocation_filter", catalog = "hmc")
+@Table(name="machine_location_filter", catalog = "hmc")
 public class MachineLocationFilter implements Serializable {
     @Id
     @Column(name = "machineLocation")
     private String machineLocation;
+
+    @Column(name = "num")
+    private int num;
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
 
     public String getMachineLocation() {
         return machineLocation;

@@ -9,9 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Repository
 public class FiltersDAOImpl implements FiltersDAO {
@@ -40,50 +38,63 @@ public class FiltersDAOImpl implements FiltersDAO {
 
     @SuppressWarnings("unchecked")
     public void renewProducerFilter() {
-        Session session = sessionFactory.getCurrentSession();
-        session.createQuery("delete from ProducerFilter").executeUpdate();
-        List<String> listProducers = session.createQuery("select M.producer from Machine M").list();
-        Set<String> setProducers = new HashSet<String>();
-        for(String val : listProducers) {
-            setProducers.add(val.toLowerCase());
-        }
-        for (String s : setProducers){
-            ProducerFilter pf = new ProducerFilter();
-            pf.setProducer(s);
-            session.save(pf);
-        }
+        renew(ProducerFilter.class.getSimpleName(), "producer");
     }
 
     @SuppressWarnings("unchecked")
     public void renewMachineLocationFilter() {
-        Session session = sessionFactory.getCurrentSession();
-        session.createQuery("delete from MachineLocationFilter").executeUpdate();
-        List<String> listLocations = session.createQuery("select M.machineLocation from Machine M").list();
-        Set<String> setLocations = new HashSet<String>();
-        for(String val : listLocations) {
-            setLocations.add(val.toLowerCase());
-        }
-        for (String s : setLocations){
-            MachineLocationFilter mlf = new MachineLocationFilter();
-            mlf.setMachineLocation(s);
-            session.save(mlf);
-        }
+        renew(MachineLocationFilter.class.getSimpleName(), "machineLocation");
     }
 
     @SuppressWarnings("unchecked")
     public void renewSystemCNCFilter() {
+        renew(SystemCNCFilter.class.getSimpleName(), "systemCNC");    }
+
+    private void renew(String className, String checkBoxName) {
         Session session = sessionFactory.getCurrentSession();
-        session.createQuery("delete from SystemCNCFilter").executeUpdate();
-        List<String> listCNC = session.createQuery("select M.systemCNC from Machine M").list();
-        Set<String> setCNC = new HashSet<String>();
-        for(String val : listCNC) {
-            setCNC.add(val.toLowerCase());
+        session.createQuery("delete from " + className).executeUpdate();
+        List<String> list = session.createQuery("select M." + checkBoxName + " from Machine M").list();
+        for (int i = 0; i < list.size(); i++) {
+            list.set(i, list.get(i).toLowerCase());
         }
-        for (String s : setCNC){
-            SystemCNCFilter cnc = new SystemCNCFilter();
-            cnc.setSystemCNC(s);
-            session.save(cnc);
+        Set<String> set = new HashSet<String>();
+        for(String val : list) {
+            set.add(val);
         }
+        if(className.equals(ProducerFilter.class.getSimpleName())) {
+            for (String s : set) {
+                session.save(getProducerFilter(s, Collections.frequency(list, s)));
+            }
+        } else if(className.equals(MachineLocationFilter.class.getSimpleName())) {
+            for (String s : set) {
+                session.save(getMachineLocationFilter(s, Collections.frequency(list, s)));
+            }
+        } else {
+            for (String s : set) {
+                session.save(getSystemCNCFilter(s, Collections.frequency(list, s)));
+            }
+        }
+    }
+
+    private ProducerFilter getProducerFilter(String val, int num) {
+        ProducerFilter pf = new ProducerFilter();
+        pf.setProducer(val);
+        pf.setNum(num);
+        return pf;
+    }
+
+    private MachineLocationFilter getMachineLocationFilter(String val, int num) {
+        MachineLocationFilter ml = new MachineLocationFilter();
+        ml.setMachineLocation(val);
+        ml.setNum(num);
+        return ml;
+    }
+
+    private SystemCNCFilter getSystemCNCFilter(String val, int num) {
+        SystemCNCFilter cnc = new SystemCNCFilter();
+        cnc.setSystemCNC(val);
+        cnc.setNum(num);
+        return cnc;
     }
 
     @SuppressWarnings("unchecked")

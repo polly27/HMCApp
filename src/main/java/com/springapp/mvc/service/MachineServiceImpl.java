@@ -49,8 +49,8 @@ public class MachineServiceImpl implements MachineService {
 
     @Transactional
     public List<Machine> listFiltered(String brands, String yearRange, String priceRange,
-            String locations, String cncs,String xMotionRange, String yMotionRange,
-            String zMotionRange, String xTableRange, String yTableRange) {
+                    String locations, String cncs,String xMotionRange, String yMotionRange,
+                    String zMotionRange, String xTableRange, String yTableRange) {
         String[] brandArr = (brands != null) ? brands.split(",") : null;
         int[] yearRangeArr = getRangeArr(yearRange);
         int[] priceRangeArr = getRangeArr(priceRange);

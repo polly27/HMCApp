@@ -12,6 +12,17 @@ public class SystemCNCFilter {
     @Column(name = "systemCNC")
     private String systemCNC;
 
+    @Column(name = "num")
+    private int num;
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
     public String getSystemCNC() {
         return systemCNC;
     }

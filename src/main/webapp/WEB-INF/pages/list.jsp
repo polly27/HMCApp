@@ -80,7 +80,7 @@
                             <ul>
                                 <c:forEach items="${producerList}" var="brand">
                                 <li><input class="le-checkbox" name="brand" type="checkbox" value="${brand.producer}" checked="true"/>
-                                    <label>${brand.producer}</label></li>
+                                    <label>${brand.producer}  (${brand.num})</label></li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -118,7 +118,7 @@
                             <ul>
                                 <c:forEach items="${machineLocationList}" var="location">
                                     <li><input class="le-checkbox" name="location" type="checkbox" value="${location.machineLocation}" checked="true"/>
-                                    <label>${location.machineLocation}</label></li>
+                                        <label>${location.machineLocation}  (${location.num})</label></li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -132,7 +132,7 @@
                             <ul>
                                 <c:forEach items="${cncList}" var="cnc">
                                 <li><input class="le-checkbox" name="cnc" type="checkbox" value="${cnc.systemCNC}" checked="true"/>
-                                    <label>${cnc.systemCNC}</label></li>
+                                    <label>${cnc.systemCNC}  (${cnc.num})</label></li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -226,13 +226,15 @@
                                                             </a>
                                                         </div>
                                                         <div class="brand">
-                                                                ${machine.producer}<br>
-                                                                ${machine.producingCountry}
+                                                                ${machine.producer}, ${machine.year}, ${machine.producingCountry}<br>
+                                                                Current location: ${machine.machineLocation}<br>
+                                                                X&timesY&timesZ-motion: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}<br>
+                                                                X&timesY table sizes: ${machine.xTableSize}&times${machine.yTableSize}
                                                         </div>
                                                     </div>
                                                     <div class="prices">
-                                                        <div class="price-current pull-right">$${machine.cost}.00
-                                                        </div>
+                                                        <div class="price-current pull-right">$${machine.cost}.00</div>
+                                                        <br>
                                                     </div>
                                                     <div class="hover-area">
                                                         <div class="add-cart-button">

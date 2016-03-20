@@ -2561,10 +2561,10 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   font-weight: bold;
 }
 .product-item-holder .body .brand {
-  font-size: 10px;
-  line-height: 30px;
+  font-size: 13px;
+  line-height: 21px;
   color: #3d3d3d;
-  text-transform: uppercase;
+  margin: 6px 0 12px 0;
 }
 .product-grid-holder.medium .product-item-holder .prices {
   margin: 0 20px;
@@ -4490,7 +4490,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   position: relative;
 }
 .sidebar .widget .category-filter ul span {
-  font-size: 14px;
+  font-size: 12px;
   vertical-align: bottom;
   display: inline-block;
   line-height: 24px;
@@ -4499,7 +4499,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 .sidebar .widget .category-filter ul label {
   font-weight: 400;
   text-transform: capitalize;
-  font-size: 14px;
+  font-size: 13px;
   margin: 0;
   line-height: 20px;
 }
