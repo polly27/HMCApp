@@ -3,7 +3,9 @@ package com.springapp.mvc.web;
 import com.springapp.mvc.service.FiltersService;
 import com.springapp.mvc.service.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,9 +26,22 @@ public class MachineController {
         return "redirect:/list";
     }
 
-	@RequestMapping(value="/list", method = RequestMethod.GET)
-	public void productsList(Map<String, Object> map) {
-        map.put("machineList", machineService.listMachine());
+    @SuppressWarnings("unchecked")
+    @RequestMapping(value="/list", method = RequestMethod.GET)
+    public void productsList(Map<String, Object> map) {
+        PagedListHolder machineList = new PagedListHolder(machineService.listMachine());
+        int pageSize = 3;
+        int page = 1;
+        machineList.setPageSize(pageSize);
+        machineList.setPage(page);
+        map.put("machineList", machineList.getPageList());
+        map.put("pages", machineList.getPageCount());
+        map.put("showFromTo", new int[]{pageSize * (page - 1) + 1, pageSize * page});
+        map.put("machineCount", machineList.getNrOfElements());
+        putFilters(map);
+    }
+
+    private void putFilters(Map<String,Object> map) {
         map.put("producerList", filtersService.listProducerFilter());
         map.put("machineLocationList", filtersService.listMachineLocationFilter());
         map.put("cncList", filtersService.listSystemCNCFilter());
@@ -47,10 +62,7 @@ public class MachineController {
                                      Map<String, Object> map) {
         map.put("machineList", machineService.listFiltered(brands, yearRange, priceRange, locations, cncs,
                 xMotionRange, yMotionRange, zMotionRange, xTableRange, yTableRange));
-        map.put("producerList", filtersService.listProducerFilter());
-        map.put("machineLocationList", filtersService.listMachineLocationFilter());
-        map.put("cncList", filtersService.listSystemCNCFilter());
-        map.put("slidersList", filtersService.listSlidersFilter());
+        putFilters(map);
     }
 
     @RequestMapping(value="/machine", method = RequestMethod.GET)
@@ -67,15 +79,16 @@ public class MachineController {
     }
 
     @RequestMapping(value="/admin", method = RequestMethod.GET)
-    public void admin() {}
+    public void admin(Map<String,Object> map) {
+        map.put("machineList", machineService.listMachine());
+    }
 
     @RequestMapping(value = "/admin/addCSV", method = RequestMethod.POST)
     public String addMachines(@RequestParam("textFile") MultipartFile multipartFile){
         if (!multipartFile.isEmpty()) {
             machineService.uploadMachinesFile(multipartFile);
-            filtersService.renewFilters();
         }
-        return "redirect:/list";
+        return "redirect:/admin";
     }
 
     @RequestMapping(value = "/admin/addPhotos", method = RequestMethod.POST)
@@ -83,7 +96,19 @@ public class MachineController {
         if (photos != null && photos.length > 0) {
             machineService.uploadPhotos(photos);
         }
-        return "redirect:/list";
+        return "redirect:/admin";
+    }
+
+    @RequestMapping(value = "/admin/renewFilters", method = RequestMethod.POST)
+    public String renewFilters(){
+        filtersService.renewFilters();
+        return "redirect:/admin";
+    }
+
+    @RequestMapping(value = "/admin/remove/{productId}", method = RequestMethod.GET)
+    public String removeMachine(@PathVariable("productId") String productId){
+        machineService.removeMachine(productId);
+        return "redirect:/admin";
     }
 
 

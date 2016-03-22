@@ -48,6 +48,11 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Transactional
+    public void removeMachine(String productId) {
+        machineDAO.removeMachine(productId);
+    }
+
+    @Transactional
     public List<Machine> listFiltered(String brands, String yearRange, String priceRange,
                     String locations, String cncs,String xMotionRange, String yMotionRange,
                     String zMotionRange, String xTableRange, String yTableRange) {

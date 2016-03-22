@@ -48,39 +48,6 @@ $(document).ready(function(){
   // Table row odd
   $(".tab tr:odd").addClass("odd");
 
-  // Table drag on drop
-  $(".tab-drag").tableDnD({ 
-		onDrop: function(table, row) {
-		$(".tab-drag tr").removeClass('odd'); 
-		$(".tab-drag tr:odd").addClass('odd'); 
-		var rows = table.tBodies[0].rows;
-		var count = '';
-		for (var i=1; i<rows.length; i++) {
-		  count += rows[i].id + '/'; 
-	  }
-    },
-    dragHandle: "dragHandle" 
-  });
-
-  // Table checkbox
-  $('.check-all').click(
-  	function(){
-  		$(this).parent().parent().parent().find(".checkbox input").attr('checked', $(this).is(':checked'));   
-  	}
-  )
-
-  // Show filter
-  $(".show-filter").toggle(function(){    
-      $(this).addClass("active");
-      $(this).text("hidden filter");
-  	  $(".filter").slideDown("slow");
-    }, function() {
-      $(this).removeClass("active");
-      $(this).text("show filter");
-  	  $(".filter").slideUp("slow");
-    } 
-  ); 
-
   // Show gallery tools ico
   $(".gallery .item").hover(function(){     
       $(this).find(".tools").show(); 

@@ -79,7 +79,7 @@
                             <h2>Brands</h2>
                             <ul>
                                 <c:forEach items="${producerList}" var="brand">
-                                <li><input class="le-checkbox" name="brand" type="checkbox" value="${brand.producer}" checked="true"/>
+                                <li><input class="le-checkbox" name="brand" type="checkbox" value="${brand.producer}"/>
                                     <label>${brand.producer}  (${brand.num})</label></li>
                                 </c:forEach>
                             </ul>
@@ -117,7 +117,7 @@
                             <h2>Location</h2>
                             <ul>
                                 <c:forEach items="${machineLocationList}" var="location">
-                                    <li><input class="le-checkbox" name="location" type="checkbox" value="${location.machineLocation}" checked="true"/>
+                                    <li><input class="le-checkbox" name="location" type="checkbox" value="${location.machineLocation}"/>
                                         <label>${location.machineLocation}  (${location.num})</label></li>
                                 </c:forEach>
                             </ul>
@@ -131,7 +131,7 @@
                             <h2>CNC</h2>
                             <ul>
                                 <c:forEach items="${cncList}" var="cnc">
-                                <li><input class="le-checkbox" name="cnc" type="checkbox" value="${cnc.systemCNC}" checked="true"/>
+                                <li><input class="le-checkbox" name="cnc" type="checkbox" value="${cnc.systemCNC}"/>
                                     <label>${cnc.systemCNC}  (${cnc.num})</label></li>
                                 </c:forEach>
                             </ul>
@@ -208,8 +208,10 @@
 
                             <div id="prtCnt"></div>
 
+                            <c:if test="${!empty machineList}">
+
                             <div class="product-grid-holder" id="list">
-                                <c:if test="${!empty machineList}">
+
                                     <div class="row no-margin">
                                         <c:forEach items="${machineList}" var="machine">
                                             <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover">
@@ -251,10 +253,6 @@
                                         </c:forEach>
                                     </div>
                                     <!-- /.row -->
-                                </c:if>
-                                <c:if test="${empty machineList}">
-                                    Please, change the filter parameters.
-                                </c:if>
                             </div>
                             <!-- /.product-grid-holder -->
 
@@ -263,13 +261,15 @@
 
                                     <div class="col-xs-6 text-left">
                                         <ul class="pagination ">
-                                            <li class="current"><a href="#">1</a></li>
+                                            <c:forEach begin="1" end="${pages}" var="i">
+                                                <li class="current"><a href="list?page=${i}">${i}</a></li>
+                                            </c:forEach>
                                         </ul>
                                     </div>
 
                                     <div class="col-xs-6">
                                         <div class="result-counter">
-                                            Showing <span>1-9</span> of <span>11</span> results
+                                            Showing ${showFromTo[0]}-${showFromTo[1]} of ${machineCount} results
                                         </div>
                                     </div>
 
@@ -277,6 +277,12 @@
                                 <!-- /.row -->
                             </div>
                             <!-- /.pagination-holder -->
+
+                            </c:if>
+                            <c:if test="${empty machineList}">
+                                Please, change the filter parameters.
+                            </c:if>
+
                         </div>
                         <!-- /.products-grid #grid-view -->
 

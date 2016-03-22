@@ -29,9 +29,17 @@ public class MachineDAOImpl implements MachineDAO {
     @SuppressWarnings("unchecked")
     public void addMachines(String path) {
         sessionFactory.getCurrentSession()
-                .createSQLQuery("LOAD DATA LOCAL INFILE :file INTO TABLE hmc.machines \n" +
-                "FIELDS TERMINATED BY ';' ENCLOSED BY '\"' LINES TERMINATED BY '\\n' IGNORE 1 ROWS;")
+                .createSQLQuery("LOAD DATA LOCAL INFILE :file INTO TABLE hmc.machines " +
+                "FIELDS TERMINATED BY ';' ENCLOSED BY '\"' LINES TERMINATED BY '\\r\\n' IGNORE 1 LINES;")
                 .setString("file",path).executeUpdate();
+    }
+
+    @SuppressWarnings("unchecked")
+    public void removeMachine(String productId) {
+        Machine machine = (Machine) sessionFactory.getCurrentSession().load(Machine.class, productId);
+        if (null != machine) {
+            sessionFactory.getCurrentSession().delete(machine);
+        }
     }
 
     @SuppressWarnings("unchecked")

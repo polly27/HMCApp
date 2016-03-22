@@ -39,7 +39,7 @@ set, h1, h2, h3, h4, h5, h6   { margin: 0; padding: 0; list-style: none; }
 .bold     { font-weight: bold;}
 .italic   { font-style: italic;}
 .nomargin { margin: 0 !important;}
-img       { border: none;}
+img       { border: none; }
 a         { outline-style: none; }
 .clear        { display: block; clear: both; width: 100%; height: 0; line-height: 0; font-size: 0; }
 html, body    { height: 100%; }
@@ -212,14 +212,14 @@ ul.mainmenu li ul.submenu li a:hover  { color: #404040; }
 .box .headlines .show-filter { float: right; margin-right: 10px; color: #fff; line-height: 38px; }  
 .box .headlines .help        { display: block; width: 24px; height: 24px; float: right; margin: 6px 10px 0 0; color: #fff; background: url(../images/ico/help.png) 0 0 no-repeat; }
 
-.box .box-content { overflow: hidden; margin: 0 10px 20px; }
+.box .box-content { overflow: hidden; margin: 0 10px 15px; }
 
 .box-cols           { overflow: hidden; }
 .box-cols .box-col  { width: 48%; float: left; }
 .box-cols .box-last { float: right; }
 
 /* -- Table  -- */
-.tab { width: 100%; margin-bottom: 20px; border-collapse: collapse; }
+.tab { display: block; table-layout: fixed; width: 100%; margin-bottom: 20px; border-collapse: collapse; max-height: 500px; overflow-y: auto; overflow-x: scroll; }
 .tab th, .tab td { padding: 8px 12px; text-align: left; font-size: 1em; border-bottom: 1px solid #e3e3e3; background: transparent; }
 .tab th { color: #052b4d; border-bottom: 2px solid #e3e3e3; background: #fff; }
 .tab th.action { border-right: 0;}
@@ -232,8 +232,6 @@ ul.mainmenu li ul.submenu li a:hover  { color: #404040; }
 
 .tab th.dragHandle  { padding: 0; width: 10px; }
 .tab td.dragHandle  { padding: 0; width: 10px; cursor: move; background: url(../images/dragHandle.png) 2px 2px no-repeat;} 
-
-.tab td a { text-decoration: none; }
 
 /* -- Ico -- */
 a.ico         { display: block; float: left; width: 10px; height: 10px; margin: 3px 4px 0; overflow: hidden; text-indent: 20px; background-position: 0 -10px; }
@@ -275,7 +273,7 @@ a:hover.ico   { background-position: 0 0; }
 
 /* -- FormBox -- */
 .formBox                  { position: relative; padding-bottom: 20px; }
-.formBox fieldset         { padding: 0; margin: 0; border: none !important; }
+.formBox fieldset         { padding: 0; margin: 0; border: none !important; font-size: 13px;}
 .formBox .clearfix        { overflow: hidden; width: 100%; padding-bottom: 15px; }
 .formBox .form-cols       { overflow: hidden; }
 .formBox .col1 .lab,
