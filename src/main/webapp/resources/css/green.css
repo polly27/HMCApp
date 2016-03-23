@@ -139,7 +139,7 @@ h2 {
     }
 }*/
 .pagination li:hover a,
-.pagination li.current a {
+.pagination li.current {
   color: #59b210 !important;
   border-color: #59b210;
 }

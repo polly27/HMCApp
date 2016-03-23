@@ -50,6 +50,7 @@ public class FiltersDAOImpl implements FiltersDAO {
     public void renewSystemCNCFilter() {
         renew(SystemCNCFilter.class.getSimpleName(), "systemCNC");    }
 
+    @SuppressWarnings("unchecked")
     private void renew(String className, String checkBoxName) {
         Session session = sessionFactory.getCurrentSession();
         session.createQuery("delete from " + className).executeUpdate();

@@ -37,10 +37,10 @@
         <div class="top-cart-row-container">
             <div class="wishlist-compare-holder">
                 <div class="wishlist ">
-                    <a href="wishlist.htm"><i class="fa fa-heart"></i> wishlist <span class="value">${wishlistCart.numberOfItems}</span> </a>
+                    <a href="#"><i class="fa fa-heart"></i> wishlist <span class="value">-1</span> </a>
                 </div>
                 <div class="compare">
-                    <a href="compare.htm"><i class="fa fa-exchange"></i> compare <span class="value">${compareCart.numberOfItems}</span> </a>
+                    <a href="compare"><i class="fa fa-exchange"></i> compare <span class="value">${compareCart.numberOfItems}</span> </a>
 
                 </div>
             </div>

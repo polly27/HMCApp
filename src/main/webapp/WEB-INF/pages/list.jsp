@@ -199,22 +199,17 @@
         <!-- ========================================= CONTENT ========================================= -->
 
         <div class="col-xs-12 col-sm-9 no-margin wide sidebar">
-
             <section id="gaming">
                 <div class="grid-list-products">
-
                     <div class="tab-content">
                         <div id="grid-view" class="products-grid fade tab-pane in active">
 
-                            <div id="prtCnt"></div>
-
                             <c:if test="${!empty machineList}">
-
-                            <div class="product-grid-holder" id="list">
-
+                                <div class="product-grid-holder" id="list">
                                     <div class="row no-margin">
+                                        <c:set var="i" value="${1}"/>
                                         <c:forEach items="${machineList}" var="machine">
-                                            <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover">
+                                            <div id="item${i}" class="col-xs-12 col-sm-4 no-margin product-item-holder hover" style="display:none">
                                                 <div class="product-item">
                                                     <div class="image">
                                                         <img alt="" src="resources/images/blank.gif"
@@ -228,10 +223,10 @@
                                                             </a>
                                                         </div>
                                                         <div class="brand">
-                                                                ${machine.producer}, ${machine.year}, ${machine.producingCountry}<br>
-                                                                Current location: ${machine.machineLocation}<br>
-                                                                X&timesY&timesZ-motion: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}<br>
-                                                                X&timesY table sizes: ${machine.xTableSize}&times${machine.yTableSize}
+                                                            ${machine.producer}, ${machine.year}, ${machine.producingCountry}<br>
+                                                            Current location: ${machine.machineLocation}<br>
+                                                            X&timesY&timesZ-motion: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}<br>
+                                                            X&timesY table sizes: ${machine.xTableSize}&times${machine.yTableSize}
                                                         </div>
                                                     </div>
                                                     <div class="prices">
@@ -240,43 +235,44 @@
                                                     </div>
                                                     <div class="hover-area">
                                                         <div class="add-cart-button">
-                                                            <a href="machine?productId=${machine.productId}"
-                                                               class="le-button">add to cart</a>
+                                                            <a href="machine?productId=${machine.productId}" class="le-button">add to cart</a>
                                                         </div>
                                                         <div class="wish-compare">
                                                             <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
-                                                            <a class="btn-add-to-compare" href="#">compare</a>
+                                                            <a class="btn-add-to-compare" href="#">add to comparison</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <c:set var="i" value="${i + 1}"/>
                                         </c:forEach>
                                     </div>
                                     <!-- /.row -->
-                            </div>
-                            <!-- /.product-grid-holder -->
-
-                            <div class="pagination-holder">
-                                <div class="row">
-
-                                    <div class="col-xs-6 text-left">
-                                        <ul class="pagination ">
-                                            <c:forEach begin="1" end="${pages}" var="i">
-                                                <li class="current"><a href="list?page=${i}">${i}</a></li>
-                                            </c:forEach>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-xs-6">
-                                        <div class="result-counter">
-                                            Showing ${showFromTo[0]}-${showFromTo[1]} of ${machineCount} results
-                                        </div>
-                                    </div>
-
                                 </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- /.pagination-holder -->
+                                <!-- /.product-grid-holder -->
+
+                                <div class="pagination-holder">
+                                    <div class="row">
+
+                                        <div class="col-xs-6 text-left">
+                                            <ul class="pagination">
+                                                <c:forEach begin="1" end="${pagesNum}" var="i">
+                                                    <li id="page${i}" onclick="showPage(${i});">${i}</li>
+                                                </c:forEach>
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-xs-6">
+                                            <div class="result-counter">
+                                                Showing <span id="showFromTo"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.pagination-holder -->
 
                             </c:if>
                             <c:if test="${empty machineList}">
@@ -285,12 +281,10 @@
 
                         </div>
                         <!-- /.products-grid #grid-view -->
-
                     </div>
                     <!-- /.tab-content -->
                 </div>
                 <!-- /.grid-list-products -->
-
             </section>
             <!-- /#gaming -->
         </div>
@@ -302,7 +296,6 @@
 <!-- /#category-grid -->
 <!-- ================================================= FOOTER ========================================== -->
 <%@include file="footer.jsp" %>
-<!-- /#footer -->
 <!-- ============================================================= FOOTER : END ============================================================= -->
 </div>
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
@@ -324,7 +317,9 @@
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
 <script src="resources/js/filters-list.jsp"></script>
+<script src="resources/js/pagination-list.jsp"></script>
 <script type="text/javascript">
+    // filter global variables
     var yearMin = '${yearMinMax[0]}';
     var yearMax = '${yearMinMax[1]}';
     var priceMin = '${priceMinMax[0]}';
@@ -339,6 +334,11 @@
     var xTableSizeMax = '${xTableSizeMinMax[1]}';
     var yTableSizeMin = '${yTableSizeMinMax[0]}';
     var yTableSizeMax = '${yTableSizeMinMax[1]}';
+
+    // pagination global variables
+    var itemsPerPage = '${itemsPerPage}';
+    var itemsNum = '${itemsNum}';
+
 </script>
 
 </body>

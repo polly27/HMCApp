@@ -111,7 +111,6 @@
                     </form:form>
                 </div>
 
-
                 <div id="upload-photo">
                     <form class="formBox" method="post" action="/admin/addPhotos" enctype="multipart/form-data">
 
@@ -140,7 +139,7 @@
 
                         <fieldset>
                             Renewing filters means forming new filter parameters according to existing DB with Machines.<br><br>
-                            Please, do it every time you manipulate with DB.<br><br>
+                            <h3 style="color: red">Please, do it every time after final changing the items.</h3>
                             As a result, you would see <u>relevant</u> filter parameters.<br><br>
 
                             <div class="btn-submit"><!-- Submit form -->

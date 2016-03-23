@@ -36,6 +36,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hmc`.`producer_filter` (
   `producer` VARCHAR(255) NOT NULL,
+  `num` INT(11) NOT NULL,
   PRIMARY KEY (`producer`),
   UNIQUE INDEX `producer_UNIQUE` (`producer` ASC))
 ENGINE = InnoDB;
@@ -44,8 +45,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `hmc`.`machineLocation_filter`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hmc`.`machineLocation_filter` (
+CREATE TABLE IF NOT EXISTS `hmc`.`machine_location_filter` (
   `machineLocation` VARCHAR(255) NOT NULL,
+  `num` INT(11) NOT NULL,
   PRIMARY KEY (`machineLocation`),
   UNIQUE INDEX `machineLocation_UNIQUE` (`machineLocation` ASC))
 ENGINE = InnoDB;
@@ -56,6 +58,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hmc`.`systemCNC_filter` (
   `systemCNC` VARCHAR(255) NOT NULL,
+  `num` INT(11) NOT NULL,
   PRIMARY KEY (`systemCNC`),
   UNIQUE INDEX `systemCNC_UNIQUE` (`systemCNC` ASC))
 ENGINE = InnoDB;

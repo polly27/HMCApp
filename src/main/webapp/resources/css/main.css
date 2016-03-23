@@ -553,14 +553,14 @@ label.error {
 .pagination {
   margin: 17px 0;
 }
-.pagination li:last-child a {
+.pagination li:last-child{
   padding: 9px 32px!important;
 }
-.pagination li:hover a,
-.pagination li.current a {
+.pagination li:hover,
+.pagination li.current {
   background-color: #fff;
 }
-.pagination a {
+.pagination li{
   border: 1px solid #e0e0e0;
   color: #3d3d3d !important;
   border-radius: 0!important;
@@ -568,6 +568,7 @@ label.error {
   font-size: 18px;
   margin: 0 4px 0 0;
   text-transform: capitalize;
+  cursor: pointer;
 }
 .inline-input .placeholder {
   font-weight: 700 !important;
@@ -2662,7 +2663,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   border-right: 0;
 }
 .grid-list-products .product-grid-holder .product-item-holder {
-  min-height: 410px;
+  min-height: 470px;
   border: 1px solid #ececec;
   border-top: 0;
   border-left: 0;

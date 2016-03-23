@@ -18,10 +18,6 @@ function submitFilter() {
     $('#filterForm').submit();
 }
 
-function alertData(nameVal) {
-    alert($('#'+nameVal+'-slider').val());
-}
-
 function loadSettings() {
     loadCheckbox('brand',sessionStorage.brand);
     loadSlider('year',yearMin,yearMax,1,sessionStorage.year);
