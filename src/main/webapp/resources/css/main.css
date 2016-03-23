@@ -1773,6 +1773,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   display: inline-block;
   vertical-align: top;
   text-transform: capitalize;
+  cursor: pointer;
 }
 .btn-add-to-compare:before {
   margin: 0 5px 0 0;
@@ -1786,6 +1787,9 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 }
 .btn-add-to-compare:before {
   content: "\f0ec";
+}
+.btn-add-to-compare:hover {
+    color: #59b210;
 }
 .btn-add-to-wishlist {
   color: #3d3d3d;
@@ -2380,16 +2384,18 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 .product-item-holder.hover.size-small .product-item .hover-area {
   bottom: 9px;
 }
-.product-item-holder.hover.size-small .product-item .hover-area .wish-compare a {
+.product-item-holder.hover.size-small .product-item .hover-area .wish-compare span {
   margin: 0 8px;
   font-size: 11px!important;
+  cursor: pointer;
 }
-.product-item-holder.hover.size-small .product-item .hover-area .wish-compare a:before {
+.product-item-holder.hover.size-small .product-item .hover-area .wish-compare span:before {
   font-size: 12px!important;
   margin-right: 3px;
 }
-.product-item-holder.hover.size-medium .product-item .wish-compare a {
+.product-item-holder.hover.size-medium .product-item .wish-compare span {
   margin: 0 5px!important;
+  cursor: pointer;
 }
 .product-item-holder.hover.size-medium .product-item .add-cart-button {
   margin-bottom: 10px;
@@ -2407,8 +2413,9 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   width: 100%;
   display: none;
 }
-.product-item-holder.hover .product-item .hover-area .wish-compare a {
+.product-item-holder.hover .product-item .hover-area .wish-compare span {
   margin: 0 10px;
+  cursor: pointer;
 }
 .product-item-holder.hover .product-item .hover-area .add-cart-button {
   position: relative;
@@ -4288,7 +4295,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 }
 .compare-list tr.description > td {
   font-size: 14px;
-  line-height: 26px;
+  line-height: 20px;
 }
 .compare-list .remove-link {
   position: absolute;

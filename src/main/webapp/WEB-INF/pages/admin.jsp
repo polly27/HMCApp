@@ -139,7 +139,7 @@
 
                         <fieldset>
                             Renewing filters means forming new filter parameters according to existing DB with Machines.<br><br>
-                            <h3 style="color: red">Please, do it every time after final changing the items.</h3>
+                            <h3 style="color: red">Please, do it every time you've finally changed the items.</h3>
                             As a result, you would see <u>relevant</u> filter parameters.<br><br>
 
                             <div class="btn-submit"><!-- Submit form -->

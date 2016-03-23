@@ -42,7 +42,7 @@
         <div class="col-xs-12 col-sm-6 no-margin">
             <ul>
                 <li><a href="list">Home</a></li>
-                <li><a href="#contacts">Contact</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </div>
 
@@ -117,7 +117,7 @@
 
                 <div class="buttons-holder">
                     <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
-                    <a class="btn-add-to-compare" href="#">add to compare list</a>
+                    <span class="btn-add-to-compare" onclick="addToComparison('${machine.productId}')">add to comparison</span>
                 </div>
 
                 <div class="excerpt">
@@ -182,11 +182,6 @@
                             <div class="value">${machine.producingCountry}</div>
                         </li>
                         <li>
-                            <label>System CNC</label>
-
-                            <div class="value">${machine.systemCNC}</div>
-                        </li>
-                        <li>
                             <label>Full system CNC</label>
 
                             <div class="value">${machine.fullSystemCNC}</div>
@@ -207,32 +202,17 @@
                             <div class="value">${machine.axisCount}</div>
                         </li>
                         <li>
-                            <label>X-motion</label>
+                            <label>X&timesY&timesZ-motion, mm</label>
 
-                            <div class="value">${machine.xMotion}</div>
+                            <div class="value">${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}</div>
                         </li>
                         <li>
-                            <label>Y-motion</label>
+                            <label>X&timesY table sizes, mm</label>
 
-                            <div class="value">${machine.yMotion}</div>
+                            <div class="value">${machine.xTableSize}&times${machine.yTableSize}</div>
                         </li>
                         <li>
-                            <label>Z-motion</label>
-
-                            <div class="value">${machine.zMotion}</div>
-                        </li>
-                        <li>
-                            <label>X table size</label>
-
-                            <div class="value">${machine.xTableSize}</div>
-                        </li>
-                        <li>
-                            <label>Y table size</label>
-
-                            <div class="value">${machine.yTableSize}</div>
-                        </li>
-                        <li>
-                            <label>Table load</label>
+                            <label>Table load, kg</label>
 
                             <div class="value">${machine.tableLoad}</div>
                         </li>
@@ -242,12 +222,12 @@
                             <div class="value">${machine.spindleTaper}</div>
                         </li>
                         <li>
-                            <label>Spindle rotation frequency</label>
+                            <label>Spindle rotation frequency, rev/min</label>
 
                             <div class="value">${machine.spindleRotationFreq}</div>
                         </li>
                         <li>
-                            <label>Spindle power</label>
+                            <label>Spindle power, kw</label>
 
                             <div class="value">${machine.spindlePower}</div>
                         </li>
@@ -272,42 +252,42 @@
                             <div class="value">${machine.storeType}</div>
                         </li>
                         <li>
-                            <label>Tool count</label>
+                            <label>Tool count, pcs.</label>
 
                             <div class="value">${machine.toolCount}</div>
                         </li>
                         <li>
-                            <label>Max tool diameter</label>
+                            <label>Max tool diameter, mm</label>
 
                             <div class="value">${machine.maxToolDiameter}</div>
                         </li>
                         <li>
-                            <label>Max tool weight</label>
+                            <label>Max tool weight, kg</label>
 
                             <div class="value">${machine.maxToolWeight}</div>
                         </li>
                         <li>
-                            <label>Tool replacement time</label>
+                            <label>Tool replacement time, sec</label>
 
                             <div class="value">${machine.toolReplacementTime}</div>
                         </li>
                         <li>
-                            <label>Position precision</label>
+                            <label>Position precision, mm</label>
 
                             <div class="value">${machine.positionPrecision}</div>
                         </li>
                         <li>
-                            <label>Reposition precision</label>
+                            <label>Reposition precision, mm</label>
 
                             <div class="value">${machine.repositionPrecision}</div>
                         </li>
                         <li>
-                            <label>Spindle runtime</label>
+                            <label>Spindle runtime, h</label>
 
                             <div class="value">${machine.spindleRuntime}</div>
                         </li>
                         <li>
-                            <label>Machine launching</label>
+                            <label>Machine launching, h</label>
 
                             <div class="value">${machine.machineLaunching}</div>
                         </li>
@@ -366,6 +346,7 @@
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
+<script src="resources/js/actions-list.jsp"></script>
 
 </body>
 </html>

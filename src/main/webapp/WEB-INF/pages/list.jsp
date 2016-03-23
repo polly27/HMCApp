@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="resources/css/font-awesome.min.css">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="resourcesd/images/favicon.ico">
+    <link rel="shortcut icon" href="resources/images/favicon.ico">
 
 </head>
 <body>
@@ -43,7 +43,7 @@
         <div class="col-xs-12 col-sm-6 no-margin">
             <ul>
                 <li><a href="list">Home</a></li>
-                <li><a href="#contacts">Contact</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </div>
 
@@ -239,7 +239,7 @@
                                                         </div>
                                                         <div class="wish-compare">
                                                             <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
-                                                            <a class="btn-add-to-compare" href="#">add to comparison</a>
+                                                            <span class="btn-add-to-compare" onclick="addToComparison('${machine.productId}')">add to comparison</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -316,8 +316,7 @@
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
-<script src="resources/js/filters-list.jsp"></script>
-<script src="resources/js/pagination-list.jsp"></script>
+<script src="resources/js/actions-list.jsp"></script>
 <script type="text/javascript">
     // filter global variables
     var yearMin = '${yearMinMax[0]}';

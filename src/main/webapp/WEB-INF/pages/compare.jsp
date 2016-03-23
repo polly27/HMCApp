@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="resources/css/font-awesome.min.css">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="resourcesd/images/favicon.ico">
+    <link rel="shortcut icon" href="resources/images/favicon.ico">
 </head>
 <body>
 
@@ -42,7 +42,7 @@
             <div class="col-xs-12 col-sm-6 no-margin">
                 <ul>
                     <li><a href="list">Home</a></li>
-                    <li><a href="#contacts">Contact</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </div>
 
@@ -69,156 +69,275 @@
             </div>
             <!-- /.section-page-title -->
 
+            <c:if test="${!empty comparisonList}">
             <div class="table-responsive inner-bottom-xs inner-top-xs">
-
                 <table class="table table-bordered table-striped compare-list">
                     <thead>
                     <tr>
                         <td>&nbsp;</td>
+                        <c:forEach items="${comparisonList}" var="machine">
                         <td class="text-center">
                             <div class="image-wrap">
-                                <a data-product_id="39" href="#" class="remove-link"><i class="fa fa-times-circle"></i></a>
-                                <img width="220" height="154" alt="Iconia W700" class="attachment-yith-woocompare-image"
-                                     src="assets/images/products/product-01.jpg">
+                                <a href="compare/remove/${machine.productId}" class="remove-link"><i class="fa fa-times-circle"></i></a>
+                                <img width="220" height="154" class="attachment-yith-woocompare-image" src="resources/images/blank.gif"
+                                     data-echo="resources/images/products/${machine.photo1}">
                             </div>
-                            <p><strong>Iconia W700</strong></p>
+                            <p><strong>${machine.type}<br>${machine.model}</strong></p>
                         </td>
-                        <td class="text-center">
-                            <div class="image-wrap">
-                                <a data-product_id="34" href="#" class="remove-link"><i class="fa fa-times-circle"></i></a>
-                                <img width="220" height="154" alt="POV Action Cam"
-                                     class="attachment-yith-woocompare-image"
-                                     src="assets/images/products/product-02.jpg">
-                            </div>
-                            <p><strong>AS100V Action Cam</strong></p>
-                        </td>
-                        <td class="text-center">
-                            <div class="image-wrap">
-                                <a data-product_id="30" href="#" class="remove-link"><i class="fa fa-times-circle"></i></a>
-                                <img width="220" height="154" alt="PlayStation 4"
-                                     class="attachment-yith-woocompare-image"
-                                     src="assets/images/products/product-03.jpg">
-                            </div>
-                            <p><strong>PlayStation 4</strong></p>
-                        </td>
-                        <td class="text-center">
-                            <div class="image-wrap">
-                                <a data-product_id="20" href="#" class="remove-link"><i class="fa fa-times-circle"></i></a>
-                                <img width="220" height="154" alt="Cyber-shot Digital Camera WX300"
-                                     class="attachment-yith-woocompare-image"
-                                     src="assets/images/products/product-04.jpg">
-                            </div>
-                            <p><strong>Cyber-shot Digital Camera WX300</strong></p>
-                        </td>
+                        </c:forEach>
                     </tr>
                     <tr class="tr-add-to-cart">
                         <td>&nbsp;</td>
+                        <c:forEach items="${comparisonList}" var="machine">
                         <td class="text-center">
                             <div class="add-cart-button">
-                                <a class="le-button add_to_cart_button  product_type_simple" href="index.php?page=cart">Add
-                                    to cart</a>
+                                <a class="le-button add_to_cart_button product_type_simple" href="#">Add to cart</a>
                             </div>
                         </td>
-                        <td class="text-center">
-                            <div class="add-cart-button">
-                                <a class="le-button add_to_cart_button  product_type_simple" href="index.php?page=cart">Add
-                                    to cart</a>
-                            </div>
-                        </td>
-                        <td class="text-center">
-                            <div class="add-cart-button">
-                                <a class="le-button add_to_cart_button  product_type_simple" href="index.php?page=cart">Add
-                                    to cart</a>
-                            </div>
-                        </td>
-                        <td class="text-center">
-                            <div class="add-cart-button">
-                                <a class="le-button add_to_cart_button  product_type_variable"
-                                   href="index.php?page=cart">Add
-                                    to cart</a>
-                            </div>
-                        </td>
+                        </c:forEach>
                     </tr>
                     </thead>
                     <tbody>
 
                     <tr class="comparison-item price">
                         <th>Price</th>
+                        <c:forEach items="${comparisonList}" var="machine">
                         <td class="comparison-item-cell odd product_39">
-                            <span class="amount">$629.99</span>
+                            <span class="amount">$${machine.cost}.00</span>
                         </td>
-                        <td class="comparison-item-cell even product_34">
-                            <del><span class="amount">$299.99</span></del>
-                            <ins><span class="amount">$269.99</span></ins>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Brand, country, year</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                        <td class="comparison-item-cell odd product_39">
+                            <p>${machine.producer}, ${machine.producingCountry}, ${machine.year}</p>
                         </td>
-                        <td class="comparison-item-cell odd product_30">
-                            <span class="amount">$399.99</span>
-                        </td>
-                        <td class="comparison-item-cell even product_20">
-                            <del><span class="amount">$329.99</span></del>
-                            <ins><span class="amount">$249.99</span>&ndash;<span class="amount">$329.99</span></ins>
-                        </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>System CNC</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.fullSystemCNC}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Machine location</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.machineLocation}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>X&timesY&timesZ-motion, mm</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>X&timesY table sizes, mm</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.xTableSize}&times${machine.yTableSize}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Table load, kg</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.tableLoad}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Spindle taper</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.spindleTaper}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Spindle rotation frequency, rev/min</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.spindleRotationFreq}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Spindle power, kw</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.spindlePower}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Spindle max torque</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.spindleMaxTorque}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Spindle type</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.spindleType}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Spindle cooling method</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.spindleCoolingMethod}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Store type</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.storeType}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Tool count, pcs.</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.toolCount}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Max tool diameter, mm</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.maxToolDiameter}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Max tool weight, kg</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.maxToolWeight}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Tool replacement time, sec</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.toolReplacementTime}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Position precision, mm</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.positionPrecision}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Reposition precision, mm</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.repositionPrecision}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Spindle runtime, h</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.spindleRuntime}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Machine launching, h</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.machineLaunching}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Equipment</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.equipment}</p>
+                            </td>
+                        </c:forEach>
+                    </tr>
+
+                    <tr class="comparison-item description">
+                        <th>Condition</th>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.condition}</p>
+                            </td>
+                        </c:forEach>
                     </tr>
 
                     <tr class="comparison-item description">
                         <th>Description</th>
-                        <td class="comparison-item-cell odd product_39">
-                            <p>Nulla sed sapien a ligula auctor maximus. Aliquam eget condimentum nunc. Maecenas
-                                efficitur
-                                pretium nunc in semper. Nullam ac luctus nisl. </p>
-                        </td>
-                        <td class="comparison-item-cell even product_34">
-                            <p>Nulla sed sapien a ligula auctor maximus. Aliquam eget condimentum nunc. Maecenas
-                                efficitur
-                                pretium nunc in semper. Nullam ac luctus nisl. </p>
-                        </td>
-                        <td class="comparison-item-cell odd product_30">
-                            <p>Nulla sed sapien a ligula auctor maximus. Aliquam eget condimentum nunc. Maecenas
-                                efficitur
-                                pretium nunc in semper. Nullam ac luctus nisl. </p>
-                        </td>
-                        <td class="comparison-item-cell even product_20">
-                            <p>Nulla sed sapien a ligula auctor maximus. Aliquam eget condimentum nunc. Maecenas
-                                efficitur
-                                pretium nunc in semper. Nullam ac luctus nisl. </p>
-                        </td>
-                    </tr>
-
-                    <tr class="comparison-item stock">
-                        <th>Availability</th>
-
-                        <td class="comparison-item-cell odd product_39">
-                            <span class="label label-success"><span class="">In stock</span></span>
-                        </td>
-                        <td class="comparison-item-cell even product_34">
-                            <span class="label label-success"><span class="">In stock</span></span>
-                        </td>
-                        <td class="comparison-item-cell odd product_30">
-                            <span class="label label-success"><span class="">In stock</span></span>
-                        </td>
-                        <td class="comparison-item-cell even product_20">
-                            <span class="label label-success"><span class="">In stock</span></span>
-                        </td>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <p>${machine.fullDescription}</p>
+                            </td>
+                        </c:forEach>
                     </tr>
 
                     <tr class="price repeated">
                         <th>Price</th>
-                        <td class="odd product_39"><span class="amount">$629.99</span></td>
-                        <td class="even product_34">
-                            <del><span class="amount">$299.99</span></del>
-                            <ins><span class="amount">$269.99</span></ins>
-                        </td>
-                        <td class="odd product_30"><span class="amount">$399.99</span></td>
-                        <td class="even product_20">
-                            <del><span class="amount">$329.99</span></del>
-                            <ins><span class="amount">$249.99</span>&ndash;<span class="amount">$329.99</span></ins>
-                        </td>
+                        <c:forEach items="${comparisonList}" var="machine">
+                            <td class="comparison-item-cell odd product_39">
+                                <span class="amount">$${machine.cost}.00</span>
+                            </td>
+                        </c:forEach>
                     </tr>
 
                     </tbody>
                 </table>
             </div>
             <!-- /.table-responsive -->
+            </c:if>
         </div>
         <!-- /.container -->
     </div>
@@ -229,23 +348,24 @@
 <!-- /.wrapper -->
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-<script src="assets/js/jquery-1.10.2.min.js"></script>
-<script src="assets/js/jquery-migrate-1.2.1.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="resources/js/jquery-1.10.2.min.js"></script>
+<script src="resources/js/jquery-migrate-1.2.1.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
 <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-<script src="assets/js/gmap3.min.js"></script>
-<script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/css_browser_selector.min.js"></script>
-<script src="assets/js/echo.min.js"></script>
-<script src="assets/js/jquery.easing-1.3.min.js"></script>
-<script src="assets/js/bootstrap-slider.min.js"></script>
-<script src="assets/js/jquery.raty.min.js"></script>
-<script src="assets/js/jquery.prettyPhoto.min.js"></script>
-<script src="assets/js/jquery.customSelect.min.js"></script>
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/scripts.js"></script>
+<script src="resources/js/gmap3.min.js"></script>
+<script src="resources/js/bootstrap-hover-dropdown.min.js"></script>
+<script src="resources/js/owl.carousel.min.js"></script>
+<script src="resources/js/css_browser_selector.min.js"></script>
+<script src="resources/js/echo.min.js"></script>
+<script src="resources/js/jquery.easing-1.3.min.js"></script>
+<script src="resources/js/bootstrap-slider.min.js"></script>
+<script src="resources/js/jquery.raty.min.js"></script>
+<script src="resources/js/jquery.prettyPhoto.min.js"></script>
+<script src="resources/js/jquery.customSelect.min.js"></script>
+<script src="resources/js/wow.min.js"></script>
+<script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
+<script src="resources/js/compare-list.js"></script>
 
 </body>
 </html>

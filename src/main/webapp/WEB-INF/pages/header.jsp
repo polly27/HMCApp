@@ -37,11 +37,10 @@
         <div class="top-cart-row-container">
             <div class="wishlist-compare-holder">
                 <div class="wishlist ">
-                    <a href="#"><i class="fa fa-heart"></i> wishlist <span class="value">-1</span> </a>
+                    <a href="#"><i class="fa fa-heart"></i> wishlist <span class="value"></span> </a>
                 </div>
                 <div class="compare">
-                    <a href="compare"><i class="fa fa-exchange"></i> compare <span class="value">${compareCart.numberOfItems}</span> </a>
-
+                    <span class="btn-add-to-compare" onclick="goToComparison()"> comparison </span>
                 </div>
             </div>
 
@@ -52,14 +51,14 @@
 
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <div class="basket-item-count">
-                            <span class="count">${cart.numberOfItems}</span>
+                            <span class="count"></span>
                             <img src="resources/images/icon-cart.png" alt="" />
                         </div>
 
                         <div class="total-price-basket">
                             <span class="lbl">your cart:</span>
                     <span class="total-price">
-                        <span class="sign">$</span><span class="value">${cart.subtotal}</span>
+                        <span class="sign">$</span><span class="value"></span>
                     </span>
                         </div>
                     </a>
