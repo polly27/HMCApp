@@ -8,6 +8,7 @@ import java.util.List;
 public interface MachineService {
     public List<Machine> listMachine();
     public Machine getMachine(String productId);
+    public List<Machine> getMachinesList(String[] productIdArr);
     public void uploadMachinesFile(MultipartFile multipartFile);
     public void uploadPhotos(MultipartFile[] multipartFile);
     public void removeMachine(String productId);

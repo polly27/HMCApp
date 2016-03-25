@@ -18,8 +18,9 @@
             } else {
                 loadSettings();
             }
-        });
 
+            saveSettings();
+        });
 
         <%--PAGINATION--%>
 
@@ -113,33 +114,3 @@
         function saveSlider(name) {
             return $('#' + name + '-slider').val();
         }
-
-
-        <%-- COMPARISON --%>
-
-        function addToComparison(productId) {
-            var comparedIdArr = [];
-            if(sessionStorage.comparedIdStr != null) {
-                comparedIdArr = sessionStorage.comparedIdStr.split(',');
-            }
-
-            if(comparedIdArr.indexOf(productId) != -1) {
-                alert("Item is already in comparison");
-            } else {
-                if (comparedIdArr.length < 5) {
-                    comparedIdArr.push(productId);
-                } else {
-                    alert("5 elements in comparison - max");
-                }
-            }
-
-            sessionStorage.comparedIdStr = comparedIdArr.join();
-            alert(sessionStorage.comparedIdStr);
-        }
-
-         function goToComparison() {
-             $.get("compare?itemsId="+sessionStorage.comparedIdStr, function( data ) {
-                 alert( "Load was performed." );
-             });
-         }
-

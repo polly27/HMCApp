@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -73,4 +74,14 @@ public class MachineServiceImpl implements MachineService {
     private int[] getRangeArr(String range) {
         return range.isEmpty() ? null : new int[] {Integer.valueOf(range.split(",")[0]), Integer.valueOf(range.split(",")[1])};
     }
+
+    @Transactional
+    public List<Machine> getMachinesList(String[] productIdArr) {
+        List<Machine> list = new ArrayList<Machine>();
+        for(String productId : productIdArr) {
+            list.add(machineDAO.getMachine(productId));
+        }
+        return list;
+    }
+
 }

@@ -60,5 +60,4 @@ public class AdminController {
         machineService.removeMachine(productId);
         return "redirect:/admin";
     }
-
 }

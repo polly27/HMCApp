@@ -5,7 +5,6 @@ import com.springapp.mvc.service.FiltersService;
 import com.springapp.mvc.service.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +25,6 @@ public class MachineController {
         return "redirect:/list";
     }
 
-    @SuppressWarnings("unchecked")
     @RequestMapping(value="/list", method = RequestMethod.GET)
     public void productsList(Map<String, Object> map) {
         List<Machine> machineList = machineService.listMachine();
@@ -78,16 +76,10 @@ public class MachineController {
     }
 
     @RequestMapping(value="/compare", method = RequestMethod.GET)
-    public void comparison(@PathVariable("itemsId") String itemsId, Map<String, Object> map) {
-        int maxNum = 5;
-        System.out.println(itemsId);
-        map.put("comparisonList", machineService.listMachine());
-    }
-
-    @RequestMapping(value="/compare/remove/{productId}", method = RequestMethod.GET)
-    public String removeFromComparison(@PathVariable("productId") String productId) {
-        //remove item
-        return "redirect:/compare";
+    public void comparison(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
+        if(itemsId != null) {
+            map.put("comparisonList", machineService.getMachinesList(itemsId.split(",")));
+        }
     }
 
 }

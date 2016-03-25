@@ -116,8 +116,14 @@
                 <div class="brand">${machine.producer}</div>
 
                 <div class="buttons-holder">
-                    <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
-                    <span class="btn-add-to-compare" onclick="addToComparison('${machine.productId}')">add to comparison</span>
+                    <span class="btn-add-to-wishlist" onclick="">
+                        <span style="display: none">${machine.productId}</span>
+                        <span>add to wishlist</span>
+                    </span>
+                    <span id="compare${machine.productId}" class="btn-add-to-compare"
+                          onclick="addToComparison('${machine.productId}'); styleRemoveFromComp('${machine.productId}')">
+                        add to comparison
+                    </span>
                 </div>
 
                 <div class="excerpt">
@@ -346,7 +352,7 @@
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
-<script src="resources/js/actions-list.jsp"></script>
+<script src="resources/js/comparison.jsp"></script>
 
 </body>
 </html>

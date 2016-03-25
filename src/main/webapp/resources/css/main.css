@@ -1776,20 +1776,21 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   cursor: pointer;
 }
 .btn-add-to-compare:before {
-  margin: 0 5px 0 0;
-  font-size: 18px;
-  color: #c6c6c6;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  font-family: fontawesome;
+    margin: 0 5px 0 0;
+    font-size: 18px;
+    color: #c6c6c6;
+    content: "\f0ec";
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    font-family: fontawesome;
 }
-.btn-add-to-compare:before {
-  content: "\f0ec";
-}
-.btn-add-to-compare:hover {
+.btn-add-to-compare:hover, .btn-green, .btn-green:before{
     color: #59b210;
+}
+.btn-green:hover {
+    color: #42830c;
 }
 .btn-add-to-wishlist {
   color: #3d3d3d;
@@ -4303,6 +4304,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   right: -6px;
   color: #000;
   z-index: 9;
+  cursor: pointer;
 }
 .compare-list .remove-link:hover {
   color: #990000;

@@ -40,7 +40,7 @@
                     <a href="#"><i class="fa fa-heart"></i> wishlist <span class="value"></span> </a>
                 </div>
                 <div class="compare">
-                    <span class="btn-add-to-compare" onclick="goToComparison()"> comparison </span>
+                    <a href="#" onclick="goToComparison()"><i class="fa fa-exchange"></i> comparison <span class="value"></span> </a>
                 </div>
             </div>
 

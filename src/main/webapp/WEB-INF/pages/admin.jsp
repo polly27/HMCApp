@@ -84,7 +84,7 @@
             <ul class="bookmarks">
                 <li><a href="#upload-file">Upload machines</a></li>
                 <li><a href="#upload-photo">Load photos</a></li>
-                <li><a href="#renew-filters">Renew filters</a></li>
+                <li><a href="#renew-filters">Renew filters</a><span class="remove-link"><i class="fa fa-times-circle"></i></span></li>
             </ul>
             <div class="box-content">
 

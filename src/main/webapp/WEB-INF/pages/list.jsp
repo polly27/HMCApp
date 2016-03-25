@@ -238,8 +238,13 @@
                                                             <a href="machine?productId=${machine.productId}" class="le-button">add to cart</a>
                                                         </div>
                                                         <div class="wish-compare">
-                                                            <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
-                                                            <span class="btn-add-to-compare" onclick="addToComparison('${machine.productId}')">add to comparison</span>
+                                                            <span class="btn-add-to-wishlist" onclick="">
+                                                                <span style="display: none">${machine.productId}</span>
+                                                                <span>add to wishlist</span>
+                                                            </span>
+                                                            <span id="compare${machine.productId}" class="btn-add-to-compare" onclick="addToComparison('${machine.productId}'); styleRemoveFromComp('${machine.productId}')">
+                                                                add to comparison
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -252,6 +257,8 @@
                                 </div>
                                 <!-- /.product-grid-holder -->
 
+                                <c:set var="itemsPerPage" value="${itemsPerPage}"/>
+                                <c:set var="itemsNum" value="${itemsNum}"/>
                                 <div class="pagination-holder">
                                     <div class="row">
 
@@ -317,6 +324,7 @@
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
 <script src="resources/js/actions-list.jsp"></script>
+<script src="resources/js/comparison.jsp"></script>
 <script type="text/javascript">
     // filter global variables
     var yearMin = '${yearMinMax[0]}';
