@@ -4,6 +4,7 @@
             if(sessionStorage.comparedIdStr != null && sessionStorage.comparedIdStr != "" ) {
                 loadStyledCompareItems();
             }
+            styleCompareValue();
         });
 
         <%-- COMPARISON --%>
@@ -13,6 +14,15 @@
             $(comparedIdArr).each(function(index,value){
                 styleRemoveFromComp(value);
             });
+        }
+
+        function styleCompareValue(){
+            if (sessionStorage.comparedIdStr != null && sessionStorage.comparedIdStr != "") {
+                var value = sessionStorage.comparedIdStr.split(',').length;
+                $('#compare-value').text('(' + value + ')');
+            } else {
+                $('#compare-value').text('');
+            }
         }
 
         function goToComparison() {
@@ -28,11 +38,7 @@
             if (sessionStorage.comparedIdStr != null && sessionStorage.comparedIdStr != "") {
                 comparedIdArr = sessionStorage.comparedIdStr.split(',');
             }
-            if (comparedIdArr.length < 5) {
-                comparedIdArr.push(productId);
-            } else {
-                alert("You can compare up to 5 items at once.");
-            }
+            comparedIdArr.push(productId);
             sessionStorage.comparedIdStr = comparedIdArr.join();
         }
 
@@ -49,11 +55,13 @@
             thisSpan.toggleClass("btn-green");
             thisSpan.text("remove from comparison");
             thisSpan.attr('onClick','removeFromComparison(\''+productId+'\'); styleAddToComp(\''+productId+'\')');
+            styleCompareValue();
         }
 
         function styleAddToComp(productId) {
             var thisSpan = $("#compare"+productId);
             thisSpan.toggleClass("btn-green");
             thisSpan.text("add to comparison");
-           thisSpan.attr('onClick','addToComparison(\''+productId+'\'); styleRemoveFromComp(\''+productId+'\')');
+            thisSpan.attr('onClick','addToComparison(\''+productId+'\'); styleRemoveFromComp(\''+productId+'\')');
+            styleCompareValue();
         }

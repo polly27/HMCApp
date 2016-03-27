@@ -59,7 +59,7 @@
     <%@include file="header.jsp" %>
     <!-- =============================================== HEADER : END ================================================ -->
     <div class="main-content" id="main-content">
-        <div class="container">
+        <div class="container" id="compare-container">
             <div class="inner-xs">
                 <div class="page-header">
                     <h2 class="page-title">
@@ -68,22 +68,22 @@
                             <br><br>Choose items to compare
                         </c:if>
                     </h2>
-                    <h3>You can compare up to 5 items at once</h3>
                 </div>
             </div>
             <!-- /.section-page-title -->
 
                 <c:if test="${!empty comparisonList}">
-                <div class="table-responsive inner-bottom-xs inner-top-xs">
-                    <table class="table table-bordered table-striped compare-list">
+                <div class="compare-table-border">
+                <div id="compare-table-outer" class="table-responsive">
+                    <table id="compare-table" class="table compare-list">
                         <thead>
                         <tr>
-                            <td>&nbsp;</td>
+                            <th>&nbsp;</th>
                             <c:forEach items="${comparisonList}" var="machine">
                             <td class="text-center">
                                 <div class="image-wrap">
                                     <span onclick="removeFromComparison('${machine.productId}'); goToComparison();" class="remove-link">
-                                        <i class="fa fa-times-circle"></i>
+                                        <i class="fa fa-times"></i>
                                     </span>
                                     <img width="220" height="154" class="attachment-yith-woocompare-image" src="resources/images/blank.gif"
                                          data-echo="resources/images/products/${machine.photo1}">
@@ -93,7 +93,7 @@
                             </c:forEach>
                         </tr>
                         <tr class="tr-add-to-cart">
-                            <td>&nbsp;</td>
+                            <th>&nbsp;</th>
                             <c:forEach items="${comparisonList}" var="machine">
                             <td class="text-center">
                                 <div class="add-cart-button">
@@ -181,7 +181,7 @@
                             <th>Spindle rotation frequency, rev/min</th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.spindleRotationFreq}</p>
+                                    <p>${machine.spindleRotationFreq}<br><br></p>
                                 </td>
                             </c:forEach>
                         </tr>
@@ -262,7 +262,7 @@
                             <th>Tool replacement time, sec</th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.toolReplacementTime}</p>
+                                    <p>${machine.toolReplacementTime}<br><br></p>
                                 </td>
                             </c:forEach>
                         </tr>
@@ -280,7 +280,7 @@
                             <th>Reposition precision, mm</th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.repositionPrecision}</p>
+                                    <p>${machine.repositionPrecision}<br><br></p>
                                 </td>
                             </c:forEach>
                         </tr>
@@ -341,8 +341,10 @@
 
                         </tbody>
                     </table>
-                </div>
                 <!-- /.table-responsive -->
+                </div>
+                </div>
+                <br><br><br>
                 </c:if>
         </div>
         <!-- /.container -->

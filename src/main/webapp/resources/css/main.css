@@ -4279,6 +4279,27 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 /*===================================================================================*/
 /*  Product Comparison Page
 /*===================================================================================*/
+.compare-table-border {
+    border: 1px solid grey;
+}
+#compare-table {
+    margin-bottom: 0;
+}
+#compare-table tr td {
+    min-width: 200px;
+    border-left: 1px solid grey;
+}
+#compare-table tr th {
+    position: absolute;
+    left: 6.65vw;
+    width: 200px;
+    border-bottom: none;
+}
+#compare-table-outer {
+    overflow-x:auto;
+    overflow-y:visible;
+    margin-left: 200px;
+}
 .compare-list .image-wrap {
   position: relative;
   display: inline-block;
@@ -4291,7 +4312,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 .compare-list .add-cart-button {
   padding-bottom: 24px;
 }
-.compare-list .tr-add-to-cart td {
+.compare-list .tr-add-to-cart td, .compare-list .tr-add-to-cart th {
   border-top: none;
 }
 .compare-list tr.description > td {
@@ -4307,7 +4328,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   cursor: pointer;
 }
 .compare-list .remove-link:hover {
-  color: #990000;
+  color: red;
 }
 .compare-list .price-prev,
 .compare-list .price-current,
