@@ -1,4 +1,4 @@
-package com.springapp.mvc.service;
+package com.springapp.mvc.util;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 
-public class FileUpload {
+public class MiltipartFileUploadUtil {
     private static String pathToSrc;
     private static String pathToTarget;
 
@@ -28,8 +28,8 @@ public class FileUpload {
         return file.getAbsolutePath();
     }
 
-    public static String uploadCSV(MultipartFile multipartFile) throws IOException{
-        return upload(pathToTarget + "/machines.csv", multipartFile);
+    public static String uploadMachineFile(MultipartFile multipartFile) throws IOException{
+        return upload(pathToTarget + "/machines.xlsx", multipartFile);
     }
 
     public static void uploadPhoto(MultipartFile photo) throws IOException{

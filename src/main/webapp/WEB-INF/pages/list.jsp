@@ -88,11 +88,11 @@
 
                         <c:if test="${!empty slidersList}">
                         <div class="price-filter">
-                            <h2>Release year</h2>
-                            <c:set var="years" value="${slidersList.iterator().next().year}"/>
+                            <h2>Release productionYear</h2>
+                            <c:set var="years" value="${slidersList.iterator().next().productionYear}"/>
                             <c:set var="yearMinMax" value="${fn:split(years, ',')}" />
                             <div class="price-range-holder">
-                                <input type="text" class="price-slider" id="year-slider" name="yearRange">
+                                <input type="text" class="price-slider" id="productionYear-slider" name="yearRange">
                                 <span class="min-max">from ${yearMinMax[0]} to ${yearMinMax[1]}</span>
                             </div>
                         </div>
@@ -219,11 +219,11 @@
                                                         <div class="label-discount clear"></div>
                                                         <div class="title">
                                                             <a href="machine?productId=${machine.productId}">
-                                                                    ${machine.type}<br>${machine.model}
+                                                                    ${machine.machineType}<br>${machine.model}
                                                             </a>
                                                         </div>
                                                         <div class="brand">
-                                                            ${machine.producer}, ${machine.year}, ${machine.producingCountry}<br>
+                                                            ${machine.producer}, ${machine.productionYear}, ${machine.producingCountry}<br>
                                                             Current location: ${machine.machineLocation}<br>
                                                             X&timesY&timesZ-motion: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}<br>
                                                             X&timesY table sizes: ${machine.xTableSize}&times${machine.yTableSize}
@@ -242,7 +242,7 @@
                                                                 <span style="display: none">${machine.productId}</span>
                                                                 <span>add to wishlist</span>
                                                             </span>
-                                                            <span id="compare${machine.productId}" class="btn-add-to-compare" onclick="addToComparison('${machine.productId}'); styleRemoveFromComp('${machine.productId}')">
+                                                            <span id="compare${machine.productId}" class="btn-add-to-compare" data-toggle="popover" onclick="addToComparison('${machine.productId}')">
                                                                 add to comparison
                                                             </span>
                                                         </div>

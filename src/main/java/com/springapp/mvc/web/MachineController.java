@@ -75,6 +75,17 @@ public class MachineController {
         map.put("machine", machineService.getMachine(productId));
     }
 
+    @RequestMapping(value="/proposal", method = RequestMethod.GET)
+    public void getPDFPage(@RequestParam("productId") String productId, Map<String, Object> map) throws Exception {
+        map.put("machine",machineService.getMachine(productId));
+    }
+
+//    @RequestMapping(value="/machine/pdf", method = RequestMethod.GET)
+//    public ResponseEntity<byte[]> getPDF(@RequestParam("productId") String productId) throws Exception {
+//        Machine machine = machineService.getMachine(productId);
+//        return machineService.getPDFOffer(machine);
+//    }
+
     @RequestMapping(value="/compare", method = RequestMethod.GET)
     public void comparison(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
         if(itemsId != null) {

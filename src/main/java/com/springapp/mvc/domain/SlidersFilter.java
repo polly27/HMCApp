@@ -12,8 +12,8 @@ public class SlidersFilter {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "year")
-    private String year;
+    @Column(name = "productionYear")
+    private String productionYear;
 
     @Column(name = "cost")
     private String cost;
@@ -41,12 +41,12 @@ public class SlidersFilter {
         this.id = id;
     }
 
-    public String getYear() {
-        return year;
+    public String getProductionYear() {
+        return productionYear;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setProductionYear(String productionYear) {
+        this.productionYear = productionYear;
     }
 
     public String getCost() {

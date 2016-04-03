@@ -89,18 +89,19 @@
             <div class="box-content">
 
                 <div id="upload-file">
-                    <form:form class="formBox" method="post" action="/admin/addCSV" enctype="multipart/form-data">
+                    <form:form class="formBox" method="post" action="/admin/uploadMachines" enctype="multipart/form-data">
 
                         <fieldset>
                             <div class="clearfix file">
                                 <div class="lab"><label for="textFile">Upload file with machines</label></div>
                                 <div class="con">
-                                    <input type="file" name="textFile" class="upload-file" id="textFile" required/>
+                                    <input type="file" accept=".xls,.xlsx" name="textFile" class="upload-file"
+                                           id="textFile" multiple required/>
                                 </div>
                             </div>
-                            - 1 file<br>
-                            - CSV format (delimiters - ';')<br>
-                            - <a href="resources/example.csv" target="_blank">example</a> (download)
+                            - N files<br>
+                            - .xlsx or .xls format<br>
+                            - <a href="resources/example.xlsx" target="_blank">example</a> (download)
                             <br><br>
 
                             <div class="btn-submit"><!-- Submit form -->
@@ -118,8 +119,8 @@
                             <div class="clearfix file">
                                 <div class="lab"><label for="photosFile">Upload photos</label></div>
                                 <div class="con">
-                                    <input type="file" name="photosCollection" class="upload-file" id="photosFile"
-                                           multiple required/>
+                                    <input type="file" accept="image/*" name="photosCollection" class="upload-file"
+                                           id="photosFile" multiple required/>
                                 </div>
                             </div>
                             - N files<br>
@@ -154,6 +155,7 @@
         </div>
         <!-- /box -->
 
+        <c:if test="${!empty machineList}">
         <div class="box">
             <div class="headlines">
                 <h2><span>Machines</span></h2>
@@ -176,14 +178,13 @@
                     <th class="action"></th>
                 </tr>
 
-                <c:if test="${!empty machineList}">
                     <c:forEach items="${machineList}" var="machine">
                         <tr>
                             <td>${machine.productId}</td>
-                            <td>${machine.type}</td>
+                            <td>${machine.machineType}</td>
                             <td>${machine.model}</td>
                             <td>${machine.producer}</td>
-                            <td>${machine.year}</td>
+                            <td>${machine.productionYear}</td>
                             <td>${machine.machineLocation}</td>
                             <td>${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}</td>
                             <td>${machine.xTableSize}&times${machine.yTableSize}</td>
@@ -196,10 +197,10 @@
                             </td>
                         </tr>
                     </c:forEach>
-                </c:if>
             </table>
 
         </div>
+        </c:if>
     </div>
     <!-- /#content -->
     <!-- #sidebar -->
@@ -236,18 +237,20 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#textFile").change(function () {
-            var fileName = $(this).val().replace(/.*\\/, "");
-            $(this).parent().parent().children(":first-child").val(fileName);
+            changeNames($(this));
         });
         $("#photosFile").change(function () {
-            var files = $(this)[0].files;
+            changeNames($(this));
+        });
+        function changeNames(item) {
+            var files = item[0].files;
             var nameList = "";
             for (var i = 0; i != files.length; i++) {
                 nameList += files[i].name.replace(/.*\\/, "") + ", ";
             }
             nameList = nameList.substr(0, nameList.length - 2);
-            $(this).parent().parent().children(":first-child").val(nameList);
-        });
+            item.parent().parent().children(":first-child").val(nameList);
+        }
     });
 </script>
 

@@ -73,8 +73,7 @@
             <!-- /.section-page-title -->
 
                 <c:if test="${!empty comparisonList}">
-                <div class="compare-table-border">
-                <div id="compare-table-outer" class="table-responsive">
+                <div class="table-responsive">
                     <table id="compare-table" class="table compare-list">
                         <thead>
                         <tr>
@@ -88,7 +87,7 @@
                                     <img width="220" height="154" class="attachment-yith-woocompare-image" src="resources/images/blank.gif"
                                          data-echo="resources/images/products/${machine.photo1}">
                                 </div>
-                                <p><strong>${machine.type}<br>${machine.model}</strong></p>
+                                <p><strong>${machine.machineType}<br>${machine.model}</strong></p>
                             </td>
                             </c:forEach>
                         </tr>
@@ -118,7 +117,7 @@
                             <th>Brand, country, year</th>
                             <c:forEach items="${comparisonList}" var="machine">
                             <td class="comparison-item-cell odd product_39">
-                                <p>${machine.producer}, ${machine.producingCountry}, ${machine.year}</p>
+                                <p>${machine.producer}, ${machine.producingCountry}, ${machine.productionYear}<br><br></p>
                             </td>
                             </c:forEach>
                         </tr>
@@ -316,7 +315,7 @@
                             <th>Condition</th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.condition}</p>
+                                    <p>${machine.machineCondition}</p>
                                 </td>
                             </c:forEach>
                         </tr>
@@ -340,9 +339,37 @@
                         </tr>
 
                         </tbody>
+                        <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <c:forEach items="${comparisonList}" var="machine">
+                                <td class="text-center">
+                                    <br><br>
+                                    <div class="image-wrap">
+                                    <span onclick="removeFromComparison('${machine.productId}'); goToComparison();" class="remove-link">
+                                        <i class="fa fa-times"></i>
+                                    </span>
+                                        <img width="220" height="154" class="attachment-yith-woocompare-image" src="resources/images/blank.gif"
+                                             data-echo="resources/images/products/${machine.photo1}">
+                                    </div>
+                                    <p><strong>${machine.machineType}<br>${machine.model}</strong></p>
+                                </td>
+                            </c:forEach>
+                        </tr>
+                        <tr class="tr-add-to-cart">
+                            <th>&nbsp;</th>
+                            <c:forEach items="${comparisonList}" var="machine">
+                                <td class="text-center">
+                                    <div class="add-cart-button">
+                                        <a class="le-button add_to_cart_button product_type_simple" href="#">Add to cart</a>
+                                    </div>
+                                </td>
+                            </c:forEach>
+                        </tr>
+                        </thead>
+
                     </table>
                 <!-- /.table-responsive -->
-                </div>
                 </div>
                 <br><br><br>
                 </c:if>

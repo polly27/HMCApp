@@ -19,7 +19,7 @@ USE `hmc` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hmc`.`sliders_filter` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `year` VARCHAR(255) NOT NULL,
+  `productionYear` VARCHAR(255) NOT NULL,
   `cost` VARCHAR(255) NOT NULL,
   `xMotion` VARCHAR(255) NOT NULL,
   `yMotion` VARCHAR(255) NOT NULL,

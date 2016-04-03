@@ -10,8 +10,8 @@ public class Machine implements Serializable{
     @Column(name = "productId")
     private String productId;
 
-    @Column(name = "type")
-    private String type;
+    @Column(name = "machineType")
+    private String machineType;
 
     @Column(name = "model")
     private String model;
@@ -28,8 +28,8 @@ public class Machine implements Serializable{
     @Column(name = "fullSystemCNC")
     private String fullSystemCNC;
 
-    @Column(name = "year")
-    private int year;
+    @Column(name = "productionYear")
+    private int productionYear;
 
     @Column(name = "machineLocation")
     private String machineLocation;
@@ -103,8 +103,8 @@ public class Machine implements Serializable{
     @Column(name = "equipment")
     private String equipment;
 
-    @Column(name = "condition")
-    private String condition;
+    @Column(name = "machineCondition")
+    private String machineCondition;
 
     @Column(name = "cost")
     private int cost;
@@ -128,8 +128,8 @@ public class Machine implements Serializable{
         return productId;
     }
 
-    public String getType() {
-        return type;
+    public String getMachineType() {
+        return machineType;
     }
 
     public String getModel() {
@@ -152,8 +152,8 @@ public class Machine implements Serializable{
         return fullSystemCNC;
     }
 
-    public int getYear() {
-        return year;
+    public int getProductionYear() {
+        return productionYear;
     }
 
     public String getMachineLocation() {
@@ -252,8 +252,8 @@ public class Machine implements Serializable{
         return equipment;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getMachineCondition() {
+        return machineCondition;
     }
 
     public int getCost() {
@@ -284,8 +284,8 @@ public class Machine implements Serializable{
         this.productId = productId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setMachineType(String machineType) {
+        this.machineType = machineType;
     }
 
     public void setModel(String model) {
@@ -308,8 +308,8 @@ public class Machine implements Serializable{
         this.fullSystemCNC = fullSystemCNC;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setProductionYear(int productionYear) {
+        this.productionYear = productionYear;
     }
 
     public void setMachineLocation(String machineLocation) {
@@ -408,8 +408,8 @@ public class Machine implements Serializable{
         this.equipment = equipment;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setMachineCondition(String machineCondition) {
+        this.machineCondition = machineCondition;
     }
 
     public void setCost(int cost) {

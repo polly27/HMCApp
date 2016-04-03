@@ -2,11 +2,20 @@ package com.springapp.mvc.service;
 
 import com.springapp.mvc.dao.MachineDAO;
 import com.springapp.mvc.domain.Machine;
+import com.springapp.mvc.util.ExcelUtil;
+import com.springapp.mvc.util.MiltipartFileUploadUtil;
+import com.springapp.mvc.util.PDFUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +36,16 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Transactional
-    public void uploadMachinesFile(MultipartFile multipartFile) {
-        try {
-            String path = FileUpload.uploadCSV(multipartFile);
-            machineDAO.addMachines(path);
-        } catch (IOException e) {
-            System.out.println("Failed to upload CSV file: " + e.getMessage());
+    public void uploadMachines(MultipartFile[] machines) {
+        for (int i = 0; i < machines.length; i++) {
+            try {
+                String path = MiltipartFileUploadUtil.uploadMachineFile(machines[i]);
+                Machine machine = ExcelUtil.readMachine(path);
+                machineDAO.addMachine(machine);
+                System.out.println("Successfully uploaded machine: " + machines[i].getOriginalFilename());
+            } catch (IOException e) {
+                System.out.println("Failed to upload machine file: " + e.getMessage());
+            }
         }
     }
 
@@ -40,7 +53,7 @@ public class MachineServiceImpl implements MachineService {
     public void uploadPhotos(MultipartFile[] photos) {
         for (int i = 0; i < photos.length; i++) {
             try {
-                FileUpload.uploadPhoto(photos[i]);
+                MiltipartFileUploadUtil.uploadPhoto(photos[i]);
                 System.out.println("Successfully uploaded photo: " + photos[i].getOriginalFilename());
             } catch (IOException e) {
                 System.out.println("Failed to upload photo: " + e.getMessage());
@@ -82,6 +95,27 @@ public class MachineServiceImpl implements MachineService {
             list.add(machineDAO.getMachine(productId));
         }
         return list;
+    }
+
+    public ResponseEntity<byte[]> getPDFOffer(Machine machine) {
+        ResponseEntity<byte[]> result = null;
+        try {
+            String path = PDFUtil.createPDF(machine);
+
+            File file = new File(path);
+            byte[] contents = new byte[(int)file.length()];
+            new FileInputStream(file).read(contents);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.parseMediaType("application/pdf"));
+            String filename = "VMC&HMC-offer-" + machine.getProductId() + ".pdf";
+            headers.setContentDispositionFormData(filename, filename);
+            headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+            result = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return result;
     }
 
 }

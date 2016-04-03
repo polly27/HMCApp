@@ -112,7 +112,7 @@
 
         <div class="no-margin col-xs-12 col-sm-7 body-holder">
             <div class="body">
-                <div class="title"><a href="#">${machine.type} - ${machine.model}</a></div>
+                <div class="title"><a href="#">${machine.machineType} - ${machine.model}</a></div>
                 <div class="brand">${machine.producer}</div>
 
                 <div class="buttons-holder">
@@ -135,7 +135,8 @@
                 </div>
 
                 <div class="qnt-holder">
-                    <a id="addto-cart" href="cart.html" class="le-button huge">add to cart</a>
+                    <a id="addto-cart" href="cart.html" class="le-button huge">add to cart</a>&nbsp;&nbsp;&nbsp;
+                    <a href="proposal?productId=${machine.productId}" class="le-button huge">get the commercial proposal</a>
                 </div>
             </div>
 
@@ -170,7 +171,7 @@
                         <li>
                             <label>Type</label>
 
-                            <div class="value">${machine.type}</div>
+                            <div class="value">${machine.machineType}</div>
                         </li>
                         <li>
                             <label>Model</label>
@@ -195,7 +196,7 @@
                         <li>
                             <label>Year</label>
 
-                            <div class="value">${machine.year}</div>
+                            <div class="value">${machine.productionYear}</div>
                         </li>
                         <li>
                             <label>Machine location</label>
@@ -306,7 +307,7 @@
                         <li>
                             <label>Condition</label>
 
-                            <div class="value">${machine.condition}</div>
+                            <div class="value">${machine.machineCondition}</div>
                         </li>
                     </ul>
 

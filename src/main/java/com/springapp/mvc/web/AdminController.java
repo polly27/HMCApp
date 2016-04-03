@@ -33,10 +33,10 @@ public class AdminController {
         map.put("machineList", machineService.listMachine());
     }
 
-    @RequestMapping(value = "/admin/addCSV", method = RequestMethod.POST)
-    public String addMachines(@RequestParam("textFile") MultipartFile multipartFile){
-        if (!multipartFile.isEmpty()) {
-            machineService.uploadMachinesFile(multipartFile);
+    @RequestMapping(value = "/admin/uploadMachines", method = RequestMethod.POST)
+    public String addMachines(@RequestParam("textFile") MultipartFile[] machines){
+        if (machines != null && machines.length > 0) {
+            machineService.uploadMachines(machines);
         }
         return "redirect:/admin";
     }

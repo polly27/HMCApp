@@ -4279,29 +4279,17 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 /*===================================================================================*/
 /*  Product Comparison Page
 /*===================================================================================*/
-.compare-table-border {
-    border: 1px solid grey;
-}
-#compare-table {
-    margin-bottom: 0;
-}
 #compare-table tr td {
-    min-width: 200px;
-    border-left: 1px solid grey;
+    border-left: 1px solid yellowgreen;
 }
-#compare-table tr th {
-    position: absolute;
-    left: 6.65vw;
-    width: 200px;
+#compare-table > thead > tr > th {
     border-bottom: none;
 }
-#compare-table-outer {
-    overflow-x:auto;
-    overflow-y:visible;
-    margin-left: 200px;
+#compare-table tr th {
+    width: 200px;
 }
 .compare-list .image-wrap {
-  position: relative;
+    position: relative;
   display: inline-block;
   margin-bottom: 20px;
 }

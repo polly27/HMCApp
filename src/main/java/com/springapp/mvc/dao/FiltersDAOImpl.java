@@ -102,14 +102,14 @@ public class FiltersDAOImpl implements FiltersDAO {
     public void renewSlidersFilter() {
         Session session = sessionFactory.getCurrentSession();
         session.createQuery("delete from SlidersFilter").executeUpdate();
-        List<Integer> listYear = session.createQuery("select M.year from Machine M").list();
+        List<Integer> listProductionYear = session.createQuery("select M.productionYear from Machine M").list();
         List<Integer> listCost = session.createQuery("select M.cost from Machine M").list();
         List<Integer> listXMotion = session.createQuery("select M.xMotion from Machine M").list();
         List<Integer> listYMotion = session.createQuery("select M.yMotion from Machine M").list();
         List<Integer> listZMotion = session.createQuery("select M.zMotion from Machine M").list();
         List<Integer> listXTableSize = session.createQuery("select M.xTableSize from Machine M").list();
         List<Integer> listYTableSize = session.createQuery("select M.yTableSize from Machine M").list();
-        int[] minMaxYear = getMinMax(listYear);
+        int[] minMaxProductionYear = getMinMax(listProductionYear);
         int[] minMaxCost = roundToNum(getMinMax(listCost), 500);
         int[] minMaxXMotion = roundToNum(getMinMax(listXMotion), 100);
         int[] minMaxYMotion = roundToNum(getMinMax(listYMotion), 100);
@@ -118,7 +118,7 @@ public class FiltersDAOImpl implements FiltersDAO {
         int[] minMaxYTableSize = roundToNum(getMinMax(listYTableSize), 100);
         SlidersFilter sf = new SlidersFilter();
         sf.setId(1);
-        sf.setYear(getString(minMaxYear));
+        sf.setProductionYear(getString(minMaxProductionYear));
         sf.setCost(getString(minMaxCost));
         sf.setxMotion(getString(minMaxXMotion));
         sf.setyMotion(getString(minMaxYMotion));

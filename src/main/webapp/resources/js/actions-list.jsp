@@ -8,7 +8,7 @@
             setSpanFromTo();
 
             if (sessionStorage.length == 0) {
-                loadSlider('year', yearMin, yearMax, 1, "");
+                loadSlider('productionYear', yearMin, yearMax, 1, "");
                 loadSlider('price', priceMin, priceMax, 500, "");
                 loadSlider('x-motion', xMotionMin, xMotionMax, 100, "");
                 loadSlider('y-motion', yMotionMin, yMotionMax, 100, "");
@@ -64,7 +64,7 @@
 
         function loadSettings() {
             loadCheckbox('brand', sessionStorage.brand);
-            loadSlider('year', yearMin, yearMax, 1, sessionStorage.year);
+            loadSlider('productionYear', yearMin, yearMax, 1, sessionStorage.productionYear);
             loadSlider('price', priceMin, priceMax, 100, sessionStorage.price);
             loadCheckbox('location', sessionStorage.location);
             loadCheckbox('cnc', sessionStorage.cnc);
@@ -93,7 +93,7 @@
         function saveSettings() {
             sessionStorage.brand = saveCheckbox('brand');
             sessionStorage.location = saveCheckbox('location');
-            sessionStorage.year = saveSlider('year');
+            sessionStorage.productionYear = saveSlider('productionYear');
             sessionStorage.price = saveSlider('price');
             sessionStorage.cnc = saveCheckbox('cnc');
             sessionStorage.xMotion = saveSlider('x-motion');
