@@ -93,4 +93,14 @@ public class MachineController {
         }
     }
 
+    @RequestMapping(value="/wishList", method = RequestMethod.GET)
+    public void wishList(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
+        if(itemsId != null) {
+            map.put("wishList", machineService.getMachinesList(itemsId.split(",")));
+        }
+    }
+
+    @RequestMapping(value="/cart", method = RequestMethod.GET)
+    public void cart() {}
+
 }

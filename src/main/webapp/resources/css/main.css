@@ -1766,7 +1766,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 .le-button.big {
   padding: 15px 34px;
 }
-.btn-add-to-compare {
+.btn-add-to-compare, .btn-add-to-wishlist {
   color: #3d3d3d;
   font-size: 12px;
   line-height: 24px;
@@ -1775,43 +1775,27 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   text-transform: capitalize;
   cursor: pointer;
 }
-.btn-add-to-compare:before {
+.btn-add-to-compare:before, .btn-add-to-wishlist:before {
     margin: 0 5px 0 0;
     font-size: 18px;
     color: #c6c6c6;
-    content: "\f0ec";
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     font-family: fontawesome;
 }
-.btn-add-to-compare:hover, .btn-green, .btn-green:before{
+.btn-add-to-compare:before {
+    content: "\f0ec";
+}
+.btn-add-to-wishlist:before {
+    content: "\f004"
+}
+.btn-add-to-compare:hover, .btn-add-to-wishlist:hover, .btn-green, .btn-green:before{
     color: #59b210;
 }
 .btn-green:hover {
     color: #42830c;
-}
-.btn-add-to-wishlist {
-  color: #3d3d3d;
-  font-size: 12px;
-  line-height: 24px;
-  display: inline-block;
-  vertical-align: top;
-  text-transform: capitalize;
-}
-.btn-add-to-wishlist:before {
-  margin: 0 5px 0 0;
-  font-size: 18px;
-  color: #c6c6c6;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  font-family: fontawesome;
-}
-.btn-add-to-wishlist:before {
-  content: "\f004";
 }
 .dropdown .dropdown-toggle {
   padding: 0 14px 0 5px;
@@ -4243,6 +4227,10 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 .page-wishlist .items-holder .remove-item {
   font-size: 20px;
   color: #81807f;
+}
+.page-wishlist .items-holder .remove-item:hover {
+    cursor: pointer;
+    color: red;
 }
 .page-wishlist .items-holder .cart-item {
   border-bottom: 1px solid #e0e0e0;

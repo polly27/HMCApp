@@ -6,6 +6,10 @@
             }
             styleCompareValue();
             createPopovers();
+            if(sessionStorage.wishListIdStr != null && sessionStorage.wishListIdStr != "" ) {
+                loadStyledWishListItems();
+            }
+            styleWishListValue();
         });
 
         <%-- COMPARISON --%>
@@ -41,11 +45,11 @@
             }
             if (comparedIdArr.length < 4) {
                 comparedIdArr.push(productId);
+                sessionStorage.comparedIdStr = comparedIdArr.join();
                 styleRemoveFromComp(productId);
             } else {
                 $("#compare"+productId).popover('show');
             }
-            sessionStorage.comparedIdStr = comparedIdArr.join();
         }
 
         function removeFromComparison(productId) {
@@ -72,8 +76,6 @@
             styleCompareValue();
         }
 
-        <%-- POPOVER --%>
-
         function createPopovers() {
             var popoverItem = $(".btn-add-to-compare");
             popoverItem.popover({
@@ -90,4 +92,67 @@
                 }, 3500);
             });
 
+        }
+
+        <%-- WISHLIST --%>
+
+        function loadStyledWishListItems(){
+            var wishListIdArr = sessionStorage.wishListIdStr.split(',');
+            $(wishListIdArr).each(function(index,value){
+                styleRemoveFromWishList(value);
+            });
+        }
+
+        function styleWishListValue(){
+            if (sessionStorage.wishListIdStr != null && sessionStorage.wishListIdStr != "") {
+                var value = sessionStorage.wishListIdStr.split(',').length;
+                $('#wishList-value').text('(' + value + ')');
+            } else {
+                $('#wishList-value').text('');
+            }
+        }
+
+        function goToWishList() {
+            if (sessionStorage.wishListIdStr != null && sessionStorage.wishListIdStr != "") {
+                window.location.href = "wishList?itemsId=" + sessionStorage.wishListIdStr;
+            } else {
+                window.location.href = "wishList";
+            }
+        }
+
+        function addToWishList(productId) {
+            var wishListIdArr = [];
+            if (sessionStorage.wishListIdStr != null && sessionStorage.wishListIdStr != "") {
+                wishListIdArr = sessionStorage.wishListIdStr.split(',');
+            }
+            wishListIdArr.push(productId);
+            styleRemoveFromWishList(productId);
+            sessionStorage.wishListIdStr = wishListIdArr.join();
+            styleWishListValue();
+        }
+
+        function removeFromWishList(productId) {
+            var wishListArr = sessionStorage.wishListIdStr.split(',');
+            wishListArr = $.grep(wishListArr, function (value) {
+                return value != productId;
+            });
+            styleAddToWishList(productId);
+            sessionStorage.wishListIdStr = (wishListArr.length != 0) ? wishListArr.join() : "";
+            styleWishListValue();
+        }
+
+        function styleRemoveFromWishList(productId) {
+            var thisSpan = $("#wishList"+productId);
+            thisSpan.toggleClass("btn-green");
+            thisSpan.text("remove from wish list");
+            thisSpan.attr('onClick','removeFromWishList(\''+productId+'\')');
+            styleWishListValue();
+        }
+
+        function styleAddToWishList(productId) {
+            var thisSpan = $("#wishList"+productId);
+            thisSpan.toggleClass("btn-green");
+            thisSpan.text("add to wish list");
+            thisSpan.attr('onClick','addToWishList(\''+productId+'\')');
+            styleWishListValue();
         }

@@ -36,8 +36,8 @@
     <div class="col-xs-12 col-sm-12 col-md-3 top-cart-row no-margin">
         <div class="top-cart-row-container">
             <div class="wishlist-compare-holder">
-                <div class="wishlist ">
-                    <a href="#"><i class="fa fa-heart"></i> wishlist <span class="value"></span> </a>
+                <div class="wishlist">
+                    <a href="#" onclick="goToWishList()"><i class="fa fa-heart"></i> wish list <span id="wishList-value"></span> </a>
                 </div>
                 <div class="compare">
                     <a href="#" onclick="goToComparison()"><i class="fa fa-exchange"></i> comparison <span id="compare-value"></span> </a>

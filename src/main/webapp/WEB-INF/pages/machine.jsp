@@ -116,12 +116,10 @@
                 <div class="brand">${machine.producer}</div>
 
                 <div class="buttons-holder">
-                    <span class="btn-add-to-wishlist" onclick="">
-                        <span style="display: none">${machine.productId}</span>
-                        <span>add to wishlist</span>
+                    <span id="wishList${machine.productId}" class="btn-add-to-wishlist" onclick="addToWishList('${machine.productId}')">
+                        add to wish list
                     </span>
-                    <span id="compare${machine.productId}" class="btn-add-to-compare"
-                          onclick="addToComparison('${machine.productId}'); styleRemoveFromComp('${machine.productId}')">
+                    <span id="compare${machine.productId}" class="btn-add-to-compare" onclick="addToComparison('${machine.productId}')">
                         add to comparison
                     </span>
                 </div>
@@ -136,7 +134,7 @@
 
                 <div class="qnt-holder">
                     <a id="addto-cart" href="cart.html" class="le-button huge">add to cart</a>&nbsp;&nbsp;&nbsp;
-                    <a href="proposal?productId=${machine.productId}" class="le-button huge">get the commercial proposal</a>
+                    <!--a href="proposal?productId=${machine.productId}" class="le-button huge">get the commercial proposal</a-->
                 </div>
             </div>
 
@@ -353,7 +351,7 @@
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
-<script src="resources/js/comparison.jsp"></script>
+<script src="resources/js/comparison,wishlist,cart.jsp"></script>
 
 </body>
 </html>

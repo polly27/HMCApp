@@ -63,7 +63,7 @@
             <div class="inner-xs">
                 <div class="page-header">
                     <h2 class="page-title">
-                        Product Comparison
+                        Comparison
                         <c:if test="${empty comparisonList}">
                             <br><br>Choose items to compare
                         </c:if>
@@ -400,7 +400,7 @@
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
-<script src="resources/js/comparison.jsp"></script>
+<script src="resources/js/comparison,wishlist,cart.jsp"></script>
 
 </body>
 </html>
