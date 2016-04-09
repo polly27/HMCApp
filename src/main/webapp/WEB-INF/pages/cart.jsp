@@ -104,7 +104,7 @@
                     </div><!-- /.cart-item -->
                 </c:forEach>
                 <br><br>
-                <a href="#" class="le-button huge" onclick="goToProposal()">get the commercial proposal</a>
+                <a href="#" class="le-button huge" onclick="goToProposal()">get commercial proposal (PDF)</a>
             </c:if>
         </div>
         <!-- ========================================= CONTENT : END ========================================= -->

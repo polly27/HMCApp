@@ -344,3 +344,5 @@
             var arrOfId = getArrOfId(localStorage.cartItemStr);
             goTo("proposal",arrOfId);
         }
+
+        

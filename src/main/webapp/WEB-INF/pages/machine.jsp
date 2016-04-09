@@ -60,6 +60,7 @@
 <%@include file="header.jsp" %>
 <!-- =============================================== HEADER : END ================================================ -->
 <br>
+
 <div id="single-product">
     <div class="container">
 
@@ -70,57 +71,72 @@
                     <div class="single-product-gallery-item" id="slide1">
                         <a data-rel="prettyphoto" href="resources/images/products/${machine.photo1}">
                             <img class="img-responsive" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo1}" />
+                                 data-echo="resources/images/products/${machine.photo1}"/>
                             <span id="photo${machine.productId}" hidden="hidden">${machine.photo1}</span>
                         </a>
-                    </div><!-- /.single-product-gallery-item -->
+                    </div>
+                    <!-- /.single-product-gallery-item -->
 
                     <div class="single-product-gallery-item" id="slide2">
                         <a data-rel="prettyphoto" href="resources/images/products/${machine.photo2}">
                             <img class="img-responsive" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo2}" />
+                                 data-echo="resources/images/products/${machine.photo2}"/>
                         </a>
-                    </div><!-- /.single-product-gallery-item -->
+                    </div>
+                    <!-- /.single-product-gallery-item -->
 
                     <div class="single-product-gallery-item" id="slide3">
                         <a data-rel="prettyphoto" href="resources/images/products/${machine.photo3}">
                             <img class="img-responsive" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo3}" />
+                                 data-echo="resources/images/products/${machine.photo3}"/>
                         </a>
-                    </div><!-- /.single-product-gallery-item -->
-                </div><!-- /.single-product-slider -->
+                    </div>
+                    <!-- /.single-product-gallery-item -->
+                </div>
+                <!-- /.single-product-slider -->
 
                 <div class="single-product-gallery-thumbs gallery-thumbs">
 
                     <div id="owl-single-product-thumbnails">
-                        <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0" href="#slide1">
-                            <img width="67" alt="" src="resources/images/blank.gif" data-echo="resources/images/products/${machine.photo1}" />
+                        <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0"
+                           href="#slide1">
+                            <img width="67" alt="" src="resources/images/blank.gif"
+                                 data-echo="resources/images/products/${machine.photo1}"/>
                         </a>
 
                         <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
-                            <img width="67" alt="" src="resources/images/blank.gif" data-echo="resources/images/products/${machine.photo2}" />
+                            <img width="67" alt="" src="resources/images/blank.gif"
+                                 data-echo="resources/images/products/${machine.photo2}"/>
                         </a>
 
                         <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
-                            <img width="67" alt="" src="resources/images/blank.gif" data-echo="resources/images/products/${machine.photo3}" />
+                            <img width="67" alt="" src="resources/images/blank.gif"
+                                 data-echo="resources/images/products/${machine.photo3}"/>
                         </a>
-                    </div><!-- /#owl-single-product-thumbnails -->
+                    </div>
+                    <!-- /#owl-single-product-thumbnails -->
 
-                </div><!-- /.gallery-thumbs -->
+                </div>
+                <!-- /.gallery-thumbs -->
 
-            </div><!-- /.single-product-gallery -->
-        </div><!-- /.gallery-holder -->
+            </div>
+            <!-- /.single-product-gallery -->
+        </div>
+        <!-- /.gallery-holder -->
 
         <div class="no-margin col-xs-12 col-sm-7 body-holder">
             <div class="body">
-                <div class="title"><a href="#">${machine.machineType} - <span id="model${machine.productId}">${machine.model}</span></a></div>
+                <div class="title"><a href="#">${machine.machineType} - <span
+                        id="model${machine.productId}">${machine.model}</span></a></div>
                 <div class="brand" id="brand${machine.productId}">${machine.producer}</div>
 
                 <div class="buttons-holder">
-                    <span id="wishList${machine.productId}" class="btn-add-to-wishlist" onclick="addToWishList('${machine.productId}')">
+                    <span id="wishList${machine.productId}" class="btn-add-to-wishlist"
+                          onclick="addToWishList('${machine.productId}')">
                         add to wish list
                     </span>
-                    <span id="compare${machine.productId}" class="btn-add-to-compare" onclick="addToComparison('${machine.productId}')">
+                    <span id="compare${machine.productId}" class="btn-add-to-compare"
+                          onclick="addToComparison('${machine.productId}')">
                         add to comparison
                     </span>
                 </div>
@@ -134,7 +150,8 @@
                 </div>
 
                 <div class="qnt-holder">
-                    <a id="cart${machine.productId}" class="le-button huge" onclick="addToCart('${machine.productId}')">add to cart</a>
+                    <a id="cart${machine.productId}" class="le-button huge" onclick="addToCart('${machine.productId}')">add
+                        to cart</a>
                 </div>
             </div>
 
