@@ -83,11 +83,12 @@
         }
 
         function loadSlider(nameVal, minVal, maxVal, stepVal, valueVal) {
+            var thisSlider = $('#' + nameVal + '-slider');
             if (valueVal != "" && valueVal != (minVal + "," + maxVal)) {
-                $('#' + nameVal + '-slider').val(valueVal);
+                thisSlider.val(valueVal);
             }
             valueVal = (valueVal == "") ? [minVal, maxVal] : valueVal.split(",").map(Number);
-            $('#' + nameVal + '-slider').slider({min: parseInt(minVal), max: parseInt(maxVal), step: stepVal, value: valueVal});
+            thisSlider.slider({min: parseInt(minVal), max: parseInt(maxVal), step: stepVal, value: valueVal});
         }
 
         function saveSettings() {

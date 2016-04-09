@@ -71,6 +71,7 @@
                         <a data-rel="prettyphoto" href="resources/images/products/${machine.photo1}">
                             <img class="img-responsive" alt="" src="resources/images/blank.gif"
                                  data-echo="resources/images/products/${machine.photo1}" />
+                            <span id="photo${machine.productId}" hidden="hidden">${machine.photo1}</span>
                         </a>
                     </div><!-- /.single-product-gallery-item -->
 
@@ -112,8 +113,8 @@
 
         <div class="no-margin col-xs-12 col-sm-7 body-holder">
             <div class="body">
-                <div class="title"><a href="#">${machine.machineType} - ${machine.model}</a></div>
-                <div class="brand">${machine.producer}</div>
+                <div class="title"><a href="#">${machine.machineType} - <span id="model${machine.productId}">${machine.model}</span></a></div>
+                <div class="brand" id="brand${machine.productId}">${machine.producer}</div>
 
                 <div class="buttons-holder">
                     <span id="wishList${machine.productId}" class="btn-add-to-wishlist" onclick="addToWishList('${machine.productId}')">
@@ -129,12 +130,11 @@
                 </div>
 
                 <div class="prices">
-                    <div class="price-current">$${machine.cost}.00</div>
+                    <div class="price-current">$<span id="price${machine.productId}">${machine.cost}</span>.00</div>
                 </div>
 
                 <div class="qnt-holder">
-                    <a id="addto-cart" href="cart.html" class="le-button huge">add to cart</a>&nbsp;&nbsp;&nbsp;
-                    <!--a href="proposal?productId=${machine.productId}" class="le-button huge">get the commercial proposal</a-->
+                    <a id="cart${machine.productId}" class="le-button huge" onclick="addToCart('${machine.productId}')">add to cart</a>
                 </div>
             </div>
 

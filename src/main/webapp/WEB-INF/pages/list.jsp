@@ -214,28 +214,29 @@
                                                     <div class="image">
                                                         <img alt="" src="resources/images/blank.gif"
                                                              data-echo="resources/images/products/${machine.photo1}"/>
+                                                        <span id="photo${machine.productId}" hidden="hidden">${machine.photo1}</span>
                                                     </div>
                                                     <div class="body">
                                                         <div class="label-discount clear"></div>
                                                         <div class="title">
                                                             <a href="machine?productId=${machine.productId}">
-                                                                    ${machine.machineType}<br>${machine.model}
+                                                                    ${machine.machineType}<br><span id="model${machine.productId}">${machine.model}</span>
                                                             </a>
                                                         </div>
                                                         <div class="brand">
-                                                            ${machine.producer}, ${machine.productionYear}, ${machine.producingCountry}<br>
+                                                            <span id="brand${machine.productId}">${machine.producer}</span>, ${machine.productionYear}, ${machine.producingCountry}<br>
                                                             Current location: ${machine.machineLocation}<br>
                                                             X&timesY&timesZ-motion: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}<br>
                                                             X&timesY table sizes: ${machine.xTableSize}&times${machine.yTableSize}
                                                         </div>
                                                     </div>
                                                     <div class="prices">
-                                                        <div class="price-current pull-right">$${machine.cost}.00</div>
+                                                        <div class="price-current pull-right">$<span id="price${machine.productId}">${machine.cost}</span>.00</div>
                                                         <br>
                                                     </div>
                                                     <div class="hover-area">
                                                         <div class="add-cart-button">
-                                                            <a href="#" class="le-button">add to cart</a>
+                                                            <a id="cart${machine.productId}" class="le-button" onclick="addToCart('${machine.productId}')">add to cart</a>
                                                         </div>
                                                         <div class="wish-compare">
                                                             <span id="wishList${machine.productId}" class="btn-add-to-wishlist" onclick="addToWishList('${machine.productId}')">
@@ -323,7 +324,7 @@
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
-<script src="resources/js/actions-list.jsp"></script>
+<script src="resources/js/pagination,filters.jsp"></script>
 <script src="resources/js/comparison,wishlist,cart.jsp"></script>
 <script type="text/javascript">
     // filter global variables

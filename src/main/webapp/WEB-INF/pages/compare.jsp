@@ -86,8 +86,9 @@
                                     </span>
                                     <img width="220" height="154" class="attachment-yith-woocompare-image" src="resources/images/blank.gif"
                                          data-echo="resources/images/products/${machine.photo1}">
+                                    <span id="photo${machine.productId}" hidden="hidden">${machine.photo1}</span>
                                 </div>
-                                <p><strong>${machine.machineType}<br>${machine.model}</strong></p>
+                                <p><strong>${machine.machineType}<br><span id="model${machine.productId}">${machine.model}</span></strong></p>
                             </td>
                             </c:forEach>
                         </tr>
@@ -96,7 +97,8 @@
                             <c:forEach items="${comparisonList}" var="machine">
                             <td class="text-center">
                                 <div class="add-cart-button">
-                                    <a class="le-button add_to_cart_button product_type_simple" href="#">Add to cart</a>
+                                    <a id="cart${machine.productId}" class="le-button add_to_cart_button product_type_simple"
+                                       onclick="addToCart('${machine.productId}')">add to cart</a>
                                 </div>
                             </td>
                             </c:forEach>
@@ -108,7 +110,7 @@
                             <th>Price</th>
                             <c:forEach items="${comparisonList}" var="machine">
                             <td class="comparison-item-cell odd product_39">
-                                <span class="amount">$${machine.cost}.00</span>
+                                <span class="amount">$<span id="price${machine.productId}">${machine.cost}</span>.00</span>
                             </td>
                             </c:forEach>
                         </tr>
@@ -117,7 +119,7 @@
                             <th>Brand, country, year</th>
                             <c:forEach items="${comparisonList}" var="machine">
                             <td class="comparison-item-cell odd product_39">
-                                <p>${machine.producer}, ${machine.producingCountry}, ${machine.productionYear}<br><br></p>
+                                <p><span id="brand${machine.productId}">${machine.producer}</span>, ${machine.producingCountry}, ${machine.productionYear}<br><br></p>
                             </td>
                             </c:forEach>
                         </tr>
@@ -361,7 +363,8 @@
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="text-center">
                                     <div class="add-cart-button">
-                                        <a class="le-button add_to_cart_button product_type_simple" href="#">Add to cart</a>
+                                        <a id="cart${machine.productId}" class="le-button add_to_cart_button product_type_simple"
+                                           onclick="addToCart('${machine.productId}')">add to cart</a>
                                     </div>
                                 </td>
                             </c:forEach>

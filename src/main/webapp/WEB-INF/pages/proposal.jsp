@@ -69,6 +69,33 @@
             </div>
             <!-- /.section-page-title -->
 
+            <c:if test="${!empty proposalList}">
+            <table>
+                <thead>
+                    <th>
+                        <td>№</td>
+                        <td>Machine</td>
+                        <td>Model</td>
+                        <td>Price</td>
+                        <td>Quantity</td>
+                        <td>Total</td>
+                    </th>
+                    <c:forEach items="${proposalList}" var="machine">
+                    <c:set var="number" value="0"/>
+                    <tr>
+                        <td>${number}</td>
+                        <td>${machine.machineType}</td>
+                        <td>${machine.model}</td>
+                        <td>${machine.cost}</td>
+                        <td id="count${machine.productId}"></td>
+                        <td id="total${machine.productId}"></td>
+                    </tr>
+                    
+                    </c:forEach>
+                </thead>
+            </table>
+            </c:if>
+
 
         </div>
         <!-- /.container -->
@@ -98,6 +125,26 @@
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
 <script src="resources/js/comparison.jsp"></script>
+<script type="javascript">
+
+    $.ready(function(){
+        loadQuantities();
+    });
+
+    function loadQuantities(){
+        var fullArr = localStorage.cartItemStr.split(';');
+        if(fullArr != null && fullArr != "") {
+            $(fullArr).each(function (index,value) {
+                var productId = value.split(',')[0];
+                var cost = value.split(',')[1];
+                var count = value.split(',')[2];
+                $('#count'+productId).text(count);
+                $('#total'+productId).text(parseInt(count) * parseInt(cost));
+            });
+        }
+    }
+
+</script>
 
 </body>
 </html>

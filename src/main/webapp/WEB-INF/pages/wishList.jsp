@@ -69,7 +69,7 @@
 					<h2 class="page-title">
                         My Wish List
                         <c:if test="${empty wishList}">
-                            <br>is empty
+                            <br><br>is empty
                         </c:if>
                     </h2>
 				</div>
@@ -81,37 +81,38 @@
                     <c:forEach items="${wishList}" var="machine">
                     <div class="row cart-item cart_item" id="yith-wcwl-row-1">
 						
-						<div class="col-xs-12 col-sm-1 no-margin">
-							<span onclick="removeFromWishList('${machine.productId}'); goToWishList();" class="remove_from_wishlist remove-item">×</span>
+						<div class="col-xs-12 col-sm-1">
+							<span onclick="removeFromWishListAndReloadPage('${machine.productId}')" class="remove_from_wishlist remove-item">×</span>
 						</div>
 
-	                	<div class="col-xs-12 col-sm-1 no-margin">
+	                	<div class="col-xs-12 col-sm-2">
 	                    	<a href="machine?productId=${machine.productId}">
-								<img width="73" height="73" alt="${machine.model}" class="attachment-shop_thumbnail wp-post-image" src="resources/images/blank.gif"
+								<img width="150" height="110" alt="${machine.model}" class="attachment-shop_thumbnail wp-post-image" src="resources/images/blank.gif"
                                      data-echo="resources/images/products/${machine.photo1}">
+                                <span id="photo${machine.productId}" hidden="hidden">${machine.photo1}</span>
 							</a>
 	                    </div>
-	                	<div class="col-xs-12 col-sm-4 no-margin">
+	                	<div class="col-xs-12 col-sm-4">
 	                    	<div class="title">
                                 <a href="machine?productId=${machine.productId}">
-                                    ${machine.machineType}
-                                    <br>
-                                    ${machine.model}
+                                    ${machine.machineType}<br><span id="model${machine.productId}">${machine.model}</span>
                                 </a>
-	                    	</div><!-- /.title --> 
+	                    	</div><!-- /.title -->
+                            <span id="brand${machine.productId}">${machine.producer}</span>
 	                    </div>
 						
-		                <div class="col-xs-12 col-sm-3 no-margin">
+		                <div class="col-xs-12 col-sm-2">
 		                	<div class="price">
-			                	<span class="amount">$${machine.cost}.00</span>
+			                	<span class="amount">$<span id="price${machine.productId}">${machine.cost}</span>.00</span>
 			                </div>
 		                </div>
 						
-						<div class="col-xs-12 col-sm-3 no-margin">
+						<div class="col-xs-12 col-sm-3">
 							<div class="text-right">
 								<div class="add-cart-button">
-									<a class="le-button add_to_cart_button product_type_simple" href="#">Add to cart</a>
-								</div>							
+                                    <a id="cart${machine.productId}" class="le-button add_to_cart_button product_type_simple"
+                                       onclick="addToCart('${machine.productId}')">add to cart</a>
+								</div>
 							</div>
 						</div>
 	              	
