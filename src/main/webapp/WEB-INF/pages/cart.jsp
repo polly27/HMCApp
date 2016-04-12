@@ -58,8 +58,37 @@
 <!-- ================================================ HEADER ======================================================= -->
 <%@include file="header.jsp" %>
 <!-- =============================================== HEADER : END ================================================ -->
+    <div id="top-mega-nav">
+        <div class="container">
+            <nav>
+                <ul class="inline">
+                    <li class="dropdown le-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-list"></i> Shop by Department
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">First department</a></li>
+                            <li><a href="#">Second department</a></li>
+                        </ul>
+                    </li>
 
-<br><br><br>
+                    <li class="breadcrumb-nav-holder">
+                        <ul>
+                            <li class="breadcrumb-item gray">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="breadcrumb-item gray">
+                                <a href="list">Horizontal Machine Centers</a>
+                            </li>
+                            <li class="breadcrumb-item current">
+                                <a href=".">Shopping cart</a>
+                            </li>
+                        </ul>
+                    </li><!-- /.breadcrumb-nav-holder -->
+                </ul>
+            </nav>
+        </div><!-- /.container -->
+    </div><!-- /#top-mega-nav -->
 
 <section id="cart-page">
     <div class="container">
@@ -104,7 +133,7 @@
                     </div><!-- /.cart-item -->
                 </c:forEach>
                 <br><br>
-                <a href="#" class="le-button huge" onclick="goToProposal()">get commercial proposal (PDF)</a>
+                <button class="le-button huge" onclick="goToProposal()">get commercial proposal (PDF)</button>
             </c:if>
         </div>
         <!-- ========================================= CONTENT : END ========================================= -->

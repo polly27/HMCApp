@@ -2,6 +2,7 @@ package com.springapp.mvc.web;
 
 import com.springapp.mvc.service.FiltersService;
 import com.springapp.mvc.service.MachineService;
+import com.springapp.mvc.service.WorkWithFilesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,9 @@ public class AdminController {
     @Autowired
     private FiltersService filtersService;
 
+    @Autowired
+    private WorkWithFilesService workWithFilesService;
+
     @RequestMapping(value="/adminEntry", method = RequestMethod.GET)
     public void adminEntry() {}
 
@@ -31,12 +35,13 @@ public class AdminController {
     @RequestMapping(value="/admin", method = RequestMethod.GET)
     public void admin(Map<String,Object> map) {
         map.put("machineList", machineService.listMachine());
+        map.put("imageList", workWithFilesService.listImage());
     }
 
     @RequestMapping(value = "/admin/uploadMachines", method = RequestMethod.POST)
     public String addMachines(@RequestParam("textFile") MultipartFile[] machines){
         if (machines != null && machines.length > 0) {
-            machineService.uploadMachines(machines);
+            workWithFilesService.uploadMachines(machines);
         }
         return "redirect:/admin";
     }
@@ -44,7 +49,7 @@ public class AdminController {
     @RequestMapping(value = "/admin/addPhotos", method = RequestMethod.POST)
     public String addPhotos(@RequestParam("photosCollection") MultipartFile[] photos) {
         if (photos != null && photos.length > 0) {
-            machineService.uploadPhotos(photos);
+            workWithFilesService.uploadPhotos(photos);
         }
         return "redirect:/admin";
     }
@@ -60,4 +65,11 @@ public class AdminController {
         machineService.removeMachine(productId);
         return "redirect:/admin";
     }
+
+    @RequestMapping(value = "/admin/remove", method = RequestMethod.GET)
+    public String removeImage(@RequestParam("image") String image) {
+        workWithFilesService.removeImage(image);
+        return "redirect:/admin";
+    }
+
 }

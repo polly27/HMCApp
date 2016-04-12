@@ -80,7 +80,7 @@
         <!-- /breadcrumbs -->
 
         <!-- box -->
-        <div id="tabs-statistic" class="box">
+        <div class="tabs box">
             <ul class="bookmarks">
                 <li><a href="#upload-file">Upload machines</a></li>
                 <li><a href="#upload-photo">Load photos</a></li>
@@ -155,52 +155,73 @@
         </div>
         <!-- /box -->
 
-        <c:if test="${!empty machineList}">
-        <div class="box">
-            <div class="headlines">
-                <h2><span>Machines</span></h2>
-            </div>
+        <div class="tabs box">
+            <ul class="bookmarks">
+                <li><a href="#machines">Machines</a></li>
+                <li><a href="#images">Images</a></li>
+            </ul>
 
-            <table class="tab">
-                <tr>
-                    <th>Product id</th>
-                    <th>Type</th>
-                    <th>Model</th>
-                    <th>Brand</th>
-                    <th>Year</th>
-                    <th>Location</th>
-                    <th>X&timesY&timesZ-motion</th>
-                    <th>X&timesY table sizes</th>
-                    <th>Price</th>
-                    <th>Photo1</th>
-                    <th>Photo2</th>
-                    <th>Photo3</th>
-                    <th class="action"></th>
-                </tr>
+            <div class="box-content">
 
-                    <c:forEach items="${machineList}" var="machine">
+                <div id="machines">
+                    <table class="tab">
                         <tr>
-                            <td>${machine.productId}</td>
-                            <td>${machine.machineType}</td>
-                            <td>${machine.model}</td>
-                            <td>${machine.producer}</td>
-                            <td>${machine.productionYear}</td>
-                            <td>${machine.machineLocation}</td>
-                            <td>${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}</td>
-                            <td>${machine.xTableSize}&times${machine.yTableSize}</td>
-                            <td>$${machine.cost}.00</td>
-                            <td><img src="resources/images/products/${machine.photo1}" height="100"/></td>
-                            <td><img src="resources/images/products/${machine.photo2}" height="100"/></td>
-                            <td><img src="resources/images/products/${machine.photo3}" height="100"/></td>
-                            <td class="action">
-                                <a href="admin/remove/${machine.productId}" class="ico ico-delete removeMachine"></a>
-                            </td>
+                            <th>Product id</th>
+                            <th>Type</th>
+                            <th>Model</th>
+                            <th>Brand</th>
+                            <th>Year</th>
+                            <th>Location</th>
+                            <th>X&timesY&timesZ-motion</th>
+                            <th>X&timesY table sizes</th>
+                            <th>Price</th>
+                            <th>Photo1</th>
+                            <th>Photo2</th>
+                            <th>Photo3</th>
+                            <th class="action"></th>
                         </tr>
-                    </c:forEach>
-            </table>
 
+                        <c:forEach items="${machineList}" var="machine">
+                            <tr>
+                                <td>${machine.productId}</td>
+                                <td>${machine.machineType}</td>
+                                <td>${machine.model}</td>
+                                <td>${machine.producer}</td>
+                                <td>${machine.productionYear}</td>
+                                <td>${machine.machineLocation}</td>
+                                <td>${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}</td>
+                                <td>${machine.xTableSize}&times${machine.yTableSize}</td>
+                                <td>$${machine.cost}.00</td>
+                                <td><img src="resources/images/products/${machine.photo1}" height="100"/></td>
+                                <td><img src="resources/images/products/${machine.photo2}" height="100"/></td>
+                                <td><img src="resources/images/products/${machine.photo3}" height="100"/></td>
+                                <td class="action">
+                                    <a href="admin/remove/${machine.productId}" class="ico ico-delete removeMachine"></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+
+                <div id="images">
+                    <div class="gallery tab">
+                        <c:forEach items="${imageList}" var="image">
+                        <div class="item">
+                            <div class="thumb">
+                                <a href="resources/images/products/${image}" class="fancy" rel="group">
+                                    <img src="resources/images/products/${image}" height="150" />
+                                </a>
+                            </div>
+                            <div class="tools">
+                                <a href="admin/remove?image=${image}" class="ico ico-delete"></a>
+                            </div>
+                        </div>
+                        </c:forEach>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        </c:if>
     </div>
     <!-- /#content -->
     <!-- #sidebar -->

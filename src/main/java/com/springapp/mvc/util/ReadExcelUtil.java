@@ -12,7 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
-public class ExcelUtil {
+public class ReadExcelUtil {
 
     private static Workbook getWorkbook(FileInputStream inputStream, String excelFilePath) throws IOException {
         Workbook workbook = null;

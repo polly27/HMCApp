@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 
-public class MiltipartFileUploadUtil {
+public class UploadMiltipartFileUtil {
     private static String pathToSrc;
     private static String pathToTarget;
 
@@ -14,11 +14,10 @@ public class MiltipartFileUploadUtil {
         String tmp = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 
         File file = new File(new File(tmp).getParentFile().getParentFile().getParentFile()
-                .getParentFile().getAbsolutePath() + "/src/main/webapp/resources/images/products/");
+                .getParentFile().getAbsolutePath() + "/src/main/webapp/resources/");
         pathToSrc = file.getAbsolutePath();
 
-        file = new File(new File(tmp).getParentFile().getParentFile().getAbsolutePath()
-                + "/resources/images/products/");
+        file = new File(new File(tmp).getParentFile().getParentFile().getAbsolutePath() + "/resources/");
         pathToTarget = file.getAbsolutePath();
     }
 
@@ -33,7 +32,7 @@ public class MiltipartFileUploadUtil {
     }
 
     public static void uploadPhoto(MultipartFile photo) throws IOException{
-        upload(pathToSrc + File.separator + photo.getOriginalFilename(), photo);
-        upload(pathToTarget + File.separator + photo.getOriginalFilename(), photo);
+        upload(pathToSrc + "/images/products/" + photo.getOriginalFilename(), photo);
+        upload(pathToTarget + "/images/products/" + photo.getOriginalFilename(), photo);
     }
 }

@@ -16,9 +16,9 @@
         <div class="col-xs-12 col-sm-12 col-md-5 top-search-holder no-margin">
             <div class="contact-row">
                 <div class="phone inline">
-                    <i class="fa fa-phone"></i> USA: <span class="le-color">+1 203 556-50-69</span> Russia: <span
-                        class="le-color">+375 29 255-88-88</span>
+                    <i class="fa fa-phone"></i> USA: <span class="le-color">+1 203 556-50-69</span><br>
                 </div>
+                <br>
                 <div class="contact inline">
                     <i class="fa fa-envelope"></i> contact@<span class="le-color">vmccnc.com</span>
                 </div>

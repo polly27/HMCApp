@@ -9,8 +9,12 @@ import java.util.List;
 
 public interface FiltersService {
     public List<ProducerFilter> listProducerFilter();
+
     public List<MachineLocationFilter> listMachineLocationFilter();
+
     public List<SystemCNCFilter> listSystemCNCFilter();
+
     public List<SlidersFilter> listSlidersFilter();
+
     public void renewFilters();
 }

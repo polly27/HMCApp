@@ -22,13 +22,19 @@ public class FiltersServiceImpl implements FiltersService {
     }
 
     @Transactional
-    public List<MachineLocationFilter> listMachineLocationFilter(){ return filtersDAO.listMachineLocationFilter(); }
+    public List<MachineLocationFilter> listMachineLocationFilter() {
+        return filtersDAO.listMachineLocationFilter();
+    }
 
     @Transactional
-    public List<SystemCNCFilter> listSystemCNCFilter(){ return filtersDAO.listSystemCNCFilter(); }
+    public List<SystemCNCFilter> listSystemCNCFilter() {
+        return filtersDAO.listSystemCNCFilter();
+    }
 
     @Transactional
-    public List<SlidersFilter> listSlidersFilter() { return filtersDAO.listSlidersFilter(); }
+    public List<SlidersFilter> listSlidersFilter() {
+        return filtersDAO.listSlidersFilter();
+    }
 
     @Transactional
     public void renewFilters() {

@@ -58,6 +58,38 @@
     <!-- ================================================ HEADER ======================================================= -->
     <%@include file="header.jsp" %>
     <!-- =============================================== HEADER : END ================================================ -->
+    <div id="top-mega-nav">
+        <div class="container">
+            <nav>
+                <ul class="inline">
+                    <li class="dropdown le-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-list"></i> Shop by Department
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">First department</a></li>
+                            <li><a href="#">Second department</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="breadcrumb-nav-holder">
+                        <ul>
+                            <li class="breadcrumb-item gray">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="breadcrumb-item gray">
+                                <a href="list">Horizontal Machine Centers</a>
+                            </li>
+                            <li class="breadcrumb-item current">
+                                <a href=".">Machine comparison</a>
+                            </li>
+                        </ul>
+                    </li><!-- /.breadcrumb-nav-holder -->
+                </ul>
+            </nav>
+        </div><!-- /.container -->
+    </div><!-- /#top-mega-nav -->
+
     <div class="main-content" id="main-content">
         <div class="container" id="compare-container">
             <div class="inner-xs">

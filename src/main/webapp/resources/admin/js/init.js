@@ -19,10 +19,7 @@ $(document).ready(function(){
   $(".wysiwyg").wysiwyg();
 
   // Initialise Tabs
-	$("#tabs").tabs();
-
-  // Initialise Tabs
-	$("#tabs-statistic").tabs();
+	$(".tabs").tabs();
 
   // Initialise FancyBox Modal window:
 	$("a.fancy").fancybox({

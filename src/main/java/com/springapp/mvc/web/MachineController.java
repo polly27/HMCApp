@@ -3,7 +3,9 @@ package com.springapp.mvc.web;
 import com.springapp.mvc.domain.Machine;
 import com.springapp.mvc.service.FiltersService;
 import com.springapp.mvc.service.MachineService;
+import com.springapp.mvc.service.WorkWithFilesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +22,9 @@ public class MachineController {
     @Autowired
     private FiltersService filtersService;
 
+    @Autowired
+    private WorkWithFilesService workWithFilesService;
+
     @RequestMapping(value="/",method = RequestMethod.GET)
     public String home() {
         return "redirect:/list";
@@ -34,7 +39,7 @@ public class MachineController {
     }
 
     private void putPagesInfo(Map<String,Object> map, int itemsNum) {
-        int itemsPerPage = 6;
+        int itemsPerPage = 9;
         int pagesNum = itemsNum / itemsPerPage;
         if(itemsNum % itemsPerPage != 0) {
             pagesNum++;
@@ -97,16 +102,29 @@ public class MachineController {
     }
 
     @RequestMapping(value="/proposal", method = RequestMethod.GET)
-    public void proposal(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
+    public void proposal(@RequestParam(required = true) String itemsId, Map<String, Object> map) {
         if(itemsId != null) {
             map.put("proposalList", machineService.getMachinesList(itemsId.split(",")));
         }
     }
 
-//    @RequestMapping(value="/machine/pdf", method = RequestMethod.GET)
-//    public ResponseEntity<byte[]> getPDF(@RequestParam("productId") String productId) throws Exception {
-//        Machine machine = machineService.getMachine(productId);
-//        return machineService.getPDFOffer(machine);
-//    }
+    @RequestMapping(value="/proposal-single", method = RequestMethod.GET)
+    public void proposalSingle(@RequestParam(required = true) String productId, Map<String, Object> map) {
+        map.put("machine", machineService.getMachine(productId));
+    }
+
+    @RequestMapping(value = "/proposal/getPdf", method = RequestMethod.POST)
+    public ResponseEntity<byte[]> getPdf(@RequestParam("products") String products,
+                                              @RequestParam(value = "company",required = false) String company,
+                                              @RequestParam(value = "director",required = false) String director){
+        return workWithFilesService.getPDFOffer(products,company,director);
+    }
+
+    @RequestMapping(value = "/proposal-single/getPdf", method = RequestMethod.POST)
+    public ResponseEntity<byte[]> getPdfSingle(@RequestParam("productId") String productId,
+                                              @RequestParam(value = "company",required = false) String company,
+                                              @RequestParam(value = "director",required = false) String director){
+        return workWithFilesService.getPDFOfferSingle(productId,company,director);
+    }
 
 }

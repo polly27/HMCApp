@@ -80,11 +80,8 @@
                             <li class="breadcrumb-item gray">
                                 <a href="list">Horizontal Machine Centers</a>
                             </li>
-                            <li class="breadcrumb-item gray">
-                                <a href="#" onclick="goToCart()">Shopping cart</a>
-                            </li>
                             <li class="breadcrumb-item current">
-                                <a href=".">Commercial proposal</a>
+                                <a href=".">Commercial proposal of single machine</a>
                             </li>
                         </ul>
                     </li><!-- /.breadcrumb-nav-holder -->
@@ -105,10 +102,10 @@
             </div>
             <!-- /.section-page-title -->
 
-            <c:if test="${!empty proposalList}">
+            <c:if test="${!empty machine}">
 
             <h3>Commercial proposal for:</h3><br>
-            <form:form class="formBox" method="post" id="proposalForm">
+            <form:form class="formBox" method="post" id="proposalForm" action="proposal-single/getPdf?productId=${machine.productId}">
                 <div class="row">
                     <div class="col-xs-6 col-md-4">
                         <label for="company">Company</label>
@@ -125,37 +122,6 @@
 
             <br><br>
 
-            <div class="table-responsive">
-                <table class="table table-bordered table-condensed" id="order-table">
-                    <tr>
-                        <td>№</td>
-                        <td>Machine</td>
-                        <td>Model</td>
-                        <td>Price</td>
-                        <td>Quantity</td>
-                        <td>Total</td>
-                    </tr>
-                    <c:set var="total" value="0"/>
-                    <c:forEach items="${proposalList}" var="machine" varStatus="loop">
-                        <tr>
-                            <td>${loop.index + 1}</td>
-                            <td>${machine.machineType}</td>
-                            <td>${machine.model}</td>
-                            <td>$${machine.cost}.00</td>
-                            <td id="count${machine.productId}"></td>
-                            <td id="total${machine.productId}"></td>
-                        </tr>
-                    </c:forEach>
-                    <tr>
-                        <td align="right" colspan="5">Order total</td>
-                        <td id="order-total"></td>
-                    </tr>
-                </table>
-            </div>
-
-            <br><br>
-
-            <c:forEach items="${proposalList}" var="machine" varStatus="loop">
             <table class="table table-bordered table-condensed machine-table">
                 <tr>
                     <td colspan="4" width="33.3335%">
@@ -247,10 +213,12 @@
                     <td colspan="3" width="25%">$${machine.cost}.00</td>
                 </tr>
             </table>
-            <br><br>
-            </c:forEach>
 
-                <a href="#getProposal"><h3>Up to getting the proposal</h3></a><br><br><br>
+            <br><br>
+
+            <a href="#getProposal"><h3>Up to getting the proposal</h3></a>
+
+            <br><br><br>
 
             </c:if>
 
@@ -282,42 +250,6 @@
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
 <script src="resources/js/comparison,wishlist,cart.jsp"></script>
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        loadQuantities();
-        setProposalFormData();
-    });
-
-    function loadQuantities() {
-        var fullArr = localStorage.cartItemStr.split(';');
-        if (fullArr != null && fullArr != "") {
-            var orderTotal = 0;
-            $(fullArr).each(function (index, value) {
-                var machine = value.split(',');
-                var productId = machine[0];
-                var cost = machine[1];
-                var count = machine[2];
-                $('#count' + productId).text(count);
-                $('#total' + productId).text("$"+parseInt(count) * parseInt(cost)+".00");
-                orderTotal += parseInt(cost) * parseInt(count);
-            });
-            $("#order-total").text("$"+orderTotal+".00");
-        }
-    }
-
-    function setProposalFormData() {
-        var form = $("#proposalForm");
-        var products = [];
-        var arr = localStorage.cartItemStr.split(';');
-        for(var i=0; i<arr.length; i++){
-            var arrItem = arr[i].split(',');
-            products[i] = arrItem[0] + ',' + arrItem[2];
-        }
-        form.attr("action","proposal/getPdf?products=" + products.join(';'));
-    }
-
-</script>
 
 </body>
 </html>
