@@ -24,9 +24,9 @@ public class ReadExcelUtil {
         return workbook;
     }
 
-    public static Machine readMachine(String path) throws IOException{
-        FileInputStream fis = new FileInputStream(new File(path));
-        Workbook workbook = getWorkbook(fis,path);
+    public static Machine readMachine(File file) throws IOException{
+        FileInputStream fis = new FileInputStream(file);
+        Workbook workbook = getWorkbook(fis,file.getPath());
         Sheet firstSheet = workbook.getSheetAt(0);
         Iterator<Row> rowIterator = firstSheet.iterator();
 

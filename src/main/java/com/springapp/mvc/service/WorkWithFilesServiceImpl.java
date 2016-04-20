@@ -5,7 +5,7 @@ import com.springapp.mvc.domain.Machine;
 import com.springapp.mvc.util.GeneratePdfUtil;
 import com.springapp.mvc.util.ImageUtil;
 import com.springapp.mvc.util.ReadExcelUtil;
-import com.springapp.mvc.util.UploadMiltipartFileUtil;
+import com.springapp.mvc.util.UploadMultipartFileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     private MachineDAO machineDAO;
 
     @Transactional
-    public ResponseEntity<byte[]> getPDFOffer(String products, String company, String director) {
+    public ResponseEntity<byte[]> getPDFOffer(String path, String products, String company, String director) {
         ResponseEntity<byte[]> result = null;
         try {
             String[] productsArr = products.split(";");
@@ -34,9 +34,9 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
                 machines[i] = machineDAO.getMachine(productsArr[i].split(",")[0]);
             }
 
-            String path = GeneratePdfUtil.createPDF(products, machines, company, director);
+            String pathPdf = GeneratePdfUtil.createPDF(path, products, machines, company, director);
 
-            File file = new File(path);
+            File file = new File(pathPdf);
             byte[] contents = new byte[(int) file.length()];
             new FileInputStream(file).read(contents);
 
@@ -53,14 +53,14 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     }
 
     @Transactional
-    public ResponseEntity<byte[]> getPDFOfferSingle(String productId, String company, String director) {
+    public ResponseEntity<byte[]> getPDFOfferSingle(String path, String productId, String company, String director) {
         ResponseEntity<byte[]> result = null;
         try {
             Machine machine = machineDAO.getMachine(productId);
 
-            String path = GeneratePdfUtil.createPDFSingle(machine, company, director);
+            String pathPdf = GeneratePdfUtil.createPDFSingle(path, machine, company, director);
 
-            File file = new File(path);
+            File file = new File(pathPdf);
             byte[] contents = new byte[(int) file.length()];
             new FileInputStream(file).read(contents);
 
@@ -77,12 +77,13 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     }
 
     @Transactional
-    public void uploadMachines(MultipartFile[] machines) {
+    public void uploadMachines(String path, MultipartFile[] machines) {
         for (int i = 0; i < machines.length; i++) {
             try {
-                String path = UploadMiltipartFileUtil.uploadMachineFile(machines[i]);
-                Machine machine = ReadExcelUtil.readMachine(path);
+                File machineFile = UploadMultipartFileUtil.uploadMachineFile(path, machines[i]);
+                Machine machine = ReadExcelUtil.readMachine(machineFile);
                 machineDAO.addMachine(machine);
+                machineFile.delete();
                 System.out.println("Successfully uploaded machine: " + machines[i].getOriginalFilename());
             } catch (IOException e) {
                 System.out.println("Failed to upload machine file: " + e.getMessage());
@@ -91,10 +92,10 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     }
 
     @Transactional
-    public void uploadPhotos(MultipartFile[] photos) {
+    public void uploadPhotos(String path, MultipartFile[] photos) {
         for (int i = 0; i < photos.length; i++) {
             try {
-                UploadMiltipartFileUtil.uploadPhoto(photos[i]);
+                UploadMultipartFileUtil.uploadPhoto(path, photos[i]);
                 System.out.println("Successfully uploaded photo: " + photos[i].getOriginalFilename());
             } catch (IOException e) {
                 System.out.println("Failed to upload photo: " + e.getMessage());
@@ -103,13 +104,13 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     }
 
     @Transactional
-    public String[] listImage() {
-        return ImageUtil.getListImage();
+    public String[] listImage(String path) {
+        return ImageUtil.getListImage(path);
     }
 
     @Transactional
-    public void removeImage(String image) {
-        ImageUtil.removeImage(image);
+    public void removeImage(String path, String image) {
+        ImageUtil.removeImage(path, image);
     }
 
 }

@@ -182,9 +182,7 @@
 
         function styleCartValue(){
             var count = localStorage.cartCount.toString();
-            if (count > 0) {
-                $('#cart-count').text(count);
-            }
+            $('#cart-count').text(count > 0 ? count : "");
             $('.cart-total').text(localStorage.cartTotal.toString());
         }
 
@@ -230,6 +228,7 @@
             $.each(arr,function(index,value){
                 if(value.split(',')[0] == productId) {
                     item = value;
+
                 }
             });
             arr = $.grep(arr, function (value) {

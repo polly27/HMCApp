@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="sliders_filter", catalog = "hmc")
+@Table(name="sliders_filter")
 public class SlidersFilter {
     @Id
     @Column(name = "id")

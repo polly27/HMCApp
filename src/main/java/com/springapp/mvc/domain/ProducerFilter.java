@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="producer_filter", catalog = "hmc")
+@Table(name="producer_filter")
 public class ProducerFilter implements Serializable{
     @Id
     @Column(name = "producer")

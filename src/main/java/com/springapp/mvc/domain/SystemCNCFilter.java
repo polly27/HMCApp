@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="systemcnc_filter", catalog = "hmc")
+@Table(name="systemcnc_filter")
 public class SystemCNCFilter {
     @Id
     @Column(name = "systemCNC")

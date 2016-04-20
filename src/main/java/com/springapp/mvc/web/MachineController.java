@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -25,12 +26,12 @@ public class MachineController {
     @Autowired
     private WorkWithFilesService workWithFilesService;
 
-    @RequestMapping(value="/",method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
         return "redirect:/list";
     }
 
-    @RequestMapping(value="/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public void productsList(Map<String, Object> map) {
         List<Machine> machineList = machineService.listMachine();
         map.put("machineList", machineList);
@@ -38,10 +39,10 @@ public class MachineController {
         putFilters(map);
     }
 
-    private void putPagesInfo(Map<String,Object> map, int itemsNum) {
+    private void putPagesInfo(Map<String, Object> map, int itemsNum) {
         int itemsPerPage = 9;
         int pagesNum = itemsNum / itemsPerPage;
-        if(itemsNum % itemsPerPage != 0) {
+        if (itemsNum % itemsPerPage != 0) {
             pagesNum++;
         }
         map.put("itemsPerPage", itemsPerPage);
@@ -49,14 +50,14 @@ public class MachineController {
         map.put("pagesNum", pagesNum);
     }
 
-    private void putFilters(Map<String,Object> map) {
+    private void putFilters(Map<String, Object> map) {
         map.put("producerList", filtersService.listProducerFilter());
         map.put("machineLocationList", filtersService.listMachineLocationFilter());
         map.put("cncList", filtersService.listSystemCNCFilter());
         map.put("slidersList", filtersService.listSlidersFilter());
     }
 
-    @RequestMapping(value="/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
     public void productsListFiltered(@RequestParam(value = "brand", required = false) String brands,
                                      @RequestParam(value = "yearRange", required = false) String yearRange,
                                      @RequestParam(value = "priceRange", required = false) String priceRange,
@@ -75,56 +76,60 @@ public class MachineController {
         putFilters(map);
     }
 
-    @RequestMapping(value="/machine", method = RequestMethod.GET)
+    @RequestMapping(value = "/machine", method = RequestMethod.GET)
     public void machineItem(@RequestParam("productId") String productId, Map<String, Object> map) {
         map.put("machine", machineService.getMachine(productId));
     }
 
-    @RequestMapping(value="/compare", method = RequestMethod.GET)
+    @RequestMapping(value = "/compare", method = RequestMethod.GET)
     public void comparison(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
-        if(itemsId != null) {
+        if (itemsId != null) {
             map.put("comparisonList", machineService.getMachinesList(itemsId.split(",")));
         }
     }
 
-    @RequestMapping(value="/wishList", method = RequestMethod.GET)
+    @RequestMapping(value = "/wishList", method = RequestMethod.GET)
     public void wishList(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
-        if(itemsId != null) {
+        if (itemsId != null) {
             map.put("wishList", machineService.getMachinesList(itemsId.split(",")));
         }
     }
 
-    @RequestMapping(value="/cart", method = RequestMethod.GET)
+    @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public void cart(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
-        if(itemsId != null) {
+        if (itemsId != null) {
             map.put("cartList", machineService.getMachinesList(itemsId.split(",")));
         }
     }
 
-    @RequestMapping(value="/proposal", method = RequestMethod.GET)
+    @RequestMapping(value = "/proposal", method = RequestMethod.GET)
     public void proposal(@RequestParam(required = true) String itemsId, Map<String, Object> map) {
-        if(itemsId != null) {
+        if (itemsId != null) {
             map.put("proposalList", machineService.getMachinesList(itemsId.split(",")));
         }
     }
 
-    @RequestMapping(value="/proposal-single", method = RequestMethod.GET)
+    @RequestMapping(value = "/proposal-single", method = RequestMethod.GET)
     public void proposalSingle(@RequestParam(required = true) String productId, Map<String, Object> map) {
         map.put("machine", machineService.getMachine(productId));
     }
 
     @RequestMapping(value = "/proposal/getPdf", method = RequestMethod.POST)
     public ResponseEntity<byte[]> getPdf(@RequestParam("products") String products,
-                                              @RequestParam(value = "company",required = false) String company,
-                                              @RequestParam(value = "director",required = false) String director){
-        return workWithFilesService.getPDFOffer(products,company,director);
+                                         @RequestParam(value = "company", required = false) String company,
+                                         @RequestParam(value = "director", required = false) String director,
+                                         HttpServletRequest request) {
+        String path = request.getServletContext().getRealPath("") + "/resources";
+        return workWithFilesService.getPDFOffer(path, products, company, director);
     }
 
     @RequestMapping(value = "/proposal-single/getPdf", method = RequestMethod.POST)
     public ResponseEntity<byte[]> getPdfSingle(@RequestParam("productId") String productId,
-                                              @RequestParam(value = "company",required = false) String company,
-                                              @RequestParam(value = "director",required = false) String director){
-        return workWithFilesService.getPDFOfferSingle(productId,company,director);
+                                               @RequestParam(value = "company", required = false) String company,
+                                               @RequestParam(value = "director", required = false) String director,
+                                               HttpServletRequest request) {
+        String path = request.getServletContext().getRealPath("") + "/resources";
+        return workWithFilesService.getPDFOfferSingle(path, productId, company, director);
     }
 
 }

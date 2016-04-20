@@ -6,7 +6,6 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.springapp.mvc.domain.Machine;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -14,20 +13,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GeneratePdfUtil {
-    private static String pathToTarget;
 
-    static {
-        String tmp = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
-        File file = new File(new File(tmp).getParentFile().getParentFile().getAbsolutePath() + "/resources/");
-        pathToTarget = file.getAbsolutePath();
-    }
-
-    private static PdfPTable getHeaderTable() throws DocumentException, IOException {
+    private static PdfPTable getHeaderTable(String path) throws DocumentException, IOException {
         PdfPTable headerTable = new PdfPTable(3);
         headerTable.setWidthPercentage(100);
         headerTable.setWidths(new float[]{1.5f,0.5f,2f});
 
-        Image imgLogo = Image.getInstance(pathToTarget + "/images/logotype.png");
+        Image imgLogo = Image.getInstance(path + "/images/logotype.png");
         PdfPCell cell1 = new PdfPCell(imgLogo,true);
         cell1.setBorder(Rectangle.NO_BORDER);
 
@@ -149,7 +141,7 @@ public class GeneratePdfUtil {
         return orderTable;
     }
 
-    private static PdfPTable getItemTable(Machine machine) throws DocumentException, IOException {
+    private static PdfPTable getItemTable(String path, Machine machine) throws DocumentException, IOException {
         PdfPTable itemTable = new PdfPTable(4);
         itemTable.setWidthPercentage(100);
         itemTable.setSpacingBefore(20f);
@@ -161,7 +153,7 @@ public class GeneratePdfUtil {
 
         PdfPCell[] itemCells = new PdfPCell[4];
 
-        Image img = Image.getInstance(pathToTarget + "/images/products/" + machine.getPhoto1());
+        Image img = Image.getInstance(path + "/images/products/" + machine.getPhoto1());
         img.setScaleToFitHeight(false);
         itemCells[0] = new PdfPCell(img, true);
         itemCells[0].setColspan(2);
@@ -179,10 +171,10 @@ public class GeneratePdfUtil {
             itemTable.addCell(itemCells[i]);
         }
 
-        img = Image.getInstance(pathToTarget + "/images/products/" + machine.getPhoto2());
+        img = Image.getInstance(path + "/images/products/" + machine.getPhoto2());
         img.setScaleToFitHeight(false);
         itemCells[0] = new PdfPCell(img, true);
-        img = Image.getInstance(pathToTarget + "/images/products/" + machine.getPhoto3());
+        img = Image.getInstance(path + "/images/products/" + machine.getPhoto3());
         img.setScaleToFitHeight(false);
         itemCells[1] = new PdfPCell(img, true);
         for (int i = 0; i < 2; i++) {
@@ -321,37 +313,37 @@ public class GeneratePdfUtil {
         return paragraph;
     }
 
-    public static String createPDF(String products, Machine[] machines, String company, String director) throws Exception {
+    public static String createPDF(String path, String products, Machine[] machines, String company, String director) throws Exception {
         Document document = new Document(PageSize.A4,50,50,50,50);
-        String path = pathToTarget + "/offer.pdf";
-        PdfWriter.getInstance(document, new FileOutputStream(path));
+        String pathPdf = path + "/offer.pdf";
+        PdfWriter.getInstance(document, new FileOutputStream(pathPdf));
         document.open();
 
-        document.add(getHeaderTable());
+        document.add(getHeaderTable(path));
         setForWhoData(document,company,director);
         document.add(getOrderTable(products,machines));
         for(Machine machine : machines) {
-            document.add(getItemTable(machine));
+            document.add(getItemTable(path, machine));
         }
         document.add(getFooterParagraph());
 
         document.close();
-        return path;
+        return pathPdf;
     }
 
-    public static String createPDFSingle(Machine machine, String company, String director) throws Exception {
+    public static String createPDFSingle(String path, Machine machine, String company, String director) throws Exception {
         Document document = new Document(PageSize.A4,50,50,50,50);
-        String path = pathToTarget + "/offer-single.pdf";
-        PdfWriter.getInstance(document, new FileOutputStream(path));
+        String pathPdf = path + "/offer-single.pdf";
+        PdfWriter.getInstance(document, new FileOutputStream(pathPdf));
         document.open();
 
-        document.add(getHeaderTable());
+        document.add(getHeaderTable(path));
         setForWhoData(document,company,director);
-        document.add(getItemTable(machine));
+        document.add(getItemTable(path, machine));
         document.add(getFooterParagraph());
 
         document.close();
-        return path;
+        return pathPdf;
     }
 
 }

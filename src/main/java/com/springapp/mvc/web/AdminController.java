@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.Map;
 
 @Controller
@@ -33,23 +35,26 @@ public class AdminController {
     }
 
     @RequestMapping(value="/admin", method = RequestMethod.GET)
-    public void admin(Map<String,Object> map) {
+    public void admin(HttpServletRequest request, Map<String,Object> map) throws IOException {
         map.put("machineList", machineService.listMachine());
-        map.put("imageList", workWithFilesService.listImage());
+        String path = request.getServletContext().getRealPath("") + "/resources/images/products";
+        map.put("imageList", workWithFilesService.listImage(path));
     }
 
     @RequestMapping(value = "/admin/uploadMachines", method = RequestMethod.POST)
-    public String addMachines(@RequestParam("textFile") MultipartFile[] machines){
+    public String addMachines(@RequestParam("textFile") MultipartFile[] machines, HttpServletRequest request){
         if (machines != null && machines.length > 0) {
-            workWithFilesService.uploadMachines(machines);
+            String path = request.getServletContext().getRealPath("") + "/resources/";
+            workWithFilesService.uploadMachines(path, machines);
         }
         return "redirect:/admin";
     }
 
     @RequestMapping(value = "/admin/addPhotos", method = RequestMethod.POST)
-    public String addPhotos(@RequestParam("photosCollection") MultipartFile[] photos) {
+    public String addPhotos(@RequestParam("photosCollection") MultipartFile[] photos, HttpServletRequest request){
         if (photos != null && photos.length > 0) {
-            workWithFilesService.uploadPhotos(photos);
+            String path = request.getServletContext().getRealPath("") + "/resources/images/products";
+            workWithFilesService.uploadPhotos(path, photos);
         }
         return "redirect:/admin";
     }
@@ -67,8 +72,9 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/remove", method = RequestMethod.GET)
-    public String removeImage(@RequestParam("image") String image) {
-        workWithFilesService.removeImage(image);
+    public String removeImage(@RequestParam("image") String image, HttpServletRequest request) {
+        String path = request.getServletContext().getRealPath("") + "/resources/images/products";
+        workWithFilesService.removeImage(path,image);
         return "redirect:/admin";
     }
 

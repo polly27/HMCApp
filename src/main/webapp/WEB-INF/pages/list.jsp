@@ -312,6 +312,7 @@
 
                             </c:if>
                             <c:if test="${empty machineList}">
+                                There are no machines with such parametres<br>
                                 Please, change the filter parameters.
                             </c:if>
 
