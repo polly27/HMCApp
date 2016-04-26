@@ -15,8 +15,8 @@ public class SlidersFilter {
     @Column(name = "productionYear")
     private String productionYear;
 
-    @Column(name = "cost")
-    private String cost;
+    @Column(name = "price")
+    private String price;
 
     @Column(name = "xMotion")
     private String xMotion;
@@ -49,12 +49,12 @@ public class SlidersFilter {
         this.productionYear = productionYear;
     }
 
-    public String getCost() {
-        return cost;
+    public String getPrice() {
+        return price;
     }
 
-    public void setCost(String cost) {
-        this.cost = cost;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getxMotion() {

@@ -3313,7 +3313,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 }
 .tabled-data li label {
   margin: 0;
-  min-width: 200px;
+  min-width: 300px;
   font-weight: 700;
   text-transform: capitalize;
   display: inline-block;

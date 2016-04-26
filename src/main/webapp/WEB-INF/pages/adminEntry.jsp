@@ -22,7 +22,7 @@
 
             <div id="logo"><span>Great Admin</span></div>
 
-            <form:form method="post" action="/adminEntry" id="form-login" class="formBox">
+            <form:form method="post" action="adminEntry" id="form-login" class="formBox">
                 <fieldset>
                     <div class="form-col">
                         <label for="username" class="lab">Username</label>

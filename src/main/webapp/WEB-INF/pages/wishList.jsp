@@ -127,22 +127,22 @@
 	                	<div class="col-xs-12 col-sm-4">
 	                    	<div class="title">
                                 <a href="machine?productId=${machine.productId}">
-                                    ${machine.machineType}<br><span id="model${machine.productId}">${machine.model}</span>
+                                    ${machine.machineTypeEn}<br><span id="model${machine.productId}">${machine.model}</span>
                                 </a>
 	                    	</div><!-- /.title -->
-                            <span id="brand${machine.productId}">${machine.producer}</span>
+                            <span id="brand${machine.productId}">${machine.brand}</span>
 	                    </div>
 						
 		                <div class="col-xs-12 col-sm-2">
 		                	<div class="price">
-			                	<span class="amount">$<span id="price${machine.productId}">${machine.cost}</span>.00</span>
+			                	<span class="amount">$<span id="price${machine.productId}">${machine.price}</span>.00</span>
 			                </div>
 		                </div>
 						
 						<div class="col-xs-12 col-sm-3">
 							<div class="text-right">
 								<div class="add-cart-button">
-                                    <a id="cart${machine.productId}" class="le-button add_to_cart_button product_type_simple"
+                                    <a class="cart${machine.productId} le-button add_to_cart_button product_type_simple"
                                        onclick="addToCart('${machine.productId}')">add to cart</a>
 								</div>
 							</div>

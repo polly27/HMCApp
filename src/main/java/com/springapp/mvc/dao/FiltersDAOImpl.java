@@ -1,7 +1,7 @@
 package com.springapp.mvc.dao;
 
 import com.springapp.mvc.domain.MachineLocationFilter;
-import com.springapp.mvc.domain.ProducerFilter;
+import com.springapp.mvc.domain.BrandFilter;
 import com.springapp.mvc.domain.SlidersFilter;
 import com.springapp.mvc.domain.SystemCNCFilter;
 import org.hibernate.Session;
@@ -13,12 +13,13 @@ import java.util.*;
 
 @Repository
 public class FiltersDAOImpl implements FiltersDAO {
+
     @Autowired
     private SessionFactory sessionFactory;
 
     @SuppressWarnings("unchecked")
-    public List<ProducerFilter> listProducerFilter() {
-        return sessionFactory.getCurrentSession().createQuery("from ProducerFilter").list();
+    public List<BrandFilter> listBrandFilter() {
+        return sessionFactory.getCurrentSession().createQuery("from BrandFilter").list();
     }
 
     @SuppressWarnings("unchecked")
@@ -37,13 +38,13 @@ public class FiltersDAOImpl implements FiltersDAO {
     }
 
     @SuppressWarnings("unchecked")
-    public void renewProducerFilter() {
-        renew(ProducerFilter.class.getSimpleName(), "producer");
+    public void renewBrandFilter() {
+        renew(BrandFilter.class.getSimpleName(), "brand");
     }
 
     @SuppressWarnings("unchecked")
     public void renewMachineLocationFilter() {
-        renew(MachineLocationFilter.class.getSimpleName(), "machineLocation");
+        renew(MachineLocationFilter.class.getSimpleName(), "machineLocationEn");
     }
 
     @SuppressWarnings("unchecked")
@@ -62,9 +63,9 @@ public class FiltersDAOImpl implements FiltersDAO {
         for(String val : list) {
             set.add(val);
         }
-        if(className.equals(ProducerFilter.class.getSimpleName())) {
+        if(className.equals(BrandFilter.class.getSimpleName())) {
             for (String s : set) {
-                session.save(getProducerFilter(s, Collections.frequency(list, s)));
+                session.save(getBrandFilter(s, Collections.frequency(list, s)));
             }
         } else if(className.equals(MachineLocationFilter.class.getSimpleName())) {
             for (String s : set) {
@@ -77,9 +78,9 @@ public class FiltersDAOImpl implements FiltersDAO {
         }
     }
 
-    private ProducerFilter getProducerFilter(String val, int num) {
-        ProducerFilter pf = new ProducerFilter();
-        pf.setProducer(val);
+    private BrandFilter getBrandFilter(String val, int num) {
+        BrandFilter pf = new BrandFilter();
+        pf.setBrand(val);
         pf.setNum(num);
         return pf;
     }
@@ -103,14 +104,14 @@ public class FiltersDAOImpl implements FiltersDAO {
         Session session = sessionFactory.getCurrentSession();
         session.createQuery("delete from SlidersFilter").executeUpdate();
         List<Integer> listProductionYear = session.createQuery("select M.productionYear from Machine M").list();
-        List<Integer> listCost = session.createQuery("select M.cost from Machine M").list();
+        List<Integer> listPrice = session.createQuery("select M.price from Machine M").list();
         List<Integer> listXMotion = session.createQuery("select M.xMotion from Machine M").list();
         List<Integer> listYMotion = session.createQuery("select M.yMotion from Machine M").list();
         List<Integer> listZMotion = session.createQuery("select M.zMotion from Machine M").list();
         List<Integer> listXTableSize = session.createQuery("select M.xTableSize from Machine M").list();
         List<Integer> listYTableSize = session.createQuery("select M.yTableSize from Machine M").list();
         int[] minMaxProductionYear = getMinMax(listProductionYear);
-        int[] minMaxCost = roundToNum(getMinMax(listCost), 500);
+        int[] minMaxPrice = roundToNum(getMinMax(listPrice), 500);
         int[] minMaxXMotion = roundToNum(getMinMax(listXMotion), 100);
         int[] minMaxYMotion = roundToNum(getMinMax(listYMotion), 100);
         int[] minMaxZMotion = roundToNum(getMinMax(listZMotion), 100);
@@ -119,7 +120,7 @@ public class FiltersDAOImpl implements FiltersDAO {
         SlidersFilter sf = new SlidersFilter();
         sf.setId(1);
         sf.setProductionYear(getString(minMaxProductionYear));
-        sf.setCost(getString(minMaxCost));
+        sf.setPrice(getString(minMaxPrice));
         sf.setxMotion(getString(minMaxXMotion));
         sf.setyMotion(getString(minMaxYMotion));
         sf.setzMotion(getString(minMaxZMotion));

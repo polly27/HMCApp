@@ -28,7 +28,7 @@ public class MachineDAOImpl implements MachineDAO {
 
     @SuppressWarnings("unchecked")
     public void addMachine(Machine machine) {
-          sessionFactory.getCurrentSession().saveOrUpdate(machine);
+        sessionFactory.getCurrentSession().saveOrUpdate(machine);
     }
 
     @SuppressWarnings("unchecked")
@@ -45,16 +45,16 @@ public class MachineDAOImpl implements MachineDAO {
             int[] zMotionRangeArr,int[] xTableRangeArr, int[] yTableRangeArr) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Machine.class);
         if(brandArr != null) {
-            criteria.add(Restrictions.in("producer", brandArr));
+            criteria.add(Restrictions.in("brand", brandArr));
         }
         if(yearRangeArr != null) {
             criteria.add(Restrictions.between("productionYear", yearRangeArr[0], yearRangeArr[1]));
         }
         if(priceRangeArr != null) {
-            criteria.add(Restrictions.between("cost", priceRangeArr[0], priceRangeArr[1]));
+            criteria.add(Restrictions.between("price", priceRangeArr[0], priceRangeArr[1]));
         }
         if(locationArr != null) {
-            criteria.add(Restrictions.in("machineLocation", locationArr));
+            criteria.add(Restrictions.in("machineLocationEn", locationArr));
         }
         if(cncArr != null) {
             criteria.add(Restrictions.in("systemCNC", cncArr));

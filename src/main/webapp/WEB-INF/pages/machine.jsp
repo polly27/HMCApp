@@ -82,7 +82,7 @@
                             <a href="list">Horizontal Machine Centers</a>
                         </li>
                         <li class="breadcrumb-item current">
-                            <a href=".">${machine.machineType} - ${machine.productId}</a>
+                            <a href=".">${machine.machineTypeEn} - ${machine.productId}</a>
                         </li>
                     </ul>
                 </li><!-- /.breadcrumb-nav-holder -->
@@ -107,23 +107,43 @@
                             <span id="photo${machine.productId}" hidden="hidden">${machine.photo1}</span>
                         </a>
                     </div>
-                    <!-- /.single-product-gallery-item -->
 
+                    <c:if test="${machine.photo2!=''}">
                     <div class="single-product-gallery-item" id="slide2">
                         <a data-rel="prettyphoto" href="resources/images/products/${machine.photo2}">
                             <img class="img-responsive" alt="" src="resources/images/blank.gif"
                                  data-echo="resources/images/products/${machine.photo2}"/>
                         </a>
                     </div>
-                    <!-- /.single-product-gallery-item -->
+                    </c:if>
 
+                    <c:if test="${machine.photo3!=''}">
                     <div class="single-product-gallery-item" id="slide3">
                         <a data-rel="prettyphoto" href="resources/images/products/${machine.photo3}">
                             <img class="img-responsive" alt="" src="resources/images/blank.gif"
                                  data-echo="resources/images/products/${machine.photo3}"/>
                         </a>
                     </div>
-                    <!-- /.single-product-gallery-item -->
+                    </c:if>
+
+                    <c:if test="${machine.photo4!=''}">
+                    <div class="single-product-gallery-item" id="slide4">
+                        <a data-rel="prettyphoto" href="resources/images/products/${machine.photo4}">
+                            <img class="img-responsive" alt="" src="resources/images/blank.gif"
+                                 data-echo="resources/images/products/${machine.photo4}"/>
+                        </a>
+                    </div>
+                    </c:if>
+
+                    <c:if test="${machine.photo5!=''}">
+                    <div class="single-product-gallery-item" id="slide5">
+                        <a data-rel="prettyphoto" href="resources/images/products/${machine.photo5}">
+                            <img class="img-responsive" alt="" src="resources/images/blank.gif"
+                                 data-echo="resources/images/products/${machine.photo5}"/>
+                        </a>
+                    </div>
+                    </c:if>
+
                 </div>
                 <!-- /.single-product-slider -->
 
@@ -136,15 +156,33 @@
                                  data-echo="resources/images/products/${machine.photo1}"/>
                         </a>
 
+                        <c:if test="${machine.photo2!=''}">
                         <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
                             <img width="67" alt="" src="resources/images/blank.gif"
                                  data-echo="resources/images/products/${machine.photo2}"/>
                         </a>
+                        </c:if>
 
+                        <c:if test="${machine.photo3!=''}">
                         <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
                             <img width="67" alt="" src="resources/images/blank.gif"
                                  data-echo="resources/images/products/${machine.photo3}"/>
                         </a>
+                        </c:if>
+
+                        <c:if test="${machine.photo4!=''}">
+                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="3" href="#slide4">
+                            <img width="67" alt="" src="resources/images/blank.gif"
+                                 data-echo="resources/images/products/${machine.photo4}"/>
+                        </a>
+                        </c:if>
+
+                        <c:if test="${machine.photo5!=''}">
+                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="4" href="#slide5">
+                            <img width="67" alt="" src="resources/images/blank.gif"
+                                 data-echo="resources/images/products/${machine.photo5}"/>
+                        </a>
+                        </c:if>
                     </div>
                     <!-- /#owl-single-product-thumbnails -->
 
@@ -158,9 +196,10 @@
 
         <div class="no-margin col-xs-12 col-sm-7 body-holder">
             <div class="body">
-                <div class="title"><a href="#">${machine.machineType} - <span
+                <div class="title"><a href="#">${machine.machineTypeEn} - <span
                         id="model${machine.productId}">${machine.model}</span></a></div>
-                <div class="brand" id="brand${machine.productId}">${machine.producer}</div>
+                <div class="brand" id="brand${machine.productId}">${machine.brand}</div>
+                <div class="brand">Product id: ${machine.productId}</div>
 
                 <div class="buttons-holder">
                     <span id="wishList${machine.productId}" class="btn-add-to-wishlist"
@@ -174,15 +213,15 @@
                 </div>
 
                 <div class="excerpt">
-                    <p>${machine.description}</p>
+                    <p>${machine.descriptionEn}</p>
                 </div>
 
                 <div class="prices">
-                    <div class="price-current">$<span id="price${machine.productId}">${machine.cost}</span>.00</div>
+                    <div class="price-current">$<span id="price${machine.productId}">${machine.price}</span>.00</div>
                 </div>
 
                 <div class="qnt-holder">
-                    <button id="cart${machine.productId}" class="le-button huge" onclick="addToCart('${machine.productId}')">add
+                    <button class="cart${machine.productId} le-button huge" onclick="addToCart('${machine.productId}')">add
                         to cart</button>
                     <a class="le-button huge" href="proposal-single?productId=${machine.productId}">get commercial proposal (PDF)</a>
                 </div>
@@ -204,14 +243,18 @@
 
             <div class="tab-content">
                 <div class="tab-pane active" id="description">
-                    <p>${machine.fullDescription}</p>
 
-                    <div class="meta-row">
-                        <div class="inline">
-                            <label>Product id:</label>
-                            <span>${machine.productId}</span>
-                        </div>
-                    </div>
+                    <c:if test="${machine.video1!=''}">
+                        <iframe width="560" height="315" src="${machine.video1}" frameborder="0" allowfullscreen></iframe>
+                        <br><br>
+                    </c:if>
+                    <c:if test="${machine.video2!=''}">
+                        <iframe width="560" height="315" src="${machine.video2}" frameborder="0" allowfullscreen></iframe>
+                        <br><br>
+                    </c:if>
+                    <c:if test="${machine.video3!=''}">
+                        <iframe width="560" height="315" src="${machine.video3}" frameborder="0" allowfullscreen></iframe>
+                    </c:if>
                 </div>
 
                 <div class="tab-pane" id="additional-info">
@@ -219,7 +262,7 @@
                         <li>
                             <label>Type</label>
 
-                            <div class="value">${machine.machineType}</div>
+                            <div class="value">${machine.machineTypeEn}</div>
                         </li>
                         <li>
                             <label>Model</label>
@@ -229,27 +272,32 @@
                         <li>
                             <label>Brand</label>
 
-                            <div class="value">${machine.producer}</div>
+                            <div class="value">${machine.brand}</div>
                         </li>
                         <li>
                             <label>Producing country</label>
 
-                            <div class="value">${machine.producingCountry}</div>
+                            <div class="value">${machine.producingCountryEn}</div>
                         </li>
                         <li>
-                            <label>Full system CNC</label>
+                            <label>System CNC</label>
 
                             <div class="value">${machine.fullSystemCNC}</div>
                         </li>
                         <li>
-                            <label>Year</label>
+                            <label>Year of producing</label>
 
                             <div class="value">${machine.productionYear}</div>
                         </li>
                         <li>
+                            <label>Condition</label>
+
+                            <div class="value">${machine.machineConditionEn}</div>
+                        </li>
+                        <li>
                             <label>Machine location</label>
 
-                            <div class="value">${machine.machineLocation}</div>
+                            <div class="value">${machine.machineLocationEn}</div>
                         </li>
                         <li>
                             <label>Axis count</label>
@@ -287,26 +335,6 @@
                             <div class="value">${machine.spindlePower}</div>
                         </li>
                         <li>
-                            <label>Spindle max torque</label>
-
-                            <div class="value">${machine.spindleMaxTorque}</div>
-                        </li>
-                        <li>
-                            <label>Spindle type</label>
-
-                            <div class="value">${machine.spindleType}</div>
-                        </li>
-                        <li>
-                            <label>Spindle cooling method</label>
-
-                            <div class="value">${machine.spindleCoolingMethod}</div>
-                        </li>
-                        <li>
-                            <label>Store type</label>
-
-                            <div class="value">${machine.storeType}</div>
-                        </li>
-                        <li>
                             <label>Tool count, pcs.</label>
 
                             <div class="value">${machine.toolCount}</div>
@@ -322,19 +350,24 @@
                             <div class="value">${machine.maxToolWeight}</div>
                         </li>
                         <li>
+                            <label>Max tool length, mm</label>
+
+                            <div class="value">${machine.maxToolLength}</div>
+                        </li>
+                        <li>
                             <label>Tool replacement time, sec</label>
 
                             <div class="value">${machine.toolReplacementTime}</div>
                         </li>
                         <li>
-                            <label>Position precision, mm</label>
+                            <label>Chip replacement time, sec</label>
 
-                            <div class="value">${machine.positionPrecision}</div>
+                            <div class="value">${machine.chipReplacementTime}</div>
                         </li>
                         <li>
-                            <label>Reposition precision, mm</label>
+                            <label>Position/reposition precision, mm</label>
 
-                            <div class="value">${machine.repositionPrecision}</div>
+                            <div class="value">${machine.positionRepositionPrecision}</div>
                         </li>
                         <li>
                             <label>Spindle runtime, h</label>
@@ -346,25 +379,8 @@
 
                             <div class="value">${machine.machineLaunching}</div>
                         </li>
-                        <li>
-                            <label>Equipment</label>
-
-                            <div class="value">${machine.equipment}</div>
-                        </li>
-
-                        <li>
-                            <label>Condition</label>
-
-                            <div class="value">${machine.machineCondition}</div>
-                        </li>
                     </ul>
 
-                    <div class="meta-row">
-                        <div class="inline">
-                            <label>Product id:</label>
-                            <span>${machine.productId}</span>
-                        </div>
-                    </div>
                 </div>
 
             </div>

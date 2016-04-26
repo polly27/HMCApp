@@ -51,7 +51,7 @@ public class MachineController {
     }
 
     private void putFilters(Map<String, Object> map) {
-        map.put("producerList", filtersService.listProducerFilter());
+        map.put("brandList", filtersService.listBrandFilter());
         map.put("machineLocationList", filtersService.listMachineLocationFilter());
         map.put("cncList", filtersService.listSystemCNCFilter());
         map.put("slidersList", filtersService.listSlidersFilter());
@@ -118,7 +118,7 @@ public class MachineController {
     public ResponseEntity<byte[]> getPdf(@RequestParam("products") String products,
                                          @RequestParam(value = "company", required = false) String company,
                                          @RequestParam(value = "director", required = false) String director,
-                                         HttpServletRequest request) {
+                                         HttpServletRequest request) throws Exception {
         String path = request.getServletContext().getRealPath("") + "/resources";
         return workWithFilesService.getPDFOffer(path, products, company, director);
     }
@@ -127,7 +127,7 @@ public class MachineController {
     public ResponseEntity<byte[]> getPdfSingle(@RequestParam("productId") String productId,
                                                @RequestParam(value = "company", required = false) String company,
                                                @RequestParam(value = "director", required = false) String director,
-                                               HttpServletRequest request) {
+                                               HttpServletRequest request) throws Exception {
         String path = request.getServletContext().getRealPath("") + "/resources";
         return workWithFilesService.getPDFOfferSingle(path, productId, company, director);
     }

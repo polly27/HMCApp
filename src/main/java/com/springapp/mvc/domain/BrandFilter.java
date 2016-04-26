@@ -4,11 +4,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="producer_filter")
-public class ProducerFilter implements Serializable{
+@Table(name="brand_filter")
+public class BrandFilter implements Serializable{
     @Id
-    @Column(name = "producer")
-    private String producer;
+    @Column(name = "brand")
+    private String brand;
 
     @Column(name = "num")
     private int num;
@@ -21,11 +21,11 @@ public class ProducerFilter implements Serializable{
         this.num = num;
     }
 
-    public String getProducer() {
-        return producer;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setProducer(String producer) {
-        this.producer = producer;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

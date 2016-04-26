@@ -20,7 +20,7 @@ USE `hmc` ;
 CREATE TABLE IF NOT EXISTS `hmc`.`sliders_filter` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `productionYear` VARCHAR(255) NOT NULL,
-  `cost` VARCHAR(255) NOT NULL,
+  `price` VARCHAR(255) NOT NULL,
   `xMotion` VARCHAR(255) NOT NULL,
   `yMotion` VARCHAR(255) NOT NULL,
   `zMotion` VARCHAR(255) NOT NULL,
@@ -32,18 +32,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hmc`.`producer_filter`
+-- Table `hmc`.`brand_filter`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hmc`.`producer_filter` (
-  `producer` VARCHAR(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS `hmc`.`brand_filter` (
+  `brand` VARCHAR(255) NOT NULL,
   `num` INT(11) NOT NULL,
-  PRIMARY KEY (`producer`),
-  UNIQUE INDEX `producer_UNIQUE` (`producer` ASC))
+  PRIMARY KEY (`brand`),
+  UNIQUE INDEX `brand_UNIQUE` (`brand` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hmc`.`machineLocation_filter`
+-- Table `hmc`.`machine_location_filter`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hmc`.`machine_location_filter` (
   `machineLocation` VARCHAR(255) NOT NULL,
@@ -54,9 +54,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hmc`.`systemCNC_filter`
+-- Table `hmc`.`system_cnc_filter`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hmc`.`systemCNC_filter` (
+CREATE TABLE IF NOT EXISTS `hmc`.`system_cnc_filter` (
   `systemCNC` VARCHAR(255) NOT NULL,
   `num` INT(11) NOT NULL,
   PRIMARY KEY (`systemCNC`),

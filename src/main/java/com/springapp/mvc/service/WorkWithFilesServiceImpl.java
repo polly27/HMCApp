@@ -25,55 +25,43 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     private MachineDAO machineDAO;
 
     @Transactional
-    public ResponseEntity<byte[]> getPDFOffer(String path, String products, String company, String director) {
-        ResponseEntity<byte[]> result = null;
-        try {
-            String[] productsArr = products.split(";");
-            Machine[] machines = new Machine[productsArr.length];
-            for (int i = 0; i < machines.length; i++) {
-                machines[i] = machineDAO.getMachine(productsArr[i].split(",")[0]);
-            }
-
-            String pathPdf = GeneratePdfUtil.createPDF(path, products, machines, company, director);
-
-            File file = new File(pathPdf);
-            byte[] contents = new byte[(int) file.length()];
-            new FileInputStream(file).read(contents);
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.parseMediaType("application/pdf"));
-            String filename = "VMC-HMC-offer.pdf";
-            headers.setContentDispositionFormData(filename, filename);
-            headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-            result = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+    public ResponseEntity<byte[]> getPDFOffer(String path, String products, String company, String director) throws Exception {
+        String[] productsArr = products.split(";");
+        Machine[] machines = new Machine[productsArr.length];
+        for (int i = 0; i < machines.length; i++) {
+            machines[i] = machineDAO.getMachine(productsArr[i].split(",")[0]);
         }
-        return result;
+
+        String pathPdf = GeneratePdfUtil.createPDF(path, products, machines, company, director);
+
+        File file = new File(pathPdf);
+        byte[] contents = new byte[(int) file.length()];
+        new FileInputStream(file).read(contents);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+        String filename = "VMC-HMC-offer.pdf";
+        headers.setContentDispositionFormData(filename, filename);
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        return new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
     }
 
     @Transactional
-    public ResponseEntity<byte[]> getPDFOfferSingle(String path, String productId, String company, String director) {
-        ResponseEntity<byte[]> result = null;
-        try {
-            Machine machine = machineDAO.getMachine(productId);
+    public ResponseEntity<byte[]> getPDFOfferSingle(String path, String productId, String company, String director) throws Exception {
+        Machine machine = machineDAO.getMachine(productId);
 
-            String pathPdf = GeneratePdfUtil.createPDFSingle(path, machine, company, director);
+        String pathPdf = GeneratePdfUtil.createPDFSingle(path, machine, company, director);
 
-            File file = new File(pathPdf);
-            byte[] contents = new byte[(int) file.length()];
-            new FileInputStream(file).read(contents);
+        File file = new File(pathPdf);
+        byte[] contents = new byte[(int) file.length()];
+        new FileInputStream(file).read(contents);
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.parseMediaType("application/pdf"));
-            String filename = "VMC-HMC-offer-" + productId + ".pdf";
-            headers.setContentDispositionFormData(filename, filename);
-            headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-            result = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return result;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+        String filename = "VMC-HMC-offer-" + productId + ".pdf";
+        headers.setContentDispositionFormData(filename, filename);
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        return new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
     }
 
     @Transactional

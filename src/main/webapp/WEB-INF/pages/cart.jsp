@@ -95,6 +95,16 @@
         <!-- ========================================= CONTENT ========================================= -->
         <div class="col-xs-12 col-md-9 items-holder no-margin">
 
+            <c:if test="${empty cartList}">
+            <div class="inner-xs">
+                <div class="page-header">
+                    <h2 class="page-title">
+                        <br><br>Your cart is empty
+                    </h2>
+                </div>
+            </div>
+            </c:if>
+
             <c:if test="${!empty cartList}">
                 <c:forEach items="${cartList}" var="machine">
                     <div class="row no-margin cart-item">
@@ -108,10 +118,10 @@
                         <div class="col-xs-12 col-sm-5 ">
                             <div class="title">
                                 <a href="machine?productId=${machine.productId}">
-                                    ${machine.machineType}<br>${machine.model}
+                                    ${machine.machineTypeEn}<br>${machine.model}
                                 </a>
                             </div>
-                            <div class="brand">${machine.producer}</div>
+                            <div class="brand">${machine.brand}</div>
                         </div>
 
                         <div class="col-xs-12 col-sm-3 no-margin">
@@ -126,7 +136,7 @@
 
                         <div class="col-xs-12 col-sm-2 no-margin">
                             <div class="price">
-                                $${machine.cost}.00
+                                $${machine.price}.00
                             </div>
                             <a class="close-btn" href="#" onclick="removeFromCart('${machine.productId}');goToCart()"></a>
                         </div>

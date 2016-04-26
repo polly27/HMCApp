@@ -109,14 +109,14 @@ public class GeneratePdfUtil {
         for (int i = 0; i < machines.length; i++) {
             orderCells[0] = new PdfPCell(new Paragraph(String.valueOf(i + 1),fontForBody));
             orderCells[0].setHorizontalAlignment(Element.ALIGN_CENTER);
-            orderCells[1] = new PdfPCell(new Paragraph(machines[i].getMachineType(),fontForBody));
+            orderCells[1] = new PdfPCell(new Paragraph(machines[i].getMachineTypeEn(),fontForBody));
             orderCells[2] = new PdfPCell(new Paragraph(machines[i].getModel(),fontForBody));
-            int cost = machines[i].getCost();
-            orderCells[3] = new PdfPCell(new Paragraph("$" + cost + ".00",fontForBody));
+            int price = machines[i].getPrice();
+            orderCells[3] = new PdfPCell(new Paragraph("$" + price + ".00",fontForBody));
             String num = productsArr[i].split(",")[1];
             orderCells[4] = new PdfPCell(new Paragraph(num,fontForBody));
             orderCells[4].setHorizontalAlignment(Element.ALIGN_CENTER);
-            int total = cost * Integer.parseInt(num);
+            int total = price * Integer.parseInt(num);
             orderTotal += total;
             orderCells[5] = new PdfPCell(new Paragraph("$" + String.valueOf(total) + ".00",fontForBody));
             for(PdfPCell cell : orderCells) {
@@ -153,16 +153,22 @@ public class GeneratePdfUtil {
 
         PdfPCell[] itemCells = new PdfPCell[4];
 
-        Image img = Image.getInstance(path + "/images/products/" + machine.getPhoto1());
-        img.setScaleToFitHeight(false);
-        itemCells[0] = new PdfPCell(img, true);
+        Image img;
+        try {
+            img = Image.getInstance(path + "/images/products/" + machine.getPhoto1());
+            img.setScaleToFitHeight(false);
+            itemCells[0] = new PdfPCell(img, true);
+        } catch (Exception e) {
+            itemCells[0] = new PdfPCell(new Paragraph(""));
+        }
         itemCells[0].setColspan(2);
         itemCells[0].setPadding(1);
         itemCells[1] = new PdfPCell();
         itemCells[1].addElement(new Paragraph(machine.getModel(), fontBold));
-        itemCells[1].addElement(new Paragraph(machine.getMachineType() + "\n" + machine.getProducer() + ", "
-                + machine.getProducingCountry() + ", " + machine.getProductionYear() + "\nCurrent location: "
-                + machine.getMachineLocation() + "\n\nDescription: " + machine.getFullDescription(), font));
+        itemCells[1].addElement(new Paragraph(machine.getMachineTypeEn() + "\n" + machine.getBrand() + ", "
+                + machine.getProducingCountryEn() + ", " + machine.getProductionYear() + "\nCurrent location: "
+                + machine.getMachineLocationEn() + "\nCondition: " + machine.getMachineConditionEn()
+                + "\nDescription:\n" + machine.getDescriptionEn().replace("<br>",""), font));
         itemCells[1].setColspan(2);
         itemCells[1].setRowspan(2);
         itemCells[1].setPadding(5);
@@ -171,12 +177,20 @@ public class GeneratePdfUtil {
             itemTable.addCell(itemCells[i]);
         }
 
-        img = Image.getInstance(path + "/images/products/" + machine.getPhoto2());
-        img.setScaleToFitHeight(false);
-        itemCells[0] = new PdfPCell(img, true);
-        img = Image.getInstance(path + "/images/products/" + machine.getPhoto3());
-        img.setScaleToFitHeight(false);
-        itemCells[1] = new PdfPCell(img, true);
+        try {
+            img = Image.getInstance(path + "/images/products/" + machine.getPhoto2());
+            img.setScaleToFitHeight(false);
+            itemCells[0] = new PdfPCell(img, true);
+        } catch (Exception e) {
+            itemCells[0] = new PdfPCell(new Paragraph(""));
+        }
+        try {
+            img = Image.getInstance(path + "/images/products/" + machine.getPhoto3());
+            img.setScaleToFitHeight(false);
+            itemCells[1] = new PdfPCell(img, true);
+        } catch (Exception e) {
+            itemCells[1] = new PdfPCell(new Paragraph(""));
+        }
         for (int i = 0; i < 2; i++) {
             itemCells[i].setPadding(1);
             itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
@@ -215,38 +229,28 @@ public class GeneratePdfUtil {
 
         itemCells[0] = new PdfPCell(new Paragraph("Spindle power, kw", font));
         itemCells[1] = new PdfPCell(new Paragraph(machine.getSpindlePower(), font));
-        itemCells[2] = new PdfPCell(new Paragraph("Store type", font));
-        itemCells[3] = new PdfPCell(new Paragraph(machine.getStoreType(), font));
-        for (int i = 0; i < 4; i++) {
-            itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
-            itemTable.addCell(itemCells[i]);
-        }
-
-        itemCells[0] = new PdfPCell(new Paragraph("Spindle max torque", font));
-        itemCells[1] = new PdfPCell(new Paragraph(String.valueOf(machine.getSpindleMaxTorque()), font));
         itemCells[2] = new PdfPCell(new Paragraph("Tool count, pcs.", font));
         itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getToolCount()), font));
         for (int i = 0; i < 4; i++) {
-            itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
             itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
             itemTable.addCell(itemCells[i]);
         }
 
-        itemCells[0] = new PdfPCell(new Paragraph("Spindle type", font));
-        itemCells[1] = new PdfPCell(new Paragraph(machine.getSpindleType(), font));
+        itemCells[0] = new PdfPCell(new Paragraph("Tool replacement time, sec", font));
+        itemCells[1] = new PdfPCell(new Paragraph(machine.getToolReplacementTime(), font));
         itemCells[2] = new PdfPCell(new Paragraph("Max tool diameter, mm", font));
         itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getMaxToolDiameter()), font));
         for (int i = 0; i < 4; i++) {
+            itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
             itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
             itemTable.addCell(itemCells[i]);
         }
 
-        itemCells[0] = new PdfPCell(new Paragraph("Spindle cooling method", font));
-        itemCells[1] = new PdfPCell(new Paragraph(machine.getSpindleCoolingMethod(), font));
+        itemCells[0] = new PdfPCell(new Paragraph("Chip replacement time, sec", font));
+        itemCells[1] = new PdfPCell(new Paragraph(machine.getChipReplacementTime(), font));
         itemCells[2] = new PdfPCell(new Paragraph("Max tool weight, kg", font));
         itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getMaxToolWeight()), font));
         for (int i = 0; i < 4; i++) {
-            itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
             itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
             itemTable.addCell(itemCells[i]);
         }
@@ -256,34 +260,25 @@ public class GeneratePdfUtil {
         itemCells[2] = new PdfPCell(new Paragraph("Machine launching, h", font));
         itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getMachineLaunching()), font));
         for (int i = 0; i < 4; i++) {
-            itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
-            itemTable.addCell(itemCells[i]);
-        }
-
-        itemCells[0] = new PdfPCell(new Paragraph("Position precision, mm", font));
-        itemCells[1] = new PdfPCell(new Paragraph(machine.getPositionPrecision(), font));
-        itemCells[2] = new PdfPCell(new Paragraph("Tool replacement time, sec", font));
-        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getToolReplacementTime()), font));
-        for (int i = 0; i < 4; i++) {
             itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
             itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
             itemTable.addCell(itemCells[i]);
         }
 
-        itemCells[0] = new PdfPCell(new Paragraph("Reposition precision, mm", font));
-        itemCells[1] = new PdfPCell(new Paragraph(machine.getRepositionPrecision(), font));
-        itemCells[2] = new PdfPCell(new Paragraph("Equipment", font));
-        itemCells[3] = new PdfPCell(new Paragraph(machine.getEquipment(), font));
+        itemCells[0] = new PdfPCell(new Paragraph("Position/reposition precision, mm", font));
+        itemCells[1] = new PdfPCell(new Paragraph(machine.getPositionRepositionPrecision(), font));
+        itemCells[2] = new PdfPCell(new Paragraph("Machine launching, h", font));
+        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getMachineLaunching()), font));
         for (int i = 0; i < 4; i++) {
             itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
             itemTable.addCell(itemCells[i]);
         }
 
-        itemCells[0] = new PdfPCell(new Paragraph("Condition", font));
-        itemCells[1] = new PdfPCell(new Paragraph(machine.getMachineCondition(), font));
+        itemCells[1] = new PdfPCell(new Paragraph(""));
+        itemCells[1].setColspan(2);
         itemCells[2] = new PdfPCell(new Paragraph("Price", font));
-        itemCells[3] = new PdfPCell(new Paragraph("$" + machine.getCost() + ".00", font));
-        for (int i = 0; i < 4; i++) {
+        itemCells[3] = new PdfPCell(new Paragraph("$" + machine.getPrice() + ".00", font));
+        for (int i = 1; i < 4; i++) {
             itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
             itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
             itemTable.addCell(itemCells[i]);

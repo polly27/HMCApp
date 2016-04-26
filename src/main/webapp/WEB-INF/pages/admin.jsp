@@ -89,7 +89,7 @@
             <div class="box-content">
 
                 <div id="upload-file">
-                    <form:form class="formBox" method="post" action="/admin/uploadMachines" enctype="multipart/form-data">
+                    <form:form class="formBox" method="post" action="admin/uploadMachines" enctype="multipart/form-data">
 
                         <fieldset>
                             <div class="clearfix file">
@@ -113,7 +113,7 @@
                 </div>
 
                 <div id="upload-photo">
-                    <form class="formBox" method="post" action="/admin/addPhotos" enctype="multipart/form-data">
+                    <form class="formBox" method="post" action="admin/addPhotos" enctype="multipart/form-data">
 
                         <fieldset>
                             <div class="clearfix file">
@@ -136,7 +136,7 @@
                 </div>
 
                 <div id="renew-filters">
-                    <form:form class="formBox" method="post" action="/admin/renewFilters">
+                    <form:form class="formBox" method="post" action="admin/renewFilters">
 
                         <fieldset>
                             Renewing filters means forming new filter parameters according to existing DB with Machines.<br><br>
@@ -166,6 +166,7 @@
                 <div id="machines">
                     <table class="tab">
                         <tr>
+                            <th class="action"></th>
                             <th>Product id</th>
                             <th>Type</th>
                             <th>Model</th>
@@ -178,23 +179,30 @@
                             <th>Photo1</th>
                             <th>Photo2</th>
                             <th>Photo3</th>
+                            <th>Photo4</th>
+                            <th>Photo5</th>
                             <th class="action"></th>
                         </tr>
 
                         <c:forEach items="${machineList}" var="machine">
                             <tr>
+                                <td class="action">
+                                    <a href="admin/remove/${machine.productId}" class="ico ico-delete removeMachine"></a>
+                                </td>
                                 <td>${machine.productId}</td>
-                                <td>${machine.machineType}</td>
+                                <td>${machine.machineTypeEn}</td>
                                 <td>${machine.model}</td>
-                                <td>${machine.producer}</td>
+                                <td>${machine.brand}</td>
                                 <td>${machine.productionYear}</td>
-                                <td>${machine.machineLocation}</td>
+                                <td>${machine.machineLocationEn}</td>
                                 <td>${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}</td>
                                 <td>${machine.xTableSize}&times${machine.yTableSize}</td>
-                                <td>$${machine.cost}.00</td>
+                                <td>$${machine.price}.00</td>
                                 <td><img src="resources/images/products/${machine.photo1}" height="100"/></td>
                                 <td><img src="resources/images/products/${machine.photo2}" height="100"/></td>
                                 <td><img src="resources/images/products/${machine.photo3}" height="100"/></td>
+                                <td><img src="resources/images/products/${machine.photo4}" height="100"/></td>
+                                <td><img src="resources/images/products/${machine.photo5}" height="100"/></td>
                                 <td class="action">
                                     <a href="admin/remove/${machine.productId}" class="ico ico-delete removeMachine"></a>
                                 </td>
@@ -211,9 +219,7 @@
                                 <a href="resources/images/products/${image}" class="fancy" rel="group">
                                     <img src="resources/images/products/${image}" height="150" />
                                 </a>
-                            </div>
-                            <div class="tools">
-                                <a href="admin/remove?image=${image}" class="ico ico-delete"></a>
+                                <span>${image} <a href="admin/remove?image=${image}" class="ico ico-delete"></a></span>
                             </div>
                         </div>
                         </c:forEach>
@@ -222,6 +228,7 @@
 
             </div>
         </div>
+
     </div>
     <!-- /#content -->
     <!-- #sidebar -->

@@ -99,16 +99,16 @@
             <div class="widget">
                 <h1>Product Filters</h1>
 
-                <form:form id="filterForm" method="post" action="/list">
+                <form:form id="filterForm" method="post" action="list">
                     <div class="body bordered">
 
-                        <c:if test="${!empty producerList}">
+                        <c:if test="${!empty brandList}">
                         <div class="category-filter">
                             <h2>Brands</h2>
                             <ul>
-                                <c:forEach items="${producerList}" var="brand">
-                                <li><input class="le-checkbox" name="brand" type="checkbox" value="${brand.producer}"/>
-                                    <label>${brand.producer}  (${brand.num})</label></li>
+                                <c:forEach items="${brandList}" var="brand">
+                                <li><input class="le-checkbox" name="brand" type="checkbox" value="${brand.brand}"/>
+                                    <label>${brand.brand}  (${brand.num})</label></li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -129,7 +129,7 @@
                         <c:if test="${!empty slidersList}">
                         <div class="price-filter">
                             <h2>Price</h2>
-                            <c:set var="prices" value="${slidersList.iterator().next().cost}"/>
+                            <c:set var="prices" value="${slidersList.iterator().next().price}"/>
                             <c:set var="priceMinMax" value="${fn:split(prices, ',')}" />
                             <div class="price-range-holder">
                                 <input type="text" class="price-slider" id="price-slider" name="priceRange">
@@ -248,23 +248,23 @@
                                                         <div class="label-discount clear"></div>
                                                         <div class="title">
                                                             <a href="machine?productId=${machine.productId}">
-                                                                    ${machine.machineType}<br><span id="model${machine.productId}">${machine.model}</span>
+                                                                    ${machine.machineTypeEn}<br><span id="model${machine.productId}">${machine.model}</span>
                                                             </a>
                                                         </div>
                                                         <div class="brand">
-                                                            <span id="brand${machine.productId}">${machine.producer}</span>, ${machine.productionYear}, ${machine.producingCountry}<br>
-                                                            Current location: ${machine.machineLocation}<br>
+                                                            <span id="brand${machine.productId}">${machine.brand}</span>, ${machine.productionYear}, ${machine.producingCountryEn}<br>
+                                                            Current location: ${machine.machineLocationEn}<br>
                                                             X&timesY&timesZ-motion: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}<br>
                                                             X&timesY table sizes: ${machine.xTableSize}&times${machine.yTableSize}
                                                         </div>
                                                     </div>
                                                     <div class="prices">
-                                                        <div class="price-current pull-right">$<span id="price${machine.productId}">${machine.cost}</span>.00</div>
+                                                        <div class="price-current pull-right">$<span id="price${machine.productId}">${machine.price}</span>.00</div>
                                                         <br>
                                                     </div>
                                                     <div class="hover-area">
                                                         <div class="add-cart-button">
-                                                            <a id="cart${machine.productId}" class="le-button" onclick="addToCart('${machine.productId}')">add to cart</a>
+                                                            <a class="cart${machine.productId} le-button" onclick="addToCart('${machine.productId}')">add to cart</a>
                                                         </div>
                                                         <div class="wish-compare">
                                                             <span id="wishList${machine.productId}" class="btn-add-to-wishlist" onclick="addToWishList('${machine.productId}')">
@@ -312,7 +312,7 @@
 
                             </c:if>
                             <c:if test="${empty machineList}">
-                                There are no machines with such parametres<br>
+                                There are no machines with such parameters<br>
                                 Please, change the filter parameters.
                             </c:if>
 

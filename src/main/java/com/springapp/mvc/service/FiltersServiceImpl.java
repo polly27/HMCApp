@@ -1,8 +1,8 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.dao.FiltersDAO;
+import com.springapp.mvc.domain.BrandFilter;
 import com.springapp.mvc.domain.MachineLocationFilter;
-import com.springapp.mvc.domain.ProducerFilter;
 import com.springapp.mvc.domain.SlidersFilter;
 import com.springapp.mvc.domain.SystemCNCFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +17,8 @@ public class FiltersServiceImpl implements FiltersService {
     private FiltersDAO filtersDAO;
 
     @Transactional
-    public List<ProducerFilter> listProducerFilter() {
-        return filtersDAO.listProducerFilter();
+    public List<BrandFilter> listBrandFilter() {
+        return filtersDAO.listBrandFilter();
     }
 
     @Transactional
@@ -38,7 +38,7 @@ public class FiltersServiceImpl implements FiltersService {
 
     @Transactional
     public void renewFilters() {
-        filtersDAO.renewProducerFilter();
+        filtersDAO.renewBrandFilter();
         filtersDAO.renewMachineLocationFilter();
         filtersDAO.renewSystemCNCFilter();
         filtersDAO.renewSlidersFilter();
