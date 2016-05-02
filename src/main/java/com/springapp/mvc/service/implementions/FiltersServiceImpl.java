@@ -1,10 +1,11 @@
-package com.springapp.mvc.service;
+package com.springapp.mvc.service.implementions;
 
-import com.springapp.mvc.dao.FiltersDAO;
+import com.springapp.mvc.dao.interfaces.FiltersDAO;
 import com.springapp.mvc.domain.BrandFilter;
 import com.springapp.mvc.domain.MachineLocationFilter;
 import com.springapp.mvc.domain.SlidersFilter;
 import com.springapp.mvc.domain.SystemCNCFilter;
+import com.springapp.mvc.service.interfaces.FiltersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

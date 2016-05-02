@@ -7,8 +7,10 @@
     <session-factory>
         <mapping class="com.springapp.mvc.domain.MachineLocationFilter"/>
         <mapping class="com.springapp.mvc.domain.Machine"/>
+        <mapping class="com.springapp.mvc.domain.MachineOrder"/>
         <mapping class="com.springapp.mvc.domain.BrandFilter"/>
         <mapping class="com.springapp.mvc.domain.SlidersFilter"/>
         <mapping class="com.springapp.mvc.domain.SystemCNCFilter"/>
+        <mapping class="com.springapp.mvc.domain.AdminData"/>
     </session-factory>
 </hibernate-configuration>

@@ -26,4 +26,5 @@
     <beans:import resource="controllers.xml" />
 
     <beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"/>
+
 </beans:beans>

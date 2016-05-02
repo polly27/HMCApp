@@ -3587,7 +3587,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   line-height: 30px;
 }
 #checkout-page .place-order-button {
-  text-align: right;
+  text-align: center;
   margin: 23px 0 52px 0;
 }
 #payment-method-options {

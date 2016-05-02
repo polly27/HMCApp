@@ -248,7 +248,7 @@
             var arr = localStorage.cartItemStr.split(';');
             $.each(arr,function(index,value){
                 var item = value.split(',');
-                $("#count"+item[0]).val(item[2]);
+                $(".count"+item[0]).val(item[2]);
             });
         }
 
@@ -271,18 +271,19 @@
             var arr = localStorage.cartItemStr.split(';');
             var changed = false;
             var price;
+            var count;
             for(var i=0; !changed && i<arr.length; ++i) {
                 if(arr[i].split(',')[0] == productId) {
                     var item = arr[i].split(',');
-                    price = item[1];
-                    var count = item[2];
+                    price = parseInt(item[1]);
+                    count = item[2];
                     --count;
                     if(count < 1) {
                         arr = $.grep(arr, function (value) {
                             return value != item;
                         });
                     } else {
-                        arr[i] = item[0] + ',' + item[1] + ',' + count;
+                        arr[i] = item[0]+','+item[1]+','+count+','+item[3]+','+item[4]+','+item[5];
                     }
                     changed = true;
                 }
@@ -291,8 +292,8 @@
             localStorage.cartTotal = (parseInt(localStorage.cartTotal) - price).toString();
             localStorage.cartCount = (parseInt(localStorage.cartCount) - 1).toString();
             styleCartValue();
-            if(localStorage.cartItemStr != "") {
-                loadBasketDropdown();
+            if(count < 1) {
+                goToCart();
             }
         }
 
@@ -341,11 +342,15 @@
             }
         }
 
-        <%-- PROPOSAL --%>
+        <%-- OTHER --%>
 
         function goToProposal() {
             var arrOfId = getArrOfId(localStorage.cartItemStr);
             goTo("proposal",arrOfId);
         }
 
-        
+        function goToCheckout() {
+            var arrOfId = getArrOfId(localStorage.cartItemStr);
+            goTo("checkout",arrOfId);
+        }
+

@@ -198,8 +198,12 @@
             <div class="body">
                 <div class="title"><a href="#">${machine.machineTypeEn} - <span
                         id="model${machine.productId}">${machine.model}</span></a></div>
-                <div class="brand" id="brand${machine.productId}">${machine.brand}</div>
-                <div class="brand">Product id: ${machine.productId}</div>
+                <div class="brand">
+                    <big>
+                        <span id="brand${machine.productId}">${machine.brand}</span><br>
+                        Product id: ${machine.productId}
+                    </big>
+                </div>
 
                 <div class="buttons-holder">
                     <span id="wishList${machine.productId}" class="btn-add-to-wishlist"

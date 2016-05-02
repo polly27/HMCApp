@@ -1,4 +1,4 @@
-package com.springapp.mvc.dao;
+package com.springapp.mvc.dao.interfaces;
 
 import com.springapp.mvc.domain.Machine;
 

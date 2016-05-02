@@ -1,4 +1,4 @@
-package com.springapp.mvc.dao;
+package com.springapp.mvc.service.interfaces;
 
 import com.springapp.mvc.domain.BrandFilter;
 import com.springapp.mvc.domain.MachineLocationFilter;
@@ -7,13 +7,10 @@ import com.springapp.mvc.domain.SystemCNCFilter;
 
 import java.util.List;
 
-public interface FiltersDAO {
+public interface FiltersService {
     public List<BrandFilter> listBrandFilter();
     public List<MachineLocationFilter> listMachineLocationFilter();
     public List<SystemCNCFilter> listSystemCNCFilter();
     public List<SlidersFilter> listSlidersFilter();
-    public void renewBrandFilter();
-    public void renewMachineLocationFilter();
-    public void renewSystemCNCFilter();
-    public void renewSlidersFilter();
+    public void renewFilters();
 }

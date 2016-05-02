@@ -5,7 +5,7 @@
             <!-- ============================================================= LOGO ============================================================= -->
             <div class="logo">
                 <a href="list">
-                    <img alt="vmc_and_hmc" src="resources/images/vmc_and_hmc.svg" width="233" height="54"/>
+                    <img alt="hmccnc.com" src="resources/images/vmc_and_hmc.svg" width="233" height="54"/>
                 </a>
             </div>
             <!-- /.logo -->
@@ -20,7 +20,7 @@
                 </div>
                 <br>
                 <div class="contact inline">
-                    <i class="fa fa-envelope"></i> contact@<span class="le-color">vmccnc.com</span>
+                    <i class="fa fa-envelope"></i> contact@<span class="le-color">hmccnc.com</span>
                 </div>
             </div>
             <!-- /.contact-row -->
@@ -115,7 +115,7 @@
                                             <a href="#" class="le-button" onclick="goToCart()">View cart</a>
                                         </div>
                                         <div class="col-xs-12 col-sm-6">
-                                            <a href="#" class="le-button">Checkout</a>
+                                            <a href="#" onclick="goToCheckout()" class="le-button">Checkout</a>
                                         </div>
                                     </div>
                                 </div>

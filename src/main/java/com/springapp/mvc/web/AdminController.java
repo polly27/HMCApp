@@ -1,8 +1,9 @@
 package com.springapp.mvc.web;
 
-import com.springapp.mvc.service.FiltersService;
-import com.springapp.mvc.service.MachineService;
-import com.springapp.mvc.service.WorkWithFilesService;
+import com.springapp.mvc.service.interfaces.AdminDataService;
+import com.springapp.mvc.service.interfaces.FiltersService;
+import com.springapp.mvc.service.interfaces.MachineService;
+import com.springapp.mvc.service.interfaces.WorkWithFilesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,9 @@ public class AdminController {
     private FiltersService filtersService;
 
     @Autowired
+    private AdminDataService adminDataService;
+
+    @Autowired
     private WorkWithFilesService workWithFilesService;
 
     @RequestMapping(value="/adminEntry", method = RequestMethod.GET)
@@ -39,6 +43,7 @@ public class AdminController {
         map.put("machineList", machineService.listMachine());
         String path = request.getServletContext().getRealPath("") + "/resources/images/products";
         map.put("imageList", workWithFilesService.listImage(path));
+        map.put("adminData", adminDataService.getAdminData());
     }
 
     @RequestMapping(value = "/admin/uploadMachines", method = RequestMethod.POST)
@@ -75,6 +80,12 @@ public class AdminController {
     public String removeImage(@RequestParam("image") String image, HttpServletRequest request) {
         String path = request.getServletContext().getRealPath("") + "/resources/images/products";
         workWithFilesService.removeImage(path,image);
+        return "redirect:/admin";
+    }
+
+    @RequestMapping(value = "/admin/renewAdminData", method = RequestMethod.POST)
+    public String renewAdminData(@RequestParam("email") String email){
+        adminDataService.renewAdminData(email);
         return "redirect:/admin";
     }
 

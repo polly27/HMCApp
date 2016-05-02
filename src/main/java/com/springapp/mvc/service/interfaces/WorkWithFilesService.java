@@ -1,4 +1,4 @@
-package com.springapp.mvc.service;
+package com.springapp.mvc.service.interfaces;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

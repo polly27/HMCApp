@@ -1,5 +1,6 @@
-package com.springapp.mvc.dao;
+package com.springapp.mvc.dao.implementions;
 
+import com.springapp.mvc.dao.interfaces.FiltersDAO;
 import com.springapp.mvc.domain.MachineLocationFilter;
 import com.springapp.mvc.domain.BrandFilter;
 import com.springapp.mvc.domain.SlidersFilter;

@@ -1,7 +1,8 @@
-package com.springapp.mvc.service;
+package com.springapp.mvc.service.implementions;
 
-import com.springapp.mvc.dao.MachineDAO;
+import com.springapp.mvc.dao.interfaces.MachineDAO;
 import com.springapp.mvc.domain.Machine;
+import com.springapp.mvc.service.interfaces.WorkWithFilesService;
 import com.springapp.mvc.util.GeneratePdfUtil;
 import com.springapp.mvc.util.ImageUtil;
 import com.springapp.mvc.util.ReadExcelUtil;

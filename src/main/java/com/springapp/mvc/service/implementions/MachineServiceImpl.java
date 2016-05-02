@@ -1,7 +1,8 @@
-package com.springapp.mvc.service;
+package com.springapp.mvc.service.implementions;
 
-import com.springapp.mvc.dao.MachineDAO;
+import com.springapp.mvc.dao.interfaces.MachineDAO;
 import com.springapp.mvc.domain.Machine;
+import com.springapp.mvc.service.interfaces.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

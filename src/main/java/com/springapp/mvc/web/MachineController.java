@@ -1,9 +1,8 @@
 package com.springapp.mvc.web;
 
 import com.springapp.mvc.domain.Machine;
-import com.springapp.mvc.service.FiltersService;
-import com.springapp.mvc.service.MachineService;
-import com.springapp.mvc.service.WorkWithFilesService;
+import com.springapp.mvc.domain.MachineOrder;
+import com.springapp.mvc.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,7 +23,13 @@ public class MachineController {
     private FiltersService filtersService;
 
     @Autowired
+    private MachineOrderService machineOrderService;
+
+    @Autowired
     private WorkWithFilesService workWithFilesService;
+
+    @Autowired
+    private EmailService emailService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
@@ -131,5 +136,36 @@ public class MachineController {
         String path = request.getServletContext().getRealPath("") + "/resources";
         return workWithFilesService.getPDFOfferSingle(path, productId, company, director);
     }
+
+    @RequestMapping(value = "/checkout", method = RequestMethod.GET)
+    public void checkout(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
+        if (itemsId != null) {
+            map.put("checkoutList", machineService.getMachinesList(itemsId.split(",")));
+        }
+    }
+
+    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+    public String checkoutOrder(@RequestParam("firstName") String firstName,
+                              @RequestParam("lastName") String lastName,
+                              @RequestParam(value = "company", required = false) String company,
+                              @RequestParam("address") String address,
+                              @RequestParam("postcode") String postcode,
+                              @RequestParam("email") String email,
+                              @RequestParam("phone") String phone,
+                              @RequestParam("orderList") String orderList,
+                              @RequestParam("total") String total,
+                              @RequestParam("payment") String payment) {
+        MachineOrder machineOrder = machineOrderService.addMachineOrder(firstName, lastName, company, address,
+                postcode, email, phone, orderList, total, payment);
+        emailService.sendNewOrderEmailToCustomer(email, machineOrder);
+        emailService.sendNewOrderEmailToAdmin(machineOrder);
+        return "redirect:/track-your-order";
+    }
+
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
+    public void contact() { }
+
+    @RequestMapping(value = "/track-your-order", method = RequestMethod.GET)
+    public void trackYourOrder() { }
 
 }

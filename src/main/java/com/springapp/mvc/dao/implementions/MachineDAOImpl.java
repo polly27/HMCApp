@@ -1,5 +1,6 @@
-package com.springapp.mvc.dao;
+package com.springapp.mvc.dao.implementions;
 
+import com.springapp.mvc.dao.interfaces.MachineDAO;
 import com.springapp.mvc.domain.Machine;
 import org.hibernate.Criteria;
 import org.hibernate.Query;

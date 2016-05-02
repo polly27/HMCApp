@@ -52,211 +52,238 @@
 </head>
 <body>
 <div id="main">
-    <!-- #header -->
-    <div id="header">
-        <!-- #logo -->
-        <div id="logo">
-            <a href="adminEntry" title="Go to Homepage"><span>Great Admin</span></a>
-        </div>
-        <!-- /#logo -->
-        <!-- #user -->
-        <div id="user">
-            <h2>Forest Gump <span>(admin)</span></h2>
-            <a href="#">Logout</a>
-        </div>
-        <!-- /#user -->
+<!-- #header -->
+<div id="header">
+    <!-- #logo -->
+    <div id="logo">
+        <a href="adminEntry" title="Go to Homepage"><span>Great Admin</span></a>
     </div>
-    <!-- /header -->
-    <!-- #content -->
-    <div id="content">
+    <!-- /#logo -->
+    <!-- #user -->
+    <div id="user">
+        <h2>Forest Gump <span>(admin)</span></h2>
+        <a href="#">Logout</a>
+    </div>
+    <!-- /#user -->
+</div>
+<!-- /header -->
+<!-- #content -->
+<div id="content">
 
-        <!-- breadcrumbs -->
-        <div class="breadcrumbs">
-            <ul>
-                <li class="home"><a href="">Homepage</a></li>
-                <li>Uploading</li>
-            </ul>
-        </div>
-        <!-- /breadcrumbs -->
+    <!-- breadcrumbs -->
+    <div class="breadcrumbs">
+        <ul>
+            <li class="home"><a href="">Homepage</a></li>
+            <li>Uploading</li>
+        </ul>
+    </div>
+    <!-- /breadcrumbs -->
 
-        <!-- box -->
-        <div class="tabs box">
-            <ul class="bookmarks">
-                <li><a href="#upload-file">Upload machines</a></li>
-                <li><a href="#upload-photo">Load photos</a></li>
-                <li><a href="#renew-filters">Renew filters</a><span class="remove-link"><i class="fa fa-times-circle"></i></span></li>
-            </ul>
-            <div class="box-content">
+    <!-- box -->
+    <div class="tabs box">
+        <ul class="bookmarks">
+            <li><a href="#upload-file">Upload machines</a></li>
+            <li><a href="#upload-photo">Load photos</a></li>
+            <li><a href="#renew-filters">Renew filters</a><span class="remove-link"><i
+                    class="fa fa-times-circle"></i></span></li>
+        </ul>
+        <div class="box-content">
 
-                <div id="upload-file">
-                    <form:form class="formBox" method="post" action="admin/uploadMachines" enctype="multipart/form-data">
+            <div id="upload-file">
+                <form:form class="formBox" method="post" action="admin/uploadMachines" enctype="multipart/form-data">
 
-                        <fieldset>
-                            <div class="clearfix file">
-                                <div class="lab"><label for="textFile">Upload file with machines</label></div>
-                                <div class="con">
-                                    <input type="file" accept=".xls,.xlsx" name="textFile" class="upload-file"
-                                           id="textFile" multiple required/>
-                                </div>
+                    <fieldset>
+                        <div class="clearfix file">
+                            <div class="lab"><label for="textFile">Upload file with machines</label></div>
+                            <div class="con">
+                                <input type="file" accept=".xls,.xlsx" name="textFile" class="upload-file"
+                                       id="textFile" multiple required/>
                             </div>
-                            - N files<br>
-                            - .xlsx or .xls format<br>
-                            - <a href="resources/example.xlsx" target="_blank">example</a> (download)
-                            <br><br>
+                        </div>
+                        - N files<br>
+                        - .xlsx or .xls format<br>
+                        - <a href="resources/example.xlsx" target="_blank">example</a> (download)
+                        <br><br>
 
-                            <div class="btn-submit"><!-- Submit form -->
-                                <input type="submit" value="Add / update" class="button"/>
-                            </div>
-                        </fieldset>
+                        <div class="btn-submit"><!-- Submit form -->
+                            <input type="submit" value="Add / update" class="button"/>
+                        </div>
+                    </fieldset>
 
-                    </form:form>
-                </div>
-
-                <div id="upload-photo">
-                    <form class="formBox" method="post" action="admin/addPhotos" enctype="multipart/form-data">
-
-                        <fieldset>
-                            <div class="clearfix file">
-                                <div class="lab"><label for="photosFile">Upload photos</label></div>
-                                <div class="con">
-                                    <input type="file" accept="image/*" name="photosCollection" class="upload-file"
-                                           id="photosFile" multiple required/>
-                                </div>
-                            </div>
-                            - N files<br>
-                            - any image format<br>
-                            <br><br>
-
-                            <div class="btn-submit"><!-- Submit form -->
-                                <input type="submit" value="Load" class="button"/>
-                            </div>
-                        </fieldset>
-
-                    </form>
-                </div>
-
-                <div id="renew-filters">
-                    <form:form class="formBox" method="post" action="admin/renewFilters">
-
-                        <fieldset>
-                            Renewing filters means forming new filter parameters according to existing DB with Machines.<br><br>
-                            <h3 style="color: red">Please, do it every time you've finally changed the items.</h3>
-                            As a result, you would see <u>relevant</u> filter parameters.<br><br>
-
-                            <div class="btn-submit"><!-- Submit form -->
-                                <input type="submit" value="Renew filters" class="button"/>
-                            </div>
-                        </fieldset>
-
-                    </form:form>
-                </div>
+                </form:form>
             </div>
-            <!-- box-content -->
+
+            <div id="upload-photo">
+                <form class="formBox" method="post" action="admin/addPhotos" enctype="multipart/form-data">
+
+                    <fieldset>
+                        <div class="clearfix file">
+                            <div class="lab"><label for="photosFile">Upload photos</label></div>
+                            <div class="con">
+                                <input type="file" accept="image/*" name="photosCollection" class="upload-file"
+                                       id="photosFile" multiple required/>
+                            </div>
+                        </div>
+                        - N files<br>
+                        - any image format<br>
+                        <br><br>
+
+                        <div class="btn-submit"><!-- Submit form -->
+                            <input type="submit" value="Load" class="button"/>
+                        </div>
+                    </fieldset>
+
+                </form>
+            </div>
+
+            <div id="renew-filters">
+                <form:form class="formBox" method="post" action="admin/renewFilters">
+
+                    <fieldset>
+                        Renewing filters means forming new filter parameters according to existing DB with Machines.<br><br>
+
+                        <h3 style="color: red">Please, do it every time you've finally changed the items.</h3>
+                        As a result, you would see <u>relevant</u> filter parameters.<br><br>
+
+                        <div class="btn-submit"><!-- Submit form -->
+                            <input type="submit" value="Renew filters" class="button"/>
+                        </div>
+                    </fieldset>
+
+                </form:form>
+            </div>
         </div>
-        <!-- /box -->
+        <!-- box-content -->
+    </div>
+    <!-- /box -->
 
-        <div class="tabs box">
-            <ul class="bookmarks">
-                <li><a href="#machines">Machines</a></li>
-                <li><a href="#images">Images</a></li>
-            </ul>
+    <div class="tabs box">
+        <ul class="bookmarks">
+            <li><a href="#machines">Machines</a></li>
+            <li><a href="#images">Images</a></li>
+        </ul>
 
-            <div class="box-content">
+        <div class="box-content">
 
-                <div id="machines">
-                    <table class="tab">
+            <div id="machines">
+                <table class="tab">
+                    <tr>
+                        <th class="action"></th>
+                        <th>Product id</th>
+                        <th>Type</th>
+                        <th>Model</th>
+                        <th>Brand</th>
+                        <th>Year</th>
+                        <th>Location</th>
+                        <th>X&timesY&timesZ-motion</th>
+                        <th>X&timesY table sizes</th>
+                        <th>Price</th>
+                        <th>Photo1</th>
+                        <th>Photo2</th>
+                        <th>Photo3</th>
+                        <th>Photo4</th>
+                        <th>Photo5</th>
+                        <th class="action"></th>
+                    </tr>
+
+                    <c:forEach items="${machineList}" var="machine">
                         <tr>
-                            <th class="action"></th>
-                            <th>Product id</th>
-                            <th>Type</th>
-                            <th>Model</th>
-                            <th>Brand</th>
-                            <th>Year</th>
-                            <th>Location</th>
-                            <th>X&timesY&timesZ-motion</th>
-                            <th>X&timesY table sizes</th>
-                            <th>Price</th>
-                            <th>Photo1</th>
-                            <th>Photo2</th>
-                            <th>Photo3</th>
-                            <th>Photo4</th>
-                            <th>Photo5</th>
-                            <th class="action"></th>
+                            <td class="action">
+                                <a href="admin/remove/${machine.productId}" class="ico ico-delete removeMachine"></a>
+                            </td>
+                            <td>${machine.productId}</td>
+                            <td>${machine.machineTypeEn}</td>
+                            <td>${machine.model}</td>
+                            <td>${machine.brand}</td>
+                            <td>${machine.productionYear}</td>
+                            <td>${machine.machineLocationEn}</td>
+                            <td>${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}</td>
+                            <td>${machine.xTableSize}&times${machine.yTableSize}</td>
+                            <td>$${machine.price}.00</td>
+                            <td><img src="resources/images/products/${machine.photo1}" height="100"/></td>
+                            <td><img src="resources/images/products/${machine.photo2}" height="100"/></td>
+                            <td><img src="resources/images/products/${machine.photo3}" height="100"/></td>
+                            <td><img src="resources/images/products/${machine.photo4}" height="100"/></td>
+                            <td><img src="resources/images/products/${machine.photo5}" height="100"/></td>
+                            <td class="action">
+                                <a href="admin/remove/${machine.productId}" class="ico ico-delete removeMachine"></a>
+                            </td>
                         </tr>
+                    </c:forEach>
+                </table>
+            </div>
 
-                        <c:forEach items="${machineList}" var="machine">
-                            <tr>
-                                <td class="action">
-                                    <a href="admin/remove/${machine.productId}" class="ico ico-delete removeMachine"></a>
-                                </td>
-                                <td>${machine.productId}</td>
-                                <td>${machine.machineTypeEn}</td>
-                                <td>${machine.model}</td>
-                                <td>${machine.brand}</td>
-                                <td>${machine.productionYear}</td>
-                                <td>${machine.machineLocationEn}</td>
-                                <td>${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}</td>
-                                <td>${machine.xTableSize}&times${machine.yTableSize}</td>
-                                <td>$${machine.price}.00</td>
-                                <td><img src="resources/images/products/${machine.photo1}" height="100"/></td>
-                                <td><img src="resources/images/products/${machine.photo2}" height="100"/></td>
-                                <td><img src="resources/images/products/${machine.photo3}" height="100"/></td>
-                                <td><img src="resources/images/products/${machine.photo4}" height="100"/></td>
-                                <td><img src="resources/images/products/${machine.photo5}" height="100"/></td>
-                                <td class="action">
-                                    <a href="admin/remove/${machine.productId}" class="ico ico-delete removeMachine"></a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </div>
-
-                <div id="images">
-                    <div class="gallery tab">
-                        <c:forEach items="${imageList}" var="image">
+            <div id="images">
+                <div class="gallery tab">
+                    <c:forEach items="${imageList}" var="image">
                         <div class="item">
                             <div class="thumb">
                                 <a href="resources/images/products/${image}" class="fancy" rel="group">
-                                    <img src="resources/images/products/${image}" height="150" />
+                                    <img src="resources/images/products/${image}" height="150"/>
                                 </a>
                                 <span>${image} <a href="admin/remove?image=${image}" class="ico ico-delete"></a></span>
                             </div>
                         </div>
-                        </c:forEach>
-                    </div>
+                    </c:forEach>
                 </div>
+            </div>
 
+        </div>
+    </div>
+
+    <div class="tabs box">
+        <ul class="bookmarks">
+            <li><a href="#adminData">Admin data</a></li>
+        </ul>
+
+        <div class="box-content">
+            <div id="adminData">
+                <form:form class="formBox" method="post" action="admin/renewAdminData">
+                    <label>email: </label>
+                    <c:if test="${!empty adminData}">
+                        <input class="le-input" name="email" value="${adminData.email}"/>
+                    </c:if>
+                    <c:if test="${empty adminData}">
+                        <input class="le-input" name="email"/>
+                    </c:if>
+
+                    <br><br>
+                    <div class="btn-submit">
+                        <input type="submit" value="Renew" class="button"/>
+                    </div>
+                </form:form>
             </div>
         </div>
-
     </div>
-    <!-- /#content -->
-    <!-- #sidebar -->
-    <div id="sidebar">
 
-        <!-- mainmenu -->
-        <ul id="floatMenu" class="mainmenu">
-            <li class="first"><a href="#">Dashboard</a></li>
-            <li><a href="#">Uploading</a>
-                <ul class="submenu">
-                    <li><a href="#upload-file">machines</a></li>
-                    <li><a href="#upload-photo">photos</a></li>
-                </ul>
-            </li>
-            <li class="last"><a href="http://themeforest.net/item/great-admin-theme/114528?ref=ClearHead" class="link">ThemeForest</a>
-            </li>
-        </ul>
-        <!-- /.mainmenu -->
+</div>
+<!-- /#content -->
+<!-- #sidebar -->
+<div id="sidebar">
 
-    </div>
-    <!-- /#sidebar -->
-    <!-- #footer -->
-    <br><br><br><br><br><br>
+    <!-- mainmenu -->
+    <ul id="floatMenu" class="mainmenu">
+        <li class="first"><a href="#">Dashboard</a></li>
+        <li><a href="#">Uploading</a>
+            <ul class="submenu">
+                <li><a href="#upload-file">machines</a></li>
+                <li><a href="#upload-photo">photos</a></li>
+            </ul>
+        </li>
+        <li class="last"><a href="http://themeforest.net/item/great-admin-theme/114528?ref=ClearHead" class="link">ThemeForest</a>
+        </li>
+    </ul>
+    <!-- /.mainmenu -->
 
-    <div id="footer">
-        <p>© VMC & HMC | 2016 | <a href="#main">Top</a></p>
-    </div>
-    <!-- /#footer -->
+</div>
+<!-- /#sidebar -->
+<!-- #footer -->
+<br><br><br><br><br><br>
+
+<div id="footer">
+    <p>© HMC & CNC | 2016 | <a href="#main">Top</a></p>
+</div>
+<!-- /#footer -->
 
 
 </div>

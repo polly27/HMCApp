@@ -1,4 +1,4 @@
-package com.springapp.mvc.service;
+package com.springapp.mvc.service.interfaces;
 
 import com.springapp.mvc.domain.Machine;
 

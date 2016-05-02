@@ -93,7 +93,7 @@
 <section id="cart-page">
     <div class="container">
         <!-- ========================================= CONTENT ========================================= -->
-        <div class="col-xs-12 col-md-9 items-holder no-margin">
+        <div class="col-xs-12 col-md-8 items-holder no-margin">
 
             <c:if test="${empty cartList}">
             <div class="inner-xs">
@@ -115,7 +115,7 @@
                             </a>
                         </div>
 
-                        <div class="col-xs-12 col-sm-5 ">
+                        <div class="col-xs-12 col-sm-4 ">
                             <div class="title">
                                 <a href="machine?productId=${machine.productId}">
                                     ${machine.machineTypeEn}<br>${machine.model}
@@ -128,13 +128,13 @@
                             <div class="quantity">
                                 <div class="le-quantity">
                                     <a class="minus" href="#" onclick="minusFromCart('${machine.productId}')"></a>
-                                    <input name="quantity" readonly="readonly" type="text" id="count${machine.productId}"/>
+                                    <input name="quantity" readonly="readonly" type="text" class="count${machine.productId}"/>
                                     <a class="plus" href="#add" onclick="plusToCart('${machine.productId}')"></a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-2 no-margin">
+                        <div class="col-xs-12 col-sm-3 no-margin">
                             <div class="price">
                                 $${machine.price}.00
                             </div>
@@ -150,7 +150,7 @@
 
         <!-- ========================================= SIDEBAR ========================================= -->
 
-        <div class="col-xs-12 col-md-3 no-margin sidebar ">
+        <div class="col-xs-12 col-md-4 no-margin sidebar ">
             <div class="widget cart-summary">
                 <h1 class="border">shopping cart</h1>
                 <div class="body">
@@ -171,7 +171,7 @@
                         </li>
                     </ul>
                     <div class="buttons-holder">
-                        <a class="le-button big" href="#" >checkout</a>
+                        <a class="le-button big" href="#" onclick="goToCheckout()" >checkout</a>
                         <a class="simple-link block" href="list" >continue shopping</a>
                     </div>
                 </div>
