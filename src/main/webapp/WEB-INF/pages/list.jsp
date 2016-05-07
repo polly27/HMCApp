@@ -237,12 +237,12 @@
                                     <div class="row no-margin">
                                         <c:set var="i" value="${1}"/>
                                         <c:forEach items="${machineList}" var="machine">
-                                            <div id="item${i}" class="col-xs-12 col-sm-4 no-margin product-item-holder hover" style="display:none">
+                                            <div id="item${i}" class="col-xs-12 col-sm-4 no-margin product-item-holder hover hidden" >
                                                 <div class="product-item">
                                                     <div class="image">
                                                         <img alt="" src="resources/images/blank.gif"
                                                              data-echo="resources/images/products/${machine.photo1}"/>
-                                                        <span id="photo${machine.productId}" hidden="hidden">${machine.photo1}</span>
+                                                        <span id="photo${machine.productId}" class="hidden">${machine.photo1}</span>
                                                     </div>
                                                     <div class="body">
                                                         <div class="label-discount clear"></div>

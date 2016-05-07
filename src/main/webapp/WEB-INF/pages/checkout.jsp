@@ -132,7 +132,7 @@
                         <div class="row field-row">
                             <div class="col-xs-12">
                                 <label>address (country, city, street, house)*</label>
-                                <input class="le-input" name="address"/><br>
+                                <input class="le-input" name="address" type="text"/><br>
                             </div>
                         </div>
                         <!-- /.field-row -->
@@ -140,16 +140,16 @@
                         <div class="row field-row">
                             <div class="col-xs-12 col-sm-4">
                                 <label>postcode / zip*</label>
-                                <input class="le-input" name="postcode" type="text"/><br>
+                                <input class="le-input" name="postcode" type="number"/><br>
                             </div>
                             <div class="col-xs-12 col-sm-4">
-                                <label>email*</label>
-                                <input class="le-input" name="email"/>
+                                <label id="label-email">email*</label>
+                                <input class="le-input" name="email" type="text"/>
                             </div>
 
                             <div class="col-xs-12 col-sm-4">
                                 <label>phone number*</label>
-                                <input class="le-input" name="phone"/>
+                                <input class="le-input" name="phone" type="text"/>
                             </div>
                         </div>
                         <!-- /.field-row -->
@@ -244,8 +244,11 @@
                     </div>
                     <!-- /#payment-method-options -->
 
+                    <input type="hidden" name="orderList">
+                    <input type="hidden" name="total">
+
                     <div class="place-order-button">
-                        <button class="le-button huge" onclick="addDataAndSubmit()">place order</button>
+                        <button class="le-button huge" type="submit">place order</button>
                     </div>
                     <!-- /.place-order-button -->
                 </form:form>
@@ -288,13 +291,37 @@
             var item = value.split(',');
             $("#count" + item[0]).html(item[2]);
         });
+        $("input[name='orderList']").val(localStorage.cartItemStr);
+        $("input[name='total']").val(localStorage.cartTotal);
+        $('#form').submit(function(){
+            var send = true;
+            var inputs = ['firstName','lastName','address','postcode','email','phone'];
+            $.each(inputs, function (index, value) {
+                var input = $("input[name='"+value+"']");
+                if(!input.val()) {
+                    input.addClass('red');
+                    send = false;
+                } else {
+                    input.removeClass('red');
+                    input.val(input.val().trim());
+                    if(value=='email') {
+                        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                        if(!re.test(input.val())){
+                            input.addClass('red');
+                            var label = $("#label-" + value);
+                            label.html(label.html() + " <span style='color:crimson'>(invalid email)<span>");
+                            send = false;
+                        }
+                    }
+                }
+            });
+            if(!send){
+                $("#checkout-page").scrollTop();
+            }
+            return send;
+        });
     });
 
-    function addDataAndSubmit() {
-        var input1 = $("<input>").attr("type", "hidden").attr("name", "orderList").val(localStorage.cartItemStr);
-        var input2 = $("<input>").attr("type", "hidden").attr("name", "total").val(localStorage.cartTotal);
-        $("#form").append($(input1)).append($(input2)).submit();
-    }
 </script>
 
 </body>

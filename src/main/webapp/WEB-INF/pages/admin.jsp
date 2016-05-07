@@ -56,7 +56,7 @@
 <div id="header">
     <!-- #logo -->
     <div id="logo">
-        <a href="adminEntry" title="Go to Homepage"><span>Great Admin</span></a>
+        <span>Great Admin</span>
     </div>
     <!-- /#logo -->
     <!-- #user -->
@@ -72,10 +72,9 @@
 
     <!-- breadcrumbs -->
     <div class="breadcrumbs">
-        <ul>
-            <li class="home"><a href="">Homepage</a></li>
-            <li>Uploading</li>
-        </ul>
+        <a href="adminData">Admin data</a>&nbsp;|&nbsp;
+        <a href="adminMachines">Machines</a>&nbsp;|&nbsp;
+        <a href="adminGallery">Gallery</a>&nbsp;|&nbsp;
     </div>
     <!-- /breadcrumbs -->
 
@@ -83,14 +82,14 @@
     <div class="tabs box">
         <ul class="bookmarks">
             <li><a href="#upload-file">Upload machines</a></li>
-            <li><a href="#upload-photo">Load photos</a></li>
+            <li><a href="#upload-image">Load images</a></li>
             <li><a href="#renew-filters">Renew filters</a><span class="remove-link"><i
                     class="fa fa-times-circle"></i></span></li>
         </ul>
         <div class="box-content">
 
             <div id="upload-file">
-                <form:form class="formBox" method="post" action="admin/uploadMachines" enctype="multipart/form-data">
+                <form:form class="formBox" method="post" action="adminMachines/upload" enctype="multipart/form-data">
 
                     <fieldset>
                         <div class="clearfix file">
@@ -113,15 +112,15 @@
                 </form:form>
             </div>
 
-            <div id="upload-photo">
-                <form class="formBox" method="post" action="admin/addPhotos" enctype="multipart/form-data">
+            <div id="upload-image">
+                <form class="formBox" method="post" action="adminGallery/upload" enctype="multipart/form-data">
 
                     <fieldset>
                         <div class="clearfix file">
-                            <div class="lab"><label for="photosFile">Upload photos</label></div>
+                            <div class="lab"><label for="imageFile">Upload images</label></div>
                             <div class="con">
-                                <input type="file" accept="image/*" name="photosCollection" class="upload-file"
-                                       id="photosFile" multiple required/>
+                                <input type="file" accept="image/*" name="imageCollection" class="upload-file"
+                                       id="imageFile" multiple required/>
                             </div>
                         </div>
                         - N files<br>
@@ -189,7 +188,7 @@
                     <c:forEach items="${machineList}" var="machine">
                         <tr>
                             <td class="action">
-                                <a href="admin/remove/${machine.productId}" class="ico ico-delete removeMachine"></a>
+                                <a href="admin/remove?productId=${machine.productId}" class="ico ico-delete removeMachine"></a>
                             </td>
                             <td>${machine.productId}</td>
                             <td>${machine.machineTypeEn}</td>
@@ -206,7 +205,7 @@
                             <td><img src="resources/images/products/${machine.photo4}" height="100"/></td>
                             <td><img src="resources/images/products/${machine.photo5}" height="100"/></td>
                             <td class="action">
-                                <a href="admin/remove/${machine.productId}" class="ico ico-delete removeMachine"></a>
+                                <a href="admin/remove?productId=${machine.productId}" class="ico ico-delete removeMachine"></a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -260,21 +259,11 @@
 <!-- /#content -->
 <!-- #sidebar -->
 <div id="sidebar">
-
-    <!-- mainmenu -->
     <ul id="floatMenu" class="mainmenu">
-        <li class="first"><a href="#">Dashboard</a></li>
-        <li><a href="#">Uploading</a>
-            <ul class="submenu">
-                <li><a href="#upload-file">machines</a></li>
-                <li><a href="#upload-photo">photos</a></li>
-            </ul>
-        </li>
-        <li class="last"><a href="http://themeforest.net/item/great-admin-theme/114528?ref=ClearHead" class="link">ThemeForest</a>
-        </li>
+        <li class="first"><a href="adminData">Admin data</a></li>
+        <li><a href="adminMachines">Machines</a></li>
+        <li class="last"><a href="adminGallery">Gallery</a></li>
     </ul>
-    <!-- /.mainmenu -->
-
 </div>
 <!-- /#sidebar -->
 <!-- #footer -->
@@ -294,7 +283,7 @@
         $("#textFile").change(function () {
             changeNames($(this));
         });
-        $("#photosFile").change(function () {
+        $("#imagesFile").change(function () {
             changeNames($(this));
         });
         function changeNames(item) {

@@ -134,7 +134,7 @@ ul.mainmenu li          { padding: 10px 20px; border-bottom:1px solid #dcdcdc; }
 ul.mainmenu li.active   { background: #f0f0f0 url(../images/ico/main-menu_active.gif) 0 14px no-repeat; }
 ul.mainmenu li.first    { -webkit-border-top-left-radius: 6px; -webkit-border-top-right-radius: 6px; -moz-border-radius-topleft: 6px; -moz-border-radius-topright: 6px; border-top-left-radius: 6px; border-top-right-radius: 6px; }
 ul.mainmenu li.last     { border: none; -webkit-border-bottom-right-radius: 6px; -webkit-border-bottom-left-radius: 6px; -moz-border-radius-bottomright: 6px; -moz-border-radius-bottomleft: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; }
-ul.mainmenu li a        { padding: 0; margin:0; display:block; height:100%; text-decoration:none; color: #848484; font-size: 1.25em; font-weight: bold; }
+ul.mainmenu li a        { padding: 0; margin:0; display:block; height:100%; text-decoration:none; color: #848484; }
 ul.mainmenu li.active a { text-decoration:none; color: #201917; }
 ul.mainmenu li a:hover  { color:#333; text-decoration:none; }  
 ul.mainmenu li ul.submenu       { position: relative; top: 5px; margin: 0; padding: 0; }
@@ -191,7 +191,7 @@ ul.mainmenu li ul.submenu li a:hover  { color: #404040; }
 
 /* -- Breadcrumbs -- */
 .breadcrumbs { position: absolute; left: 2px; top: -48px; height: 20px; }
-.breadcrumbs li { float: left; line-height: 30px; font-size: 1em; padding-left: 20px; background: url(../images/ico/breadcrumb_arrow.gif) 2px 60% no-repeat; }
+.breadcrumbs li { float: left; line-height: 30px; font-size: 1em; padding-left: 20px; }
 .breadcrumbs li a { float: left; padding: 0; color: #000; }
 .breadcrumbs li.home { padding: 0; background: none; }
 
@@ -245,17 +245,18 @@ a:hover.ico   { background-position: 0 0; }
 .btn-default          { display: block; width: 99px; text-align: center; height: 26px; line-height: 26px; color: #fff; font-weight: bold; text-decoration: none !important; }
 
 /* -- Pagination -- */
-.pagination                 { text-align: right; margin: 0 20px 20px 0; overflow: hidden; }
-.pagination p               { float: right; margin: 2px 10px 0 0 !important; }
-.pagination ul              { float: right; }
-.pagination ul li           { display: inline; margin: 0 4px; float: left; }
-.pagination ul li a         { display: block; float: left; height: 17px; padding-top: 3px; color: #363636 !important; text-decoration: none; font-weight: bold; font-size: 1em; vertical-align: middle; }
-.pagination ul li.graphic a { width: 20px; overflow: hidden; border: 1px solid #E3E3E3; -webkit-border-radius: 5px; border-radius: 5px;  -moz-border-radius: 5px; }
-.pagination ul li.graphic a:hover { border-color: #ccc; }
-.pagination ul li.first a   { background: url(../images/ico/bg-first.gif) 0 0 no-repeat; }   
-.pagination ul li.prev a    { background: url(../images/ico/bg-prev.gif) 0 0 no-repeat; margin-right: 8px; }
-.pagination ul li.next a    { background: url(../images/ico/bg-next.gif) 0 0 no-repeat; margin-left: 8px; }                                
-.pagination ul li.last a    { background: url(../images/ico/bg-last.gif) 0 0 no-repeat; }
+.paging                 { text-align: right; margin: 0 20px 0 0; overflow: hidden; }
+.paging p               { float: right; margin: 2px 10px 0 0 !important; }
+.paging ul              { float: right; }
+.paging ul li           { display: inline; margin: 0 4px; float: left; }
+.paging ul li a         { cursor:pointer; display: block; float: left; height: 17px; padding-top: 3px; color: #363636 !important; text-decoration: none; font-weight: bold; font-size: 1em; vertical-align: middle; }
+.paging ul li.active a { color: #008b00 !important; text-decoration: underline;}
+.paging ul li.graphic a { width: 20px; overflow: hidden; border: 1px solid #E3E3E3; -webkit-border-radius: 5px; border-radius: 5px;  -moz-border-radius: 5px; }
+.paging ul li.graphic a:hover { border-color: #ccc; }
+.paging ul li.first a   { background: url(../images/ico/bg-first.gif) 0 0 no-repeat; }
+.paging ul li.prev a    { background: url(../images/ico/bg-prev.gif) 0 0 no-repeat; margin-right: 8px; }
+.paging ul li.next a    { background: url(../images/ico/bg-next.gif) 0 0 no-repeat; margin-left: 8px; }
+.paging ul li.last a    { background: url(../images/ico/bg-last.gif) 0 0 no-repeat; }
 
 /* -- Tab action -- */
 .tab-action { float: left; width: auto; margin-left: 20px; }
@@ -268,7 +269,7 @@ a:hover.ico   { background-position: 0 0; }
 .filter .input { padding: 4px 5px; margin: 0 10px 3px 0; border: 1px #dadada solid; background: url(../images/bg-input.gif) repeat-x; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 
 /* -- Gallery -- */
-.gallery       { max-height: 500px; overflow-y: auto; overflow-x: none; }
+.gallery       { overflow-y: auto; overflow-x: auto; }
 .gallery .item { float: left; width: 150px; height: 170px; margin: 0 20px 20px 0; overflow: hidden; }
 .gallery .item .thumb { height: 150px; padding-bottom: 12px; background: url(../images/img-shadow.png) center 100% no-repeat; }
 .gallery .item .tools { display: none; margin: -5px auto 0; width: 40px; height: 18px; }
@@ -342,3 +343,9 @@ a:hover.ico   { background-position: 0 0; }
 .modal-window .list-square li { padding-left: 15px; background: url(../images/ico/list-square.gif) 0 6px no-repeat; }
 .modal-window .list-dash li   { padding-left: 15px; background: url(../images/ico/list-dash.gif) 0 6px no-repeat; }
 .modal-window .list-number li { margin-left: 20px; list-style: decimal; }
+
+
+/* -- My -- */
+.row-machine { font-size: 1.15em; padding: 8px; border: 1px solid #dcdcdc; border-radius: 5px; background: url(../images/bg-input.gif) 0 0 repeat-x }
+.table-machine { font-size: 1em;}
+.red { border: 1px solid crimson; background-color: floralwhite; }

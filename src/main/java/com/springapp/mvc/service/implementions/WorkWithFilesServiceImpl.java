@@ -81,11 +81,11 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     }
 
     @Transactional
-    public void uploadPhotos(String path, MultipartFile[] photos) {
-        for (int i = 0; i < photos.length; i++) {
+    public void uploadImages(String path, MultipartFile[] images) {
+        for (int i = 0; i < images.length; i++) {
             try {
-                UploadMultipartFileUtil.uploadPhoto(path, photos[i]);
-                System.out.println("Successfully uploaded photo: " + photos[i].getOriginalFilename());
+                UploadMultipartFileUtil.uploadImage(path, images[i]);
+                System.out.println("Successfully uploaded photo: " + images[i].getOriginalFilename());
             } catch (IOException e) {
                 System.out.println("Failed to upload photo: " + e.getMessage());
             }

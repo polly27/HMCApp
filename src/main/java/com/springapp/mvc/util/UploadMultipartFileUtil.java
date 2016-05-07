@@ -18,8 +18,7 @@ public class UploadMultipartFileUtil {
         return upload(path + "/machines.xlsx", multipartFile);
     }
 
-    public static void uploadPhoto(String path, MultipartFile photo) throws IOException{
-        String a = photo.getOriginalFilename();
-        upload(path + "/" + photo.getOriginalFilename(), photo);
+    public static void uploadImage(String path, MultipartFile image) throws IOException{
+        upload(path + "/" + image.getOriginalFilename(), image);
     }
 }

@@ -69,35 +69,6 @@ $(document).ready(function(){
 	}
   });
 
-
-	// Sidebar Accordion Menu
-	$(".mainmenu li ul").hide();
-	$(".mainmenu li.active a").parent().find("ul").slideToggle("slow");
-	
-	$(".mainmenu a").click(function () {
-	    $(".mainmenu li").removeClass('active');
-	    $(this).parent().addClass('active');
-			$(this).parent().siblings().find("ul").slideUp("600");
-			$(this).next().slideToggle("600");
-			return false;
-		}
-	);
-
-	$(".mainmenu li .submenu a").click(function () {
-	    $(".mainmenu li").removeClass('active');
-	    $(this).parent().parent().parent().addClass('active');
-	    $(this).parent().addClass('active');
-			window.location.href=(this.href);
-			return false;
-		}
-	);
-
-	$(".mainmenu li a.link").click(function () {
-			window.location.href=(this.href);
-			return false;
-		}
-	);
-
 	// Close form message
 	$(".form-message").click(function () { 
       $(this).fadeTo(500, 0, function () { // Links with the class "close" will close parent

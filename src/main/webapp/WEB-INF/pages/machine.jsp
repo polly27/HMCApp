@@ -259,6 +259,9 @@
                     <c:if test="${machine.video3!=''}">
                         <iframe width="560" height="315" src="${machine.video3}" frameborder="0" allowfullscreen></iframe>
                     </c:if>
+                    <c:if test="${machine.video1=='' && machine.video2=='' && machine.video3==''}">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/0YSScR4PbLw" frameborder="0" allowfullscreen></iframe>
+                    </c:if>
                 </div>
 
                 <div class="tab-pane" id="additional-info">

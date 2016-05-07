@@ -35,7 +35,7 @@
 
         function toggleItems(page) {
             for (i = (page - 1) * itemsPerPage + 1; i <= itemsNum && i <= page * itemsPerPage; i++) {
-                $('#item' + i).toggle();
+                $('#item' + i).toggleClass('hidden');
             }
         }
 

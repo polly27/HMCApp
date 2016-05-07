@@ -68,13 +68,6 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Computer Cases & Accessories</a></li>
                         <li><a href="#">CPUs, Processors</a></li>
-                        <li><a href="#">Fans, Heatsinks &amp; Cooling</a></li>
-                        <li><a href="#">Graphics, Video Cards</a></li>
-                        <li><a href="#">Interface, Add-On Cards</a></li>
-                        <li><a href="#">Laptop Replacement Parts</a></li>
-                        <li><a href="#">Memory (RAM)</a></li>
-                        <li><a href="#">Motherboards</a></li>
-                        <li><a href="#">Motherboard &amp; CPU Combos</a></li>
                         <li><a href="#">Motherboard Components</a></li>
                     </ul>
                 </li>
@@ -93,7 +86,7 @@
         </nav>
     </div><!-- /.container -->
 </div><!-- /#top-mega-nav -->
-<!-- ========================================= BREADCRUMB : END ========================================= -->4
+<!-- ========================================= BREADCRUMB : END ========================================= -->
 </div>
 <div class="main-content page-track-your-order" id="main-content">
 

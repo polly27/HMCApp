@@ -3509,6 +3509,10 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 #checkout-page .billing-address .le-input {
   padding: 9px;
 }
+#checkout-page .billing-address .le-input.red {
+    border: 1px solid crimson;
+    background-color: floralwhite;
+}
 #checkout-page .billing-address .field-row {
   margin-bottom: 25px;
 }
