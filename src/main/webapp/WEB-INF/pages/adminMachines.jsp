@@ -79,11 +79,13 @@
 <!-- breadcrumbs -->
 <div class="breadcrumbs">
     <ul>
-        <li class="home"><a href="adminData">Admin information</a></li>
-        <li class="home">&nbsp;|&nbsp;</li>
         <li class="home"><a href="adminMachines" style="font-weight: bold; color: #008B00">Machines</a></li>
         <li class="home">&nbsp;|&nbsp;</li>
         <li class="home"><a href="adminGallery">Gallery</a></li>
+        <li class="home">&nbsp;|&nbsp;</li>
+        <li class="home"><a href="adminOrders">Orders</a></li>
+        <li class="home">&nbsp;|&nbsp;</li>
+        <li class="home"><a href="adminData">Admin information</a></li>
     </ul>
 </div>
 <!-- /breadcrumbs -->
@@ -404,9 +406,10 @@
 <!-- #sidebar -->
 <div id="sidebar">
     <ul id="floatMenu" class="mainmenu">
-        <li class="first"><a href="adminData">Admin information</a></li>
-        <li><a href="adminMachines">Machines</a></li>
-        <li class="last"><a href="adminGallery">Gallery</a></li>
+        <li class="first"><a href="adminMachines">Machines</a></li>
+        <li><a href="adminGallery">Gallery</a></li>
+        <li><a href="adminOrders">Orders</a></li>
+        <li class="last"><a href="adminData">Admin information</a></li>
     </ul>
 </div>
 <!-- /#sidebar -->
@@ -415,9 +418,10 @@
 
 <div id="footer">
     <p>
-        <a href="adminData">Admin information</a>&nbsp;|&nbsp;
         <a href="adminMachines">Machines</a>&nbsp;|&nbsp;
-        <a href="adminGallery">Gallery</a>
+        <a href="adminGallery">Gallery</a>&nbsp;|&nbsp;
+        <a href="adminOrders">Orders</a>&nbsp;|&nbsp;
+        <a href="adminData">Admin information</a>
     </p>
 
     <p>© HMC & CNC | 2016 | <a href="#main">Top</a></p>
@@ -439,34 +443,6 @@
         toggleItems(currentPage);
         toggleCurrentClassPage(currentPage);
     });
-
-    function changeNames(item) {
-        var files = item[0].files;
-        var nameList = "";
-        for (var i = 0; i != files.length; i++) {
-            nameList += files[i].name.replace(/.*\\/, "") + ", ";
-        }
-        nameList = nameList.substr(0, nameList.length - 2);
-        item.parent().parent().children(":first-child").val(nameList);
-    }
-
-    function showPage(page) {
-        toggleItems(currentPage);
-        toggleItems(page);
-        toggleCurrentClassPage(currentPage);
-        toggleCurrentClassPage(page);
-        currentPage = page;
-    }
-
-    function toggleItems(page) {
-        for (i = (page - 1) * itemsPerPage + 1; i <= itemsNum && i <= page * itemsPerPage; i++) {
-            $('#item' + i).toggleClass('hidden');
-        }
-    }
-
-    function toggleCurrentClassPage(page) {
-        $('#page' + page).toggleClass("active");
-    }
 
 </script>
 

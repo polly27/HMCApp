@@ -42,6 +42,9 @@ public class MachineOrder {
     @Column(name = "date")
     private String date;
 
+    @Column(name = "orderStatus")
+    private String orderStatus;
+
     public String getOrderId() {
         return orderId;
     }
@@ -138,4 +141,11 @@ public class MachineOrder {
         this.date = date;
     }
 
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 }

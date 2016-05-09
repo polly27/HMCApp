@@ -1,10 +1,8 @@
 package com.springapp.mvc.web;
 
 import com.springapp.mvc.domain.Machine;
-import com.springapp.mvc.service.interfaces.AdminDataService;
-import com.springapp.mvc.service.interfaces.FiltersService;
-import com.springapp.mvc.service.interfaces.MachineService;
-import com.springapp.mvc.service.interfaces.WorkWithFilesService;
+import com.springapp.mvc.domain.MachineOrder;
+import com.springapp.mvc.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +28,9 @@ public class AdminController {
     @Autowired
     private WorkWithFilesService workWithFilesService;
 
+    @Autowired
+    private MachineOrderService machineOrderService;
+
     @RequestMapping(value="/adminEntry", method = RequestMethod.GET)
     public void adminEntry() {}
 
@@ -53,11 +54,10 @@ public class AdminController {
     public void adminMachines(Map<String,Object> map) {
         List<Machine> machineList = machineService.listMachine();
         map.put("machineList", machineList);
-        putPagesInfo(map, machineList.size());
+        putPagesInfo(map, machineList.size(), 10);
     }
 
-    private void putPagesInfo(Map<String, Object> map, int itemsNum) {
-        int itemsPerPage = 10;
+    private void putPagesInfo(Map<String, Object> map, int itemsNum, int itemsPerPage) {
         int pagesNum = itemsNum / itemsPerPage;
         if (itemsNum % itemsPerPage != 0) {
             pagesNum++;
@@ -161,5 +161,18 @@ public class AdminController {
         return "redirect:/adminGallery";
     }
 
+    @RequestMapping(value = "/adminOrders", method = RequestMethod.GET)
+    public void adminOrders(Map<String, Object> map) {
+        List<MachineOrder> machineOrderList = machineOrderService.listMachineOrder();
+        map.put("orderList", machineOrderList);
+        putPagesInfo(map, machineOrderList.size(), 10);
+    }
+
+    @RequestMapping(value = "/adminOrders", method = RequestMethod.POST)
+    public String changeOrderStatus(@RequestParam("orderId") String orderId,
+                                  @RequestParam("orderStatus") String orderStatus) {
+        machineOrderService.setMachineOrderStatus(orderId, orderStatus);
+        return "redirect:/adminOrders";
+    }
 
 }

@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `hmc`.`machine_order` (
   `total` VARCHAR(255) NOT NULL,
   `payment` VARCHAR(255) NOT NULL,
   `date` VARCHAR(255) NOT NULL,
+  `orderStatus` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`orderId`),
   UNIQUE INDEX `id_UNIQUE` (`orderId` ASC))
 ENGINE = InnoDB;

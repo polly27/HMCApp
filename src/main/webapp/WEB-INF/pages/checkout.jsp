@@ -143,7 +143,7 @@
                                 <input class="le-input" name="postcode" type="number"/><br>
                             </div>
                             <div class="col-xs-12 col-sm-4">
-                                <label id="label-email">email*</label>
+                                <label id="label-email">email*<span style='color:crimson' class="hidden"> (invalid email)</span></label>
                                 <input class="le-input" name="email" type="text"/>
                             </div>
 
@@ -306,18 +306,18 @@
                     input.val(input.val().trim());
                     if(value=='email') {
                         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                        var span = $("#label-email span");
                         if(!re.test(input.val())){
                             input.addClass('red');
-                            var label = $("#label-" + value);
-                            label.html(label.html() + " <span style='color:crimson'>(invalid email)<span>");
+                            span.removeClass('hidden');
                             send = false;
+                        } else {
+                            span.addClass('hidden');
                         }
                     }
                 }
             });
-            if(!send){
-                $("#checkout-page").scrollTop();
-            }
+            $("html, body").animate({ scrollTop: 30 }, "fast");
             return send;
         });
     });

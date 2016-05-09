@@ -11,7 +11,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;$machineOrder.firstName $machineOrder.lastName, $machineOrder.company<br>
         &nbsp;&nbsp;&nbsp;&nbsp;$machineOrder.address, $machineOrder.postcode<br>
         &nbsp;&nbsp;&nbsp;&nbsp;email: $machineOrder.email<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;phone:$machineOrder.phone<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;phone: $machineOrder.phone<br><br>
 
         The order:<br>
         <table style="border:1px solid #59b210; border-spacing: 0">

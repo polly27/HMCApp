@@ -349,3 +349,4 @@ a:hover.ico   { background-position: 0 0; }
 .row-machine { font-size: 1.15em; padding: 8px; border: 1px solid #dcdcdc; border-radius: 5px; background: url(../images/bg-input.gif) 0 0 repeat-x }
 .table-machine { font-size: 1em;}
 .red { border: 1px solid crimson; background-color: floralwhite; }
+.black-button { color: #fff; font-weight: normal; width: 99px; height: 26px; cursor: pointer; border: none; background: url(../images/gray/bg-button.gif) }

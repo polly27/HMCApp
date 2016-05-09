@@ -5,6 +5,9 @@
 
     <h3 style="font-size: 17px; font-weight:normal;">
 
+        This letter is sent automatically.<br>
+        Our representative will contact you in nearest future.<br><br>
+
         Your order ID is <span style="font-weight:bold; font-size:larger">$machineOrder.orderId</span><br><br>
 
         The order:<br>

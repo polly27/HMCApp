@@ -57,36 +57,39 @@
     <!-- ================================================ HEADER ======================================================= -->
     <%@include file="header.jsp" %>
     <!-- =============================================== HEADER : END ================================================ -->
-<div id="top-mega-nav">
-    <div class="container">
-        <nav>
-            <ul class="inline">
-                <li class="dropdown le-dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-list"></i> shop by department
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Computer Cases & Accessories</a></li>
-                        <li><a href="#">CPUs, Processors</a></li>
-                        <li><a href="#">Motherboard Components</a></li>
-                    </ul>
-                </li>
+    <div id="top-mega-nav">
+        <div class="container">
+            <nav>
+                <ul class="inline">
+                    <li class="dropdown le-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-list"></i> shop by department
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Computer Cases & Accessories</a></li>
+                            <li><a href="#">CPUs, Processors</a></li>
+                            <li><a href="#">Motherboard Components</a></li>
+                        </ul>
+                    </li>
 
-                <li class="breadcrumb-nav-holder"> 
-                    <ul>
-                        <li class="breadcrumb-item">
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li class="breadcrumb-item current gray">
-                            <a href="track-your-order.jsp">Track your Order</a>
-                        </li>
-                    </ul>
-                </li><!-- /.breadcrumb-nav-holder -->
-            </ul>
-        </nav>
-    </div><!-- /.container -->
-</div><!-- /#top-mega-nav -->
-<!-- ========================================= BREADCRUMB : END ========================================= -->
+                    <li class="breadcrumb-nav-holder">
+                        <ul>
+                            <li class="breadcrumb-item">
+                                <a href="index.html">Home</a>
+                            </li>
+                            <li class="breadcrumb-item current gray">
+                                <a href="track-your-order.jsp">Track your Order</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- /.breadcrumb-nav-holder -->
+                </ul>
+            </nav>
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#top-mega-nav -->
+    <!-- ========================================= BREADCRUMB : END ========================================= -->
 </div>
 <div class="main-content page-track-your-order" id="main-content">
 
@@ -95,35 +98,36 @@
             <h2 class="page-title">Track your Order</h2>
         </div>
     </div>
-            
+
     <div class="row inner-bottom-sm">
         <div class="col-lg-8 center-block">
 
             <div class="section">
-                
-                <p>To track your order please enter your Order ID in the box below and press return. This was given to you on your receipt and in the confirmation email you should have received.</p>
-                
-                <form class="track_order" method="post" action="http://demo.transvelo.com/media-center-wp/woocommerce-pages/track-your-order/track-your-order.jsp">
+
+                <c:if test="${!empty message}">
+                    <p style="color: #59b210">
+                        ${message}
+                    </p>
+                </c:if>
+
+                <p>To track your order please enter your order ID (can be found in letter, e.g.
+                    0496baae-e083-4133-abee-864e4998b99d)<br>
+                </p>
+
+                <form id="form" method="post" action="track-your-order">
 
                     <div class="field-row row form-row form-row-first">
                         <div class="col-xs-12">
-                            <label for="orderid">Order ID</label> 
-                            <input type="text" placeholder="Found in your order confirmation email." id="orderid" name="orderid" class="le-input input-text">
-                        </div>
-                    </div>
-
-                    <div class="field-row row form-row form-row-last">
-                        <div class="col-xs-12">
-                            <label for="order_email">Billing Email</label> 
-                            <input type="text" placeholder="Email you used during checkout." id="order_email" name="order_email" class="le-input input-text">
+                            <label>Order ID</label>
+                            <input type="text" name="orderId" class="le-input input-text" value="${orderId}"/>
                         </div>
                     </div>
 
                     <div class="form-row buttons-holder">
-                        <input type="submit" value="Track" name="track" class="le-button huge button">
+                        <input type="submit" value="Track" class="le-button huge button">
                     </div>
                 </form>
-            </div>  
+            </div>
         </div>
     </div>
 </div>
@@ -152,6 +156,19 @@
 <script src="resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
 <script src="resources/js/comparison,wishlist,cart.jsp"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#form').submit(function () {
+            var input = $("input[name='orderId']");
+            if (!input.val()) {
+                input.addClass('red');
+                return false;
+            }
+            input.val(input.val().trim());
+        });
+    });
+
+</script>
 
 </body>
 </html>

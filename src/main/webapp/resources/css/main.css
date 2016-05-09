@@ -4391,6 +4391,11 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 .page-track-your-order .le-input {
   padding: 10px;
 }
+#form .le-input.red {
+    border: 1px solid crimson;
+    background-color: floralwhite;
+}
+
 /*===================================================================================*/
 /*  Sidebar
 /*===================================================================================*/

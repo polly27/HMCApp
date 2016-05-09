@@ -154,11 +154,14 @@ public class MachineController {
                               @RequestParam("phone") String phone,
                               @RequestParam("orderList") String orderList,
                               @RequestParam("total") String total,
-                              @RequestParam("payment") String payment) {
+                              @RequestParam("payment") String payment,
+                              Map<String,Object> map) {
         MachineOrder machineOrder = machineOrderService.addMachineOrder(firstName, lastName, company, address,
                 postcode, email, phone, orderList, total, payment);
         emailService.sendNewOrderEmailToCustomer(email, machineOrder);
         emailService.sendNewOrderEmailToAdmin(machineOrder);
+        map.put("message", "The order is successfully made. Check your e-mail for information about the ordering.");
+        map.put("orderId",machineOrder.getOrderId());
         return "redirect:/track-your-order";
     }
 
@@ -166,6 +169,17 @@ public class MachineController {
     public void contact() { }
 
     @RequestMapping(value = "/track-your-order", method = RequestMethod.GET)
-    public void trackYourOrder() { }
+    public void trackYourOrder(@RequestParam(value = "message", required = false) String message,
+                               @RequestParam(value = "orderId", required = false) String orderId,
+                               Map<String,Object> map) {
+        map.put("message", message);
+        map.put("orderId", orderId);
+    }
+
+    @RequestMapping(value = "/track-your-order", method = RequestMethod.POST)
+    public void trackOrder(@RequestParam("orderId") String orderId, Map<String,Object> map) {
+        String status = machineOrderService.getMachineOrderStatus(orderId);
+        map.put("message", "Status: " + status);
+    }
 
 }

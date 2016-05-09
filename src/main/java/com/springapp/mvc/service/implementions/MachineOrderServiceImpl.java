@@ -40,6 +40,7 @@ public class MachineOrderServiceImpl implements MachineOrderService {
         machineOrder.setPayment(payment);
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         machineOrder.setDate(dateFormat.format(new Date()));
+        machineOrder.setOrderStatus("The order is accepted.");
         machineOrderDAO.addMachineOrder(machineOrder);
         return machineOrder;
     }
@@ -59,4 +60,13 @@ public class MachineOrderServiceImpl implements MachineOrderService {
         return newOrderList.toString();
     }
 
+    @Transactional
+    public String getMachineOrderStatus(String orderId) {
+        return machineOrderDAO.getMachineOrderStatus(orderId);
+    }
+
+    @Transactional
+    public void setMachineOrderStatus(String orderId, String orderStatus) {
+        machineOrderDAO.setMachineOrderStatus(orderId, orderStatus);
+    }
 }

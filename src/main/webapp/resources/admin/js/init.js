@@ -5,6 +5,34 @@ $(document).ready(function(){
 
 });
 
+function showPage(page) {
+    toggleItems(currentPage);
+    toggleItems(page);
+    toggleCurrentClassPage(currentPage);
+    toggleCurrentClassPage(page);
+    currentPage = page;
+}
+
+function toggleItems(page) {
+    for (i = (page - 1) * itemsPerPage + 1; i <= itemsNum && i <= page * itemsPerPage; i++) {
+        $('#item' + i).toggleClass('hidden');
+    }
+}
+
+function toggleCurrentClassPage(page) {
+    $('#page' + page).toggleClass("active");
+}
+
+function changeNames(item) {
+    var files = item[0].files;
+    var nameList = "";
+    for (var i = 0; i != files.length; i++) {
+        nameList += files[i].name.replace(/.*\\/, "") + ", ";
+    }
+    nameList = nameList.substr(0, nameList.length - 2);
+    item.parent().parent().children(":first-child").val(nameList);
+}
+
 $(document).ready(function(){
 
   // Initialise Graphs
