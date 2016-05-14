@@ -15,51 +15,30 @@
     <title>HMC</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css" media="screen"/>
 
     <!-- Customizable CSS -->
-    <link rel="stylesheet" href="resources/css/main.css">
-    <link rel="stylesheet" href="resources/css/green.css">
-    <link rel="stylesheet" href="resources/css/owl.carousel.css">
-    <link rel="stylesheet" href="resources/css/owl.transitions.css">
-    <link rel="stylesheet" href="resources/css/animate.min.css">
+    <link rel="stylesheet" href="/resources/css/main.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/green.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/owl.carousel.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/owl.transitions.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/animate.min.css" type="text/css" media="screen"/>
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Icons/Glyphs -->
-    <link rel="stylesheet" href="resources/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css" media="screen"/>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="resources/images/favicon.ico">
+    <link rel="shortcut icon" href="/resources/images/favicon.ico">
 
 </head>
 <body>
 
 <div class="wrapper">
-<!-- ============================================== TOP NAVIGATION ======================================= -->
-<nav class="top-bar animate-dropdown">
-    <div class="container">
-        <div class="col-xs-12 col-sm-6 no-margin">
-            <ul>
-                <li><a href="list">Home</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-
-        <div class="col-xs-12 col-sm-6 no-margin">
-            <ul class="right">
-                <li><a href="authentication.html">Register</a></li>
-                <li><a href="authentication.html">Login</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!-- ================================================ TOP NAVIGATION : END ========================================= -->
-
-<!-- ================================================ HEADER ======================================================= -->
 <%@include file="header.jsp" %>
-<!-- =============================================== HEADER : END ================================================ -->
+
 <div id="top-mega-nav">
     <div class="container">
         <nav>
@@ -80,7 +59,7 @@
                             <a href="#">Home</a>
                         </li>
                         <li class="breadcrumb-item current">
-                            <a href=".">Horizontal Machine Centers</a>
+                            <a href="../">Horizontal Machine Centers</a>
                         </li>
                     </ul>
                 </li><!-- /.breadcrumb-nav-holder -->
@@ -126,19 +105,20 @@
                         </div>
                         </c:if>
 
-                        <c:if test="${!empty slidersList}">
-                        <div class="price-filter">
-                            <h2>Price</h2>
-                            <c:set var="prices" value="${slidersList.iterator().next().price}"/>
-                            <c:set var="priceMinMax" value="${fn:split(prices, ',')}" />
-                            <div class="price-range-holder">
-                                <input type="text" class="price-slider" id="price-slider" name="priceRange">
-                                <span class="min-max">from ${priceMinMax[0]}$ to ${priceMinMax[1]}$</span>
+                        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <c:if test="${!empty slidersList}">
+                            <div class="price-filter">
+                                <h2>Price</h2>
+                                <c:set var="prices" value="${slidersList.iterator().next().price}"/>
+                                <c:set var="priceMinMax" value="${fn:split(prices, ',')}" />
+                                <div class="price-range-holder">
+                                    <input type="text" class="price-slider" id="price-slider" name="priceRange">
+                                    <span class="min-max">from ${priceMinMax[0]}$ to ${priceMinMax[1]}$</span>
+                                </div>
                             </div>
-                        </div>
+                            </c:if>
+                            <hr>
                         </c:if>
-
-                        <hr>
 
                         <c:if test="${!empty machineLocationList}">
                         <div class="category-filter">
@@ -240,8 +220,8 @@
                                             <div id="item${i}" class="col-xs-12 col-sm-4 no-margin product-item-holder hover hidden" >
                                                 <div class="product-item">
                                                     <div class="image">
-                                                        <img alt="" src="resources/images/blank.gif"
-                                                             data-echo="resources/images/products/${machine.photo1}"/>
+                                                        <img alt="" src="/resources/images/blank.gif"
+                                                             data-echo="/resources/images/products/${machine.photo1}"/>
                                                         <span id="photo${machine.productId}" class="hidden">${machine.photo1}</span>
                                                     </div>
                                                     <div class="body">
@@ -258,10 +238,12 @@
                                                             X&timesY table sizes: ${machine.xTableSize}&times${machine.yTableSize}
                                                         </div>
                                                     </div>
+                                                    <c:if test="${pageContext.request.userPrincipal.name != null}">
                                                     <div class="prices">
                                                         <div class="price-current pull-right">$<span id="price${machine.productId}">${machine.price}</span>.00</div>
                                                         <br>
                                                     </div>
+                                                    </c:if>
                                                     <div class="hover-area">
                                                         <div class="add-cart-button">
                                                             <a class="cart${machine.productId} le-button" onclick="addToCart('${machine.productId}')">add to cart</a>
@@ -336,25 +318,25 @@
 <!-- ============================================================= FOOTER : END ============================================================= -->
 </div>
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-<script src="resources/js/jquery-1.10.2.min.js"></script>
-<script src="resources/js/jquery-migrate-1.2.1.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
+<script src="/resources/js/jquery-1.10.2.min.js"></script>
+<script src="/resources/js/jquery-migrate-1.2.1.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
 <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-<script src="resources/js/gmap3.min.js"></script>
-<script src="resources/js/bootstrap-hover-dropdown.min.js"></script>
-<script src="resources/js/owl.carousel.min.js"></script>
-<script src="resources/js/css_browser_selector.min.js"></script>
-<script src="resources/js/echo.min.js"></script>
-<script src="resources/js/jquery.easing-1.3.min.js"></script>
-<script src="resources/js/bootstrap-slider.min.js"></script>
-<script src="resources/js/jquery.raty.min.js"></script>
-<script src="resources/js/jquery.prettyPhoto.min.js"></script>
-<script src="resources/js/jquery.customSelect.min.js"></script>
-<script src="resources/js/wow.min.js"></script>
-<script src="resources/js/scripts.js"></script>
+<script src="/resources/js/gmap3.min.js"></script>
+<script src="/resources/js/bootstrap-hover-dropdown.min.js"></script>
+<script src="/resources/js/owl.carousel.min.js"></script>
+<script src="/resources/js/css_browser_selector.min.js"></script>
+<script src="/resources/js/echo.min.js"></script>
+<script src="/resources/js/jquery.easing-1.3.min.js"></script>
+<script src="/resources/js/bootstrap-slider.min.js"></script>
+<script src="/resources/js/jquery.raty.min.js"></script>
+<script src="/resources/js/jquery.prettyPhoto.min.js"></script>
+<script src="/resources/js/jquery.customSelect.min.js"></script>
+<script src="/resources/js/wow.min.js"></script>
+<script src="/resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
-<script src="resources/js/pagination,filters.jsp"></script>
-<script src="resources/js/comparison,wishlist,cart.jsp"></script>
+<script src="/resources/js/pagination,filters.jsp"></script>
+<script src="/resources/js/comparison,wishlist,cart.jsp"></script>
 <script type="text/javascript">
     // filter global variables
     var yearMin = '${yearMinMax[0]}';

@@ -27,6 +27,7 @@ public class EmailUtil {
     @Autowired
     private VelocityEngine velocityEngine;
 
+    @SuppressWarnings("unchecked")
     public void sendEmail(final String templateName, final Map<String, Object> model) {
         MimeMessagePreparator mimeMessagePreparator = new MimeMessagePreparator() {
 

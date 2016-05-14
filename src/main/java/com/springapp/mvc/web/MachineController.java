@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("hmc")
 public class MachineController {
     @Autowired
     private MachineService machineService;
@@ -33,7 +34,7 @@ public class MachineController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
-        return "redirect:/list";
+        return "redirect:/hmc/list";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -162,7 +163,7 @@ public class MachineController {
         emailService.sendNewOrderEmailToAdmin(machineOrder);
         map.put("message", "The order is successfully made. Check your e-mail for information about the ordering.");
         map.put("orderId",machineOrder.getOrderId());
-        return "redirect:/track-your-order";
+        return "redirect:/hmc/track-your-order";
     }
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)

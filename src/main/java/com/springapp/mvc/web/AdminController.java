@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
     @Autowired
     private MachineService machineService;
@@ -31,27 +32,32 @@ public class AdminController {
     @Autowired
     private MachineOrderService machineOrderService;
 
-    @RequestMapping(value="/adminEntry", method = RequestMethod.GET)
-    public void adminEntry() {}
+    @RequestMapping(value="/", method = RequestMethod.GET)
+    public String admin() {
+        return "redirect:/admin/entry";
+    }
 
-    @RequestMapping(value="/adminEntry", method = RequestMethod.POST)
+    @RequestMapping(value="/entry", method = RequestMethod.GET)
+    public void entry() {}
+
+    @RequestMapping(value="/entry", method = RequestMethod.POST)
     public String goToAdmin() {
-        return "redirect:/adminMachines";
+        return "redirect:/admin/machines";
     }
 
-    @RequestMapping(value="/adminData", method = RequestMethod.GET)
-    public void adminData(Map<String,Object> map) {
-        map.put("adminData", adminDataService.getAdminData());
+    @RequestMapping(value="/information", method = RequestMethod.GET)
+    public void information(Map<String,Object> map) {
+        map.put("information", adminDataService.getAdminData());
     }
 
-    @RequestMapping(value = "/adminData", method = RequestMethod.POST)
-    public String renewAdminData(@RequestParam("email") String email){
+    @RequestMapping(value = "/information", method = RequestMethod.POST)
+    public String renewInformation(@RequestParam("email") String email){
         adminDataService.renewAdminData(email);
-        return "redirect:/adminData";
+        return "redirect:/admin/information";
     }
 
-    @RequestMapping(value="/adminMachines", method = RequestMethod.GET)
-    public void adminMachines(Map<String,Object> map) {
+    @RequestMapping(value="/machines", method = RequestMethod.GET)
+    public void machines(Map<String,Object> map) {
         List<Machine> machineList = machineService.listMachine();
         map.put("machineList", machineList);
         putPagesInfo(map, machineList.size(), 10);
@@ -67,7 +73,7 @@ public class AdminController {
         map.put("pagesNum", pagesNum);
     }
 
-    @RequestMapping(value = "/adminMachines/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/machines/edit", method = RequestMethod.POST)
     public String editMachine(@RequestParam("productId") String productId,
                               @RequestParam("machineTypeEn") String machineTypeEn,
                               @RequestParam("model") String model,
@@ -114,65 +120,65 @@ public class AdminController {
                 maxToolLength, maxToolWeight, toolReplacementTime, chipReplacementTime, positionRepositionPrecision,
                 spindleRuntime, machineLaunching, price, isSold, descriptionEn, photo1, photo2, photo3, photo4, photo5,
                 video1, video2, video3);
-        return "redirect:/adminMachines";
+        return "redirect:/admin/machines";
     }
 
-    @RequestMapping(value = "/adminMachines/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/machines/upload", method = RequestMethod.POST)
     public String adminUploadMachinesFromFiles(@RequestParam("textFile") MultipartFile[] machines, HttpServletRequest request){
         if (machines != null && machines.length > 0) {
             String path = request.getServletContext().getRealPath("") + "/resources/";
             workWithFilesService.uploadMachines(path, machines);
         }
-        return "redirect:/adminMachines";
+        return "redirect:/admin/machines";
     }
 
-    @RequestMapping(value = "/adminMachines/remove", method = RequestMethod.GET)
+    @RequestMapping(value = "/machines/remove", method = RequestMethod.GET)
     public String removeMachine(@RequestParam("productId") String productId){
         machineService.removeMachine(productId);
-        return "redirect:/adminMachines";
+        return "redirect:/admin/machines";
     }
 
-    @RequestMapping(value = "/adminMachines/renewFilters", method = RequestMethod.POST)
+    @RequestMapping(value = "/machines/renewFilters", method = RequestMethod.POST)
     public String renewFilters(){
         filtersService.renewFilters();
-        return "redirect:/adminMachines";
+        return "redirect:/admin/machines";
     }
 
-    @RequestMapping(value = "/adminGallery", method = RequestMethod.GET)
-    public void adminGallery(HttpServletRequest request, Map<String,Object> map){
+    @RequestMapping(value = "/gallery", method = RequestMethod.GET)
+    public void gallery(HttpServletRequest request, Map<String,Object> map){
         String path = request.getServletContext().getRealPath("") + "/resources/images/products";
         map.put("imageList", workWithFilesService.listImage(path));
     }
 
 
-    @RequestMapping(value = "/adminGallery/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/gallery/upload", method = RequestMethod.POST)
     public String adminUploadImages(@RequestParam("imageCollection") MultipartFile[] images, HttpServletRequest request){
         if (images != null && images.length > 0) {
             String path = request.getServletContext().getRealPath("") + "/resources/images/products";
             workWithFilesService.uploadImages(path, images);
         }
-        return "redirect:/adminGallery";
+        return "redirect:/admin/gallery";
     }
 
-    @RequestMapping(value = "/adminGallery/remove", method = RequestMethod.GET)
+    @RequestMapping(value = "/gallery/remove", method = RequestMethod.GET)
     public String removeImage(@RequestParam("image") String image, HttpServletRequest request) {
         String path = request.getServletContext().getRealPath("") + "/resources/images/products";
         workWithFilesService.removeImage(path,image);
-        return "redirect:/adminGallery";
+        return "redirect:/admin/gallery";
     }
 
-    @RequestMapping(value = "/adminOrders", method = RequestMethod.GET)
-    public void adminOrders(Map<String, Object> map) {
+    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    public void orders(Map<String, Object> map) {
         List<MachineOrder> machineOrderList = machineOrderService.listMachineOrder();
         map.put("orderList", machineOrderList);
         putPagesInfo(map, machineOrderList.size(), 10);
     }
 
-    @RequestMapping(value = "/adminOrders", method = RequestMethod.POST)
+    @RequestMapping(value = "/orders", method = RequestMethod.POST)
     public String changeOrderStatus(@RequestParam("orderId") String orderId,
                                   @RequestParam("orderStatus") String orderStatus) {
         machineOrderService.setMachineOrderStatus(orderId, orderStatus);
-        return "redirect:/adminOrders";
+        return "redirect:/admin/orders";
     }
 
 }

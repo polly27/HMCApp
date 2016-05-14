@@ -1,3 +1,39 @@
+<!-- ============================================== TOP NAVIGATION ======================================= -->
+<nav class="top-bar animate-dropdown">
+    <div class="container">
+        <div class="col-xs-12 col-sm-6 no-margin">
+            <ul>
+                <li><a href="list">Home</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 no-margin">
+            <ul class="right">
+                <c:if test="${pageContext.request.userPrincipal.name != null}">
+
+                    <li><a>Welcome, ${pageContext.request.userPrincipal.name}</a></li>
+
+                    <c:url value="/j_spring_security_logout" var="logoutUrl" />
+                    <form:form action="${logoutUrl}" method="post" id="logoutForm">
+                        <input type="hidden"
+                               name="${_csrf.parameterName}"
+                               value="${_csrf.token}" />
+                    </form:form>
+                    <li><a href="$('#logoutForm').submit()">Logout</a></li>
+
+                </c:if>
+                <c:if test="${pageContext.request.userPrincipal.name == null}">
+                    <li><a href="/authentication">Register</a></li>
+                    <li><a href="/authentication">Login</a></li>
+                </c:if>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- ================================================ TOP NAVIGATION : END ========================================= -->
+
+<!-- ================================================ HEADER ======================================================= -->
 <header>
     <div class="container no-padding">
 
@@ -5,7 +41,7 @@
             <!-- ============================================================= LOGO ============================================================= -->
             <div class="logo">
                 <a href="list">
-                    <img alt="hmccnc.com" src="resources/images/vmc_and_hmc.svg" width="233" height="54"/>
+                    <img alt="hmccnc.com" src="/resources/images/vmc_and_hmc.svg" width="233" height="54"/>
                 </a>
             </div>
             <!-- /.logo -->
@@ -48,7 +84,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <div class="basket-item-count">
                                 <span class="count" id="cart-count"></span>
-                                <img src="resources/images/icon-cart.png" alt=""/>
+                                <img src="/resources/images/icon-cart.png" alt=""/>
                             </div>
 
                             <div class="total-price-basket">
@@ -65,7 +101,7 @@
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4 no-margin text-center">
                                             <div class="thumb">
-                                                <img width="75" height="75" src="resources/images/blank.gif">
+                                                <img width="75" height="75" src="/resources/images/blank.gif">
                                             </div>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 no-margin">
@@ -73,7 +109,7 @@
                                             <div class="price"></div>
                                         </div>
                                     </div>
-                                    <a class="close-btn" href="."></a>
+                                    <a class="close-btn" href="../"></a>
                                 </div>
                             </li>
                             <li id="li2" class="hidden">
@@ -81,7 +117,7 @@
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4 no-margin text-center">
                                             <div class="thumb">
-                                                <img width="75" height="75" src="resources/images/blank.gif">
+                                                <img width="75" height="75" src="/resources/images/blank.gif">
                                             </div>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 no-margin">
@@ -89,7 +125,7 @@
                                             <div class="price"></div>
                                         </div>
                                     </div>
-                                    <a class="close-btn" href="."></a>
+                                    <a class="close-btn" href="../"></a>
                                 </div>
                             </li>
                             <li id="li3" class="hidden">
@@ -97,7 +133,7 @@
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4 no-margin text-center">
                                             <div class="thumb">
-                                                <img width="75" height="75" src="resources/images/blank.gif">
+                                                <img width="75" height="75" src="/resources/images/blank.gif">
                                             </div>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 no-margin">
@@ -105,7 +141,7 @@
                                             <div class="price"></div>
                                         </div>
                                     </div>
-                                    <a class="close-btn" href="."></a>
+                                    <a class="close-btn" href="../"></a>
                                 </div>
                             </li>
                             <li class="checkout">
@@ -135,3 +171,4 @@
     </div>
     <!-- /.container -->
 </header>
+<!-- =============================================== HEADER : END ================================================ -->

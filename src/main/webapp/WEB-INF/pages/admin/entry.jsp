@@ -12,8 +12,8 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <title>Great admin</title>
-    <link href="resources/admin/css/login.css" rel="stylesheet" type="text/css" />
-    <link href="resources/admin/css/login-gray.css" rel="stylesheet" type="text/css" />  <!-- color skin: blue / red / green / dark -->
+    <link href="/resources/admin/css/login.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/admin/css/login-gray.css" rel="stylesheet" type="text/css" />  <!-- color skin: blue / red / green / dark -->
 </head>
 <body>
 <div id="main">
@@ -22,7 +22,7 @@
 
             <div id="logo"><span>Great Admin</span></div>
 
-            <form:form method="post" action="adminEntry" id="form-login" class="formBox">
+            <form:form method="post" action="machines" id="form-login" class="formBox">
                 <fieldset>
                     <div class="form-col">
                         <label for="username" class="lab">Username</label>

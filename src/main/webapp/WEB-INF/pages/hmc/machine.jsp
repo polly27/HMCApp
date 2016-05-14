@@ -11,54 +11,32 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <title>HMC</title>
+    <title>HMC. ${machine.machineTypeEn} - ${machine.productId}</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css" media="screen"/>
 
     <!-- Customizable CSS -->
-    <link rel="stylesheet" href="resources/css/main.css">
-    <link rel="stylesheet" href="resources/css/green.css">
-    <link rel="stylesheet" href="resources/css/owl.carousel.css">
-    <link rel="stylesheet" href="resources/css/owl.transitions.css">
-    <link rel="stylesheet" href="resources/css/animate.min.css">
+    <link rel="stylesheet" href="/resources/css/main.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/green.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/owl.carousel.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/owl.transitions.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/animate.min.css" type="text/css" media="screen"/>
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Icons/Glyphs -->
-    <link rel="stylesheet" href="resources/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css" media="screen"/>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="resources/images/favicon.ico">
+    <link rel="shortcut icon" href="/resources/images/favicon.ico">
 
 </head>
 <body>
 
 <div class="wrapper">
-<!-- ============================================== TOP NAVIGATION ======================================= -->
-<nav class="top-bar animate-dropdown">
-    <div class="container">
-        <div class="col-xs-12 col-sm-6 no-margin">
-            <ul>
-                <li><a href="list">Home</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-
-        <div class="col-xs-12 col-sm-6 no-margin">
-            <ul class="right">
-                <li><a href="authentication.html">Register</a></li>
-                <li><a href="authentication.html">Login</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!-- ================================================ TOP NAVIGATION : END ========================================= -->
-
-<!-- ================================================ HEADER ======================================================= -->
 <%@include file="header.jsp" %>
-<!-- =============================================== HEADER : END ================================================ -->
 <div id="top-mega-nav">
     <div class="container">
         <nav>
@@ -82,7 +60,7 @@
                             <a href="list">Horizontal Machine Centers</a>
                         </li>
                         <li class="breadcrumb-item current">
-                            <a href=".">${machine.machineTypeEn} - ${machine.productId}</a>
+                            <a href="../">${machine.machineTypeEn} - ${machine.productId}</a>
                         </li>
                     </ul>
                 </li><!-- /.breadcrumb-nav-holder -->
@@ -101,45 +79,45 @@
 
                 <div id="owl-single-product">
                     <div class="single-product-gallery-item" id="slide1">
-                        <a data-rel="prettyphoto" href="resources/images/products/${machine.photo1}">
-                            <img class="img-responsive" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo1}"/>
+                        <a data-rel="prettyphoto" href="/resources/images/products/${machine.photo1}">
+                            <img class="img-responsive" alt="" src="/resources/images/blank.gif"
+                                 data-echo="/resources/images/products/${machine.photo1}"/>
                             <span id="photo${machine.productId}" hidden="hidden">${machine.photo1}</span>
                         </a>
                     </div>
 
                     <c:if test="${machine.photo2!=''}">
                     <div class="single-product-gallery-item" id="slide2">
-                        <a data-rel="prettyphoto" href="resources/images/products/${machine.photo2}">
-                            <img class="img-responsive" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo2}"/>
+                        <a data-rel="prettyphoto" href="/resources/images/products/${machine.photo2}">
+                            <img class="img-responsive" alt="" src="/resources/images/blank.gif"
+                                 data-echo="/resources/images/products/${machine.photo2}"/>
                         </a>
                     </div>
                     </c:if>
 
                     <c:if test="${machine.photo3!=''}">
                     <div class="single-product-gallery-item" id="slide3">
-                        <a data-rel="prettyphoto" href="resources/images/products/${machine.photo3}">
-                            <img class="img-responsive" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo3}"/>
+                        <a data-rel="prettyphoto" href="/resources/images/products/${machine.photo3}">
+                            <img class="img-responsive" alt="" src="/resources/images/blank.gif"
+                                 data-echo="/resources/images/products/${machine.photo3}"/>
                         </a>
                     </div>
                     </c:if>
 
                     <c:if test="${machine.photo4!=''}">
                     <div class="single-product-gallery-item" id="slide4">
-                        <a data-rel="prettyphoto" href="resources/images/products/${machine.photo4}">
-                            <img class="img-responsive" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo4}"/>
+                        <a data-rel="prettyphoto" href="/resources/images/products/${machine.photo4}">
+                            <img class="img-responsive" alt="" src="/resources/images/blank.gif"
+                                 data-echo="/resources/images/products/${machine.photo4}"/>
                         </a>
                     </div>
                     </c:if>
 
                     <c:if test="${machine.photo5!=''}">
                     <div class="single-product-gallery-item" id="slide5">
-                        <a data-rel="prettyphoto" href="resources/images/products/${machine.photo5}">
-                            <img class="img-responsive" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo5}"/>
+                        <a data-rel="prettyphoto" href="/resources/images/products/${machine.photo5}">
+                            <img class="img-responsive" alt="" src="/resources/images/blank.gif"
+                                 data-echo="/resources/images/products/${machine.photo5}"/>
                         </a>
                     </div>
                     </c:if>
@@ -152,35 +130,35 @@
                     <div id="owl-single-product-thumbnails">
                         <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0"
                            href="#slide1">
-                            <img width="67" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo1}"/>
+                            <img width="67" alt="" src="/resources/images/blank.gif"
+                                 data-echo="/resources/images/products/${machine.photo1}"/>
                         </a>
 
                         <c:if test="${machine.photo2!=''}">
                         <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
-                            <img width="67" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo2}"/>
+                            <img width="67" alt="" src="/resources/images/blank.gif"
+                                 data-echo="/resources/images/products/${machine.photo2}"/>
                         </a>
                         </c:if>
 
                         <c:if test="${machine.photo3!=''}">
                         <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
-                            <img width="67" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo3}"/>
+                            <img width="67" alt="" src="/resources/images/blank.gif"
+                                 data-echo="/resources/images/products/${machine.photo3}"/>
                         </a>
                         </c:if>
 
                         <c:if test="${machine.photo4!=''}">
                         <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="3" href="#slide4">
-                            <img width="67" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo4}"/>
+                            <img width="67" alt="" src="/resources/images/blank.gif"
+                                 data-echo="/resources/images/products/${machine.photo4}"/>
                         </a>
                         </c:if>
 
                         <c:if test="${machine.photo5!=''}">
                         <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="4" href="#slide5">
-                            <img width="67" alt="" src="resources/images/blank.gif"
-                                 data-echo="resources/images/products/${machine.photo5}"/>
+                            <img width="67" alt="" src="/resources/images/blank.gif"
+                                 data-echo="/resources/images/products/${machine.photo5}"/>
                         </a>
                         </c:if>
                     </div>
@@ -407,24 +385,24 @@
 <!-- /.wrapper -->
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-<script src="resources/js/jquery-1.10.2.min.js"></script>
-<script src="resources/js/jquery-migrate-1.2.1.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
+<script src="/resources/js/jquery-1.10.2.min.js"></script>
+<script src="/resources/js/jquery-migrate-1.2.1.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
 <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-<script src="resources/js/gmap3.min.js"></script>
-<script src="resources/js/bootstrap-hover-dropdown.min.js"></script>
-<script src="resources/js/owl.carousel.min.js"></script>
-<script src="resources/js/css_browser_selector.min.js"></script>
-<script src="resources/js/echo.min.js"></script>
-<script src="resources/js/jquery.easing-1.3.min.js"></script>
-<script src="resources/js/bootstrap-slider.min.js"></script>
-<script src="resources/js/jquery.raty.min.js"></script>
-<script src="resources/js/jquery.prettyPhoto.min.js"></script>
-<script src="resources/js/jquery.customSelect.min.js"></script>
-<script src="resources/js/wow.min.js"></script>
-<script src="resources/js/scripts.js"></script>
+<script src="/resources/js/gmap3.min.js"></script>
+<script src="/resources/js/bootstrap-hover-dropdown.min.js"></script>
+<script src="/resources/js/owl.carousel.min.js"></script>
+<script src="/resources/js/css_browser_selector.min.js"></script>
+<script src="/resources/js/echo.min.js"></script>
+<script src="/resources/js/jquery.easing-1.3.min.js"></script>
+<script src="/resources/js/bootstrap-slider.min.js"></script>
+<script src="/resources/js/jquery.raty.min.js"></script>
+<script src="/resources/js/jquery.prettyPhoto.min.js"></script>
+<script src="/resources/js/jquery.customSelect.min.js"></script>
+<script src="/resources/js/wow.min.js"></script>
+<script src="/resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
-<script src="resources/js/comparison,wishlist,cart.jsp"></script>
+<script src="/resources/js/comparison,wishlist,cart.jsp"></script>
 
 </body>
 </html>

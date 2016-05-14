@@ -4,7 +4,7 @@
                 <!-- ============================================================= CONTACT INFO ============================================================= -->
 <div class="contact-info">
     <div class="footer-logo">
-        <img alt="vmc_and_hmc" src="resources/images/vmc_and_hmc.svg" width="233" height="54"/>
+        <img alt="vmc_and_hmc" src="/resources/images/vmc_and_hmc.svg" width="233" height="54"/>
     </div><!-- /.footer-logo -->
     
     <p class="regular-bold"> Vertical and horizontal machine centers.</p>

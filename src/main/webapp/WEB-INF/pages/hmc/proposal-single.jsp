@@ -12,52 +12,31 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <title>HMC</title>
+    <title>HMC. Commersial proposal</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css" media="screen"/>
 
     <!-- Customizable CSS -->
-    <link rel="stylesheet" href="resources/css/main.css">
-    <link rel="stylesheet" href="resources/css/green.css">
-    <link rel="stylesheet" href="resources/css/owl.carousel.css">
-    <link rel="stylesheet" href="resources/css/owl.transitions.css">
-    <link rel="stylesheet" href="resources/css/animate.min.css">
+    <link rel="stylesheet" href="/resources/css/main.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/green.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/owl.carousel.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/owl.transitions.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/animate.min.css" type="text/css" media="screen"/>
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Icons/Glyphs -->
-    <link rel="stylesheet" href="resources/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css" media="screen"/>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="resources/images/favicon.ico">
+    <link rel="shortcut icon" href="/resources/images/favicon.ico">
 </head>
 <body>
 
 <div class="wrapper">
-    <!-- ============================================================= TOP NAVIGATION ============================================================= -->
-    <nav class="top-bar animate-dropdown">
-        <div class="container">
-            <div class="col-xs-12 col-sm-6 no-margin">
-                <ul>
-                    <li><a href="list">Home</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="col-xs-12 col-sm-6 no-margin">
-                <ul class="right">
-                    <li><a href="authentication.html">Register</a></li>
-                    <li><a href="authentication.html">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- ============================================================= TOP NAVIGATION : END ============================================================= -->
-    <!-- ================================================ HEADER ======================================================= -->
     <%@include file="header.jsp" %>
-    <!-- =============================================== HEADER : END ================================================ -->
     <div id="top-mega-nav">
         <div class="container">
             <nav>
@@ -80,11 +59,8 @@
                             <li class="breadcrumb-item gray">
                                 <a href="list">Horizontal Machine Centers</a>
                             </li>
-                            <li class="breadcrumb-item gray">
-                                <a href="#" onclick="goToCart()">Shopping cart</a>
-                            </li>
                             <li class="breadcrumb-item current">
-                                <a href=".">Commercial proposal</a>
+                                <a href="../">Commercial proposal of single machine</a>
                             </li>
                         </ul>
                     </li><!-- /.breadcrumb-nav-holder -->
@@ -105,7 +81,7 @@
             </div>
             <!-- /.section-page-title -->
 
-            <c:if test="${!empty proposalList}">
+            <c:if test="${!empty machine}">
 
             <h3>Commercial proposal for:</h3><br>
             <form:form class="formBox" method="post" id="proposalForm">
@@ -125,41 +101,10 @@
 
             <br><br>
 
-            <div class="table-responsive">
-                <table class="table table-bordered table-condensed" id="order-table">
-                    <tr>
-                        <td>№</td>
-                        <td>Machine</td>
-                        <td>Model</td>
-                        <td>Price</td>
-                        <td>Quantity</td>
-                        <td>Total</td>
-                    </tr>
-                    <c:set var="total" value="0"/>
-                    <c:forEach items="${proposalList}" var="machine" varStatus="loop">
-                        <tr>
-                            <td>${loop.index + 1}</td>
-                            <td>${machine.machineTypeEn}</td>
-                            <td>${machine.model}</td>
-                            <td>$${machine.price}.00</td>
-                            <td id="count${machine.productId}"></td>
-                            <td id="total${machine.productId}"></td>
-                        </tr>
-                    </c:forEach>
-                    <tr>
-                        <td align="right" colspan="5">Order total</td>
-                        <td id="order-total"></td>
-                    </tr>
-                </table>
-            </div>
-
-            <br><br>
-
-            <c:forEach items="${proposalList}" var="machine" varStatus="loop">
                 <table class="table table-bordered table-condensed machine-table">
                     <tr>
                         <td colspan="4" width="33.3335%">
-                            <img class="img-responsive" src="resources/images/blank.gif" data-echo="resources/images/products/${machine.photo1}">
+                            <img class="img-responsive" src="/resources/images/blank.gif" data-echo="/resources/images/products/${machine.photo1}">
                         </td>
                         <td colspan="8" rowspan="2" width="66.6665%">
                             <br>
@@ -175,10 +120,10 @@
                     </tr>
                     <tr>
                         <td colspan="2" width="16.6665%">
-                            <img class="img-responsive" src="resources/images/blank.gif" data-echo="resources/images/products/${machine.photo2}">
+                            <img class="img-responsive" src="/resources/images/blank.gif" data-echo="/resources/images/products/${machine.photo2}">
                         </td>
                         <td colspan="2" width="16.6665%">
-                            <img class="img-responsive" src="resources/images/blank.gif" data-echo="resources/images/products/${machine.photo3}">
+                            <img class="img-responsive" src="/resources/images/blank.gif" data-echo="/resources/images/products/${machine.photo3}">
                         </td>
                     </tr>
                     <tr>
@@ -236,10 +181,11 @@
                     </tr>
                 </table>
 
-                <br><br>
-            </c:forEach>
+            <br><br>
 
-                <a href="#getProposal"><h3>Up to getting the proposal</h3></a><br><br><br>
+            <a href="#getProposal"><h3>Up to getting the proposal</h3></a>
+
+            <br><br><br>
 
             </c:if>
 
@@ -253,60 +199,24 @@
 <!-- /.wrapper -->
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-<script src="resources/js/jquery-1.10.2.min.js"></script>
-<script src="resources/js/jquery-migrate-1.2.1.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
+<script src="/resources/js/jquery-1.10.2.min.js"></script>
+<script src="/resources/js/jquery-migrate-1.2.1.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
 <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-<script src="resources/js/gmap3.min.js"></script>
-<script src="resources/js/bootstrap-hover-dropdown.min.js"></script>
-<script src="resources/js/owl.carousel.min.js"></script>
-<script src="resources/js/css_browser_selector.min.js"></script>
-<script src="resources/js/echo.min.js"></script>
-<script src="resources/js/jquery.easing-1.3.min.js"></script>
-<script src="resources/js/bootstrap-slider.min.js"></script>
-<script src="resources/js/jquery.raty.min.js"></script>
-<script src="resources/js/jquery.prettyPhoto.min.js"></script>
-<script src="resources/js/jquery.customSelect.min.js"></script>
-<script src="resources/js/wow.min.js"></script>
-<script src="resources/js/scripts.js"></script>
+<script src="/resources/js/gmap3.min.js"></script>
+<script src="/resources/js/bootstrap-hover-dropdown.min.js"></script>
+<script src="/resources/js/owl.carousel.min.js"></script>
+<script src="/resources/js/css_browser_selector.min.js"></script>
+<script src="/resources/js/echo.min.js"></script>
+<script src="/resources/js/jquery.easing-1.3.min.js"></script>
+<script src="/resources/js/bootstrap-slider.min.js"></script>
+<script src="/resources/js/jquery.raty.min.js"></script>
+<script src="/resources/js/jquery.prettyPhoto.min.js"></script>
+<script src="/resources/js/jquery.customSelect.min.js"></script>
+<script src="/resources/js/wow.min.js"></script>
+<script src="/resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
-<script src="resources/js/comparison,wishlist,cart.jsp"></script>
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        loadQuantities();
-        setProposalFormData();
-    });
-
-    function loadQuantities() {
-        var fullArr = localStorage.cartItemStr.split(';');
-        if (fullArr != null && fullArr != "") {
-            var orderTotal = 0;
-            $(fullArr).each(function (index, value) {
-                var machine = value.split(',');
-                var productId = machine[0];
-                var price = machine[1];
-                var count = machine[2];
-                $('#count' + productId).text(count);
-                $('#total' + productId).text("$"+parseInt(count) * parseInt(price)+".00");
-                orderTotal += parseInt(price) * parseInt(count);
-            });
-            $("#order-total").text("$"+orderTotal+".00");
-        }
-    }
-
-    function setProposalFormData() {
-        var form = $("#proposalForm");
-        var products = [];
-        var arr = localStorage.cartItemStr.split(';');
-        for(var i=0; i<arr.length; i++){
-            var arrItem = arr[i].split(',');
-            products[i] = arrItem[0] + ',' + arrItem[2];
-        }
-        form.attr("action","proposal/getPdf?products=" + products.join(';'));
-    }
-
-</script>
+<script src="/resources/js/comparison,wishlist,cart.jsp"></script>
 
 </body>
 </html>

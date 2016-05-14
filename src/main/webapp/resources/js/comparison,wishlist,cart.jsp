@@ -324,7 +324,7 @@
                     if (i < arr.length) {
                         var machine = arr[i].split(',');
                         $("#li" + (i + 1)).removeClass("hidden");
-                        $("#li" + (i + 1) + " img").attr("src", "resources/images/products/" + machine[3]);
+                        $("#li" + (i + 1) + " img").attr("src", "/resources/images/products/" + machine[3]);
                         $("#li" + (i + 1) + " img").attr("alt", machine[4]);
                         $("#li" + (i + 1) + " .title").html(machine[4] + '<br>' + machine[5]);
                         $("#li" + (i + 1) + " .price").text("$" + machine[1] + ".00");
