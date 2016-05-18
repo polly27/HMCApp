@@ -32,9 +32,34 @@ public class MachineController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private UserService userService;
+
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
         return "redirect:/hmc/list";
+    }
+
+    @RequestMapping(value = "/authentication", method = RequestMethod.GET)
+    public void authentication(@RequestParam(value = "error", required = false) String error,
+                               @RequestParam(value = "logout", required = false) String logout,
+                               Map<String,Object> map) {
+        if (error != null) {
+            map.put("error", "Invalid username or password!");
+        }
+        if (logout != null) {
+            map.put("msg", "You've been logged out successfully.");
+        }
+    }
+
+    @RequestMapping(value = "/authentication", method = RequestMethod.POST)
+    public void createNewAccount(@RequestParam(value = "username") String username,
+                                 @RequestParam(value = "password") String password,
+                                 @RequestParam(value = "email") String email,
+                                 Map<String,Object> map) {
+        userService.createNewAccount(username, password, email, "ROLE_USER");
+        map.put("msg", "You've been registered successfully.");
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -115,27 +140,29 @@ public class MachineController {
         }
     }
 
+    @RequestMapping(value = "/proposal", method = RequestMethod.POST)
+    public ResponseEntity<byte[]> getPdf(@RequestParam("products") String products,
+                                         @RequestParam(value = "company", required = false) String company,
+                                         @RequestParam(value = "director", required = false) String director,
+                                         @RequestParam("showPrice") String showPrice,
+                                         HttpServletRequest request) throws Exception {
+        String path = request.getServletContext().getRealPath("") + "/resources";
+        return workWithFilesService.getPDFOffer(path, products, company, director, Boolean.getBoolean(showPrice));
+    }
+
     @RequestMapping(value = "/proposal-single", method = RequestMethod.GET)
     public void proposalSingle(@RequestParam(required = true) String productId, Map<String, Object> map) {
         map.put("machine", machineService.getMachine(productId));
     }
 
-    @RequestMapping(value = "/proposal/getPdf", method = RequestMethod.POST)
-    public ResponseEntity<byte[]> getPdf(@RequestParam("products") String products,
-                                         @RequestParam(value = "company", required = false) String company,
-                                         @RequestParam(value = "director", required = false) String director,
-                                         HttpServletRequest request) throws Exception {
-        String path = request.getServletContext().getRealPath("") + "/resources";
-        return workWithFilesService.getPDFOffer(path, products, company, director);
-    }
-
-    @RequestMapping(value = "/proposal-single/getPdf", method = RequestMethod.POST)
+    @RequestMapping(value = "/proposal-single", method = RequestMethod.POST)
     public ResponseEntity<byte[]> getPdfSingle(@RequestParam("productId") String productId,
                                                @RequestParam(value = "company", required = false) String company,
                                                @RequestParam(value = "director", required = false) String director,
+                                               @RequestParam("showPrice") String showPrice,
                                                HttpServletRequest request) throws Exception {
         String path = request.getServletContext().getRealPath("") + "/resources";
-        return workWithFilesService.getPDFOfferSingle(path, productId, company, director);
+        return workWithFilesService.getPDFOfferSingle(path, productId, company, director, Boolean.getBoolean(showPrice));
     }
 
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)

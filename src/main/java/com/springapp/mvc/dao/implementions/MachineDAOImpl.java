@@ -22,6 +22,12 @@ public class MachineDAOImpl implements MachineDAO {
     }
 
     @SuppressWarnings("unchecked")
+    public List<String[]> listMachineForSiteMap() {
+        Query query = sessionFactory.getCurrentSession().createQuery("select productId, machineTypeEn, model from Machine");
+        return (List<String[]>) query.list();
+    }
+
+    @SuppressWarnings("unchecked")
     public Machine getMachine(String productId) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Machine where productId='" + productId + "'");
         return (Machine) query.uniqueResult();
@@ -79,31 +85,7 @@ public class MachineDAOImpl implements MachineDAO {
     }
 
     @SuppressWarnings("unchecked")
-    public void editMachine(String productId, String machineTypeEn, String model, String brand, String producingCountryEn,
-                            String systemCNC, String fullSystemCNC, String productionYear, String machineLocationEn,
-                            String machineConditionEn, String axisCount, String xMotion, String yMotion, String zMotion,
-                            String xTableSize, String yTableSize, String tableLoad, String spindleTaper, String spindleRotationFreq,
-                            String spindlePower, String toolCount, String maxToolDiameter, String maxToolLength,
-                            String maxToolWeight, String toolReplacementTime, String chipReplacementTime,
-                            String positionRepositionPrecision, String spindleRuntime, String machineLaunching, String price,
-                            String   isSold, String descriptionEn, String photo1, String photo2, String photo3, String photo4,
-                            String photo5, String video1, String video2, String video3) {
-        sessionFactory.getCurrentSession().createQuery(
-                "update Machine set machineTypeEn='" + machineTypeEn + "', model='" + model + "', brand='" + brand +
-                        "', producingCountryEn='" + producingCountryEn + "', " + "systemCNC='" + systemCNC + "', fullSystemCNC='" +
-                        fullSystemCNC + "', productionYear='" + productionYear + "', machineLocationEn='" + machineLocationEn +
-                        "', machineConditionEn='" + machineConditionEn + "', axisCount='" + axisCount + "', xMotion='" + xMotion +
-                        "', yMotion='" + yMotion + "', zMotion='" + zMotion + "', " + "xTableSize='" + xTableSize +
-                        "', yTableSize='" + yTableSize + "', tableLoad='" + tableLoad + "', spindleTaper='" + spindleTaper +
-                        "', spindleRotationFreq='" + spindleRotationFreq + "', spindlePower='" + spindlePower + "', toolCount='" +
-                        toolCount + "', maxToolDiameter='" + maxToolDiameter + "', " + "maxToolLength='" + maxToolLength +
-                        "', maxToolWeight='" + maxToolWeight + "', toolReplacementTime='" + toolReplacementTime +
-                        "', chipReplacementTime='" + chipReplacementTime + "', positionRepositionPrecision='" +
-                        positionRepositionPrecision + "', spindleRuntime='" + spindleRuntime + "', " + "machineLaunching='" +
-                        machineLaunching + "', price='" + price + "', isSold='" + isSold + "', descriptionEn='" + descriptionEn +
-                        "', photo1='" + photo1 + "', photo2='" + photo2 + "', photo3='" + photo3 + "', photo4='" + photo4 +
-                        "', photo5='" + photo5 + "', video1='" + video1 + "', video2='" + video2 + "', video3='" + video3 +
-                        "' where productId='" + productId + "'"
-        ).executeUpdate();
+    public void editMachine(Machine machine) {
+        sessionFactory.getCurrentSession().update(machine);
     }
 }

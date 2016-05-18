@@ -6,8 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public interface WorkWithFilesService {
-    public ResponseEntity<byte[]> getPDFOffer(String path, String products, String company, String director) throws Exception;
-    public ResponseEntity<byte[]> getPDFOfferSingle(String path, String productId, String company, String director) throws Exception;
+    public ResponseEntity<byte[]> getPDFOffer(String path, String products, String company, String director, boolean showPrice) throws Exception;
+    public ResponseEntity<byte[]> getPDFOfferSingle(String path, String productId, String company, String director, boolean showPrice) throws Exception;
     public void uploadMachines(String path, MultipartFile[] machines);
     public void uploadImages(String path, MultipartFile[] images);
     public String[] listImage(String path);

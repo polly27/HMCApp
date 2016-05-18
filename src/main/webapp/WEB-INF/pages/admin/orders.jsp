@@ -59,21 +59,7 @@
 </head>
 <body>
 <div id="main">
-    <!-- #header -->
-    <div id="header">
-        <!-- #logo -->
-        <div id="logo">
-            <a href="#" title="Go to Homepage"><span>Great Admin</span></a>
-        </div>
-        <!-- /#logo -->
-        <!-- #user -->
-        <div id="user">
-            <h2>Forest Gump <span>(admin)</span></h2>
-            <a href="#">Logout</a>
-        </div>
-        <!-- /#user -->
-    </div>
-    <!-- /header -->
+    <%@include file="header.jsp" %>
     <!-- #content -->
     <div id="content">
 
@@ -86,7 +72,7 @@
                 <li class="home">&nbsp;|&nbsp;</li>
                 <li class="home"><a href="orders" style="font-weight: bold; color: #008B00">Orders</a></li>
                 <li class="home">&nbsp;|&nbsp;</li>
-                <li class="home"><a href="information">Admin information</a></li>
+                <li class="home"><a href="users">Users</a></li>
             </ul>
         </div>
         <!-- /breadcrumbs -->
@@ -168,22 +154,12 @@
                                 Payment: ${machineOrder.payment}<br><br>
                                 Date of ordering: ${machineOrder.date}<br><br>
 
-                                <form:form action="orders" method="post" class="form-inline">
+                                <form:form method="post" class="form-inline">
                                 Order status:
                                 <select class="form-control" name="orderStatus">
-                                    <c:set var="statuses">
-                                        The order is accepted.;
-                                        Commercial offer is sent.;
-                                        Negotiations about machine characteristics.;
-                                        Agreement conclusion.;
-                                        Delivery of the order.;
-                                        Work with the order is finished.
-                                    </c:set>
+                                    <c:set var="statuses">The order is accepted.;Commercial offer is sent.;Negotiations about machine characteristics.;Agreement conclusion.;Delivery of the order.;Work with the order is finished.</c:set>
                                     <c:forTokens items="${statuses}" delims=";" var="status">
-                                        <option value="${status}"
-                                                <c:if test="${machineOrder.orderStatus == status}">selected</c:if>>
-                                                ${status}
-                                        </option>
+                                        <option value="${status}" <c:if test="${machineOrder.orderStatus == status}">selected</c:if>>${status}</option>
                                     </c:forTokens>
                                 </select>
                                 <input type="hidden" name="orderId" value="${machineOrder.orderId}">
@@ -213,31 +189,7 @@
 
     </div>
     <!-- /#content -->
-    <!-- #sidebar -->
-    <div id="sidebar">
-        <ul id="floatMenu" class="mainmenu">
-            <li class="first"><a href="machines">Machines</a></li>
-            <li><a href="gallery">Gallery</a></li>
-            <li><a href="orders">Orders</a></li>
-            <li class="last"><a href="information">Admin information</a></li>
-        </ul>
-    </div>
-    <!-- /#sidebar -->
-    <!-- #footer -->
-    <br><br><br><br><br><br>
-
-    <div id="footer">
-        <p>
-            <a href="machines">Machines</a>&nbsp;|&nbsp;
-            <a href="gallery">Gallery</a>&nbsp;|&nbsp;
-            <a href="orders">Orders</a>&nbsp;|&nbsp;
-            <a href="information">Admin information</a>
-        </p>
-
-        <p>© HMC & CNC | 2016 | <a href="#main">Top</a></p>
-    </div>
-    <!-- /#footer -->
-
+    <%@include file="footer.jsp" %>
 </div>
 <!-- /#main -->
 

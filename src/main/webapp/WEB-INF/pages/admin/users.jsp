@@ -11,7 +11,7 @@
     <meta name='robots' content='all, follow'/>
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
-    <title>Admin. Information</title>
+    <title>Admin. Users</title>
     <link href="/resources/admin/css/default.css" rel="stylesheet" type="text/css" media="screen"/>
     <link href="/resources/admin/css/gray.css" rel="stylesheet" type="text/css" media="screen"/>
     <link href="/resources/admin/css/datePicker.css" rel="stylesheet" type="text/css" media="screen"/>
@@ -54,21 +54,7 @@
 </head>
 <body>
 <div id="main">
-    <!-- #header -->
-    <div id="header">
-        <!-- #logo -->
-        <div id="logo">
-            <a href="#" title="Go to Homepage"><span>Great Admin</span></a>
-        </div>
-        <!-- /#logo -->
-        <!-- #user -->
-        <div id="user">
-            <h2>Forest Gump <span>(admin)</span></h2>
-            <a href="#">Logout</a>
-        </div>
-        <!-- /#user -->
-    </div>
-    <!-- /header -->
+    <%@include file="header.jsp" %>
     <!-- #content -->
     <div id="content">
 
@@ -81,95 +67,85 @@
                 <li class="home">&nbsp;|&nbsp;</li>
                 <li class="home"><a href="orders">Orders</a></li>
                 <li class="home">&nbsp;|&nbsp;</li>
-                <li class="home"><a href="information" style="font-weight: bold; color: #008B00">Admin information</a></li>
+                <li class="home"><a href="users" style="font-weight: bold; color: #008B00">Users</a></li>
             </ul>
         </div>
         <!-- /breadcrumbs -->
 
+        <!-- box -->
         <div class="tabs box">
-            <ul class="bookmarks"></ul>
-
+            <ul class="bookmarks">
+                <li><a href="#users">Users</a></li>
+            </ul>
             <div class="box-content">
-                <div id="information">
-                    <h4>
-                        <form:form class="formBox" method="post" action="information">
-                            <label id="label-email">Email<span style='color:crimson' class="hidden"> (invalid email)</span></label>
-                            <c:if test="${!empty information}">
-                                <input class="le-input form-control" name="email" value="${information.email}"/>
-                            </c:if>
-                            <c:if test="${empty information}">
-                                <input class="le-input form-control" name="email"/>
-                            </c:if>
+                <div id="edit">
+                    <c:if test="${empty userList}">
+                        <h3>No users.</h3>
+                    </c:if>
+                    <c:set var="itemsPerPage" value="${itemsPerPage}"/>
+                    <c:set var="itemsNum" value="${itemsNum}"/>
+                    <table class="table table-bordered table-condensed">
+                        <tr>
+                            <td>№</td>
+                            <td>Username</td>
+                            <td>Email</td>
+                            <td>Role</td>
+                        </tr>
+                        <c:forEach items="${userList}" var="user" varStatus="loop">
+                            <tr>
+                                <td>${loop.index + 1}.</td>
+                                <td>${user.username}</td>
+                                <td>${user.email}</td>
+                                <td>
+                                    <form:form method="post" class="form-inline">
+                                        <select  class="form-control" name="userRole">
+                                            <c:set var="roles">ROLE_USER;ROLE_ADMIN</c:set>
+                                            <c:forTokens items="${roles}" delims=";" var="role">
+                                                <option value="${role}" <c:if test="${user.role == role}">selected</c:if>>${role}</option>
+                                            </c:forTokens>
+                                        </select>
+                                        <input type="hidden" name="userId" value="${user.num}">
+                                        <input type="submit" value="Save role" class="button black-button" style="font-weight: normal"/>
+                                    </form:form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
 
-                            <br><br>
+                    <br>
+                    <!-- /pagination -->
+                    <div class="paging">
+                        <ul>
+                            <c:forEach begin="1" end="${pagesNum}" var="i">
+                                <li id="page${i}">
+                                    <a onclick="showPage(${i});">${i}</a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                        <p>Pages: </p>
+                    </div>
+                    <!-- /pagination -->
 
-                            <div class="btn-submit">
-                                <input type="submit" value="Save" class="button" style="font-weight: normal"/>
-                            </div>
-                        </form:form>
-                    </h4>
                 </div>
+
             </div>
         </div>
 
     </div>
     <!-- /#content -->
-    <!-- #sidebar -->
-    <div id="sidebar">
-        <ul id="floatMenu" class="mainmenu">
-            <li class="first"><a href="machines">Machines</a></li>
-            <li><a href="gallery">Gallery</a></li>
-            <li><a href="orders">Orders</a></li>
-            <li class="last"><a href="information">Admin information</a></li>
-        </ul>
-    </div>
-    <!-- /#sidebar -->
-
-    <!-- #footer -->
-    <br><br><br><br><br><br>
-
-    <div id="footer">
-        <p>
-            <a href="machines">Machines</a>&nbsp;|&nbsp;
-            <a href="gallery">Gallery</a>&nbsp;|&nbsp;
-            <a href="orders">Orders</a>&nbsp;|&nbsp;
-            <a href="information">Admin information</a>
-        </p>
-
-        <p>© HMC & CNC | 2016 | <a href="#main">Top</a></p>
-    </div>
+    <%@include file="footer.jsp" %>
 
 </div>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#form').submit(function(){
-            var send = true;
-            var inputs = ['email'];
-            $.each(inputs, function (index, value) {
-                var input = $("input[name='"+value+"']");
-                if(!input.val()) {
-                    input.addClass('red');
-                    send = false;
-                } else {
-                    input.removeClass('red');
-                    input.val(input.val().trim());
-                    if(value=='email') {
-                        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                        var label = $("#label-email span");
-                        if(!re.test(input.val())){
-                            input.addClass('red');
-                            label.addClass('hidden');
-                            send = false;
-                        } else {
-                            label.removeClass('hidden');
-                        }
-                    }
-                }
-            });
-            return send;
-        });
-    });
-</script>
+    var currentPage = 1;
+    var itemsPerPage = '${itemsPerPage}';
+    var itemsNum = '${itemsNum}';
 
+    $(document).ready(function () {
+        toggleItems(currentPage);
+        toggleCurrentClassPage(currentPage);
+    });
+
+</script>
 </body>
 </html>

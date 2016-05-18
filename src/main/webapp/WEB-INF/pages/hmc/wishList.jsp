@@ -113,7 +113,7 @@
 	                    </div>
 						
 		                <div class="col-xs-12 col-sm-2">
-		                	<div class="price">
+		                	<div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
 			                	<span class="amount">$<span id="price${machine.productId}">${machine.price}</span>.00</span>
 			                </div>
 		                </div>

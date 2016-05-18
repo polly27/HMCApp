@@ -55,22 +55,8 @@
 </head>
 <body>
 <div id="main">
-<!-- #header -->
-<div id="header">
-    <!-- #logo -->
-    <div id="logo">
-        <a href="#" title="Go to Homepage"><span>Great Admin</span></a>
-    </div>
-    <!-- /#logo -->
-    <!-- #user -->
-    <div id="user">
-        <h2>Forest Gump <span>(admin)</span></h2>
-        <a href="#">Logout</a>
-    </div>
-    <!-- /#user -->
-</div>
-<!-- /header -->
-<!-- #content -->
+    <%@include file="header.jsp" %>
+    <!-- #content -->
 <div id="content">
 
     <!-- breadcrumbs -->
@@ -82,7 +68,7 @@
             <li class="home">&nbsp;|&nbsp;</li>
             <li class="home"><a href="orders">Orders</a></li>
             <li class="home">&nbsp;|&nbsp;</li>
-            <li class="home"><a href="information">Admin information</a></li>
+            <li class="home"><a href="users">Users</a></li>
         </ul>
     </div>
     <!-- /breadcrumbs -->
@@ -142,31 +128,7 @@
 
 </div>
 <!-- /#content -->
-<!-- #sidebar -->
-    <div id="sidebar">
-        <ul id="floatMenu" class="mainmenu">
-            <li class="first"><a href="machines">Machines</a></li>
-            <li><a href="gallery">Gallery</a></li>
-            <li><a href="orders">Orders</a></li>
-            <li class="last"><a href="information">Admin information</a></li>
-        </ul>
-    </div>
-    <!-- /#sidebar -->
-<!-- #footer -->
-<br><br><br><br><br><br>
-
-    <div id="footer">
-        <p>
-            <a href="machines">Machines</a>&nbsp;|&nbsp;
-            <a href="gallery">Gallery</a>&nbsp;|&nbsp;
-            <a href="orders">Orders</a>&nbsp;|&nbsp;
-            <a href="information">Admin information</a>
-        </p>
-
-        <p>© HMC & CNC | 2016 | <a href="#main">Top</a></p>
-    </div>
-    <!-- #footer -->
-
+    <%@include file="footer.jsp" %>
 </div>
 <!-- /#main -->
 

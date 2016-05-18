@@ -11,21 +11,16 @@
         <div class="col-xs-12 col-sm-6 no-margin">
             <ul class="right">
                 <c:if test="${pageContext.request.userPrincipal.name != null}">
-
-                    <li><a>Welcome, ${pageContext.request.userPrincipal.name}</a></li>
-
-                    <c:url value="/j_spring_security_logout" var="logoutUrl" />
+                    <c:url value="/hmc/j_spring_security_logout" var="logoutUrl" />
                     <form:form action="${logoutUrl}" method="post" id="logoutForm">
-                        <input type="hidden"
-                               name="${_csrf.parameterName}"
-                               value="${_csrf.token}" />
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form:form>
-                    <li><a href="$('#logoutForm').submit()">Logout</a></li>
-
+                    <li><a>Welcome, ${pageContext.request.userPrincipal.name}</a></li>
+                    <li><a href="#" onclick="$('#logoutForm').submit()">Logout</a></li>
                 </c:if>
                 <c:if test="${pageContext.request.userPrincipal.name == null}">
-                    <li><a href="/authentication">Register</a></li>
-                    <li><a href="/authentication">Login</a></li>
+                    <li><a href="authentication">Register</a></li>
+                    <li><a href="authentication">Login</a></li>
                 </c:if>
             </ul>
         </div>
@@ -88,8 +83,8 @@
                             </div>
 
                             <div class="total-price-basket">
-                                <span class="lbl">your cart:</span>
-                                <span class="total-price">
+                                <span class="lbl">your cart</span>
+                                <span class="total-price" <c:if test='${pageContext.request.userPrincipal.name == null}'>style="display: none"</c:if>>
                                     <span class="sign">$</span><span class="value cart-total">0</span>.00
                                 </span>
                             </div>
@@ -106,7 +101,7 @@
                                         </div>
                                         <div class="col-xs-8 col-sm-8 no-margin">
                                             <div class="title"></div>
-                                            <div class="price"></div>
+                                            <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
                                         </div>
                                     </div>
                                     <a class="close-btn" href="../"></a>
@@ -122,7 +117,7 @@
                                         </div>
                                         <div class="col-xs-8 col-sm-8 no-margin">
                                             <div class="title"></div>
-                                            <div class="price"></div>
+                                            <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
                                         </div>
                                     </div>
                                     <a class="close-btn" href="../"></a>
@@ -138,7 +133,7 @@
                                         </div>
                                         <div class="col-xs-8 col-sm-8 no-margin">
                                             <div class="title"></div>
-                                            <div class="price"></div>
+                                            <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
                                         </div>
                                     </div>
                                     <a class="close-btn" href="../"></a>

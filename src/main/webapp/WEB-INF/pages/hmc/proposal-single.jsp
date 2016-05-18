@@ -96,6 +96,7 @@
                     </div>
                 </div>
                 <br>
+                <input type="hidden" name="showPrice" value="<c:if test='${pageContext.request.userPrincipal.name == null}'>false</c:if><c:if test='${pageContext.request.userPrincipal.name != null}'>true</c:if>"/>
                 <button class="le-button" type="submit">Get the proposal</button>
             </form:form>
 
@@ -174,7 +175,7 @@
                         <td colspan="3" width="25%">Machine launching, h</td>
                         <td colspan="3" width="25%">${machine.machineLaunching}</td>
                     </tr>
-                    <tr>
+                    <tr <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                         <td colspan="6" width="50%"></td>
                         <td colspan="3" width="25%">Price</td>
                         <td colspan="3" width="25%">$${machine.price}.00</td>

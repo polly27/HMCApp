@@ -26,14 +26,14 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     private MachineDAO machineDAO;
 
     @Transactional
-    public ResponseEntity<byte[]> getPDFOffer(String path, String products, String company, String director) throws Exception {
+    public ResponseEntity<byte[]> getPDFOffer(String path, String products, String company, String director, boolean showPrice) throws Exception {
         String[] productsArr = products.split(";");
         Machine[] machines = new Machine[productsArr.length];
         for (int i = 0; i < machines.length; i++) {
             machines[i] = machineDAO.getMachine(productsArr[i].split(",")[0]);
         }
 
-        String pathPdf = GeneratePdfUtil.createPDF(path, products, machines, company, director);
+        String pathPdf = GeneratePdfUtil.createPDF(path, products, machines, company, director, showPrice);
 
         File file = new File(pathPdf);
         byte[] contents = new byte[(int) file.length()];
@@ -48,10 +48,10 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     }
 
     @Transactional
-    public ResponseEntity<byte[]> getPDFOfferSingle(String path, String productId, String company, String director) throws Exception {
+    public ResponseEntity<byte[]> getPDFOfferSingle(String path, String productId, String company, String director, boolean showPrice) throws Exception {
         Machine machine = machineDAO.getMachine(productId);
 
-        String pathPdf = GeneratePdfUtil.createPDFSingle(path, machine, company, director);
+        String pathPdf = GeneratePdfUtil.createPDFSingle(path, machine, company, director, showPrice);
 
         File file = new File(pathPdf);
         byte[] contents = new byte[(int) file.length()];

@@ -21,6 +21,11 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Transactional
+    public List<String[]> listMachineForSiteMap(){
+        return machineDAO.listMachineForSiteMap();
+    }
+
+    @Transactional
     public Machine getMachine(String productId) {
         return machineDAO.getMachine(productId);
     }
@@ -62,20 +67,7 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Transactional
-    public void editMachine(String productId, String machineTypeEn, String model, String brand, String producingCountryEn,
-                            String systemCNC, String fullSystemCNC, String productionYear, String machineLocationEn,
-                            String machineConditionEn, String axisCount, String xMotion, String yMotion, String zMotion,
-                            String xTableSize,String yTableSize, String tableLoad, String spindleTaper, String spindleRotationFreq,
-                            String spindlePower, String toolCount, String maxToolDiameter, String maxToolLength,
-                            String maxToolWeight, String toolReplacementTime, String chipReplacementTime,
-                            String positionRepositionPrecision, String spindleRuntime, String machineLaunching, String price,
-                            String isSold, String descriptionEn, String photo1, String photo2, String photo3, String photo4,
-                            String photo5, String video1, String video2, String video3) {
-        machineDAO.editMachine(productId, machineTypeEn, model, brand, producingCountryEn, systemCNC, fullSystemCNC,
-                productionYear, machineLocationEn, machineConditionEn, axisCount, xMotion, yMotion, zMotion, xTableSize,
-                yTableSize, tableLoad, spindleTaper, spindleRotationFreq, spindlePower, toolCount, maxToolDiameter,
-                maxToolLength, maxToolWeight, toolReplacementTime, chipReplacementTime, positionRepositionPrecision,
-                spindleRuntime, machineLaunching, price, isSold, descriptionEn, photo1, photo2, photo3, photo4, photo5,
-                video1, video2, video3);
+    public void editMachine(Machine machine) {
+        machineDAO.editMachine(machine);
     }
 }

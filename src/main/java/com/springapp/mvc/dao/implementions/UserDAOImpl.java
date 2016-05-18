@@ -34,4 +34,21 @@ public class UserDAOImpl implements UserDAO {
         sessionFactory.getCurrentSession().save(user);
         return user;
     }
+
+    @SuppressWarnings("unchecked")
+    public List<User> listUsers() {
+        return sessionFactory.getCurrentSession().createQuery("from User").list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public void setUserRole(String num, String role){
+        sessionFactory.getCurrentSession().createQuery("update User set role=? where num=?")
+                .setParameter(0,role).setParameter(1,Integer.parseInt(num)).executeUpdate();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<String> listAdminEmails(){
+        return sessionFactory.getCurrentSession().createQuery("select email from User where role='ROLE_ADMIN'").list();
+    }
+
 }

@@ -22,7 +22,15 @@
 
             <div id="logo"><span>Great Admin</span></div>
 
-            <form:form method="post" action="machines" id="form-login" class="formBox">
+            <c:if test="${not empty error}">
+                <h2 style="color: #fff">${error}</h2>
+            </c:if>
+            <c:if test="${not empty msg}">
+                <h2 style="color: #fff">${msg}</h2>
+            </c:if>
+
+            <c:url value="/admin/j_spring_security_check" var="loginUrl" />
+            <form:form class="formBox" id="form-login" action="${loginUrl}" method="post">
                 <fieldset>
                     <div class="form-col">
                         <label for="username" class="lab">Username</label>
@@ -35,8 +43,9 @@
                     <div class="form-col form-col-check">
                         <label><input type="checkbox" name="remeber_me" class="checkbox" />Remember me on this computer</label>
                     </div>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     <div class="form-col form-col-right">
-                        <input type="submit" name="" value="Login" class="submit" />
+                        <input type="submit" value="Login" class="submit" />
                     </div>
                 </fieldset>
             </form:form>

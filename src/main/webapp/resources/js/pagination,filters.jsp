@@ -9,7 +9,7 @@
 
             if (sessionStorage.length == 0) {
                 loadSlider('productionYear', yearMin, yearMax, 1, "");
-                loadSlider('price', priceMin, priceMax, 500, "");
+                loadSlider('price', priceMin, priceMax, 100, "");
                 loadSlider('x-motion', xMotionMin, xMotionMax, 100, "");
                 loadSlider('y-motion', yMotionMin, yMotionMax, 100, "");
                 loadSlider('z-motion', zMotionMin, zMotionMax, 100, "");

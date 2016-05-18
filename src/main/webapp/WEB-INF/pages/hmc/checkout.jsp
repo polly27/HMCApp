@@ -154,7 +154,7 @@
                                     <div class="brand">${machine.brand}</div>
                                 </div>
 
-                                <div class="col-xs-12 col-sm-2 no-margin">
+                                <div class="col-xs-12 col-sm-2 no-margin" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                                     <div class="price">$${machine.price}.00</div>
                                 </div>
                             </div>
@@ -163,7 +163,7 @@
                     </section>
                     <!-- /#your-order -->
 
-                    <div id="total-area" class="row no-margin">
+                    <div id="total-area" class="row no-margin" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                         <div class="col-xs-12 col-lg-4 col-lg-offset-8 no-margin-right">
                             <div id="subtotal-holder">
                                 <ul class="tabled-data inverse-bold no-border">

@@ -198,7 +198,7 @@
                     <p>${machine.descriptionEn}</p>
                 </div>
 
-                <div class="prices">
+                <div class="prices" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                     <div class="price-current">$<span id="price${machine.productId}">${machine.price}</span>.00</div>
                 </div>
 

@@ -114,7 +114,7 @@
                         </div>
 
                         <div class="col-xs-12 col-sm-3 no-margin">
-                            <div class="price">
+                            <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                                 $${machine.price}.00
                             </div>
                             <a class="close-btn" href="#" onclick="removeFromCart('${machine.productId}');goToCart()"></a>
@@ -123,13 +123,16 @@
                 </c:forEach>
                 <br><br>
                 <button class="le-button huge" onclick="goToProposal()">get commercial proposal (PDF)</button>
+                <a class="le-button huge" href="#" onclick="goToCheckout()" >checkout</a><br><br>
+                <a class="simple-link block" href="list" >continue shopping</a>
+
             </c:if>
         </div>
         <!-- ========================================= CONTENT : END ========================================= -->
 
         <!-- ========================================= SIDEBAR ========================================= -->
 
-        <div class="col-xs-12 col-md-4 no-margin sidebar ">
+        <div class="col-xs-12 col-md-4 no-margin sidebar" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
             <div class="widget cart-summary">
                 <h1 class="border">shopping cart</h1>
                 <div class="body">
@@ -149,10 +152,6 @@
                             <div class="value pull-right">$<span class="cart-total"></span>.00</div>
                         </li>
                     </ul>
-                    <div class="buttons-holder">
-                        <a class="le-button big" href="#" onclick="goToCheckout()" >checkout</a>
-                        <a class="simple-link block" href="list" >continue shopping</a>
-                    </div>
                 </div>
             </div><!-- /.widget -->
         </div><!-- /.sidebar -->

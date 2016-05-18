@@ -120,7 +120,7 @@
                         </thead>
                         <tbody>
 
-                        <tr class="comparison-item price">
+                        <tr class="comparison-item price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                             <th>Price</th>
                             <c:forEach items="${comparisonList}" var="machine">
                             <td class="comparison-item-cell odd product_39">
@@ -309,7 +309,7 @@
                             </c:forEach>
                         </tr>
 
-                        <tr class="price repeated">
+                        <tr class="price repeated" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                             <th>Price</th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">

@@ -1,6 +1,6 @@
 package com.springapp.mvc.service.implementions;
 
-import com.springapp.mvc.dao.interfaces.AdminDataDAO;
+import com.springapp.mvc.dao.interfaces.UserDAO;
 import com.springapp.mvc.domain.MachineOrder;
 import com.springapp.mvc.service.interfaces.EmailService;
 import com.springapp.mvc.util.EmailUtil;
@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -19,20 +20,23 @@ public class EmailServiceImpl implements EmailService {
     private EmailUtil emailUtil;
 
     @Autowired
-    private AdminDataDAO adminDataDAO;
+    private UserDAO userDAO;
 
     private final String WEBSITE_EMAIL = "contact@hmccnc.com";
 
     @Transactional
     public void sendNewOrderEmailToAdmin(MachineOrder machineOrder) {
-        Map<String, Object> model = new HashMap<String, Object>();
-        model.put("from", WEBSITE_EMAIL);
-        model.put("subject", "HMC. New order: " + machineOrder.getOrderId());
-        model.put("to", adminDataDAO.getAdminData().getEmail());
-        model.put("bccList", new ArrayList<String>());
-        machineOrder.setOrderList(machineOrder.getOrderList().replace("\n", "<br>"));
-        model.put("machineOrder", machineOrder);
-        emailUtil.sendEmail("machine-order-admin.vm", model);
+        List<String> adminEmails = userDAO.listAdminEmails();
+        for(String email : adminEmails) {
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("from", WEBSITE_EMAIL);
+            model.put("subject", "HMC. New order: " + machineOrder.getOrderId());
+            model.put("to", email);
+            model.put("bccList", new ArrayList<String>());
+            machineOrder.setOrderList(machineOrder.getOrderList().replace("\n", "<br>"));
+            model.put("machineOrder", machineOrder);
+            emailUtil.sendEmail("machine-order-admin.vm", model);
+        }
     }
 
     @Transactional

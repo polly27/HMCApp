@@ -99,6 +99,7 @@
                     </div>
                 </div>
                 <br>
+                <input type="hidden" name="showPrice" value="<c:if test='${pageContext.request.userPrincipal.name == null}'>false</c:if><c:if test='${pageContext.request.userPrincipal.name != null}'>true</c:if>"/>
                 <button class="le-button" type="submit">Get the proposal</button>
             </form:form>
 
@@ -110,9 +111,9 @@
                         <td>№</td>
                         <td>Machine</td>
                         <td>Model</td>
-                        <td>Price</td>
+                        <td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>Price</td>
                         <td>Quantity</td>
-                        <td>Total</td>
+                        <td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>Total</td>
                     </tr>
                     <c:set var="total" value="0"/>
                     <c:forEach items="${proposalList}" var="machine" varStatus="loop">
@@ -120,12 +121,12 @@
                             <td>${loop.index + 1}</td>
                             <td>${machine.machineTypeEn}</td>
                             <td>${machine.model}</td>
-                            <td>$${machine.price}.00</td>
+                            <td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>$${machine.price}.00</td>
                             <td id="count${machine.productId}"></td>
-                            <td id="total${machine.productId}"></td>
+                            <td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if> id="total${machine.productId}"></td>
                         </tr>
                     </c:forEach>
-                    <tr>
+                    <tr <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                         <td align="right" colspan="5">Order total</td>
                         <td id="order-total"></td>
                     </tr>
@@ -208,7 +209,7 @@
                         <td colspan="3" width="25%">Machine launching, h</td>
                         <td colspan="3" width="25%">${machine.machineLaunching}</td>
                     </tr>
-                    <tr>
+                    <tr <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                         <td colspan="6" width="50%"></td>
                         <td colspan="3" width="25%">Price</td>
                         <td colspan="3" width="25%">$${machine.price}.00</td>
@@ -282,7 +283,7 @@
             var arrItem = arr[i].split(',');
             products[i] = arrItem[0] + ',' + arrItem[2];
         }
-        form.attr("action","proposal/getPdf?products=" + products.join(';'));
+        form.attr("action","proposal?products=" + products.join(';'));
     }
 
 </script>

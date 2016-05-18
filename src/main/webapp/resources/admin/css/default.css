@@ -350,3 +350,4 @@ a:hover.ico   { background-position: 0 0; }
 .table-machine { font-size: 1em;}
 .red { border: 1px solid crimson; background-color: floralwhite; }
 .black-button { color: #fff; font-weight: normal; width: 99px; height: 26px; cursor: pointer; border: none; background: url(../images/gray/bg-button.gif) }
+.table tbody>tr>td {vertical-align: middle}

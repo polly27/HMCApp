@@ -11,7 +11,6 @@
         <mapping class="com.springapp.mvc.domain.BrandFilter"/>
         <mapping class="com.springapp.mvc.domain.SlidersFilter"/>
         <mapping class="com.springapp.mvc.domain.SystemCNCFilter"/>
-        <mapping class="com.springapp.mvc.domain.AdminData"/>
         <mapping class="com.springapp.mvc.domain.User"/>
     </session-factory>
 </hibernate-configuration>

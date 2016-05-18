@@ -141,7 +141,50 @@ public class GeneratePdfUtil {
         return orderTable;
     }
 
-    private static PdfPTable getItemTable(String path, Machine machine) throws DocumentException, IOException {
+    private static PdfPTable getOrderTableWithoutPrices(String products, Machine[] machines) throws DocumentException {
+        PdfPTable orderTable = new PdfPTable(4);
+        orderTable.setWidthPercentage(100);
+        orderTable.setSpacingBefore(20f);
+        orderTable.setSpacingAfter(10f);
+        orderTable.setWidths(new float[]{0.8f, 8f, 8f, 2.5f});
+
+        Font fontForHead = new Font(Font.FontFamily.TIMES_ROMAN,13,Font.BOLD);
+        Font fontForBody = new Font(Font.FontFamily.TIMES_ROMAN,12);
+
+        PdfPCell[] orderCells = new PdfPCell[4];
+        orderCells[0] = new PdfPCell(new Paragraph());
+        orderCells[1] = new PdfPCell(new Paragraph("Machine",fontForHead));
+        orderCells[2] = new PdfPCell(new Paragraph("Model",fontForHead));
+        orderCells[3] = new PdfPCell(new Paragraph("Quantity",fontForHead));
+        for(PdfPCell cell : orderCells) {
+            cell.setBackgroundColor(new BaseColor(238,238,238));
+            cell.setBorderColor(new BaseColor(22, 22, 22));
+            cell.setBorderWidth(1);
+            orderTable.addCell(cell);
+        }
+
+        String[] productsArr = products.split(";");
+        for (int i = 0; i < machines.length; i++) {
+            orderCells[0] = new PdfPCell(new Paragraph(String.valueOf(i + 1),fontForBody));
+            orderCells[0].setHorizontalAlignment(Element.ALIGN_CENTER);
+            orderCells[1] = new PdfPCell(new Paragraph(machines[i].getMachineTypeEn(),fontForBody));
+            orderCells[2] = new PdfPCell(new Paragraph(machines[i].getModel(),fontForBody));
+            String num = productsArr[i].split(",")[1];
+            orderCells[3] = new PdfPCell(new Paragraph(num,fontForBody));
+            orderCells[3].setHorizontalAlignment(Element.ALIGN_CENTER);
+            for(PdfPCell cell : orderCells) {
+                cell.setBackgroundColor(new BaseColor(238,238,238));
+                cell.setBorderColor(new BaseColor(22,22,22));
+                cell.setBorderWidth(1);
+                orderTable.addCell(cell);
+            }
+        }
+
+        return orderTable;
+    }
+
+
+    private static PdfPTable getItemTable(String path, Machine machine, boolean showPrice) throws DocumentException, IOException {
         PdfPTable itemTable = new PdfPTable(4);
         itemTable.setWidthPercentage(100);
         itemTable.setSpacingBefore(20f);
@@ -274,14 +317,16 @@ public class GeneratePdfUtil {
             itemTable.addCell(itemCells[i]);
         }
 
-        itemCells[1] = new PdfPCell(new Paragraph(""));
-        itemCells[1].setColspan(2);
-        itemCells[2] = new PdfPCell(new Paragraph("Price", font));
-        itemCells[3] = new PdfPCell(new Paragraph("$" + machine.getPrice() + ".00", font));
-        for (int i = 1; i < 4; i++) {
-            itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
-            itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
-            itemTable.addCell(itemCells[i]);
+        if(showPrice) {
+            itemCells[1] = new PdfPCell(new Paragraph(""));
+            itemCells[1].setColspan(2);
+            itemCells[2] = new PdfPCell(new Paragraph("Price", font));
+            itemCells[3] = new PdfPCell(new Paragraph("$" + machine.getPrice() + ".00", font));
+            for (int i = 1; i < 4; i++) {
+                itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
+                itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
+                itemTable.addCell(itemCells[i]);
+            }
         }
 
         return itemTable;
@@ -308,7 +353,7 @@ public class GeneratePdfUtil {
         return paragraph;
     }
 
-    public static String createPDF(String path, String products, Machine[] machines, String company, String director) throws Exception {
+    public static String createPDF(String path, String products, Machine[] machines, String company, String director, boolean showPrice) throws Exception {
         Document document = new Document(PageSize.A4,50,50,50,50);
         String pathPdf = path + "/offer.pdf";
         PdfWriter.getInstance(document, new FileOutputStream(pathPdf));
@@ -316,9 +361,13 @@ public class GeneratePdfUtil {
 
         document.add(getHeaderTable(path));
         setForWhoData(document,company,director);
-        document.add(getOrderTable(products,machines));
+        if(!showPrice){
+            document.add(getOrderTableWithoutPrices(products, machines));
+        } else {
+            document.add(getOrderTable(products, machines));
+        }
         for(Machine machine : machines) {
-            document.add(getItemTable(path, machine));
+            document.add(getItemTable(path, machine, showPrice));
         }
         document.add(getFooterParagraph());
 
@@ -326,7 +375,7 @@ public class GeneratePdfUtil {
         return pathPdf;
     }
 
-    public static String createPDFSingle(String path, Machine machine, String company, String director) throws Exception {
+    public static String createPDFSingle(String path, Machine machine, String company, String director, boolean showPrice) throws Exception {
         Document document = new Document(PageSize.A4,50,50,50,50);
         String pathPdf = path + "/offer-single.pdf";
         PdfWriter.getInstance(document, new FileOutputStream(pathPdf));
@@ -334,7 +383,7 @@ public class GeneratePdfUtil {
 
         document.add(getHeaderTable(path));
         setForWhoData(document,company,director);
-        document.add(getItemTable(path, machine));
+        document.add(getItemTable(path, machine, showPrice));
         document.add(getFooterParagraph());
 
         document.close();

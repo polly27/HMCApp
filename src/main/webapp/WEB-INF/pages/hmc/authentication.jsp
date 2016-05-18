@@ -37,7 +37,7 @@
 <body>
 
 <div class="wrapper">
-<%@include file="hmc/header.jsp" %>
+<%@include file="header.jsp" %>
 <div id="top-mega-nav">
     <div class="container">
         <nav>
@@ -83,7 +83,7 @@
 				<section class="section sign-in inner-right-xs">
 					<h2 class="bordered">Sign In</h2>
 
-                    <c:url value="/j_spring_security_check" var="loginUrl" />
+                    <c:url value="/hmc/j_spring_security_check" var="loginUrl" />
                     <form:form class="login-form cf-style-1" action="${loginUrl}" method="post">
 						<div class="field-row">
                             <label>Username or email</label>
@@ -107,8 +107,7 @@
                         	</span>
                         </div>
 
-                        <input type="hidden" name="${_csrf.parameterName}"
-                               value="${_csrf.token}" />
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
                         <div class="buttons-holder">
                             <button type="submit" class="le-button huge">Sign In</button>
@@ -138,11 +137,6 @@
                             <input type="text" class="le-input" name="email" required>
                         </div><!-- /.field-row -->
 
-                        <div class="field-row">
-                            <label>Role</label>
-                            <input type="text" class="le-input" name="role" required>
-                        </div><!-- /.field-row -->
-
                         <div class="buttons-holder">
                             <button type="submit" class="le-button huge">Create account</button>
                         </div><!-- /.buttons-holder -->
@@ -164,7 +158,7 @@
 	</div><!-- /.container -->
 </main><!-- /.authentication -->
 <!-- ========================================= MAIN : END ========================================= -->		<!-- ============================================================= FOOTER ============================================================= -->
-    <%@include file="hmc/footer.jsp" %>
+    <%@include file="footer.jsp" %>
     <!-- ============================================================= FOOTER : END ============================================================= -->
 </div>
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
