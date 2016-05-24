@@ -26,7 +26,7 @@ public class MachineOrderDAOImpl implements MachineOrderDAO {
 
     @SuppressWarnings("unchecked")
     public String getMachineOrderStatus(String orderId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from MachineOrder where orderId='" + orderId + "'");
+        Query query = sessionFactory.getCurrentSession().createQuery("from MachineOrder where orderId=?").setParameter(0,orderId);
         MachineOrder machineOrder = (MachineOrder) query.uniqueResult();
         return machineOrder.getOrderStatus();
     }

@@ -35,7 +35,10 @@ public class AdminController {
     private MachineOrderService machineOrderService;
 
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public String admin() {
+    public String admin(HttpServletRequest request) {
+        if(request.isUserInRole("ROLE_ADMIN")){
+            return "redirect:/admin/machines";
+        }
         return "redirect:/admin/adminEntry";
     }
 

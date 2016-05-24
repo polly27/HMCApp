@@ -16,8 +16,11 @@ public class CommonController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
-        return "redirect:/hmc/";
+        return "redirect:/index";
     }
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public void index() {}
 
     @RequestMapping(value = "/error403", method = RequestMethod.GET)
     public void error403() { }

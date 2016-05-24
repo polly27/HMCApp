@@ -4,7 +4,7 @@
                 <!-- ============================================================= CONTACT INFO ============================================================= -->
 <div class="contact-info">
     <div class="footer-logo">
-        <img alt="vmc_and_hmc" src="/resources/images/vmc_and_hmc.svg" width="233" height="54"/>
+        <img alt="vmc_and_hmc" src="../resources/images/vmc_and_hmc.svg" width="233" height="54"/>
     </div><!-- /.footer-logo -->
     
     <p class="regular-bold"> Vertical and horizontal machine centers.</p>
@@ -16,7 +16,6 @@ Belarus: +375 (29) 255-88-88 <br>
 Russia, Moskov: +7 (903) 506-04-24 <br>
 Russia, Novosibirsk: +7 (903) 930-22-24 <br>
 Ukraine, Kiev: +380 (97) 781-68-44 <br>
-${nombersofenters}<br>
     </p>
     
     <div class="social-icons">
@@ -39,7 +38,7 @@ ${nombersofenters}<br>
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-margin">
                 <div class="copyright">
-                    &copy; <a href="list">VMC & HMC</a> - all rights reserved
+                    &copy; <a onclick="goToList('list')">VMC & HMC</a> - all rights reserved
                 </div><!-- /.copyright -->
             </div>
             <div class="col-xs-12 col-sm-6 no-margin">

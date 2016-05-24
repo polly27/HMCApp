@@ -15,23 +15,23 @@
     <title>HMC. Cart</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/bootstrap.min.css" type="text/css" media="screen"/>
 
     <!-- Customizable CSS -->
-    <link rel="stylesheet" href="/resources/css/main.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resources/css/green.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resources/css/owl.carousel.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resources/css/owl.transitions.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resources/css/animate.min.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/main.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/green.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/owl.carousel.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/owl.transitions.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/animate.min.css" type="text/css" media="screen"/>
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Icons/Glyphs -->
-    <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/font-awesome.min.css" type="text/css" media="screen"/>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/resources/images/favicon.ico" type="text/css" media="screen"/>
+    <link rel="shortcut icon" href="../resources/images/favicon.ico" type="text/css" media="screen"/>
 </head>
 <body>
 
@@ -46,21 +46,20 @@
                             <i class="fa fa-list"></i> Shop by Department
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">First department</a></li>
-                            <li><a href="#">Second department</a></li>
+                            <li><a onclick="goToList('list')">Horizontal machining centers</a></li>
                         </ul>
                     </li>
 
                     <li class="breadcrumb-nav-holder">
                         <ul>
                             <li class="breadcrumb-item gray">
-                                <a href="#">Home</a>
+                                <a href="/">Home</a>
                             </li>
                             <li class="breadcrumb-item gray">
-                                <a href="list">Horizontal Machine Centers</a>
+                                <a onclick="goToList('list')">Horizontal Machining Centers</a>
                             </li>
                             <li class="breadcrumb-item current">
-                                <a href="../">Shopping cart</a>
+                                <a onclick="window.location.reload(true);">Shopping cart</a>
                             </li>
                         </ul>
                     </li><!-- /.breadcrumb-nav-holder -->
@@ -89,8 +88,8 @@
                     <div class="row no-margin cart-item">
                         <div class="col-xs-12 col-sm-2 no-margin">
                             <a href="machine?productId=${machine.productId}" class="thumb-holder">
-                                <img width="150" height="110" alt="${machine.model}" class="attachment-shop_thumbnail wp-post-image" src="/resources/images/blank.gif"
-                                     data-echo="/resources/images/products/${machine.photo1}">
+                                <img width="150" height="110" alt="${machine.model}" class="attachment-shop_thumbnail wp-post-image" src="../resources/images/blank.gif"
+                                     data-echo="../resources/images/products/${machine.photo1}">
                             </a>
                         </div>
 
@@ -123,8 +122,8 @@
                 </c:forEach>
                 <br><br>
                 <button class="le-button huge" onclick="goToProposal()">get commercial proposal (PDF)</button>
-                <a class="le-button huge" href="#" onclick="goToCheckout()" >checkout</a><br><br>
-                <a class="simple-link block" href="list" >continue shopping</a>
+                <a class="le-button huge" onclick="goToCheckout()" >checkout</a><br><br>
+                <a class="simple-link block" onclick="goToList('list')" >continue shopping</a>
 
             </c:if>
         </div>
@@ -165,24 +164,24 @@
 <!-- ============================================================= FOOTER : END ============================================================= -->	</div><!-- /.wrapper -->
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-<script src="/resources/js/jquery-1.10.2.min.js"></script>
-<script src="/resources/js/jquery-migrate-1.2.1.js"></script>
-<script src="/resources/js/bootstrap.min.js"></script>
+<script src="../resources/js/jquery-1.10.2.min.js"></script>
+<script src="../resources/js/jquery-migrate-1.2.1.js"></script>
+<script src="../resources/js/bootstrap.min.js"></script>
 <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-<script src="/resources/js/gmap3.min.js"></script>
-<script src="/resources/js/bootstrap-hover-dropdown.min.js"></script>
-<script src="/resources/js/owl.carousel.min.js"></script>
-<script src="/resources/js/css_browser_selector.min.js"></script>
-<script src="/resources/js/echo.min.js"></script>
-<script src="/resources/js/jquery.easing-1.3.min.js"></script>
-<script src="/resources/js/bootstrap-slider.min.js"></script>
-<script src="/resources/js/jquery.raty.min.js"></script>
-<script src="/resources/js/jquery.prettyPhoto.min.js"></script>
-<script src="/resources/js/jquery.customSelect.min.js"></script>
-<script src="/resources/js/wow.min.js"></script>
-<script src="/resources/js/scripts.js"></script>
+<script src="../resources/js/gmap3.min.js"></script>
+<script src="../resources/js/bootstrap-hover-dropdown.min.js"></script>
+<script src="../resources/js/owl.carousel.min.js"></script>
+<script src="../resources/js/css_browser_selector.min.js"></script>
+<script src="../resources/js/echo.min.js"></script>
+<script src="../resources/js/jquery.easing-1.3.min.js"></script>
+<script src="../resources/js/bootstrap-slider.min.js"></script>
+<script src="../resources/js/jquery.raty.min.js"></script>
+<script src="../resources/js/jquery.prettyPhoto.min.js"></script>
+<script src="../resources/js/jquery.customSelect.min.js"></script>
+<script src="../resources/js/wow.min.js"></script>
+<script src="../resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
-<script src="/resources/js/comparison,wishlist,cart.jsp"></script>
+<script src="../resources/js/comparison,wishlist,cart,common.jsp"></script>
 
 </body>
 </html>

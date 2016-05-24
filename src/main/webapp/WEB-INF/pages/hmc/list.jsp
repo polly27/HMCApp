@@ -15,23 +15,23 @@
     <title>HMC</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/bootstrap.min.css" type="text/css" media="screen"/>
 
     <!-- Customizable CSS -->
-    <link rel="stylesheet" href="/resources/css/main.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resources/css/green.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resources/css/owl.carousel.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resources/css/owl.transitions.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resources/css/animate.min.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/main.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/green.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/owl.carousel.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/owl.transitions.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/animate.min.css" type="text/css" media="screen"/>
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Icons/Glyphs -->
-    <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../resources/css/font-awesome.min.css" type="text/css" media="screen"/>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/resources/images/favicon.ico">
+    <link rel="shortcut icon" href="../resources/images/favicon.ico">
 
 </head>
 <body>
@@ -48,18 +48,17 @@
                         <i class="fa fa-list"></i> Shop by Department
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">First department</a></li>
-                        <li><a href="#">Second department</a></li>
+                        <li><a onclick="goToList('list')">Horizontal machining centers</a></li>
                     </ul>
                 </li>
 
                 <li class="breadcrumb-nav-holder">
                     <ul>
                         <li class="breadcrumb-item gray">
-                            <a href="#">Home</a>
+                            <a href="/">Home</a>
                         </li>
                         <li class="breadcrumb-item current">
-                            <a href="../">Horizontal Machine Centers</a>
+                            <a onclick="window.location.reload(true);">Horizontal Machining Centers</a>
                         </li>
                     </ul>
                 </li>
@@ -74,14 +73,14 @@
 <section id="category-grid">
 <div class="container">
 
+<div id="top"></div>
+
 <!-- ========================================= SIDEBAR ========================================= -->
 <div class="col-xs-12 col-sm-3 no-margin sidebar narrow">
-
     <!-- ========================================= PRODUCT FILTER ========================================= -->
     <div class="widget">
         <h1>Product Filters</h1>
-
-        <form:form id="filterForm" method="post" action="list">
+        <form:form id="filterForm" method="post" action="goToList('list')">
             <div class="body bordered">
 
                 <c:if test="${!empty brandList}">
@@ -196,14 +195,11 @@
                 <hr>
 
                 <div class="filter-button">
-                    <a href="#" id="filterSubmit" onclick="submitFilter()">Filter</a>
+                    <a id="filterSubmit" onclick="submitFilter()">Filter</a>
                 </div>
             </div>
         </form:form>
-
-        <!-- /.body -->
     </div>
-    <!-- /.widget -->
     <!-- ========================================= PRODUCT FILTER : END ========================================= -->
 </div>
 <!-- ========================================= SIDEBAR : END ========================================= -->
@@ -211,115 +207,203 @@
 <!-- ========================================= CONTENT ========================================= -->
 
 <div class="col-xs-12 col-sm-9 no-margin wide sidebar">
-    <section id="gaming">
-        <div class="grid-list-products">
-            <div class="tab-content">
-                <div id="grid-view" class="products-grid fade tab-pane in active">
+<section class="carousel-holder">
 
-                    <c:if test="${!empty machineList}">
-                        <div class="product-grid-holder" id="list">
-                            <div class="row no-margin">
-                                <c:set var="i" value="${1}"/>
-                                <c:forEach items="${machineList}" var="machine">
-                                    <div id="item${i}"
-                                         class="col-xs-12 col-sm-4 no-margin product-item-holder hover hidden">
-                                        <div class="product-item">
-                                            <div class="image">
-                                                <img alt="" src="/resources/images/blank.gif"
-                                                     data-echo="/resources/images/products/${machine.photo1}"/>
-                                                <span id="photo${machine.productId}"
-                                                      class="hidden">${machine.photo1}</span>
-                                            </div>
-                                            <div class="body">
-                                                <div class="label-discount clear"></div>
-                                                <div class="title">
-                                                    <a href="machine?productId=${machine.productId}">
-                                                            ${machine.machineTypeEn}<br><span
-                                                            id="model${machine.productId}">${machine.model}</span>
-                                                    </a>
-                                                </div>
-                                                <div class="brand">
-                                                    <span id="brand${machine.productId}">${machine.brand}</span>, ${machine.productionYear}, ${machine.producingCountryEn}<br>
-                                                    Current location: ${machine.machineLocationEn}<br>
-                                                    X&timesY&timesZ-motion: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}<br>
-                                                    X&timesY table
-                                                    sizes: ${machine.xTableSize}&times${machine.yTableSize}
-                                                </div>
-                                            </div>
-                                            <div class="prices"
-                                                 <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                                <div class="price-current pull-right">$<span
-                                                        id="price${machine.productId}">${machine.price}</span>.00
-                                                </div>
-                                                <br>
-                                            </div>
-                                            <div class="hover-area">
-                                                <div class="add-cart-button">
-                                                    <a class="cart${machine.productId} le-button"
-                                                       onclick="addToCart('${machine.productId}')">add to cart</a>
-                                                </div>
-                                                <div class="wish-compare">
-                                                            <span id="wishList${machine.productId}"
-                                                                  class="btn-add-to-wishlist"
-                                                                  onclick="addToWishList('${machine.productId}')">
-                                                                add to wish list
-                                                            </span>
-                                                    <br>
-                                                            <span id="compare${machine.productId}"
-                                                                  class="btn-add-to-compare" data-toggle="popover"
-                                                                  onclick="addToComparison('${machine.productId}')">
-                                                                add to comparison
-                                                            </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+    <div class="title-nav">
+        <h2>Horizontal machining centers</h2>
+        <div class="nav-holder"></div>
+    </div>
 
-                                    <c:set var="i" value="${i + 1}"/>
-                                </c:forEach>
+    <div class="grid-list-products">
+
+<div class="control-bar">
+    <div id="popularity-sort" class="le-select" >
+        <select data-placeholder="sort by popularity">
+            <option value="1">Without sorting</option>
+            <option value="2">Price high to low</option>
+            <option value="3">Price low to high</option>
+        </select>
+    </div>
+
+    <div id="item-count" class="le-select">
+        <select id="selectPerPage">
+            <c:set var="perPageNums">3;9;18;36;72</c:set>
+            <c:forTokens items="${perPageNums}" delims=";" var="perPage">
+                <option value="${perPage}" <c:if test="${perPage == itemsPerPage}">selected</c:if>>${perPage} per page</option>
+            </c:forTokens>
+        </select>
+    </div>
+
+    <div class="grid-list-buttons">
+        <ul>
+            <li class="grid-list-button-item active">
+                <a data-toggle="tab" href="#grid-view" onclick="sessionStorage.view = 'grid'">
+                    <i class="fa fa-th-large"></i> Grid
+                </a>
+            </li>
+            <li class="grid-list-button-item">
+                <a data-toggle="tab" href="#list-view" onclick="sessionStorage.view = 'list'">
+                    <i class="fa fa-th-list"></i> List
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- /.control-bar -->
+
+<div class="tab-content">
+<div id="grid-view" class="products-grid fade tab-pane in active">
+    <div class="product-grid-holder">
+        <c:if test="${!empty machineList}">
+            <div class="row no-margin">
+                <c:forEach items="${machineList}" var="machine" varStatus="loop">
+                    <div class="item${loop.index + 1} col-xs-12 col-sm-4 no-margin product-item-holder hover hidden">
+                        <div class="product-item">
+                            <div class="image">
+                                <img alt="" src="../resources/images/blank.gif"
+                                     data-echo="../resources/images/products/${machine.photo1}"/>
+                                                <span class="photo${machine.productId} hidden">${machine.photo1}</span>
                             </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.product-grid-holder -->
-
-                        <c:set var="itemsPerPage" value="${itemsPerPage}"/>
-                        <c:set var="itemsNum" value="${itemsNum}"/>
-                        <div class="pagination-holder">
-                            <div class="row">
-
-                                <div class="col-xs-6 text-left">
-                                    <ul class="pagination">
-                                        <c:forEach begin="1" end="${pagesNum}" var="i">
-                                            <li id="page${i}" onclick="showPage(${i});">${i}</li>
-                                        </c:forEach>
-                                    </ul>
+                            <div class="body">
+                                <div class="label-discount clear"></div>
+                                <div class="title">
+                                    <a href="machine?productId=${machine.productId}">
+                                        ${machine.machineTypeEn}<br><span class="model${machine.productId}">${machine.model}</span>
+                                    </a>
                                 </div>
-
-                                <div class="col-xs-6">
-                                    <div class="result-counter">
-                                        Showing <span id="showFromTo"></span>
-                                    </div>
+                                <div class="brand">
+                                    <span class="brand${machine.productId}">${machine.brand}</span>, ${machine.productionYear}, ${machine.producingCountryEn}<br>
+                                    Current location: ${machine.machineLocationEn}<br>
+                                    X&timesY&timesZ-motion: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}<br>
+                                    X&timesY table
+                                    sizes: ${machine.xTableSize}&times${machine.yTableSize}
                                 </div>
-
                             </div>
-                            <!-- /.row -->
+                            <div class="prices"
+                                 <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                                <div class="price-current pull-right">$<span class="price${machine.productId}">${machine.price}</span>.00
+                                </div>
+                                <br>
+                            </div>
+                            <div class="hover-area">
+                                <div class="add-cart-button">
+                                    <a class="cart${machine.productId} le-button"
+                                       onclick="addToCart('${machine.productId}')">add to cart</a>
+                                </div>
+                                <div class="wish-compare">
+                                    <span class="wishList${machine.productId} btn-add-to-wishlist"
+                                          onclick="addToWishList('${machine.productId}')">add to wish list</span>
+                                    <br>
+                                    <span class="compare${machine.productId} btn-add-to-compare" data-toggle="popover"
+                                          onclick="addToComparison('${machine.productId}')">add to comparison</span>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.pagination-holder -->
-
-                    </c:if>
-                    <c:if test="${empty machineList}">
-                        There are no machines with such parameters<br>
-                        Please, change the filter parameters.
-                    </c:if>
-
-                </div>
-                <!-- /.products-grid #grid-view -->
+                    </div>
+                </c:forEach>
             </div>
-            <!-- /.tab-content -->
+        </c:if>
+    </div>
+</div>
+
+<div id="list-view" class="products-grid fade tab-pane">
+    <div class="products-list">
+        <c:if test="${!empty machineList}">
+            <c:forEach items="${machineList}" var="machine" varStatus="loop">
+                <div class="item${loop.index + 1} product-item product-item-holder hidden">
+                    <div class="row">
+                        <div class="no-margin col-xs-12 col-sm-4 image-holder">
+                            <div class="image">
+                                <img alt="${machine.model}" src="../resources/images/blank.gif"
+                                     data-echo="../resources/images/products/${machine.photo1}"/>
+                                <span class="photo${machine.productId} hidden">${machine.photo1}</span>
+                            </div>
+                        </div>
+                        <!-- /.image-holder -->
+                        <div class="no-margin col-xs-12 col-sm-5 body-holder">
+                            <div class="body">
+                                <div class="title">
+                                    <a href="machine?productId=${machine.productId}">
+                                            ${machine.machineTypeEn}<br><span class="model${machine.productId}">${machine.model}</span>
+                                    </a>
+                                </div>
+                                <div class="brand">
+                                    <span class="brand${machine.productId}">${machine.brand}</span>, ${machine.productionYear}, ${machine.producingCountryEn}<br>
+                                </div>
+                                <div class="excerpt">
+                                    <p>
+                                        Condition: ${machine.machineConditionEn}<br>
+                                        Current location: ${machine.machineLocationEn}<br>
+                                        X&timesY&timesZ-motion: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}<br>
+                                        X&timesY table sizes: ${machine.xTableSize}&times${machine.yTableSize}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.body-holder -->
+                        <div class="no-margin col-xs-12 col-sm-3 price-area">
+                            <div class="right-clmn">
+                                <div class="price-current"
+                                     <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                                    $<span class="price${machine.productId}">${machine.price}</span>.00
+                                </div>
+                                <div class="add-cart-button">
+                                    <a class="cart${machine.productId} le-button"
+                                       onclick="addToCart('${machine.productId}')">add to cart</a>
+                                </div>
+                                <div class="wish-compare">
+                                    <span class="wishList${machine.productId} btn-add-to-wishlist"
+                                          onclick="addToWishList('${machine.productId}')">add to wish list</span>
+                                    <br>
+                                    <span class="compare${machine.productId} btn-add-to-compare" data-toggle="popover"
+                                          onclick="addToComparison('${machine.productId}')">add to comparison</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </c:if>
+    </div>
+</div>
+
+<c:if test="${empty machineList}">
+    <h2>
+    There are no machines with such parameters<br>
+    Please, change the filter parameters.
+    </h2>
+</c:if>
+
+<c:set var="itemsPerPage" value="${itemsPerPage}"/>
+<c:set var="itemsNum" value="${itemsNum}"/>
+<div class="pagination-holder">
+    <div class="row">
+
+        <div class="col-xs-6 text-left">
+            <ul class="pagination">
+                <c:forEach begin="1" end="${pagesNum}" var="i">
+                    <li id="page${i}" onclick="showPageAndGoUp(${i});">${i}</li>
+                </c:forEach>
+            </ul>
         </div>
-        <!-- /.grid-list-products -->
-    </section>
-    <!-- /#gaming -->
+
+        <div class="col-xs-6">
+            <div class="result-counter">
+                Showing <span id="showFromTo"></span>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.pagination-holder -->
+
+</div>
+<!-- /.tab-content -->
+</div>
+<!-- /.grid-list-products -->
+</section>
+<!-- /#hmc -->
 </div>
 <!-- /.col -->
 <!-- ========================================= CONTENT : END ========================================= -->
@@ -332,25 +416,25 @@
 <!-- ============================================================= FOOTER : END ============================================================= -->
 </div>
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-<script src="/resources/js/jquery-1.10.2.min.js"></script>
-<script src="/resources/js/jquery-migrate-1.2.1.js"></script>
-<script src="/resources/js/bootstrap.min.js"></script>
+<script src="../resources/js/jquery-1.10.2.min.js"></script>
+<script src="../resources/js/jquery-migrate-1.2.1.js"></script>
+<script src="../resources/js/bootstrap.min.js"></script>
 <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-<script src="/resources/js/gmap3.min.js"></script>
-<script src="/resources/js/bootstrap-hover-dropdown.min.js"></script>
-<script src="/resources/js/owl.carousel.min.js"></script>
-<script src="/resources/js/css_browser_selector.min.js"></script>
-<script src="/resources/js/echo.min.js"></script>
-<script src="/resources/js/jquery.easing-1.3.min.js"></script>
-<script src="/resources/js/bootstrap-slider.min.js"></script>
-<script src="/resources/js/jquery.raty.min.js"></script>
-<script src="/resources/js/jquery.prettyPhoto.min.js"></script>
-<script src="/resources/js/jquery.customSelect.min.js"></script>
-<script src="/resources/js/wow.min.js"></script>
-<script src="/resources/js/scripts.js"></script>
+<script src="../resources/js/gmap3.min.js"></script>
+<script src="../resources/js/bootstrap-hover-dropdown.min.js"></script>
+<script src="../resources/js/owl.carousel.min.js"></script>
+<script src="../resources/js/css_browser_selector.min.js"></script>
+<script src="../resources/js/echo.min.js"></script>
+<script src="../resources/js/jquery.easing-1.3.min.js"></script>
+<script src="../resources/js/bootstrap-slider.min.js"></script>
+<script src="../resources/js/jquery.raty.min.js"></script>
+<script src="../resources/js/jquery.prettyPhoto.min.js"></script>
+<script src="../resources/js/jquery.customSelect.min.js"></script>
+<script src="../resources/js/wow.min.js"></script>
+<script src="../resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
-<script src="/resources/js/pagination,filters.jsp"></script>
-<script src="/resources/js/comparison,wishlist,cart.jsp"></script>
+<script src="../resources/js/filters.jsp"></script>
+<script src="../resources/js/comparison,wishlist,cart,common.jsp"></script>
 <script type="text/javascript">
     // filter global variables
     var yearMin = '${yearMinMax[0]}';
@@ -369,10 +453,31 @@
     var yTableSizeMax = '${yTableSizeMinMax[1]}';
 
     // pagination global variables
-    var itemsPerPage = '${itemsPerPage}';
     var itemsNum = '${itemsNum}';
 
-</script>
+    $(document).ready(function () {
+        if(sessionStorage.view == null || sessionStorage.view == "") {
+            sessionStorage.view = 'grid';
+        } else if (sessionStorage.view == 'list') {
+            $('.grid-list-button-item:nth-child(2) a').tab('show')
+        }
 
+        if(sessionStorage.page == null || sessionStorage.page == "") {
+            sessionStorage.page = '1';
+        } else if (sessionStorage.page != '1') {
+            showPage(parseInt(sessionStorage.page));
+        }
+
+        if(sessionStorage.itemsPerPage == null || sessionStorage.itemsPerPage == "") {
+            sessionStorage.itemsPerPage = '${itemsPerPage}';
+        }
+
+        $('#selectPerPage').change(function(){
+            sessionStorage.itemsPerPage = $(this).val().toString();
+            goToList("list");
+        });
+    });
+</script>
+<script src="../resources/js/pagination.jsp"></script>
 </body>
 </html>

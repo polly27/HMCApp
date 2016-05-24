@@ -63,15 +63,15 @@ public class MachineController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public void productsList(Map<String, Object> map) {
+    public void productsList(@RequestParam(value = "perPage", required = false) String perPage, Map<String, Object> map) {
         List<Machine> machineList = machineService.listMachine();
         map.put("machineList", machineList);
-        putPagesInfo(map, machineList.size());
+        putPagesInfo(map, perPage, machineList.size());
         putFilters(map);
     }
 
-    private void putPagesInfo(Map<String, Object> map, int itemsNum) {
-        int itemsPerPage = 9;
+    private void putPagesInfo(Map<String, Object> map, String perPage, int itemsNum) {
+        int itemsPerPage = (perPage == null) ? 9 : Integer.parseInt(perPage);
         int pagesNum = itemsNum / itemsPerPage;
         if (itemsNum % itemsPerPage != 0) {
             pagesNum++;
@@ -89,7 +89,8 @@ public class MachineController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public void productsListFiltered(@RequestParam(value = "brand", required = false) String brands,
+    public void productsListFiltered(@RequestParam(value = "perPage", required = false) String perPage,
+                                     @RequestParam(value = "brand", required = false) String brands,
                                      @RequestParam(value = "yearRange", required = false) String yearRange,
                                      @RequestParam(value = "priceRange", required = false) String priceRange,
                                      @RequestParam(value = "location", required = false) String locations,
@@ -103,7 +104,7 @@ public class MachineController {
         List<Machine> machineList = machineService.listFiltered(brands, yearRange, priceRange, locations, cncs,
                 xMotionRange, yMotionRange, zMotionRange, xTableRange, yTableRange);
         map.put("machineList", machineList);
-        putPagesInfo(map, machineList.size());
+        putPagesInfo(map, perPage, machineList.size());
         putFilters(map);
     }
 

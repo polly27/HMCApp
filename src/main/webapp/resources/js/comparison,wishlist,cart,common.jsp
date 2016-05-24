@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/javascript; charset=UTF-8" pageEncoding="UTF-8"%>
 
         $(document).ready(function () {
@@ -43,6 +44,14 @@
             return (arr.length != 0) ? arr.join() : "";
         }
 
+        function goToList(href) {
+            if(sessionStorage.itemsPerPage != null && sessionStorage.itemsPerPage != "") {
+                window.location.href = href + "?perPage=" + sessionStorage.itemsPerPage;
+            } else {
+                window.location.href = href;
+            }
+        }
+
         <%-- COMPARISON --%>
 
         function loadStyledCompareItems(){
@@ -58,6 +67,10 @@
 
         function goToComparison() {
             goTo("compare",localStorage.comparedIdStr);
+        }
+
+        function goToHmcComparison() {
+            goTo("hmc/compare",localStorage.comparedIdStr);
         }
 
         function addToComparison(productId) {
@@ -82,7 +95,7 @@
         }
 
         function styleRemoveFromComp(productId) {
-            var thisSpan = $("#compare"+productId);
+            var thisSpan = $(".compare"+productId);
             thisSpan.toggleClass("btn-green");
             thisSpan.text("remove from comparison");
             thisSpan.attr('onClick','removeFromComparison(\''+productId+'\')');
@@ -90,7 +103,7 @@
         }
 
         function styleAddToComp(productId) {
-            var thisSpan = $("#compare"+productId);
+            var thisSpan = $(".compare"+productId);
             thisSpan.toggleClass("btn-green");
             thisSpan.text("add to comparison");
             thisSpan.attr('onClick','addToComparison(\''+productId+'\')');
@@ -104,7 +117,7 @@
                 trigger: 'manual',
                 html: true,
                 content: '<b>You may compare up to 4 items at a time</b><br><br>' +
-                        'Would you like to compare the first 4 items you selected?<br><br>' +
+                        'Would you like to compare the first 4 items you have selected?<br><br>' +
                         '<a href="#" onclick="goToComparison()">Yes, go to compare</a>'
             });
             popoverItem.on('shown.bs.popover', function () {
@@ -132,6 +145,10 @@
             goTo("wishList",localStorage.wishListIdStr);
         }
 
+        function goToHmcWishList() {
+            goTo("hmc/wishList",localStorage.wishListIdStr);
+        }
+
         function addToWishList(productId) {
             var wishListIdArr = [];
             if (localStorage.wishListIdStr != null && localStorage.wishListIdStr != "") {
@@ -155,7 +172,7 @@
         }
 
         function styleRemoveFromWishList(productId) {
-            var thisSpan = $("#wishList"+productId);
+            var thisSpan = $(".wishList"+productId);
             thisSpan.toggleClass("btn-green");
             thisSpan.text("remove from wish list");
             thisSpan.attr('onClick','removeFromWishList(\''+productId+'\')');
@@ -163,7 +180,7 @@
         }
 
         function styleAddToWishList(productId) {
-            var thisSpan = $("#wishList"+productId);
+            var thisSpan = $(".wishList"+productId);
             thisSpan.toggleClass("btn-green");
             thisSpan.text("add to wish list");
             thisSpan.attr('onClick','addToWishList(\''+productId+'\')');
@@ -204,15 +221,20 @@
             goTo("cart",arrOfId);
         }
 
+        function goToHmcCart() {
+            var arrOfId = getArrOfId(localStorage.cartItemStr);
+            goTo("hmc/cart",arrOfId);
+        }
+
         function addToCart(productId) {
             var cartItemArr = [];
             if (localStorage.cartItemStr != null && localStorage.cartItemStr != "") {
                 cartItemArr = localStorage.cartItemStr.split(';');
             }
-            var price = $('#price'+productId).text();
-            var photo = $('#photo'+productId).text();
-            var model = $('#model'+productId).text();
-            var brand = $('#brand'+productId).text();
+            var price = $('.price'+productId).first().text();
+            var photo = $('.photo'+productId).first().text();
+            var model = $('.model'+productId).first().text();
+            var brand = $('.brand'+productId).first().text();
             cartItemArr.push(productId+","+price+",1,"+photo+","+model+","+brand);
             localStorage.cartItemStr = cartItemArr.join(";");
             localStorage.cartTotal = (parseInt(localStorage.cartTotal) + parseInt(price)).toString();
@@ -257,7 +279,7 @@
             thisSpan.toggleClass("in-cart");
             thisSpan.text("in cart");
             thisSpan.attr('onClick','removeFromCart(\''+productId+'\')');
-            var thisCount = $("#count"+productId);
+            var thisCount = $(".count"+productId);
         }
 
         function styleAddToCart(productId) {
@@ -324,7 +346,7 @@
                     if (i < arr.length) {
                         var machine = arr[i].split(',');
                         $("#li" + (i + 1)).removeClass("hidden");
-                        $("#li" + (i + 1) + " img").attr("src", "/resources/images/products/" + machine[3]);
+                        $("#li" + (i + 1) + " img").attr("src", "../resources/images/products/" + machine[3]);
                         $("#li" + (i + 1) + " img").attr("alt", machine[4]);
                         $("#li" + (i + 1) + " .title").html(machine[4] + '<br>' + machine[5]);
                         $("#li" + (i + 1) + " .price").text("$" + machine[1] + ".00");
@@ -352,5 +374,10 @@
         function goToCheckout() {
             var arrOfId = getArrOfId(localStorage.cartItemStr);
             goTo("checkout",arrOfId);
+        }
+
+        function goToHmcCheckout() {
+            var arrOfId = getArrOfId(localStorage.cartItemStr);
+            goTo("hmc/checkout",arrOfId);
         }
 

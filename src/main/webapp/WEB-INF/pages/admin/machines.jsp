@@ -12,48 +12,48 @@
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     <title>Admin. Machine catalog</title>
-    <link href="/resources/admin/css/default.css" rel="stylesheet" type="text/css" media="screen"/>
-    <link href="/resources/admin/css/gray.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="../resources/admin/css/default.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="../resources/admin/css/gray.css" rel="stylesheet" type="text/css" media="screen"/>
     <!-- color skin: blue / red / green / dark -->
-    <link href="/resources/admin/css/datePicker.css" rel="stylesheet" type="text/css" media="screen"/>
-    <link href="/resources/admin/css/wysiwyg.css" rel="stylesheet" type="text/css" media="screen"/>
-    <link href="/resources/admin/css/fancybox-1.3.1.css" rel="stylesheet" type="text/css" media="screen"/>
-    <link href="/resources/admin/css/visualize.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="../resources/admin/css/datePicker.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="../resources/admin/css/wysiwyg.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="../resources/admin/css/fancybox-1.3.1.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="../resources/admin/css/visualize.css" rel="stylesheet" type="text/css" media="screen"/>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
     <!-- Icons/Glyphs -->
-    <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../resources/css/font-awesome.min.css">
 
-    <script type="text/javascript" src="/resources/admin/js/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="/resources/admin/js/jquery.dimensions.min.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/jquery.dimensions.min.js"></script>
 
     <!-- // Tabs // -->
-    <script type="text/javascript" src="/resources/admin/js/ui.core.js"></script>
-    <script type="text/javascript" src="/resources/admin/js/jquery.ui.tabs.min.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/ui.core.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/jquery.ui.tabs.min.js"></script>
 
     <!-- // Table drag and drop rows // -->
-    <script type="text/javascript" src="/resources/admin/js/tablednd.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/tablednd.js"></script>
 
     <!-- // Date Picker // -->
-    <script type="text/javascript" src="/resources/admin/js/date.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/date.js"></script>
     <!--[if IE]><script type="text/javascript" src="public/js/jquery.bgiframe.js"></script><[endif]-->
-    <script type="text/javascript" src="/resources/admin/js/jquery.datePicker.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/jquery.datePicker.js"></script>
 
     <!-- // Wysiwyg // -->
-    <script type="text/javascript" src="/resources/admin/js/jquery.wysiwyg.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/jquery.wysiwyg.js"></script>
 
     <!-- // Graphs // -->
-    <script type="text/javascript" src="/resources/admin/js/excanvas.js"></script>
-    <script type="text/javascript" src="/resources/admin/js/jquery.visualize.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/excanvas.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/jquery.visualize.js"></script>
 
     <!-- // Fancybox // -->
-    <script type="text/javascript" src="/resources/admin/js/jquery.fancybox-1.3.1.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/jquery.fancybox-1.3.1.js"></script>
 
     <!-- // File upload // -->
-    <script type="text/javascript" src="/resources/admin/js/jquery.filestyle.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/jquery.filestyle.js"></script>
 
-    <script type="text/javascript" src="/resources/admin/js/init.js"></script>
+    <script type="text/javascript" src="../resources/admin/js/init.js"></script>
 
 </head>
 <body>
@@ -75,7 +75,7 @@
     </ul>
 </div>
 <!-- /breadcrumbs -->
-
+<div id="top"></div>
 <!-- box -->
 <div class="tabs box">
 <ul class="bookmarks">
@@ -93,7 +93,8 @@
 <c:forEach items="${machineList}" var="machine" varStatus="loop">
     <div class="row-machine hidden" id="item${loop.index + 1}">
         <div class="container-fluid no-margin">
-            <div class="row no-margin">
+            <div class="row no-margin" style="cursor: pointer;"
+                 onclick="$('#form${machine.productId}').toggleClass('hidden')">
                 <div class="col-xs-4 col-sm-4">
                        ${loop.index + 1}. ${machine.model}
                 </div>
@@ -104,8 +105,16 @@
                     ${machine.productId}
                 </div>
                 <div class="col-xs-1 col-sm-1" style=" padding-right:3px">
-                    <i class="fa fa-sort" style="float:right; font-size:20px; cursor: pointer;"
-                       onclick="$('#form${machine.productId}').toggleClass('hidden')"></i>
+                    <i class="fa fa-trash-o" style="float:right; font-size:20px; color:firebrick" onclick="onclickTrash('${machine.productId}')"></i>
+                    <span style="float: right">&nbsp;&nbsp;&nbsp;</span>
+                    <i class="fa fa-sort" style="float:right; font-size:20px;"></i>
+                </div>
+                <div id="remove${machine.productId}" class="col-xs-12 col-sm-12 hidden" style="text-align: center">
+                    <h3 style="color: firebrick">
+                        Do you want remove the machine?&nbsp;&nbsp;&nbsp;
+                        <a href="machines/remove?productId=${machine.productId}" style="color: firebrick; text-decoration: underline">Yes</a>&nbsp;&nbsp;&nbsp;
+                        <span onclick="onclickTrash('${machine.productId}')">No</span>
+                    </h3>
                 </div>
             </div>
         </div>
@@ -275,30 +284,30 @@
             <div class="container-fluid no-margin">
                 <div class="row">
                     <div class="col-xs-2 col-sm-2 col-xs-offset-1">
-                        <img src="/resources/images/products/${machine.photo1}" class="img-responsive"/>
+                        <img src="../resources/images/products/${machine.photo1}" class="img-responsive"/>
                         <span style="font-size:0.85em">${machine.photo1}<br>(main photo)</span>
                     </div>
                     <c:if test="${machine.photo2!=''}">
                         <div class="col-xs-2 col-sm-2">
-                            <img src="/resources/images/products/${machine.photo2}" class="img-responsive"/>
+                            <img src="../resources/images/products/${machine.photo2}" class="img-responsive"/>
                             <span style="font-size:0.85em">${machine.photo2}</span>
                         </div>
                     </c:if>
                     <c:if test="${machine.photo3!=''}">
                         <div class="col-xs-2 col-sm-2">
-                            <img src="/resources/images/products/${machine.photo3}" class="img-responsive"/>
+                            <img src="../resources/images/products/${machine.photo3}" class="img-responsive"/>
                             <span style="font-size:0.85em">${machine.photo3}</span>
                         </div>
                     </c:if>
                     <c:if test="${machine.photo4!=''}">
                         <div class="col-xs-2 col-sm-2">
-                            <img src="/resources/images/products/${machine.photo4}" class="img-responsive"/>
+                            <img src="../resources/images/products/${machine.photo4}" class="img-responsive"/>
                             <span style="font-size:0.85em">${machine.photo4}</span>
                         </div>
                     </c:if>
                     <c:if test="${machine.photo5!=''}">
                         <div class="col-xs-2 col-sm-2">
-                            <img src="/resources/images/products/${machine.photo5}" class="img-responsive"/>
+                            <img src="../resources/images/products/${machine.photo5}" class="img-responsive"/>
                             <span style="font-size:0.85em">${machine.photo5}</span>
                         </div>
                     </c:if>
@@ -357,7 +366,7 @@
             </div>
             - N files<br>
             - .xlsx or .xls format<br>
-            - <a href="/resources/example.xlsx" target="_blank">example</a> (download)
+            - <a href="../resources/example.xlsx" target="_blank">example</a> (download)
             <br><br>
 
             <div class="btn-submit"><!-- Submit form -->
@@ -406,6 +415,10 @@
         toggleCurrentClassPage(currentPage);
     });
 
+    function onclickTrash(productId) {
+        $('#remove'+productId).toggleClass('hidden');
+        window.event.stopPropagation();
+    }
 </script>
 
 </body>
