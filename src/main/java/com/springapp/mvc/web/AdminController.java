@@ -100,12 +100,6 @@ public class AdminController {
         return "redirect:/admin/machines";
     }
 
-    @RequestMapping(value = "/machines/remove", method = RequestMethod.GET)
-    public String removeMachine(@RequestParam("productId") String productId){
-        machineService.removeMachine(productId);
-        return "redirect:/admin/machines";
-    }
-
     @RequestMapping(value = "/machines/renewFilters", method = RequestMethod.POST)
     public String renewFilters(){
         filtersService.renewFilters();

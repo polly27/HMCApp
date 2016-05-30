@@ -6,10 +6,13 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
+    <http auto-config="true" use-expressions="true" pattern="/*">
+        <intercept-url pattern="/*" access="permitAll"/>
+    </http>
+
     <http auto-config="true" use-expressions="true" pattern="/hmc/*">
         <intercept-url pattern="/hmc/*" access="permitAll"/>
         <intercept-url pattern="/hmc/authentication" access="permitAll"/>
-
         <form-login
                 login-page="/hmc/authentication"
                 authentication-failure-url="/hmc/authentication?error=true"
@@ -17,13 +20,10 @@ http://www.springframework.org/schema/security/spring-security-4.0.xsd">
                 default-target-url="/hmc/"
                 username-parameter="username"
                 password-parameter="password"/>
-
         <logout
                 logout-url="/hmc/j_spring_security_logout"
                 logout-success-url="/"/>
-
         <csrf/>
-
     </http>
 
     <http auto-config="true" use-expressions="true" pattern="/admin/*">
@@ -31,9 +31,7 @@ http://www.springframework.org/schema/security/spring-security-4.0.xsd">
         <intercept-url pattern="/admin/" access="permitAll"/>
         <intercept-url pattern="/admin/adminEntry" access="permitAll"/>
         <intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')"/>
-
         <access-denied-handler error-page="/error403"/>
-
         <form-login
                 login-page="/admin/adminEntry"
                 authentication-failure-url="/admin/adminEntry?error=true"
@@ -41,13 +39,10 @@ http://www.springframework.org/schema/security/spring-security-4.0.xsd">
                 default-target-url="/admin/machines"
                 username-parameter="username"
                 password-parameter="password"/>
-
         <logout
                 logout-url="/admin/j_spring_security_logout"
                 logout-success-url="/admin/adminEntry?logout=true"/>
-
         <csrf/>
-
     </http>
 
     <authentication-manager>

@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <title>HMC. Wish list</title>
+    <title>HMC. <spring:message code="wishList.wishList"/></title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="../resources/css/bootstrap.min.css" type="text/css" media="screen"/>
@@ -32,34 +32,38 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../resources/images/favicon.ico">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-75911811-4', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
 </head>
 <body>
 
 <div class="wrapper">
-<%@include file="header.jsp" %>
+<%@include file="insertions/header.jsp" %>
     <div id="top-mega-nav">
         <div class="container">
             <nav>
                 <ul class="inline">
-                    <li class="dropdown le-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-list"></i> Shop by Department
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a onclick="goToList('list')">Horizontal machining centers</a></li>
-                        </ul>
-                    </li>
-
+                    <%@include file="insertions/shopByDepartment.jsp" %>
                     <li class="breadcrumb-nav-holder">
                         <ul>
                             <li class="breadcrumb-item gray">
-                                <a href="/">Home</a>
+                                <a href="/"><spring:message code="common.home"/></a>
                             </li>
                             <li class="breadcrumb-item gray">
-                                <a onclick="goToList('list')">Horizontal machining centers</a>
+                                <a onclick="goToHmc()"><spring:message code="common.hmc"/></a>
                             </li>
                             <li class="breadcrumb-item current">
-                                <a onclick="window.location.reload(true);">Wish list</a>
+                                <a onclick="window.location.reload(true);"><spring:message code="wishList.wishList"/></a>
                             </li>
                         </ul>
                     </li><!-- /.breadcrumb-nav-holder -->
@@ -77,9 +81,9 @@
 			<div class="inner-xs">
 				<div class="page-header">
 					<h2 class="page-title">
-                        My Wish List
+                        <spring:message code="wishList.myWishList"/>
                         <c:if test="${empty wishList}">
-                            <br><br>is empty
+                            <br><br><spring:message code="wishList.isEmpty"/>
                         </c:if>
                     </h2>
 				</div>
@@ -96,33 +100,35 @@
 						</div>
 
 	                	<div class="col-xs-12 col-sm-2">
-	                    	<a href="machine?productId=${machine.productId}">
+	                    	<a href="/hmc${machine.productId}">
 								<img width="150" height="110" alt="${machine.model}" class="attachment-shop_thumbnail wp-post-image" src="../resources/images/blank.gif"
                                      data-echo="../resources/images/products/${machine.photo1}">
-                                <span id="photo${machine.productId}" class="hidden">${machine.photo1}</span>
+                                <span class="photo${machine.productId} hidden">${machine.photo1}</span>
 							</a>
 	                    </div>
 	                	<div class="col-xs-12 col-sm-4">
 	                    	<div class="title">
-                                <a href="machine?productId=${machine.productId}">
-                                    ${machine.machineTypeEn}<br><span id="model${machine.productId}">${machine.model}</span>
+                                <a href="/hmc${machine.productId}">
+                                    ${machine.machineTypeEn}<br><span class="model${machine.productId}">${machine.model}</span>
                                 </a>
 	                    	</div><!-- /.title -->
-                            <span id="brand${machine.productId}">${machine.brand}</span>
+                            <span class="brand${machine.productId}">${machine.brand}</span>
 	                    </div>
 						
 		                <div class="col-xs-12 col-sm-2">
 		                	<div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-			                	<span class="amount">$<span id="price${machine.productId}">${machine.price}</span>.00</span>
+			                	<span class="amount">$<span class="price${machine.productId}">${machine.price}</span></span>
 			                </div>
 		                </div>
 						
 						<div class="col-xs-12 col-sm-3">
 							<div class="text-right">
 								<div class="add-cart-button">
-                                    <a class="cart${machine.productId} le-button add_to_cart_button product_type_simple"
-                                       onclick="addToCart('${machine.productId}')">add to cart</a>
-								</div>
+                                    <a class="cart${machine.productId} le-button"
+                                       onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
+                                    <a class="cart${machine.productId} le-button in-cart hidden"
+                                       onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
+                                </div>
 							</div>
 						</div>
 	              	
@@ -136,7 +142,7 @@
 	</div><!-- .row-->	
 </div>		<!-- ============================================================= FOOTER ============================================================= -->
     <!-- ================================================= FOOTER ========================================== -->
-    <%@include file="footer.jsp" %>
+    <%@include file="insertions/footer.jsp" %>
     <!-- ============================================================= FOOTER : END ============================================================= -->
 </div>
     <!-- /.wrapper -->

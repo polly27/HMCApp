@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <title>HMC. Site map</title>
+    <title>HMC. <spring:message code="siteMap.siteMap"/></title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css" media="screen"/>
@@ -36,24 +36,27 @@
 <body>
 
 <div class="wrapper">
-    <br><br><br><br><br>
+    <%@include file="hmc/insertions/header.jsp" %>
     <div class="main-content" id="main-content">
         <div class="container" id="compare-container">
-            <h1>Site Map</h1>
-            <hr>
-            <a href="hmc/contact">Contact</a><br><br>
+            <br><br><br>
 
-            <h2><a href="hmc/list">Catalog HMC</a></h2>
+            <h1><spring:message code="siteMap.siteMap"/></h1>
+            <hr>
+            <a href="/index"><spring:message code="common.home"/></a><br>
+            <a href="http://vmccnc.com/contact"><spring:message code="common.contact"/></a><br><br>
+
+            <h2><a onclick="goToHmc()"><spring:message code="common.hmc"/></a></h2>
             <c:forEach items="${shortMachineList}" var="machine">
-                <a href="hmc/machine?productId=${machine[0]}">${machine[1]} - ${machine[2]}</a><br>
+                <a href="/hmc${machine[0]}">${machine[1]} - ${machine[2]}</a><br>
             </c:forEach>
 
             <br><br><br>
         </div>
-        <%@include file="hmc/footer.jsp" %>
+    <%@include file="hmc/insertions/footer.jsp" %>
     </div>
     <!-- /.wrapper -->
-
+</div>
     <!-- JavaScripts placed at the end of the document so the pages load faster -->
     <script src="resources/js/jquery-1.10.2.min.js"></script>
     <script src="resources/js/jquery-migrate-1.2.1.js"></script>

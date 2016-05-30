@@ -30,7 +30,12 @@ public class CommonController {
         return "redirect:/admin/";
     }
 
-    @RequestMapping(value = "/site_map", method = RequestMethod.GET)
+    @RequestMapping(value = "/hmc/", method = RequestMethod.GET)
+    public String hmc() {
+        return "redirect:/hmc";
+    }
+
+    @RequestMapping(value = "/siteMap", method = RequestMethod.GET)
     public void siteMap(Map<String, Object> map) {
         map.put("shortMachineList",machineService.listMachineForSiteMap());
     }

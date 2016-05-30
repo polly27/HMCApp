@@ -62,13 +62,13 @@
     <!-- breadcrumbs -->
     <div class="breadcrumbs">
         <ul>
-            <li class="home"><a href="machines">Machines</a></li>
+            <li class="home"><a href="/admin/machines">Machines</a></li>
             <li class="home">&nbsp;|&nbsp;</li>
-            <li class="home"><a href="gallery" style="font-weight: bold; color: #008B00">Gallery</a></li>
+            <li class="home"><a href="/admin/gallery" style="font-weight: bold; color: #008B00">Gallery</a></li>
             <li class="home">&nbsp;|&nbsp;</li>
-            <li class="home"><a href="orders">Orders</a></li>
+            <li class="home"><a href="/admin/orders">Orders</a></li>
             <li class="home">&nbsp;|&nbsp;</li>
-            <li class="home"><a href="users">Users</a></li>
+            <li class="home"><a href="/admin/users">Users</a></li>
         </ul>
     </div>
     <!-- /breadcrumbs -->
@@ -91,7 +91,7 @@
                                 <a href="../resources/images/products/${image}" class="fancy" rel="group">
                                     <img src="../resources/images/products/${image}" height="150"/>
                                 </a>
-                                <span>${image} <a href="gallery/remove?image=${image}" class="ico ico-delete"></a></span>
+                                <span>${image} <a href="/admin/gallery/remove?image=${image}" class="ico ico-delete"></a></span>
                             </div>
                         </div>
                     </c:forEach>

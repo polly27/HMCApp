@@ -2757,7 +2757,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 }
 .products-list .product-item .row .price-area {
   width: 22%;
-  padding: 27px;
+  padding: 19px;
 }
 .products-list .product-item .row .price-area .price-current {
   font-size: 18px;
@@ -4629,8 +4629,11 @@ textarea {
 /*===================================================================================*/
 /*  Footer
 /*===================================================================================*/
+.footer-info {
+    padding-top: 30px;
+}
 #footer {
-  padding: 54px 0 0 0;
+  padding: 44px 0 0 0;
 }
 #footer h2 {
   text-transform: capitalize;
@@ -4720,7 +4723,7 @@ textarea {
   margin: 0 0 0 -5px;
 }
 #footer .link-list-row {
-  margin: 0 0 45px 0;
+  margin: 0 0 15px 0;
 }
 #footer .link-list-row .contact-info {
   text-transform: capitalize;
@@ -4729,7 +4732,7 @@ textarea {
   margin: 0 0 29px 0;
 }
 #footer .link-list-row .contact-info .social-icons {
-  margin: 58px 0 0 0;
+  margin: 30px 0 0 0;
 }
 #footer .link-list-row .contact-info .social-icons h3 {
   line-height: 27px;
@@ -4737,12 +4740,12 @@ textarea {
 #footer .link-list-row .footer-logo {
   display: inline-block;
   vertical-align: top;
-  margin: 7px 0 30px 0;
+  margin: 7px 0 15px 0;
 }
 #footer .link-list-row .link-widget {
   display: inline-block;
   vertical-align: top;
-  width: 215px;
+  width: 200px;
   margin: 0 0 0 15px;
 }
 #footer .link-list-row .link-widget h3 {

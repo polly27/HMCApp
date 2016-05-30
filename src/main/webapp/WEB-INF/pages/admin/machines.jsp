@@ -65,13 +65,13 @@
 <!-- breadcrumbs -->
 <div class="breadcrumbs">
     <ul>
-        <li class="home"><a href="machines" style="font-weight: bold; color: #008B00">Machines</a></li>
+        <li class="home"><a href="/admin/machines" style="font-weight: bold; color: #008B00">Machines</a></li>
         <li class="home">&nbsp;|&nbsp;</li>
-        <li class="home"><a href="gallery">Gallery</a></li>
+        <li class="home"><a href="/admin/gallery">Gallery</a></li>
         <li class="home">&nbsp;|&nbsp;</li>
-        <li class="home"><a href="orders">Orders</a></li>
+        <li class="home"><a href="/admin/orders">Orders</a></li>
         <li class="home">&nbsp;|&nbsp;</li>
-        <li class="home"><a href="users">Users</a></li>
+        <li class="home"><a href="/admin/users">Users</a></li>
     </ul>
 </div>
 <!-- /breadcrumbs -->
@@ -105,16 +105,7 @@
                     ${machine.productId}
                 </div>
                 <div class="col-xs-1 col-sm-1" style=" padding-right:3px">
-                    <i class="fa fa-trash-o" style="float:right; font-size:20px; color:firebrick" onclick="onclickTrash('${machine.productId}')"></i>
-                    <span style="float: right">&nbsp;&nbsp;&nbsp;</span>
                     <i class="fa fa-sort" style="float:right; font-size:20px;"></i>
-                </div>
-                <div id="remove${machine.productId}" class="col-xs-12 col-sm-12 hidden" style="text-align: center">
-                    <h3 style="color: firebrick">
-                        Do you want remove the machine?&nbsp;&nbsp;&nbsp;
-                        <a href="machines/remove?productId=${machine.productId}" style="color: firebrick; text-decoration: underline">Yes</a>&nbsp;&nbsp;&nbsp;
-                        <span onclick="onclickTrash('${machine.productId}')">No</span>
-                    </h3>
                 </div>
             </div>
         </div>
@@ -414,11 +405,6 @@
         toggleItems(currentPage);
         toggleCurrentClassPage(currentPage);
     });
-
-    function onclickTrash(productId) {
-        $('#remove'+productId).toggleClass('hidden');
-        window.event.stopPropagation();
-    }
 </script>
 
 </body>

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: 
+
+Host: hmccnc.com
+Sitemap: http://hmccnc.com/sitemap.xml

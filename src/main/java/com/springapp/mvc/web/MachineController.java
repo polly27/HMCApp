@@ -6,16 +6,18 @@ import com.springapp.mvc.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("hmc")
+@RequestMapping()
 public class MachineController {
     @Autowired
     private MachineService machineService;
@@ -35,16 +37,10 @@ public class MachineController {
     @Autowired
     private UserService userService;
 
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home() {
-        return "redirect:/hmc/list";
-    }
-
-    @RequestMapping(value = "/authentication", method = RequestMethod.GET)
+    @RequestMapping(value = "/hmc/authentication", method = RequestMethod.GET)
     public void authentication(@RequestParam(value = "error", required = false) String error,
-                               @RequestParam(value = "logout", required = false) String logout,
-                               Map<String,Object> map) {
+                                 @RequestParam(value = "logout", required = false) String logout,
+                                 Map<String,Object> map) {
         if (error != null) {
             map.put("error", "Invalid username or password!");
         }
@@ -53,7 +49,7 @@ public class MachineController {
         }
     }
 
-    @RequestMapping(value = "/authentication", method = RequestMethod.POST)
+    @RequestMapping(value = "/hmc/authentication", method = RequestMethod.POST)
     public void createNewAccount(@RequestParam(value = "username") String username,
                                  @RequestParam(value = "password") String password,
                                  @RequestParam(value = "email") String email,
@@ -62,7 +58,7 @@ public class MachineController {
         map.put("msg", "You've been registered successfully.");
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/hmc", method = RequestMethod.GET)
     public void productsList(@RequestParam(value = "perPage", required = false) String perPage, Map<String, Object> map) {
         List<Machine> machineList = machineService.listMachine();
         map.put("machineList", machineList);
@@ -88,7 +84,7 @@ public class MachineController {
         map.put("slidersList", filtersService.listSlidersFilter());
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/hmc", method = RequestMethod.POST)
     public void productsListFiltered(@RequestParam(value = "perPage", required = false) String perPage,
                                      @RequestParam(value = "brand", required = false) String brands,
                                      @RequestParam(value = "yearRange", required = false) String yearRange,
@@ -108,40 +104,41 @@ public class MachineController {
         putFilters(map);
     }
 
-    @RequestMapping(value = "/machine", method = RequestMethod.GET)
-    public void machineItem(@RequestParam("productId") String productId, Map<String, Object> map) {
+    @RequestMapping(value = "/hmc{productId}", method = RequestMethod.GET)
+    public ModelAndView machineItem(@PathVariable("productId") String productId, Map<String, Object> map) {
         map.put("machine", machineService.getMachine(productId));
+        return new ModelAndView("hmc/machine", map);
     }
 
-    @RequestMapping(value = "/compare", method = RequestMethod.GET)
+    @RequestMapping(value = "/hmc/compare", method = RequestMethod.GET)
     public void comparison(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
             map.put("comparisonList", machineService.getMachinesList(itemsId.split(",")));
         }
     }
 
-    @RequestMapping(value = "/wishList", method = RequestMethod.GET)
+    @RequestMapping(value = "/hmc/wishList", method = RequestMethod.GET)
     public void wishList(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
             map.put("wishList", machineService.getMachinesList(itemsId.split(",")));
         }
     }
 
-    @RequestMapping(value = "/cart", method = RequestMethod.GET)
+    @RequestMapping(value = "/hmc/cart", method = RequestMethod.GET)
     public void cart(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
             map.put("cartList", machineService.getMachinesList(itemsId.split(",")));
         }
     }
 
-    @RequestMapping(value = "/proposal", method = RequestMethod.GET)
+    @RequestMapping(value = "/hmc/proposal", method = RequestMethod.GET)
     public void proposal(@RequestParam(required = true) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
             map.put("proposalList", machineService.getMachinesList(itemsId.split(",")));
         }
     }
 
-    @RequestMapping(value = "/proposal", method = RequestMethod.POST)
+    @RequestMapping(value = "/hmc/proposal", method = RequestMethod.POST)
     public ResponseEntity<byte[]> getPdf(@RequestParam("products") String products,
                                          @RequestParam(value = "company", required = false) String company,
                                          @RequestParam(value = "director", required = false) String director,
@@ -151,12 +148,12 @@ public class MachineController {
         return workWithFilesService.getPDFOffer(path, products, company, director, Boolean.getBoolean(showPrice));
     }
 
-    @RequestMapping(value = "/proposal-single", method = RequestMethod.GET)
+    @RequestMapping(value = "/hmc/proposalSingle", method = RequestMethod.GET)
     public void proposalSingle(@RequestParam(required = true) String productId, Map<String, Object> map) {
         map.put("machine", machineService.getMachine(productId));
     }
 
-    @RequestMapping(value = "/proposal-single", method = RequestMethod.POST)
+    @RequestMapping(value = "/hmc/proposalSingle", method = RequestMethod.POST)
     public ResponseEntity<byte[]> getPdfSingle(@RequestParam("productId") String productId,
                                                @RequestParam(value = "company", required = false) String company,
                                                @RequestParam(value = "director", required = false) String director,
@@ -166,14 +163,14 @@ public class MachineController {
         return workWithFilesService.getPDFOfferSingle(path, productId, company, director, Boolean.getBoolean(showPrice));
     }
 
-    @RequestMapping(value = "/checkout", method = RequestMethod.GET)
+    @RequestMapping(value = "/hmc/checkout", method = RequestMethod.GET)
     public void checkout(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
             map.put("checkoutList", machineService.getMachinesList(itemsId.split(",")));
         }
     }
 
-    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+    @RequestMapping(value = "/hmc/checkout", method = RequestMethod.POST)
     public String checkoutOrder(@RequestParam("firstName") String firstName,
                               @RequestParam("lastName") String lastName,
                               @RequestParam(value = "company", required = false) String company,
@@ -191,21 +188,21 @@ public class MachineController {
         emailService.sendNewOrderEmailToAdmin(machineOrder);
         map.put("message", "The order is successfully made. Check your e-mail for information about the ordering.");
         map.put("orderId",machineOrder.getOrderId());
-        return "redirect:/hmc/track-your-order";
+        map.put("emptyTheCart", "yes");
+        return "redirect:/hmc/trackYourOrder";
     }
 
-    @RequestMapping(value = "/contact", method = RequestMethod.GET)
-    public void contact() { }
-
-    @RequestMapping(value = "/track-your-order", method = RequestMethod.GET)
+    @RequestMapping(value = "/hmc/trackYourOrder", method = RequestMethod.GET)
     public void trackYourOrder(@RequestParam(value = "message", required = false) String message,
                                @RequestParam(value = "orderId", required = false) String orderId,
+                               @RequestParam(value = "emptyTheCart", required = false) String emptyTheCart,
                                Map<String,Object> map) {
         map.put("message", message);
         map.put("orderId", orderId);
+        map.put("emptyTheCart", emptyTheCart);
     }
 
-    @RequestMapping(value = "/track-your-order", method = RequestMethod.POST)
+    @RequestMapping(value = "/hmc/trackYourOrder", method = RequestMethod.POST)
     public void trackOrder(@RequestParam("orderId") String orderId, Map<String,Object> map) {
         String status = machineOrderService.getMachineOrderStatus(orderId);
         map.put("message", "Status: " + status);

@@ -33,24 +33,24 @@ public class ReadExcelUtil {
         DataFormatter df = new DataFormatter();
 
         Machine machine = new Machine();
-        machine.setProductId(df.formatCellValue(rowIterator.next().getCell(1)));
+        machine.setProductId(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         Row tmp = rowIterator.next();
-        machine.setMachineTypeEn(df.formatCellValue(tmp.getCell(1)));
-        machine.setMachineTypeRu(df.formatCellValue(tmp.getCell(2)));
+        machine.setMachineTypeEn(df.formatCellValue(tmp.getCell(1)).trim());
+        machine.setMachineTypeRu(df.formatCellValue(tmp.getCell(2)).trim());
         machine.setModel(df.formatCellValue(rowIterator.next().getCell(1)));
-        machine.setBrand(df.formatCellValue(rowIterator.next().getCell(1)));
+        machine.setBrand(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         tmp = rowIterator.next();
         machine.setProducingCountryEn(df.formatCellValue(tmp.getCell(1)));
         machine.setProducingCountryRu(df.formatCellValue(tmp.getCell(2)));
-        machine.setSystemCNC(df.formatCellValue(rowIterator.next().getCell(1)));
-        machine.setFullSystemCNC(df.formatCellValue(rowIterator.next().getCell(1)));
+        machine.setSystemCNC(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        machine.setFullSystemCNC(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         machine.setProductionYear((int) rowIterator.next().getCell(1).getNumericCellValue());
         tmp = rowIterator.next();
         machine.setMachineConditionEn(df.formatCellValue(tmp.getCell(1)));
         machine.setMachineConditionRu(df.formatCellValue(tmp.getCell(2)));
         tmp = rowIterator.next();
-        machine.setMachineLocationEn(df.formatCellValue(tmp.getCell(1)));
-        machine.setMachineLocationRu(df.formatCellValue(tmp.getCell(2)));
+        machine.setMachineLocationEn(df.formatCellValue(tmp.getCell(1)).trim());
+        machine.setMachineLocationRu(df.formatCellValue(tmp.getCell(2)).trim());
         machine.setAxisCount(df.formatCellValue(rowIterator.next().getCell(1)));
         machine.setxMotion((int)rowIterator.next().getCell(1).getNumericCellValue());
         machine.setyMotion((int)rowIterator.next().getCell(1).getNumericCellValue());
@@ -82,7 +82,10 @@ public class ReadExcelUtil {
         machine.setVideo1(df.formatCellValue(rowIterator.next().getCell(1)));
         machine.setVideo2(df.formatCellValue(rowIterator.next().getCell(1)));
         machine.setVideo3(df.formatCellValue(rowIterator.next().getCell(1)));
-        machine.setIsSold(df.formatCellValue(rowIterator.next().getCell(1)));
+        machine.setIsSold(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        if(machine.getIsSold().equals("")) {
+            machine.setIsSold("No");
+        }
         fis.close();
         return machine;
     }

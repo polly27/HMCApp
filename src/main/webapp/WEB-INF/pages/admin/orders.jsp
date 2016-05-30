@@ -66,13 +66,13 @@
         <!-- breadcrumbs -->
         <div class="breadcrumbs">
             <ul>
-                <li class="home"><a href="machines">Machines</a></li>
+                <li class="home"><a href="/admin/machines">Machines</a></li>
                 <li class="home">&nbsp;|&nbsp;</li>
-                <li class="home"><a href="gallery">Gallery</a></li>
+                <li class="home"><a href="/admin/gallery">Gallery</a></li>
                 <li class="home">&nbsp;|&nbsp;</li>
-                <li class="home"><a href="orders" style="font-weight: bold; color: #008B00">Orders</a></li>
+                <li class="home"><a href="/admin/orders" style="font-weight: bold; color: #008B00">Orders</a></li>
                 <li class="home">&nbsp;|&nbsp;</li>
-                <li class="home"><a href="users">Users</a></li>
+                <li class="home"><a href="/admin/users">Users</a></li>
             </ul>
         </div>
         <!-- /breadcrumbs -->

@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <title>HMC. Checkout</title>
+    <title>HMC. <spring:message code="checkout.checkoutProcess"/></title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="../resources/css/bootstrap.min.css" type="text/css" media="screen"/>
@@ -32,39 +32,43 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../resources/images/favicon.ico">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-75911811-4', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
 </head>
 <body>
 
 <div class="wrapper">
 <!-- ============================================================= TOP NAVIGATION ============================================================= -->
 <div class="wrapper">
-    <%@include file="header.jsp" %>
+    <%@include file="insertions/header.jsp" %>
     <div id="top-mega-nav">
         <div class="container">
             <nav>
                 <ul class="inline">
-                    <li class="dropdown le-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-list"></i> Shop by Department
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a onclick="goToList('list')">Horizontal machining centers</a></li>
-                        </ul>
-                    </li>
-
+                    <%@include file="insertions/shopByDepartment.jsp" %>
                     <li class="breadcrumb-nav-holder">
                         <ul>
                             <li class="breadcrumb-item gray">
-                                <a href="/">Home</a>
+                                <a href="/"><spring:message code="common.home"/></a>
                             </li>
                             <li class="breadcrumb-item gray">
-                                <a onclick="goToList('list')">Horizontal Machining Centers</a>
+                                <a onclick="goToHmc()"><spring:message code="common.hmc"/></a>
                             </li>
                             <li class="breadcrumb-item gray">
-                                <a onclick="goToCart()">Shopping cart</a>
+                                <a onclick="goToCart()"><spring:message code="cart.shoppingCart"/></a>
                             </li>
                             <li class="breadcrumb-item current">
-                                <a onclick="window.location.reload(true);">Checkout process</a>
+                                <a onclick="window.location.reload(true);"><spring:message code="checkout.checkoutProcess"/></a>
                             </li>
                         </ul>
                     </li>
@@ -85,15 +89,15 @@
             <c:if test="${!empty checkoutList}">
                 <form:form method="post" action="checkout" id="form">
                     <div class="billing-address">
-                        <h2 class="border h1">billing address</h2>
+                        <h2 class="border h1"><spring:message code="checkout.billingAddress"/></h2>
 
                         <div class="row field-row">
                             <div class="col-xs-12 col-sm-6">
-                                <label>name*</label>
+                                <label><spring:message code="checkout.firstName"/>*</label>
                                 <input class="le-input" name="firstName" type="text"/><br>
                             </div>
                             <div class="col-xs-12 col-sm-6">
-                                <label>last name*</label>
+                                <label><spring:message code="checkout.lastName"/>*</label>
                                 <input class="le-input" name="lastName" type="text"/><br>
                             </div>
                         </div>
@@ -101,7 +105,7 @@
 
                         <div class="row field-row">
                             <div class="col-xs-12">
-                                <label>company name</label>
+                                <label><spring:message code="checkout.companyName"/></label>
                                 <input class="le-input" name="company" type="text"/><br>
                             </div>
                         </div>
@@ -109,7 +113,7 @@
 
                         <div class="row field-row">
                             <div class="col-xs-12">
-                                <label>address (country, city, street, house)*</label>
+                                <label><spring:message code="checkout.address"/>*</label>
                                 <input class="le-input" name="address" type="text"/><br>
                             </div>
                         </div>
@@ -117,16 +121,16 @@
 
                         <div class="row field-row">
                             <div class="col-xs-12 col-sm-4">
-                                <label>postcode / zip*</label>
+                                <label><spring:message code="checkout.postcode"/>*</label>
                                 <input class="le-input" name="postcode" type="number"/><br>
                             </div>
                             <div class="col-xs-12 col-sm-4">
-                                <label id="label-email">email*<span style='color:crimson' class="hidden"> (invalid email)</span></label>
+                                <label id="label-email"><spring:message code="checkout.email"/>*<span style='color:crimson' class="hidden"> <spring:message code="checkout.invalidEmail"/></span></label>
                                 <input class="le-input" name="email" type="text"/>
                             </div>
 
                             <div class="col-xs-12 col-sm-4">
-                                <label>phone number*</label>
+                                <label><spring:message code="checkout.phoneNumber"/>*</label>
                                 <input class="le-input" name="phone" type="text"/>
                             </div>
                         </div>
@@ -135,7 +139,7 @@
                     <!-- /.billing-address -->
 
                     <section id="your-order">
-                        <h2 class="border h1">your order</h2>
+                        <h2 class="border h1"><spring:message code="checkout.yourOrder"/></h2>
                         <c:forEach items="${checkoutList}" var="machine">
                             <div class="row no-margin order-item">
                                 <div class="col-xs-12 col-sm-1 no-margin">
@@ -146,7 +150,7 @@
 
                                 <div class="col-xs-12 col-sm-9 ">
                                     <div class="title">
-                                        <a href="machine?productId=${machine.productId}">
+                                        <a href="/hmc${machine.productId}">
                                                 ${machine.machineTypeEn} ${machine.model}
                                         </a>
                                     </div>
@@ -154,7 +158,7 @@
                                 </div>
 
                                 <div class="col-xs-12 col-sm-2 no-margin" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                    <div class="price">$${machine.price}.00</div>
+                                    <div class="price">$${machine.price}</div>
                                 </div>
                             </div>
                             <!-- /.order-item -->
@@ -167,15 +171,15 @@
                             <div id="subtotal-holder">
                                 <ul class="tabled-data inverse-bold no-border">
                                     <li>
-                                        <label>cart subtotal</label>
-                                        <div class="value ">$<span class="cart-total"></span>.00</div>
+                                        <label><spring:message code="cart.cartSubtotal"/></label>
+                                        <div class="value ">$<span class="cart-total"></span></div>
                                     </li>
                                     <li>
-                                        <label>shipping</label>
+                                        <label><spring:message code="cart.shipping"/></label>
                                         <div class="value">
                                             <div class="radio-group">
-                                                <input class="le-radio" type="radio" name="group1" value="free" checked> <div class="radio-label bold">free shipping</div><br>
-                                                <input class="le-radio" type="radio" name="group1" value="local" >  <div class="radio-label">local delivery<br><span class="bold">$15</span></div>
+                                                <input class="le-radio" type="radio" name="group1" value="free" checked> <div class="radio-label bold"><spring:message code="cart.freeShipping"/></div><br>
+                                                <input class="le-radio" type="radio" name="group1" value="local" >  <div class="radio-label"><spring:message code="cart.localDelivery"/><br><span class="bold">$150</span></div>
                                             </div>
                                         </div>
                                     </li>
@@ -183,8 +187,8 @@
 
                                 <ul id="total-field" class="tabled-data inverse-bold ">
                                     <li>
-                                        <label>order total</label>
-                                        <div class="value">$<span class="cart-total"></span>.00</div>
+                                        <label><spring:message code="cart.orderTotal"/></label>
+                                        <div class="value">$<span class="cart-total"></span></div>
                                     </li>
                                 </ul><!-- /.tabled-data -->
 
@@ -193,30 +197,24 @@
                     </div><!-- /#total-area -->
 
                     <div id="payment-method-options">
-                        <h2 class="border h1">Payment method</h2>
+                        <h2 class="border h1"><spring:message code="checkout.paymentMethod"/></h2>
 
                         <div class="payment-method-option">
                             <input class="le-radio" type="radio" name="payment" value="direct" checked>
-
-                            <div class="radio-label bold ">Direct Bank Transfer<br>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rutrum tempus elit,
-                                    vestibulum vestibulum erat ornare id.</p>
+                            <div class="radio-label bold"><spring:message code="checkout.directBankTransfer"/>
                             </div>
                         </div>
                         <!-- /.payment-method-option -->
 
                         <div class="payment-method-option">
                             <input class="le-radio" type="radio" name="payment" value="cheque">
-
-                            <div class="radio-label bold ">cheque payment</div>
+                            <div class="radio-label bold "><spring:message code="checkout.chequePayment"/></div>
                         </div>
                         <!-- /.payment-method-option -->
 
                         <div class="payment-method-option">
                             <input class="le-radio" type="radio" name="payment" value="paypal">
-
-                            <div class="radio-label bold ">paypal system</div>
+                            <div class="radio-label bold "><spring:message code="checkout.paypalSystem"/></div>
                         </div>
                         <!-- /.payment-method-option -->
                     </div>
@@ -226,7 +224,7 @@
                     <input type="hidden" name="total">
 
                     <div class="place-order-button">
-                        <button class="le-button huge" type="submit">place order</button>
+                        <button class="le-button huge" type="submit"><spring:message code="checkout.placeOrder"/></button>
                     </div>
                     <!-- /.place-order-button -->
                 </form:form>
@@ -241,7 +239,7 @@
 <!-- ========================================= CONTENT : END ========================================= -->
 <!-- ============================================================= FOOTER ============================================================= -->
 <!-- ================================================= FOOTER ========================================== -->
-<%@include file="footer.jsp" %>
+<%@include file="insertions/footer.jsp" %>
 <!-- ============================================================= FOOTER : END ============================================================= -->
 
 <script src="../resources/js/jquery-1.10.2.min.js"></script>

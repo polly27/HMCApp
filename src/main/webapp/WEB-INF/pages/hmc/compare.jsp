@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <title>HMC. Comparison</title>
+    <title>HMC. <spring:message code="comparison.comparison"/></title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="../resources/css/bootstrap.min.css" type="text/css" media="screen"/>
@@ -32,34 +32,38 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../resources/images/favicon.ico">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-75911811-4', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
 </head>
 <body>
 
 <div class="wrapper">
-    <%@include file="header.jsp" %>
+    <%@include file="insertions/header.jsp" %>
     <div id="top-mega-nav">
         <div class="container">
             <nav>
                 <ul class="inline">
-                    <li class="dropdown le-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-list"></i> Shop by Department
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a onclick="goToList('list')">Horizontal machining centers</a></li>
-                        </ul>
-                    </li>
-
+                    <%@include file="insertions/shopByDepartment.jsp" %>
                     <li class="breadcrumb-nav-holder">
                         <ul>
                             <li class="breadcrumb-item gray">
-                                <a href="/">Home</a>
+                                <a href="/"><spring:message code="common.home"/></a>
                             </li>
                             <li class="breadcrumb-item gray">
-                                <a onclick="goToList('list')">Horizontal machining centers</a>
+                                <a onclick="goToHmc()"><spring:message code="common.hmc"/></a>
                             </li>
                             <li class="breadcrumb-item current">
-                                <a onclick="window.location.reload(true);">Machine comparison</a>
+                                <a onclick="window.location.reload(true);"><spring:message code="comparison.comparison"/></a>
                             </li>
                         </ul>
                     </li><!-- /.breadcrumb-nav-holder -->
@@ -73,9 +77,9 @@
             <div class="inner-xs">
                 <div class="page-header">
                     <h2 class="page-title">
-                        Comparison
+                        <spring:message code="comparison.comparison"/>
                         <c:if test="${empty comparisonList}">
-                            <br><br>Choose items to compare
+                            <br><br><spring:message code="comparison.chooseItemsToCompare"/>
                         </c:if>
                     </h2>
                 </div>
@@ -96,11 +100,13 @@
                                     </span>
                                     <img width="220" height="154" class="attachment-yith-woocompare-image" src="../resources/images/blank.gif"
                                          data-echo="../resources/images/products/${machine.photo1}">
-                                    <span id="photo${machine.productId}" hidden="hidden">${machine.photo1}</span>
+                                    <span class="photo${machine.productId} hidden">${machine.photo1}</span>
                                 </div>
                                 <p><strong>
-                                    ${machine.machineTypeEn}<br>
-                                    <span id="model${machine.productId}">${machine.model}</span>
+                                    <a href="/hmc${machine.productId}">
+                                        ${machine.machineTypeEn}<br>
+                                        <span class="model${machine.productId}">${machine.model}</span>
+                                    </a>
                                 </strong></p>
                             </td>
                             </c:forEach>
@@ -110,8 +116,10 @@
                             <c:forEach items="${comparisonList}" var="machine">
                             <td class="text-center">
                                 <div class="add-cart-button">
-                                    <a class="cart${machine.productId} le-button add_to_cart_button product_type_simple"
-                                       onclick="addToCart('${machine.productId}')">add to cart</a>
+                                    <a class="cart${machine.productId} le-button"
+                                       onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
+                                    <a class="cart${machine.productId} le-button in-cart hidden"
+                                       onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
                                 </div>
                             </td>
                             </c:forEach>
@@ -120,25 +128,25 @@
                         <tbody>
 
                         <tr class="comparison-item price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                            <th>Price</th>
+                            <th><spring:message code="machine.price"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                             <td class="comparison-item-cell odd product_39">
-                                <span class="amount">$<span id="price${machine.productId}">${machine.price}</span>.00</span>
+                                <span class="amount">$<span class="price${machine.productId}">${machine.price}</span></span>
                             </td>
                             </c:forEach>
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Brand, country, year</th>
+                            <th><spring:message code="machine.brand"/>, <spring:message code="machine.country"/>, <spring:message code="machine.productionYear"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                             <td class="comparison-item-cell odd product_39">
-                                <p><span id="brand${machine.productId}">${machine.brand}</span>, ${machine.producingCountryEn}, ${machine.productionYear}<br><br></p>
+                                <p><span class="brand${machine.productId}">${machine.brand}</span>, ${machine.producingCountryEn}, ${machine.productionYear}<br><br></p>
                             </td>
                             </c:forEach>
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>System CNC</th>
+                            <th><spring:message code="machine.systemCnc"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.fullSystemCNC}</p>
@@ -147,7 +155,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Condition</th>
+                            <th><spring:message code="machine.machineCondition"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.machineConditionEn}</p>
@@ -156,7 +164,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Machine location</th>
+                            <th><spring:message code="machine.location"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.machineLocationEn}</p>
@@ -165,7 +173,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>X&timesY&timesZ-motion, mm</th>
+                            <th><spring:message code="machine.motion"/> X&timesY&timesZ, <spring:message code="machine.mm"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}</p>
@@ -174,7 +182,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>X&timesY table sizes, mm</th>
+                            <th><spring:message code="machine.tableSize"/> X&timesY, <spring:message code="machine.mm"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.xTableSize}&times${machine.yTableSize}</p>
@@ -183,7 +191,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Table load, kg</th>
+                            <th><spring:message code="machine.tableLoad"/>, <spring:message code="machine.kg"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.tableLoad}</p>
@@ -192,7 +200,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Spindle taper</th>
+                            <th><spring:message code="machine.spindleTaper"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.spindleTaper}</p>
@@ -201,7 +209,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Spindle rotation frequency, rev/min</th>
+                            <th><spring:message code="machine.spindleRotationFrequency"/>, <spring:message code="machine.revMin"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.spindleRotationFreq}<br><br></p>
@@ -210,7 +218,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Spindle power, kw</th>
+                            <th><spring:message code="machine.spindlePower"/>, <spring:message code="machine.kw"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.spindlePower}</p>
@@ -219,7 +227,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Tool count, pcs.</th>
+                            <th><spring:message code="machine.toolCount"/>, <spring:message code="machine.pcs"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.toolCount}</p>
@@ -228,7 +236,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Max tool diameter, mm</th>
+                            <th><spring:message code="machine.maxToolDiameter"/>, <spring:message code="machine.mm"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.maxToolDiameter}</p>
@@ -237,7 +245,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Max tool weight, kg</th>
+                            <th><spring:message code="machine.maxToolWeight"/>, <spring:message code="machine.kg"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.maxToolWeight}</p>
@@ -246,7 +254,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Max tool length, mm</th>
+                            <th><spring:message code="machine.maxToolLength"/>, <spring:message code="machine.mm"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.maxToolLength}</p>
@@ -255,7 +263,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Tool replacement time, sec</th>
+                            <th><spring:message code="machine.toolReplacementTime"/>, <spring:message code="machine.sec"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.toolReplacementTime}<br><br></p>
@@ -264,7 +272,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Chip replacement time, sec</th>
+                            <th><spring:message code="machine.chipReplacementTime"/>, <spring:message code="machine.sec"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.chipReplacementTime}<br><br></p>
@@ -273,7 +281,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Position/reposition precision, mm</th>
+                            <th><spring:message code="machine.positionRepositionPrecision"/>, <spring:message code="machine.mm"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.positionRepositionPrecision}</p>
@@ -282,7 +290,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Spindle runtime, h</th>
+                            <th><spring:message code="machine.spindleRuntime"/>, <spring:message code="machine.h"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.spindleRuntime}</p>
@@ -291,7 +299,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Machine launching, h</th>
+                            <th><spring:message code="machine.machineLaunching"/>, <spring:message code="machine.h"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.machineLaunching}</p>
@@ -300,7 +308,7 @@
                         </tr>
 
                         <tr class="comparison-item description">
-                            <th>Description</th>
+                            <th><spring:message code="machine.description"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <p>${machine.descriptionEn}</p>
@@ -309,10 +317,10 @@
                         </tr>
 
                         <tr class="price repeated" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                            <th>Price</th>
+                            <th><spring:message code="machine.price"/></th>
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
-                                    <span class="amount">$${machine.price}.00</span>
+                                    <span class="amount">$${machine.price}</span>
                                 </td>
                             </c:forEach>
                         </tr>
@@ -331,7 +339,11 @@
                                         <img width="220" height="154" class="attachment-yith-woocompare-image" src="../resources/images/blank.gif"
                                              data-echo="../resources/images/products/${machine.photo1}">
                                     </div>
-                                    <p><strong>${machine.machineTypeEn}<br>${machine.model}</strong></p>
+                                    <p><strong>
+                                        <a href="/hmc${machine.productId}">
+                                            ${machine.machineTypeEn}<br>${machine.model}
+                                        </a>
+                                    </strong></p>
                                 </td>
                             </c:forEach>
                         </tr>
@@ -340,8 +352,10 @@
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="text-center">
                                     <div class="add-cart-button">
-                                        <a class="cart${machine.productId} le-button add_to_cart_button product_type_simple"
-                                           onclick="addToCart('${machine.productId}')">add to cart</a>
+                                        <a class="cart${machine.productId} le-button"
+                                           onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
+                                        <a class="cart${machine.productId} le-button in-cart hidden"
+                                           onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
                                     </div>
                                 </td>
                             </c:forEach>
@@ -357,7 +371,7 @@
         <!-- /.container -->
     </div>
     <!-- ================================================= FOOTER ========================================== -->
-    <%@include file="footer.jsp" %>
+    <%@include file="insertions/footer.jsp" %>
     <!-- ============================================================= FOOTER : END ============================================================= -->
 </div>
 <!-- /.wrapper -->

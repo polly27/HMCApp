@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf8"
-         pageEncoding="utf8" %>
+<%@ page language="java" contentType="text/html; charset=utf8" pageEncoding="utf8" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -12,7 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <title>HMC. Authentication</title>
+    <title>HMC. <spring:message code="authentication.authentication"/></title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="../resources/css/bootstrap.min.css" type="text/css" media="screen"/>
@@ -37,27 +36,20 @@
 <body>
 
 <div class="wrapper">
-<%@include file="header.jsp" %>
+<%@include file="insertions/header.jsp" %>
 <div id="top-mega-nav">
     <div class="container">
         <nav>
             <ul class="inline">
-                <li class="dropdown le-dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-list"></i> Shop by Department
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a onclick="goToList('list')">Horizontal machining centers</a></li>
-                    </ul>
-                </li>
+                <%@include file="insertions/shopByDepartment.jsp" %>
 
                 <li class="breadcrumb-nav-holder">
                     <ul>
                         <li class="breadcrumb-item gray">
-                            <a href="/">Home</a>
+                            <a href="/"><spring:message code="common.home"/></a>
                         </li>
                         <li class="breadcrumb-item current">
-                            <a onclick="window.location.reload(true);">Authentication</a>
+                            <a onclick="window.location.reload(true);"><spring:message code="authentication.authentication"/></a>
                         </li>
                     </ul>
                 </li><!-- /.breadcrumb-nav-holder -->
@@ -80,17 +72,17 @@
 
             <div class="col-md-6">
 				<section class="section sign-in inner-right-xs">
-					<h2 class="bordered">Sign In</h2>
+					<h2 class="bordered"><spring:message code="common.signIn"/></h2>
 
                     <c:url value="/hmc/j_spring_security_check" var="loginUrl" />
                     <form:form class="login-form cf-style-1" action="${loginUrl}" method="post">
 						<div class="field-row">
-                            <label>Username or email</label>
+                            <label><spring:message code="authentication.usernameOrEmail"/></label>
                             <input type="text" class="le-input" name="username">
                         </div><!-- /.field-row -->
 
                         <div class="field-row">
-                            <label>Password</label>
+                            <label><spring:message code="authentication.password"/></label>
                             <input type="password" class="le-input" name="password">
                         </div><!-- /.field-row -->
 
@@ -98,18 +90,18 @@
                         	<span class="pull-left">
                         		<label class="content-color">
                                     <input type="checkbox" class="le-checbox auto-width inline" name="_spring_security_remember_me" />
-                                    <span class="bold">Remember me</span>
+                                    <span class="bold"><spring:message code="authentication.rememberMe"/></span>
                                 </label>
                         	</span>
                         	<span class="pull-right">
-                        		<a href="#" class="content-color bold">Forgotten Password ?</a>
+                        		<a href="#" class="content-color bold"><spring:message code="authentication.forgotPassword"/></a>
                         	</span>
                         </div>
 
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
                         <div class="buttons-holder">
-                            <button type="submit" class="le-button huge">Sign In</button>
+                            <button type="submit" class="le-button huge"><spring:message code="common.signIn"/></button>
                         </div><!-- /.buttons-holder -->
 					</form:form><!-- /.cf-style-1 -->
 
@@ -118,36 +110,28 @@
 
 			<div class="col-md-6">
 				<section class="section register inner-left-xs">
-					<h2 class="bordered">Register</h2>
+					<h2 class="bordered"><spring:message code="common.register"/></h2>
 
 					<form:form class="login-form cf-style-1" method="post">
                         <div class="field-row">
-                            <label>Username</label>
+                            <label><spring:message code="authentication.username"/></label>
                             <input type="text" class="le-input" name="username" required>
                         </div><!-- /.field-row -->
 
                         <div class="field-row">
-                            <label>Password</label>
+                            <label><spring:message code="authentication.password"/></label>
                             <input type="text" class="le-input" name="password" required>
                         </div><!-- /.field-row -->
 
                         <div class="field-row">
-                            <label>Email</label>
+                            <label><spring:message code="authentication.email"/></label>
                             <input type="text" class="le-input" name="email" required>
                         </div><!-- /.field-row -->
 
                         <div class="buttons-holder">
-                            <button type="submit" class="le-button huge">Create account</button>
+                            <button type="submit" class="le-button huge"><spring:message code="authentication.createAccount"/></button>
                         </div><!-- /.buttons-holder -->
 					</form:form>
-
-                    <br><br>
-					<h2 class="semi-bold">Sign up today and you'll be able to :</h2>
-
-					<ul class="list-unstyled list-benefits">
-						<li><i class="fa fa-check primary-color"></i> See the cost of the machines</li>
-						<li><i class="fa fa-check primary-color"></i> Make the checkout a bit easier</li>
-					</ul>
 
 				</section><!-- /.register -->
 
@@ -157,7 +141,7 @@
 	</div><!-- /.container -->
 </main><!-- /.authentication -->
 <!-- ========================================= MAIN : END ========================================= -->		<!-- ============================================================= FOOTER ============================================================= -->
-    <%@include file="footer.jsp" %>
+    <%@include file="insertions/footer.jsp" %>
     <!-- ============================================================= FOOTER : END ============================================================= -->
 </div>
 <!-- JavaScripts placed at the end of the document so the pages load faster -->

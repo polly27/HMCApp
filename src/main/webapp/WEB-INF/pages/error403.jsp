@@ -38,7 +38,7 @@
 
 <div class="wrapper">
 
-    <h2>illegal access</h2>
+    <h2><spring:message code="error.403"/></h2>
 
     <script src="resources/js/jquery-1.10.2.min.js"></script>
     <script src="resources/js/jquery-migrate-1.2.1.js"></script>

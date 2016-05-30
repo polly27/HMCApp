@@ -43,7 +43,11 @@
             }
             $('#showFromTo').text(function () {
                 if (from == to)
-                    return from.toString() + 'th result';
-                return from.toString() + '-' + to.toString() + ' of ' + itemsNum + ' results';
+                    return from.toString();
+                return from.toString() + '-' + to.toString();
             });
+            $('#of').text(function () {
+                return itemsNum.toString();
+            });
+
         }

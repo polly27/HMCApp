@@ -39,14 +39,6 @@ public class MachineDAOImpl implements MachineDAO {
     }
 
     @SuppressWarnings("unchecked")
-    public void removeMachine(String productId) {
-        Machine machine = (Machine) sessionFactory.getCurrentSession().load(Machine.class, productId);
-        if (null != machine) {
-            sessionFactory.getCurrentSession().delete(machine);
-        }
-    }
-
-    @SuppressWarnings("unchecked")
     public List<Machine> listFiltered(String[] brandArr, int[] yearRangeArr, int[] priceRangeArr,
                                       String[] locationArr, String[] cncArr, int[] xMotionRangeArr, int[] yMotionRangeArr,
                                       int[] zMotionRangeArr, int[] xTableRangeArr, int[] yTableRangeArr) {

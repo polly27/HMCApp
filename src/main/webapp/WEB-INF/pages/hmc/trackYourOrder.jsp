@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <title>HMC. Track your order</title>
+    <title>HMC. <spring:message code="trackOrder.trackYourOrder"/></title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="../resources/css/bootstrap.min.css" type="text/css" media="screen"/>
@@ -32,30 +32,34 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../resources/images/favicon.ico">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-75911811-4', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
 </head>
 <body>
 <div class="wrapper">
-    <%@include file="header.jsp" %>
+    <%@include file="insertions/header.jsp" %>
     <div id="top-mega-nav">
         <div class="container">
             <nav>
                 <ul class="inline">
-                    <li class="dropdown le-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-list"></i> shop by department
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a onclick="goToList('list')">Horizontal machining centers</a></li>
-                        </ul>
-                    </li>
-
+                    <%@include file="insertions/shopByDepartment.jsp" %>
                     <li class="breadcrumb-nav-holder">
                         <ul>
                             <li class="breadcrumb-item">
-                                <a href="/">Home</a>
+                                <a href="/"><spring:message code="common.home"/></a>
                             </li>
                             <li class="breadcrumb-item current gray">
-                                <a onclick="window.location.reload(true);">Track your Order</a>
+                                <a onclick="window.location.reload(true);"><spring:message code="trackOrder.trackYourOrder"/></a>
                             </li>
                         </ul>
                     </li>
@@ -72,7 +76,7 @@
 
     <div class="inner-xs">
         <div class="page-header">
-            <h2 class="page-title">Track your Order</h2>
+            <h2 class="page-title"><spring:message code="trackOrder.trackYourOrder"/></h2>
         </div>
     </div>
 
@@ -87,16 +91,14 @@
                     </p>
                 </c:if>
 
-                <p>To track your order please enter your order ID (can be found in letter, e.g.
-                    0496baae-e083-4133-abee-864e4998b99d)<br>
-                </p>
+                <p><spring:message code="trackOrder.toTrackYourOrder"/><br></p>
 
                 <form:form id="form" method="post">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
                     <div class="field-row row form-row form-row-first">
                         <div class="col-xs-12">
-                            <label>Order ID</label>
+                            <label><spring:message code="trackOrder.orderId"/></label>
                             <input type="text" name="orderId" class="le-input input-text" value="${orderId}"/>
                         </div>
                     </div>
@@ -110,7 +112,7 @@
     </div>
 </div>
 <!-- ================================================= FOOTER ========================================== -->
-<%@include file="footer.jsp" %>
+<%@include file="insertions/footer.jsp" %>
 <!-- ============================================================= FOOTER : END ============================================================= -->
 </div>
 <!-- /.wrapper -->
@@ -136,6 +138,9 @@
 <script src="../resources/js/comparison,wishlist,cart,common.jsp"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        if('${emptyTheCart}'=='yes'){
+            toEmptyTheCart();
+        }
         $('#form').submit(function () {
             var input = $("input[name='orderId']");
             if (!input.val()) {
