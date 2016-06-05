@@ -41,7 +41,7 @@ public class MachineDAOImpl implements MachineDAO {
     @SuppressWarnings("unchecked")
     public List<Machine> listFiltered(String[] brandArr, int[] yearRangeArr, int[] priceRangeArr,
                                       String[] locationArr, String[] cncArr, int[] xMotionRangeArr, int[] yMotionRangeArr,
-                                      int[] zMotionRangeArr, int[] xTableRangeArr, int[] yTableRangeArr) {
+                                      int[] zMotionRangeArr, int[] xTableSizeRangeArr, int[] yTableSizeRangeArr) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Machine.class);
         if (brandArr != null) {
             criteria.add(Restrictions.in("brand", brandArr));
@@ -67,11 +67,11 @@ public class MachineDAOImpl implements MachineDAO {
         if (zMotionRangeArr != null) {
             criteria.add(Restrictions.between("zMotion", zMotionRangeArr[0], zMotionRangeArr[1]));
         }
-        if (xTableRangeArr != null) {
-            criteria.add(Restrictions.between("xTableSize", xTableRangeArr[0], xTableRangeArr[1]));
+        if (xTableSizeRangeArr != null) {
+            criteria.add(Restrictions.between("xTableSize", xTableSizeRangeArr[0], xTableSizeRangeArr[1]));
         }
-        if (yTableRangeArr != null) {
-            criteria.add(Restrictions.between("yTableSize", yTableRangeArr[0], yTableRangeArr[1]));
+        if (yTableSizeRangeArr != null) {
+            criteria.add(Restrictions.between("yTableSize", yTableSizeRangeArr[0], yTableSizeRangeArr[1]));
         }
         return criteria.list();
     }

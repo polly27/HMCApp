@@ -33,10 +33,17 @@
     <link rel="shortcut icon" href="../resources/images/favicon.ico">
 
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-75911811-4', 'auto');
         ga('send', 'pageview');
@@ -82,125 +89,155 @@
     <!-- ========================================= PRODUCT FILTER ========================================= -->
     <div class="widget">
         <h1><spring:message code="hmc.productFilters"/></h1>
-        <form:form id="filterForm" method="post">
-            <div class="body bordered">
 
-                <c:if test="${!empty brandList}">
-                    <div class="category-filter">
-                        <h2><spring:message code="machine.brand"/></h2>
-                        <ul>
-                            <c:forEach items="${brandList}" var="brand">
-                                <li><input class="le-checkbox" name="brand" type="checkbox" value="${brand.brand}"/>
-                                    <label>${brand.brand} (${brand.num})</label></li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-                </c:if>
+        <div class="body bordered" id="filterForm">
 
-                <c:if test="${!empty slidersList}">
-                    <div class="price-filter">
-                        <h2><spring:message code="machine.productionYear"/></h2>
-                        <c:set var="years" value="${slidersList.iterator().next().productionYear}"/>
-                        <c:set var="yearMinMax" value="${fn:split(years, ',')}"/>
-                        <div class="price-range-holder">
-                            <input type="text" class="price-slider" id="productionYear-slider" name="yearRange">
-                            <span class="min-max"><spring:message code="hmc.from"/> ${yearMinMax[0]} <spring:message code="hmc.to"/> ${yearMinMax[1]}</span>
-                        </div>
-                    </div>
-                </c:if>
-
-                <c:if test="${!empty slidersList}">
-                    <div class="price-filter"
-                         <c:if test='${pageContext.request.userPrincipal.name == null}'>style="display: none"</c:if>>
-                        <h2><spring:message code="machine.price"/></h2>
-                        <c:set var="prices" value="${slidersList.iterator().next().price}"/>
-                        <c:set var="priceMinMax" value="${fn:split(prices, ',')}"/>
-                        <div class="price-range-holder">
-                            <input type="text" class="price-slider" id="price-slider" name="priceRange">
-                            <span class="min-max"><spring:message code="hmc.from"/> ${priceMinMax[0]}$ <spring:message code="hmc.to"/> ${priceMinMax[1]}$</span>
-                        </div>
-                    </div>
-                </c:if>
-
-                <hr>
-
-                <c:if test="${!empty machineLocationList}">
-                    <div class="category-filter">
-                        <h2><spring:message code="machine.location"/></h2>
-                        <ul>
-                            <c:forEach items="${machineLocationList}" var="location">
-                                <li><input class="le-checkbox" name="location" type="checkbox"
-                                           value="${location.machineLocation}"/>
-                                    <label>${location.machineLocation} (${location.num})</label></li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-                </c:if>
-
-                <hr>
-
-                <c:if test="${!empty cncList}">
-                    <div class="category-filter">
-                        <h2><spring:message code="machine.systemCnc"/></h2>
-                        <ul>
-                            <c:forEach items="${cncList}" var="cnc">
-                                <li><input class="le-checkbox" name="cnc" type="checkbox" value="${cnc.systemCNC}"/>
-                                    <label>${cnc.systemCNC} (${cnc.num})</label></li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-                </c:if>
-
-                <c:if test="${!empty slidersList}">
-                    <div class="price-filter">
-                        <h2><spring:message code="machine.motion"/> X&timesY&timesZ, <spring:message code="machine.mm"/> </h2>
-
-                        <c:set var="xMotions" value="${slidersList.iterator().next().xMotion}"/>
-                        <c:set var="xMotionMinMax" value="${fn:split(xMotions, ',')}"/>
-                        <div class="price-range-holder">
-                            <input type="text" class="price-slider" id="x-motion-slider" name="xMotionRange">
-                            <span class="min-max">X: <spring:message code="hmc.from"/> ${xMotionMinMax[0]}<spring:message code="machine.mm"/> <spring:message code="hmc.to"/> ${xMotionMinMax[1]}<spring:message code="machine.mm"/></span>
-                        </div>
-                        <c:set var="yMotions" value="${slidersList.iterator().next().yMotion}"/>
-                        <c:set var="yMotionMinMax" value="${fn:split(yMotions, ',')}"/>
-                        <div class="price-range-holder">
-                            <input type="text" class="price-slider" id="y-motion-slider" name="yMotionRange">
-                            <span class="min-max">Y: <spring:message code="hmc.from"/> ${yMotionMinMax[0]}<spring:message code="machine.mm"/> <spring:message code="hmc.to"/> ${yMotionMinMax[1]}<spring:message code="machine.mm"/></span>
-                        </div>
-                        <c:set var="zMotions" value="${slidersList.iterator().next().zMotion}"/>
-                        <c:set var="zMotionMinMax" value="${fn:split(zMotions, ',')}"/>
-                        <div class="price-range-holder">
-                            <input type="text" class="price-slider" id="z-motion-slider" name="zMotionRange">
-                            <span class="min-max">Z: <spring:message code="hmc.from"/> ${zMotionMinMax[0]}<spring:message code="machine.mm"/> <spring:message code="hmc.to"/> ${zMotionMinMax[1]}<spring:message code="machine.mm"/></span>
-                        </div>
-                    </div>
-                </c:if>
-
-                <c:if test="${!empty slidersList}">
-                    <div class="price-filter">
-                        <h2><spring:message code="machine.tableSize"/> X&timesY, <spring:message code="machine.mm"/></h2>
-                        <c:set var="xTableSizes" value="${slidersList.iterator().next().xTableSize}"/>
-                        <c:set var="xTableSizeMinMax" value="${fn:split(xTableSizes, ',')}"/>
-                        <div class="price-range-holder">
-                            <input type="text" class="price-slider" id="x-table-slider" name="xTableRange">
-                            <span class="min-max">X: <spring:message code="hmc.from"/> ${xTableSizeMinMax[0]}<spring:message code="machine.mm"/> <spring:message code="hmc.to"/> ${xTableSizeMinMax[1]}<spring:message code="machine.mm"/></span>
-                        </div>
-                        <c:set var="yTableSizes" value="${slidersList.iterator().next().yTableSize}"/>
-                        <c:set var="yTableSizeMinMax" value="${fn:split(yTableSizes, ',')}"/>
-                        <div class="price-range-holder">
-                            <input type="text" class="price-slider" id="y-table-slider" name="yTableRange">
-                            <span class="min-max">Y: <spring:message code="hmc.from"/> ${yTableSizeMinMax[0]}<spring:message code="machine.mm"/> <spring:message code="hmc.to"/> ${yTableSizeMinMax[1]}<spring:message code="machine.mm"/></span>
-                        </div>
-                    </div>
-                </c:if>
-
-                <hr>
-
-                <div class="filter-button">
-                    <a id="filterSubmit" onclick="submitFilter()"><spring:message code="hmc.filter"/></a>
+            <!-- brands -->
+            <c:if test="${!empty brandList}">
+                <div class="category-filter">
+                    <h2><spring:message code="machine.brand"/></h2>
+                    <ul>
+                        <c:forEach items="${brandList}" var="brand">
+                            <li>
+                                <input class="le-checkbox" name="brand" type="checkbox" value="${brand.brand}"/>
+                                <label>${brand.brand} (${brand.num})</label>
+                            </li>
+                        </c:forEach>
+                    </ul>
                 </div>
+            </c:if>
+
+            <!-- production year slider -->
+            <c:if test="${!empty slidersList}">
+                <div class="price-filter">
+                    <h2><spring:message code="machine.productionYear"/></h2>
+                    <c:set var="years" value="${slidersList.iterator().next().productionYear}"/>
+                    <c:set var="yearMinMax" value="${fn:split(years, ',')}"/>
+                    <div class="price-range-holder">
+                        <input type="text" class="price-slider" id="productionYear-slider" name="yearRange">
+                            <span class="min-max"><spring:message code="hmc.from"/> ${yearMinMax[0]} <spring:message
+                                    code="hmc.to"/> ${yearMinMax[1]}</span>
+                    </div>
+                </div>
+            </c:if>
+
+            <!-- price slider -->
+            <c:if test="${!empty slidersList}">
+                <div class="price-filter"
+                     <c:if test='${pageContext.request.userPrincipal.name == null}'>style="display: none"</c:if>>
+                    <h2><spring:message code="machine.price"/></h2>
+                    <c:set var="prices" value="${slidersList.iterator().next().price}"/>
+                    <c:set var="priceMinMax" value="${fn:split(prices, ',')}"/>
+                    <div class="price-range-holder">
+                        <input type="text" class="price-slider" id="price-slider" name="priceRange">
+                            <span class="min-max"><spring:message code="hmc.from"/> ${priceMinMax[0]}$ <spring:message
+                                    code="hmc.to"/> ${priceMinMax[1]}$</span>
+                    </div>
+                </div>
+            </c:if>
+
+            <hr>
+
+            <!-- location -->
+            <c:if test="${!empty machineLocationList}">
+                <div class="category-filter">
+                    <h2><spring:message code="machine.location"/></h2>
+                    <ul>
+                        <c:forEach items="${machineLocationList}" var="location">
+                            <li><input class="le-checkbox" name="location" type="checkbox"
+                                       value="${location.machineLocation}"/>
+                                <label>${location.machineLocation} (${location.num})</label></li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </c:if>
+
+            <hr>
+
+            <!-- system cnc -->
+            <c:if test="${!empty cncList}">
+                <div class="category-filter">
+                    <h2><spring:message code="machine.systemCnc"/></h2>
+                    <ul>
+                        <c:forEach items="${cncList}" var="cnc">
+                            <li><input class="le-checkbox" name="cnc" type="checkbox" value="${cnc.systemCNC}"/>
+                                <label>${cnc.systemCNC} (${cnc.num})</label></li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </c:if>
+
+            <!-- motion X Y Z slider -->
+            <c:if test="${!empty slidersList}">
+                <div class="price-filter">
+                    <h2><spring:message code="machine.motion"/> X&timesY&timesZ, <spring:message
+                            code="machine.mm"/></h2>
+
+                    <c:set var="xMotions" value="${slidersList.iterator().next().xMotion}"/>
+                    <c:set var="xMotionMinMax" value="${fn:split(xMotions, ',')}"/>
+                    <div class="price-range-holder">
+                        <input type="text" class="price-slider" id="xMotion-slider" name="xMotionRange">
+                            <span class="min-max">X: <spring:message code="hmc.from"/> ${xMotionMinMax[0]}
+                                <spring:message code="machine.mm"/> <spring:message code="hmc.to"/> ${xMotionMinMax[1]}
+                                <spring:message code="machine.mm"/></span>
+                    </div>
+                    <c:set var="yMotions" value="${slidersList.iterator().next().yMotion}"/>
+                    <c:set var="yMotionMinMax" value="${fn:split(yMotions, ',')}"/>
+                    <div class="price-range-holder">
+                        <input type="text" class="price-slider" id="yMotion-slider" name="yMotionRange">
+                            <span class="min-max">Y: <spring:message code="hmc.from"/> ${yMotionMinMax[0]}
+                                <spring:message code="machine.mm"/> <spring:message code="hmc.to"/> ${yMotionMinMax[1]}
+                                <spring:message code="machine.mm"/></span>
+                    </div>
+                    <c:set var="zMotions" value="${slidersList.iterator().next().zMotion}"/>
+                    <c:set var="zMotionMinMax" value="${fn:split(zMotions, ',')}"/>
+                    <div class="price-range-holder">
+                        <input type="text" class="price-slider" id="zMotion-slider" name="zMotionRange">
+                            <span class="min-max">Z: <spring:message code="hmc.from"/> ${zMotionMinMax[0]}
+                                <spring:message code="machine.mm"/> <spring:message code="hmc.to"/> ${zMotionMinMax[1]}
+                                <spring:message code="machine.mm"/></span>
+                    </div>
+                </div>
+            </c:if>
+
+            <!-- table size X Y slider -->
+            <c:if test="${!empty slidersList}">
+                <div class="price-filter">
+                    <h2><spring:message code="machine.tableSize"/> X&timesY, <spring:message
+                            code="machine.mm"/></h2>
+                    <c:set var="xTableSizes" value="${slidersList.iterator().next().xTableSize}"/>
+                    <c:set var="xTableSizeMinMax" value="${fn:split(xTableSizes, ',')}"/>
+                    <div class="price-range-holder">
+                        <input type="text" class="price-slider" id="xTableSize-slider" name="xTableRange">
+                            <span class="min-max">X: <spring:message code="hmc.from"/> ${xTableSizeMinMax[0]}
+                                <spring:message code="machine.mm"/> <spring:message
+                                        code="hmc.to"/> ${xTableSizeMinMax[1]}<spring:message code="machine.mm"/></span>
+                    </div>
+                    <c:set var="yTableSizes" value="${slidersList.iterator().next().yTableSize}"/>
+                    <c:set var="yTableSizeMinMax" value="${fn:split(yTableSizes, ',')}"/>
+                    <div class="price-range-holder">
+                        <input type="text" class="price-slider" id="yTableSize-slider" name="yTableRange">
+                            <span class="min-max">Y: <spring:message code="hmc.from"/> ${yTableSizeMinMax[0]}
+                                <spring:message code="machine.mm"/> <spring:message
+                                        code="hmc.to"/> ${yTableSizeMinMax[1]}<spring:message code="machine.mm"/></span>
+                    </div>
+                </div>
+            </c:if>
+
+            <hr>
+
+            <div class="filter-button">
+                <a id="filterSubmit" onclick="submitFilter()"><spring:message code="hmc.filter"/></a>
             </div>
-        </form:form>
+
+        </div>
+
+        <div class="reset-filter">
+            <a onclick="resetFilter()"><spring:message code="hmc.resetFilter"/></a>
+        </div>
+
+        <br><br>
+
     </div>
     <!-- ========================================= PRODUCT FILTER : END ========================================= -->
 </div>
@@ -211,31 +248,33 @@
 <div class="col-xs-12 col-sm-9 no-margin wide sidebar">
 <section class="carousel-holder">
 
-    <div class="title-nav">
-        <h2><spring:message code="common.hmc"/></h2>
-        <div class="nav-holder"></div>
-    </div>
+<div class="title-nav">
+    <h2><spring:message code="common.hmc"/></h2>
 
-    <div class="grid-list-products">
+    <div class="nav-holder"></div>
+</div>
+
+<div class="grid-list-products">
 
 <div class="control-bar">
-    <div id="popularity-sort" class="le-select" >
-        <select data-placeholder="sort by popularity">
-            <option value="1"><spring:message code="hmc.withoutSorting"/></option>
-            <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <option value="2"><spring:message code="hmc.priceHighToLow"/></option>
-            </c:if>
-            <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <option value="3"><spring:message code="hmc.priceLowToHigh"/></option>
-            </c:if>
-        </select>
-    </div>
+    <%--<div id="popularity-sort" class="le-select" >--%>
+    <%--<select data-placeholder="sort by popularity">--%>
+    <%--<option value="1"><spring:message code="hmc.withoutSorting"/></option>--%>
+    <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>
+    <%--<option value="2"><spring:message code="hmc.priceHighToLow"/></option>--%>
+    <%--</c:if>--%>
+    <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>
+    <%--<option value="3"><spring:message code="hmc.priceLowToHigh"/></option>--%>
+    <%--</c:if>--%>
+    <%--</select>--%>
+    <%--</div>--%>
 
     <div id="item-count" class="le-select">
         <select id="selectPerPage">
             <c:set var="perPageNums">3;9;18;36;72</c:set>
             <c:forTokens items="${perPageNums}" delims=";" var="perPage">
-                <option value="${perPage}" <c:if test="${perPage == itemsPerPage}">selected</c:if>>${perPage} <spring:message code="hmc.perPage"/></option>
+                <option value="${perPage}" <c:if test="${perPage == itemsPerPage}">selected</c:if>>${perPage}
+                    <spring:message code="hmc.perPage"/></option>
             </c:forTokens>
         </select>
     </div>
@@ -258,159 +297,187 @@
 <!-- /.control-bar -->
 
 <div class="tab-content">
-<div id="grid-view" class="products-grid fade tab-pane in active">
-    <div class="product-grid-holder">
-        <c:if test="${!empty machineList}">
-            <div class="row no-margin">
-                <c:forEach items="${machineList}" var="machine" varStatus="loop">
-                    <div class="item${loop.index + 1} col-xs-12 col-sm-4 no-margin product-item-holder hover hidden">
-                        <div class="product-item">
-                            <div class="image">
-                                <img alt="" src="../resources/images/blank.gif"
-                                     data-echo="../resources/images/products/${machine.photo1}"/>
-                                                <span class="photo${machine.productId} hidden">${machine.photo1}</span>
-                            </div>
-                            <div class="body">
-                                <div class="label-discount clear"></div>
-                                <div class="title">
-                                    <a href="/hmc${machine.productId}">
-                                        ${machine.machineTypeEn}<br><span class="model${machine.productId}">${machine.model}</span>
-                                    </a>
-                                </div>
-                                <div class="brand">
-                                    <span class="brand${machine.productId}">${machine.brand}</span>, ${machine.productionYear}, ${machine.producingCountryEn}<br>
-                                    <spring:message code="machine.location"/>: ${machine.machineLocationEn}<br>
-                                    <spring:message code="machine.motion"/> X&timesY&timesZ: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion} <spring:message code="machine.mm"/><br>
-                                    <spring:message code="machine.tableSize"/>X&timesY: ${machine.xTableSize}&times${machine.yTableSize} <spring:message code="machine.mm"/>
-                                </div>
-                            </div>
-                            <div class="prices"
-                                 <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                <div class="price-current pull-right">$<span class="price${machine.productId}">${machine.price}</span>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="hover-area">
-                                <div class="add-cart-button">
-                                    <a class="cart${machine.productId} le-button"
-                                       onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
-                                    <a class="cart${machine.productId} le-button in-cart hidden"
-                                       onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
-                                </div>
-                                <div class="wish-compare">
-                                    <span class="wishList${machine.productId} btn-add-to-wishlist"
-                                          onclick="addToWishList('${machine.productId}')"><spring:message code="common.addToWishList"/></span>
-                                    <span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"
-                                          onclick="removeFromWishList('${machine.productId}')"><spring:message code="common.removeFromWishList"/></span>
-                                    <br>
-                                    <span class="compare${machine.productId} btn-add-to-compare" data-toggle="popover"
-                                          onclick="addToComparison('${machine.productId}')"><spring:message code="common.addToComparison"/></span>
-                                    <span class="compare${machine.productId} btn-add-to-compare btn-green hidden" data-toggle="popover"
-                                          onclick="removeFromComparison('${machine.productId}')"><spring:message code="common.removeFromComparison"/></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-        </c:if>
-    </div>
-</div>
 
-<div id="list-view" class="products-grid fade tab-pane">
-    <div class="products-list">
-        <c:if test="${!empty machineList}">
-            <c:forEach items="${machineList}" var="machine" varStatus="loop">
-                <div class="item${loop.index + 1} product-item product-item-holder hidden">
-                    <div class="row">
-                        <div class="no-margin col-xs-12 col-sm-4 image-holder">
-                            <div class="image">
-                                <img alt="${machine.model}" src="../resources/images/blank.gif"
-                                     data-echo="../resources/images/products/${machine.photo1}"/>
-                                <span class="photo${machine.productId} hidden">${machine.photo1}</span>
-                            </div>
-                        </div>
-                        <!-- /.image-holder -->
-                        <div class="no-margin col-xs-12 col-sm-5 body-holder">
-                            <div class="body">
-                                <div class="title">
-                                    <a href="/hmc${machine.productId}">
-                                            ${machine.machineTypeEn}<br><span class="model${machine.productId}">${machine.model}</span>
-                                    </a>
+    <div id="grid-view" class="products-grid fade tab-pane in active">
+        <div class="product-grid-holder">
+            <c:if test="${!empty machineList}">
+                <div class="row no-margin">
+                    <c:forEach items="${machineList}" var="machine" varStatus="loop">
+                        <div class="item${loop.index + 1} col-xs-12 col-sm-4 no-margin product-item-holder hover hidden">
+                            <div class="product-item">
+                                <div class="image">
+                                    <img alt="${machine.machineTypeEn} - ${machine.productId}" src="../resources/images/blank.gif"
+                                         data-echo="../resources/images/products/${machine.photo1}"/>
+                                    <span class="photo${machine.productId} hidden">${machine.photo1}</span>
                                 </div>
-                                <div class="brand">
-                                    <span class="brand${machine.productId}">${machine.brand}</span>, ${machine.productionYear}, ${machine.producingCountryEn}<br>
-                                </div>
-                                <div class="excerpt">
-                                    <p>
-                                        <spring:message code="machine.machineCondition"/>: ${machine.machineConditionEn}<br>
+                                <div class="body">
+                                    <div class="label-discount clear"></div>
+                                    <div class="title">
+                                        <a href="/hmc${machine.productId}">
+                                                ${machine.machineTypeEn}<br><span
+                                                class="model${machine.productId}">${machine.model}</span>
+                                        </a>
+                                    </div>
+                                    <div class="brand">
+                                        <span class="brand${machine.productId}">${machine.brand}</span>, ${machine.productionYear}, ${machine.producingCountryEn}<br>
                                         <spring:message code="machine.location"/>: ${machine.machineLocationEn}<br>
-                                        <spring:message code="machine.motion"/> X&timesY&timesZ: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion} <spring:message code="machine.mm"/><br>
-                                        <spring:message code="machine.tableSize"/> X&timesY: ${machine.xTableSize}&times${machine.yTableSize} <spring:message code="machine.mm"/>
-                                    </p>
+                                        <spring:message code="machine.motion"/> X&timesY&timesZ: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}
+                                        <spring:message code="machine.mm"/><br>
+                                        <spring:message
+                                                code="machine.tableSize"/> X&timesY: ${machine.xTableSize}&times${machine.yTableSize}
+                                        <spring:message code="machine.mm"/>
+                                    </div>
+                                </div>
+                                <div class="prices"
+                                     <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                                    <div class="price-current pull-right">$<span
+                                            class="price${machine.productId}">${machine.price}</span>
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="hover-area">
+                                    <div class="add-cart-button">
+                                        <a class="cart${machine.productId} le-button"
+                                           onclick="addToCart('${machine.productId}')"><spring:message
+                                                code="common.addToCart"/></a>
+                                        <a class="cart${machine.productId} le-button in-cart hidden"
+                                           onclick="removeFromCart('${machine.productId}')"><spring:message
+                                                code="common.inCart"/></a>
+                                    </div>
+                                    <div class="wish-compare">
+                                    <span class="wishList${machine.productId} btn-add-to-wishlist"
+                                          onclick="addToWishList('${machine.productId}')"><spring:message
+                                            code="common.addToWishList"/></span>
+                                    <span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"
+                                          onclick="removeFromWishList('${machine.productId}')"><spring:message
+                                            code="common.removeFromWishList"/></span>
+                                        <br>
+                                    <span class="compare${machine.productId} btn-add-to-compare" data-toggle="popover"
+                                          onclick="addToComparison('${machine.productId}')"><spring:message
+                                            code="common.addToComparison"/></span>
+                                    <span class="compare${machine.productId} btn-add-to-compare btn-green hidden"
+                                          data-toggle="popover"
+                                          onclick="removeFromComparison('${machine.productId}')"><spring:message
+                                            code="common.removeFromComparison"/></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- /.body-holder -->
-                        <div class="no-margin col-xs-12 col-sm-3 price-area">
-                            <div class="right-clmn">
-                                <div class="price-current"
-                                     <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                    $<span class="price${machine.productId}">${machine.price}</span>
+                    </c:forEach>
+                </div>
+            </c:if>
+        </div>
+    </div>
+
+    <div id="list-view" class="products-grid fade tab-pane">
+        <div class="products-list">
+            <c:if test="${!empty machineList}">
+                <c:forEach items="${machineList}" var="machine" varStatus="loop">
+                    <div class="item${loop.index + 1} product-item product-item-holder hidden">
+                        <div class="row">
+                            <div class="no-margin col-xs-12 col-sm-4 image-holder">
+                                <div class="image">
+                                    <img alt="${machine.model}" src="../resources/images/blank.gif"
+                                         data-echo="../resources/images/products/${machine.photo1}"/>
+                                    <span class="photo${machine.productId} hidden">${machine.photo1}</span>
                                 </div>
-                                <div class="add-cart-button">
-                                    <a class="cart${machine.productId} le-button"
-                                       onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
-                                    <a class="cart${machine.productId} le-button in-cart hidden"
-                                       onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
+                            </div>
+                            <!-- /.image-holder -->
+                            <div class="no-margin col-xs-12 col-sm-5 body-holder">
+                                <div class="body">
+                                    <div class="title">
+                                        <a href="/hmc${machine.productId}">
+                                                ${machine.machineTypeEn}<br><span
+                                                class="model${machine.productId}">${machine.model}</span>
+                                        </a>
+                                    </div>
+                                    <div class="brand">
+                                        <span class="brand${machine.productId}">${machine.brand}</span>, ${machine.productionYear}, ${machine.producingCountryEn}<br>
+                                    </div>
+                                    <div class="excerpt">
+                                        <p>
+                                            <spring:message
+                                                    code="machine.machineCondition"/>: ${machine.machineConditionEn}<br>
+                                            <spring:message
+                                                    code="machine.location"/>: ${machine.machineLocationEn}<br>
+                                            <spring:message code="machine.motion"/>
+                                            X&timesY&timesZ: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}
+                                            <spring:message code="machine.mm"/><br>
+                                            <spring:message code="machine.tableSize"/>
+                                            X&timesY: ${machine.xTableSize}&times${machine.yTableSize}
+                                            <spring:message code="machine.mm"/>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="wish-compare">
+                            </div>
+                            <!-- /.body-holder -->
+                            <div class="no-margin col-xs-12 col-sm-3 price-area">
+                                <div class="right-clmn">
+                                    <div class="price-current"
+                                         <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                                        $<span class="price${machine.productId}">${machine.price}</span>
+                                    </div>
+                                    <div class="add-cart-button">
+                                        <a class="cart${machine.productId} le-button"
+                                           onclick="addToCart('${machine.productId}')"><spring:message
+                                                code="common.addToCart"/></a>
+                                        <a class="cart${machine.productId} le-button in-cart hidden"
+                                           onclick="removeFromCart('${machine.productId}')"><spring:message
+                                                code="common.inCart"/></a>
+                                    </div>
+                                    <div class="wish-compare">
                                     <span class="wishList${machine.productId} btn-add-to-wishlist"
-                                          onclick="addToWishList('${machine.productId}')"><spring:message code="common.addToWishList"/></span>
+                                          onclick="addToWishList('${machine.productId}')"><spring:message
+                                            code="common.addToWishList"/></span>
                                     <span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"
-                                          onclick="removeFromWishList('${machine.productId}')"><spring:message code="common.removeFromWishList"/></span>
-                                    <br>
+                                          onclick="removeFromWishList('${machine.productId}')"><spring:message
+                                            code="common.removeFromWishList"/></span>
+                                        <br>
                                     <span class="compare${machine.productId} btn-add-to-compare" data-toggle="popover"
-                                          onclick="addToComparison('${machine.productId}')"><spring:message code="common.addToComparison"/></span>
-                                    <span class="compare${machine.productId} btn-add-to-compare btn-green hidden" data-toggle="popover"
-                                          onclick="removeFromComparison('${machine.productId}')"><spring:message code="common.removeFromComparison"/></span>
+                                          onclick="addToComparison('${machine.productId}')"><spring:message
+                                            code="common.addToComparison"/></span>
+                                    <span class="compare${machine.productId} btn-add-to-compare btn-green hidden"
+                                          data-toggle="popover"
+                                          onclick="removeFromComparison('${machine.productId}')"><spring:message
+                                            code="common.removeFromComparison"/></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach>
-        </c:if>
-    </div>
-</div>
-
-<c:if test="${empty machineList}">
-    <h2><spring:message code="hmc.noMachines"/></h2>
-</c:if>
-
-<c:set var="itemsPerPage" value="${itemsPerPage}"/>
-<c:set var="itemsNum" value="${itemsNum}"/>
-<div class="pagination-holder">
-    <div class="row">
-
-        <div class="col-xs-6 text-left">
-            <ul class="pagination">
-                <c:forEach begin="1" end="${pagesNum}" var="i">
-                    <li id="page${i}" onclick="showPageAndGoUp(${i});">${i}</li>
                 </c:forEach>
-            </ul>
+            </c:if>
         </div>
-
-        <div class="col-xs-6">
-            <div class="result-counter">
-                <spring:message code="hmc.showing"/> <span id="showFromTo"></span> <spring:message code="hmc.of"/> <span id="of"></span> <spring:message code="hmc.results"/>
-            </div>
-        </div>
-
     </div>
-    <!-- /.row -->
-</div>
-<!-- /.pagination-holder -->
+
+    <c:if test="${empty machineList}">
+        <h2><spring:message code="hmc.noMachines"/></h2>
+    </c:if>
+
+    <c:set var="itemsPerPage" value="${itemsPerPage}"/>
+    <c:set var="itemsNum" value="${itemsNum}"/>
+    <div class="pagination-holder">
+        <div class="row">
+
+            <div class="col-xs-6 text-left">
+                <ul class="pagination">
+                    <c:forEach begin="1" end="${pagesNum}" var="i">
+                        <li id="page${i}" onclick="showPageAndGoUp(${i});">${i}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+
+            <div class="col-xs-6">
+                <div class="result-counter">
+                    <spring:message code="hmc.showing"/> <span id="showFromTo"></span> <spring:message
+                        code="hmc.of"/> <span id="of"></span> <spring:message code="hmc.results"/>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.pagination-holder -->
 
 </div>
 <!-- /.tab-content -->
@@ -425,9 +492,7 @@
 <!-- /.container -->
 </section>
 <!-- /#category-grid -->
-<!-- ================================================= FOOTER ========================================== -->
 <%@include file="hmc/insertions/footer.jsp" %>
-<!-- ============================================================= FOOTER : END ============================================================= -->
 </div>
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
 <script src="../resources/js/jquery-1.10.2.min.js"></script>
@@ -451,44 +516,36 @@
 <script src="../resources/js/comparison,wishlist,cart,common.jsp"></script>
 
 <script type="text/javascript">
-    // filter global variables
-    var yearMin = '${yearMinMax[0]}';
-    var yearMax = '${yearMinMax[1]}';
-    var priceMin = '${priceMinMax[0]}';
-    var priceMax = '${priceMinMax[1]}';
-    var xMotionMin = '${xMotionMinMax[0]}';
-    var xMotionMax = '${xMotionMinMax[1]}';
-    var yMotionMin = '${yMotionMinMax[0]}';
-    var yMotionMax = '${yMotionMinMax[1]}';
-    var zMotionMin = '${zMotionMinMax[0]}';
-    var zMotionMax = '${zMotionMinMax[1]}';
-    var xTableSizeMin = '${xTableSizeMinMax[0]}';
-    var xTableSizeMax = '${xTableSizeMinMax[1]}';
-    var yTableSizeMin = '${yTableSizeMinMax[0]}';
-    var yTableSizeMax = '${yTableSizeMinMax[1]}';
+    // global variables, will be used in file 'filters'
+    var slidersDefaultRange = {
+        'productionYear': ['${yearMinMax[0]}', '${yearMinMax[1]}'],
+        'price': ['${priceMinMax[0]}', '${priceMinMax[1]}'],
+        'xMotion': ['${xMotionMinMax[0]}', '${xMotionMinMax[1]}'],
+        'yMotion': ['${yMotionMinMax[0]}', '${yMotionMinMax[1]}'],
+        'zMotion': ['${zMotionMinMax[0]}', '${zMotionMinMax[1]}'],
+        'xTableSize': ['${xTableSizeMinMax[0]}', '${xTableSizeMinMax[1]}'],
+        'yTableSize': ['${yTableSizeMinMax[0]}', '${yTableSizeMinMax[1]}']
+    };
 
-    // pagination global variables
     var itemsNum = '${itemsNum}';
 
     $(document).ready(function () {
-        if(sessionStorage.view == null || sessionStorage.view == "") {
+        if (sessionStorage.view == null || sessionStorage.view == "") {
             sessionStorage.view = 'grid';
         } else if (sessionStorage.view == 'list') {
             $('.grid-list-button-item:nth-child(2) a').tab('show')
         }
 
-        if(sessionStorage.page == null || sessionStorage.page == "") {
+        if (sessionStorage.page == null || sessionStorage.page == "") {
             sessionStorage.page = '1';
-        } else if (sessionStorage.page != '1') {
-            showPage(parseInt(sessionStorage.page));
         }
 
-        if(sessionStorage.itemsPerPage == null || sessionStorage.itemsPerPage == "") {
-            sessionStorage.itemsPerPage = '${itemsPerPage}';
+        if (sessionStorage.perPageUrl == null || sessionStorage.perPageUrl == "") {
+            sessionStorage.perPageUrl = 'perPage=${itemsPerPage}';
         }
 
-        $('#selectPerPage').change(function(){
-            sessionStorage.itemsPerPage = $(this).val().toString();
+        $('#selectPerPage').change(function () {
+            sessionStorage.perPageUrl = 'perPage=' + $(this).val().toString();
             goToHmc();
         });
     });

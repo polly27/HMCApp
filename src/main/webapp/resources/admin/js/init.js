@@ -49,27 +49,6 @@ $(document).ready(function(){
   // Initialise Tabs
 	$(".tabs").tabs();
 
-  // Initialise FancyBox Modal window:
-	$("a.fancy").fancybox({
-		'titlePosition'	: 'inside'
-	});
-
-	$('.help').fancybox({
-		'modal' 				: false,
-		'hideOnOverlayClick' 	: 'true',
-		'hideOnContentClick' 	: 'true',
-		'enableEscapeButton' 	: true,
-		'showCloseButton' 		: true		
-	});
-
-	$('.modal').fancybox({
-		'modal' 				: false,
-		'hideOnOverlayClick' 	: 'true',
-		'hideOnContentClick' 	: 'true',
-		'enableEscapeButton' 	: true,
-		'showCloseButton' 		: true		
-	});
-
   // Table row odd
   $(".tab tr:odd").addClass("odd");
 

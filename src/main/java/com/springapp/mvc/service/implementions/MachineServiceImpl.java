@@ -33,23 +33,23 @@ public class MachineServiceImpl implements MachineService {
     @Transactional
     public List<Machine> listFiltered(String brands, String yearRange, String priceRange,
                                       String locations, String cncs, String xMotionRange, String yMotionRange,
-                                      String zMotionRange, String xTableRange, String yTableRange) {
+                                      String zMotionRange, String xTableSizeRange, String yTableSizeRange) {
         String[] brandArr = (brands != null) ? brands.split(",") : null;
-        int[] yearRangeArr = getRangeArr(yearRange);
-        int[] priceRangeArr = getRangeArr(priceRange);
+        int[] yearRangeArr = (yearRange != null) ? getRangeArr(yearRange) : null;
+        int[] priceRangeArr = (priceRange != null) ? getRangeArr(priceRange) : null;
         String[] locationArr = (locations != null) ? locations.split(",") : null;
         String[] cncArr = (cncs != null) ? cncs.split(",") : null;
-        int[] xMotionRangeArr = getRangeArr(xMotionRange);
-        int[] yMotionRangeArr = getRangeArr(yMotionRange);
-        int[] zMotionRangeArr = getRangeArr(zMotionRange);
-        int[] xTableRangeArr = getRangeArr(xTableRange);
-        int[] yTableRangeArr = getRangeArr(yTableRange);
+        int[] xMotionRangeArr = (xMotionRange != null) ? getRangeArr(xMotionRange) : null;
+        int[] yMotionRangeArr = (yMotionRange != null) ? getRangeArr(yMotionRange) : null;
+        int[] zMotionRangeArr = (zMotionRange != null) ? getRangeArr(zMotionRange) : null;
+        int[] xTableSizeRangeArr = (xTableSizeRange != null) ? getRangeArr(xTableSizeRange) : null;
+        int[] yTableSizeRangeArr = (yTableSizeRange != null) ? getRangeArr(yTableSizeRange) : null;
         return machineDAO.listFiltered(brandArr, yearRangeArr, priceRangeArr, locationArr,
-                cncArr, xMotionRangeArr, yMotionRangeArr, zMotionRangeArr, xTableRangeArr, yTableRangeArr);
+                cncArr, xMotionRangeArr, yMotionRangeArr, zMotionRangeArr, xTableSizeRangeArr, yTableSizeRangeArr);
     }
 
     private int[] getRangeArr(String range) {
-        return range.isEmpty() ? null : new int[]{Integer.valueOf(range.split(",")[0]), Integer.valueOf(range.split(",")[1])};
+        return new int[]{Integer.valueOf(range.split(",")[0]), Integer.valueOf(range.split(",")[1])};
     }
 
     @Transactional

@@ -18,6 +18,8 @@
             } else {
                 localStorage.cartTotal = "0";
                 localStorage.cartCount = "0";
+                $(".checkout-btn").addClass("hidden");
+                $(".checkout-btn-inverse").removeClass("hidden");
             }
             styleCartValue();
         });
@@ -292,10 +294,14 @@
                         $("#li" + (i + 1)).addClass("hidden");
                     }
                 }
+                $(".checkout-btn").removeClass("hidden");
+                $(".checkout-btn-inverse").addClass("hidden");
             } else {
                 $("#li1").addClass("hidden");
                 $("#li2").addClass("hidden");
                 $("#li3").addClass("hidden");
+                $(".checkout-btn").addClass("hidden");
+                $(".checkout-btn-inverse").removeClass("hidden");
             }
         }
 
@@ -319,14 +325,6 @@
             goTo("/hmc/checkout",arrOfId);
         }
 
-        function goToHmc() {
-            if(sessionStorage.itemsPerPage != null && sessionStorage.itemsPerPage != "") {
-                window.location.href = "/hmc?perPage=" + sessionStorage.itemsPerPage;
-            } else {
-                window.location.href = "/hmc";
-            }
-        }
-
         function goToComparison() {
             goTo("/hmc/compare",localStorage.comparedIdStr);
         }
@@ -338,6 +336,17 @@
         function goToCart() {
             var arrOfId = getArrOfId(localStorage.cartItemStr);
             goTo("/hmc/cart",arrOfId);
+        }
+
+        function goToHmc() {
+            var url = "";
+            var arr = [sessionStorage.slidersUrl, sessionStorage.checkboxesUrl, sessionStorage.perPageUrl];
+            arr = $.grep(arr, function(value){
+                return value != null && value != "";
+            });
+            url = arr.join("&");
+            url = "/hmc" + (url != "" ? ("?" + url) : "")
+            window.location.href = url;
         }
 
         <%-- LANGUAGE --%>

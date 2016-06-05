@@ -33,10 +33,17 @@
     <link rel="shortcut icon" href="../resources/images/favicon.ico">
 
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-75911811-4', 'auto');
         ga('send', 'pageview');
@@ -61,7 +68,8 @@
                             <a onclick="goToHmc()"><spring:message code="common.hmc"/></a>
                         </li>
                         <li class="breadcrumb-item current">
-                            <a onclick="window.location.reload(true);">${machine.machineTypeEn} - ${machine.productId}</a>
+                            <a onclick="window.location.reload(true);">${machine.machineTypeEn}
+                                - ${machine.productId}</a>
                         </li>
                     </ul>
                 </li>
@@ -190,13 +198,17 @@
 
                 <div class="buttons-holder">
                     <span class="wishList${machine.productId} btn-add-to-wishlist"
-                        onclick="addToWishList('${machine.productId}')"><spring:message code="common.addToWishList"/></span>
+                          onclick="addToWishList('${machine.productId}')"><spring:message
+                            code="common.addToWishList"/></span>
                     <span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"
-                          onclick="removeFromWishList('${machine.productId}')"><spring:message code="common.removeFromWishList"/></span>
+                          onclick="removeFromWishList('${machine.productId}')"><spring:message
+                            code="common.removeFromWishList"/></span>
                     <span class="compare${machine.productId} btn-add-to-compare" data-toggle="popover"
-                          onclick="addToComparison('${machine.productId}')"><spring:message code="common.addToComparison"/></span>
+                          onclick="addToComparison('${machine.productId}')"><spring:message
+                            code="common.addToComparison"/></span>
                     <span class="compare${machine.productId} btn-add-to-compare btn-green hidden" data-toggle="popover"
-                          onclick="removeFromComparison('${machine.productId}')"><spring:message code="common.removeFromComparison"/></span>
+                          onclick="removeFromComparison('${machine.productId}')"><spring:message
+                            code="common.removeFromComparison"/></span>
                 </div>
 
                 <div class="excerpt">
@@ -238,22 +250,31 @@
                 <div class="tab-pane active" id="description">
 
                     <c:if test="${machine.video1!=''}">
-                        <iframe width="560" height="315" src="${machine.video1}" frameborder="0"
-                                allowfullscreen></iframe>
+                        <div class="video-container">
+                            <iframe width="560" height="315" src="${machine.video1}" frameborder="0"
+                                    allowfullscreen></iframe>
+                        </div>
                         <br><br>
                     </c:if>
                     <c:if test="${machine.video2!=''}">
-                        <iframe width="560" height="315" src="${machine.video2}" frameborder="0"
-                                allowfullscreen></iframe>
+                        <div class="video-container">
+                            <iframe width="560" height="315" src="${machine.video2}" frameborder="0"
+                                    allowfullscreen></iframe>
+                        </div>
                         <br><br>
                     </c:if>
                     <c:if test="${machine.video3!=''}">
-                        <iframe width="560" height="315" src="${machine.video3}" frameborder="0"
-                                allowfullscreen></iframe>
+                        <div class="video-container">
+                            <iframe width="560" height="315" src="${machine.video3}" frameborder="0"
+                                    allowfullscreen></iframe>
+                        </div>
                     </c:if>
                     <c:if test="${machine.video1=='' && machine.video2=='' && machine.video3==''}">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/0YSScR4PbLw" frameborder="0"
-                                allowfullscreen></iframe>
+                        <div class="video-container">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/0YSScR4PbLw"
+                                    frameborder="0"
+                                    allowfullscreen></iframe>
+                        </div>
                     </c:if>
                 </div>
 

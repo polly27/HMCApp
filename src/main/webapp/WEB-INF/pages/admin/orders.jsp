@@ -48,9 +48,6 @@
     <script type="text/javascript" src="../resources/admin/js/excanvas.js"></script>
     <script type="text/javascript" src="../resources/admin/js/jquery.visualize.js"></script>
 
-    <!-- // Fancybox // -->
-    <script type="text/javascript" src="../resources/admin/js/jquery.fancybox-1.3.1.js"></script>
-
     <!-- // File upload // -->
     <script type="text/javascript" src="../resources/admin/js/jquery.filestyle.js"></script>
 
@@ -92,7 +89,7 @@
                     <c:forEach items="${orderList}" var="machineOrder" varStatus="loop">
                         <div class="row-machine hidden" id="item${loop.index + 1}">
                             <div class="container-fluid no-margin">
-                                <div class="row no-margin">
+                                <div class="row no-margin"  style="cursor: pointer;" onclick="$('#order${machineOrder.orderId}').toggleClass('hidden')">
                                     <div class="col-xs-6 col-sm-6">
                                             ${loop.index + 1}. ${machineOrder.orderId}
                                     </div>
@@ -165,6 +162,7 @@
                                 <input type="hidden" name="orderId" value="${machineOrder.orderId}">
                                 <input type="submit" value="Save status" class="button black-button" style="font-weight: normal"/>
                                 </form:form>
+                                <br>
                             </div>
                         </div>
                     </c:forEach>

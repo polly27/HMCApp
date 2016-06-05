@@ -163,62 +163,19 @@
                             </div>
                             <!-- /.order-item -->
                         </c:forEach>
-                    </section>
-                    <!-- /#your-order -->
 
-                    <div id="total-area" class="row no-margin" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                        <div class="col-xs-12 col-lg-4 col-lg-offset-8 no-margin-right">
-                            <div id="subtotal-holder">
-                                <ul class="tabled-data inverse-bold no-border">
-                                    <li>
-                                        <label><spring:message code="cart.cartSubtotal"/></label>
-                                        <div class="value ">$<span class="cart-total"></span></div>
-                                    </li>
-                                    <li>
-                                        <label><spring:message code="cart.shipping"/></label>
-                                        <div class="value">
-                                            <div class="radio-group">
-                                                <input class="le-radio" type="radio" name="group1" value="free" checked> <div class="radio-label bold"><spring:message code="cart.freeShipping"/></div><br>
-                                                <input class="le-radio" type="radio" name="group1" value="local" >  <div class="radio-label"><spring:message code="cart.localDelivery"/><br><span class="bold">$150</span></div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul><!-- /.tabled-data -->
+                        <div class="row no-margin order-item" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                            <div class="col-xs-6 col-xs-offset-4 col-sm-3 col-sm-offset-7 no-margin">
+                                <spring:message code="checkout.orderTotal"/>
+                            </div>
 
-                                <ul id="total-field" class="tabled-data inverse-bold ">
-                                    <li>
-                                        <label><spring:message code="cart.orderTotal"/></label>
-                                        <div class="value">$<span class="cart-total"></span></div>
-                                    </li>
-                                </ul><!-- /.tabled-data -->
-
-                            </div><!-- /#subtotal-holder -->
-                        </div><!-- /.col -->
-                    </div><!-- /#total-area -->
-
-                    <div id="payment-method-options">
-                        <h2 class="border h1"><spring:message code="checkout.paymentMethod"/></h2>
-
-                        <div class="payment-method-option">
-                            <input class="le-radio" type="radio" name="payment" value="direct" checked>
-                            <div class="radio-label bold"><spring:message code="checkout.directBankTransfer"/>
+                            <div class="col-xs-2 col-sm-2 col-sm-2 no-margin">
+                                <div class="value">$<span class="cart-total"></span></div>
                             </div>
                         </div>
-                        <!-- /.payment-method-option -->
 
-                        <div class="payment-method-option">
-                            <input class="le-radio" type="radio" name="payment" value="cheque">
-                            <div class="radio-label bold "><spring:message code="checkout.chequePayment"/></div>
-                        </div>
-                        <!-- /.payment-method-option -->
-
-                        <div class="payment-method-option">
-                            <input class="le-radio" type="radio" name="payment" value="paypal">
-                            <div class="radio-label bold "><spring:message code="checkout.paypalSystem"/></div>
-                        </div>
-                        <!-- /.payment-method-option -->
-                    </div>
-                    <!-- /#payment-method-options -->
+                    </section>
+                    <!-- /#your-order -->
 
                     <input type="hidden" name="orderList">
                     <input type="hidden" name="total">

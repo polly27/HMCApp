@@ -269,10 +269,8 @@ a:hover.ico   { background-position: 0 0; }
 .filter .input { padding: 4px 5px; margin: 0 10px 3px 0; border: 1px #dadada solid; background: url(../images/bg-input.gif) repeat-x; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 
 /* -- Gallery -- */
-.gallery       { overflow-y: auto; overflow-x: auto; }
-.gallery .item { float: left; width: 150px; height: 170px; margin: 0 20px 20px 0; overflow: hidden; }
-.gallery .item .thumb { height: 150px; padding-bottom: 12px; background: url(../images/img-shadow.png) center 100% no-repeat; }
-.gallery .item .tools { display: none; margin: -5px auto 0; width: 40px; height: 18px; }
+#gallery .row   { overflow-y: auto; overflow-x: hidden; }
+#gallery .item  { word-wrap: break-word; padding: 2px; min-height: 210px; }
 
 /* -- FormBox -- */
 .formBox                  { position: relative; padding-bottom: 20px; }

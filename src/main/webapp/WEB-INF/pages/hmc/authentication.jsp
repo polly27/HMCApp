@@ -94,7 +94,7 @@
                                 </label>
                         	</span>
                         	<span class="pull-right">
-                        		<a href="#" class="content-color bold"><spring:message code="authentication.forgotPassword"/></a>
+                        		<a class="content-color bold"><spring:message code="authentication.forgotPassword"/></a>
                         	</span>
                         </div>
 
@@ -110,31 +110,9 @@
 
 			<div class="col-md-6">
 				<section class="section register inner-left-xs">
-					<h2 class="bordered"><spring:message code="common.register"/></h2>
-
-					<form:form class="login-form cf-style-1" method="post">
-                        <div class="field-row">
-                            <label><spring:message code="authentication.username"/></label>
-                            <input type="text" class="le-input" name="username" required>
-                        </div><!-- /.field-row -->
-
-                        <div class="field-row">
-                            <label><spring:message code="authentication.password"/></label>
-                            <input type="text" class="le-input" name="password" required>
-                        </div><!-- /.field-row -->
-
-                        <div class="field-row">
-                            <label><spring:message code="authentication.email"/></label>
-                            <input type="text" class="le-input" name="email" required>
-                        </div><!-- /.field-row -->
-
-                        <div class="buttons-holder">
-                            <button type="submit" class="le-button huge"><spring:message code="authentication.createAccount"/></button>
-                        </div><!-- /.buttons-holder -->
-					</form:form>
-
+                    <h2 class="bordered"><spring:message code="authentication.registration"/></h2>
+                    <h2 style="text-transform: none !important; font-size: 23px"><spring:message code="authentication.registrationText"/></h2>
 				</section><!-- /.register -->
-
 			</div><!-- /.col -->
 
 		</div><!-- /.row -->

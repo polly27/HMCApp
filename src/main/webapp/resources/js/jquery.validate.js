@@ -232,7 +232,7 @@ $.extend($.validator, {
 			}
 		},
 		onclick: function(element, event) {
-			// click on selects, radiobuttons and checkboxes
+			// click on selects, radiobuttons and checkboxesNames
 			if ( element.name in this.submitted ) {
 				this.element(element);
 			}

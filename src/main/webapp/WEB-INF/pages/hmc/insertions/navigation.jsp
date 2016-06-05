@@ -19,7 +19,6 @@
                     <li><a onclick="$('#logoutForm').submit()"><spring:message code="common.logout"/></a></li>
                 </c:if>
                 <c:if test="${pageContext.request.userPrincipal.name == null}">
-                    <li><a href="/hmc/authentication"><spring:message code="common.register"/></a></li>
                     <li><a href="/hmc/authentication"><spring:message code="common.signIn"/></a></li>
                 </c:if>
                 <li class="dropdown">

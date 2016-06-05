@@ -44,9 +44,6 @@
     <script type="text/javascript" src="../resources/admin/js/excanvas.js"></script>
     <script type="text/javascript" src="../resources/admin/js/jquery.visualize.js"></script>
 
-    <!-- // Fancybox // -->
-    <script type="text/javascript" src="../resources/admin/js/jquery.fancybox-1.3.1.js"></script>
-
     <!-- // File upload // -->
     <script type="text/javascript" src="../resources/admin/js/jquery.filestyle.js"></script>
 

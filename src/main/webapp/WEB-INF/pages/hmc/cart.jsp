@@ -34,10 +34,17 @@
     <link rel="shortcut icon" href="../resources/images/favicon.ico" type="text/css" media="screen"/>
 
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-75911811-4', 'auto');
         ga('send', 'pageview');
@@ -47,7 +54,7 @@
 <body>
 
 <div class="wrapper">
-<%@include file="insertions/header.jsp" %>
+    <%@include file="insertions/header.jsp" %>
     <div id="top-mega-nav">
         <div class="container">
             <nav>
@@ -62,116 +69,101 @@
                                 <a onclick="goToHmc()"><spring:message code="common.hmc"/></a>
                             </li>
                             <li class="breadcrumb-item current">
-                                <a onclick="window.location.reload(true);"><spring:message code="cart.shoppingCart"/></a>
+                                <a onclick="window.location.reload(true);"><spring:message
+                                        code="cart.shoppingCart"/></a>
                             </li>
                         </ul>
-                    </li><!-- /.breadcrumb-nav-holder -->
+                    </li>
+                    <!-- /.breadcrumb-nav-holder -->
                 </ul>
             </nav>
-        </div><!-- /.container -->
-    </div><!-- /#top-mega-nav -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#top-mega-nav -->
 
-<section id="cart-page">
-    <div class="container">
-        <!-- ========================================= CONTENT ========================================= -->
-        <div class="col-xs-12 col-md-8 items-holder no-margin">
+    <section id="cart-page">
+        <div class="container">
 
-            <c:if test="${empty cartList}">
-            <div class="inner-xs">
-                <div class="page-header">
-                    <h2 class="page-title">
-                        <br><br><spring:message code="cart.cartIsEmpty"/>
-                    </h2>
-                </div>
-            </div>
-            </c:if>
-
-            <c:if test="${!empty cartList}">
-                <c:forEach items="${cartList}" var="machine">
-                    <div class="row no-margin cart-item">
-                        <div class="col-xs-12 col-sm-2 no-margin">
-                            <a href="/hmc${machine.productId}" class="thumb-holder">
-                                <img width="150" height="110" alt="${machine.model}" class="attachment-shop_thumbnail wp-post-image" src="../resources/images/blank.gif"
-                                     data-echo="../resources/images/products/${machine.photo1}">
-                            </a>
+            <div class="col-lg-10 center-block items-holder">
+                    <div class="inner-xs">
+                        <div class="page-header">
+                            <h2 class="page-title">
+                                <spring:message code="cart.shoppingCart"/>
+                                <c:if test="${empty cartList}">
+                                    <spring:message code="cart.isEmpty"/>
+                                </c:if>
+                            </h2>
                         </div>
+                    </div>
 
-                        <div class="col-xs-12 col-sm-4 ">
-                            <div class="title">
-                                <a href="/hmc${machine.productId}">
-                                    ${machine.machineTypeEn}<br>${machine.model}
+                <c:if test="${!empty cartList}">
+
+                    <c:forEach items="${cartList}" var="machine">
+                        <div class="row no-margin cart-item">
+                            <div class="col-xs-12 col-sm-2 no-margin">
+                                <a href="/hmc${machine.productId}" class="thumb-holder">
+                                    <img width="150" height="110" alt="${machine.model}"
+                                         class="attachment-shop_thumbnail wp-post-image"
+                                         src="../resources/images/blank.gif"
+                                         data-echo="../resources/images/products/${machine.photo1}">
                                 </a>
                             </div>
-                            <div class="brand">${machine.brand}</div>
-                        </div>
 
-                        <div class="col-xs-12 col-sm-3 no-margin">
-                            <div class="quantity">
-                                <div class="le-quantity">
-                                    <a class="minus" href="#" onclick="minusFromCart('${machine.productId}')"></a>
-                                    <input name="quantity" readonly="readonly" type="text" class="count${machine.productId}"/>
-                                    <a class="plus" href="#" onclick="plusToCart('${machine.productId}')"></a>
+                            <div class="col-xs-12 col-sm-4 ">
+                                <div class="title">
+                                    <a href="/hmc${machine.productId}">
+                                            ${machine.machineTypeEn}<br>${machine.model}
+                                    </a>
                                 </div>
+                                <div class="brand">${machine.brand}</div>
                             </div>
-                        </div>
 
-                        <div class="col-xs-12 col-sm-3 no-margin">
-                            <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                $${machine.price}
-                            </div>
-                            <a class="close-btn" href="#" onclick="removeFromCart('${machine.productId}');goToCart()"></a>
-                        </div>
-                    </div><!-- /.cart-item -->
-                </c:forEach>
-                <br><br>
-                <button class="le-button huge" onclick="goToProposal()"><spring:message code="cart.getCommercialProposal"/> (PDF)</button>
-                <a class="le-button huge" onclick="goToCheckout()" ><spring:message code="common.checkout"/></a><br><br>
-                <a class="simple-link block" onclick="goToHmc()" ><spring:message code="cart.continueShopping"/></a>
-
-            </c:if>
-        </div>
-        <!-- ========================================= CONTENT : END ========================================= -->
-
-        <!-- ========================================= SIDEBAR ========================================= -->
-
-        <div class="col-xs-12 col-md-4 no-margin sidebar" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-            <div class="widget cart-summary">
-                <h1 class="border"><spring:message code="cart.shoppingCart"/></h1>
-                <div class="body">
-                    <ul class="tabled-data no-border inverse-bold">
-                        <li>
-                            <label><spring:message code="cart.cartSubtotal"/></label>
-                            <div class="value pull-right">$<span class="cart-total"></span></div>
-                        </li>
-                        <li>
-                            <label><spring:message code="cart.shipping"/></label>
-                            <div class="value pull-right">
-                                <div class="value">
-                                    <div class="radio-group">
-                                        <input class="le-radio" type="radio" name="group1" value="free" checked> <div class="radio-label bold"><spring:message code="cart.freeShipping"/></div><br><br>
-                                        <input class="le-radio" type="radio" name="group1" value="local" >  <div class="radio-label"><spring:message code="cart.localDelivery"/><br><span class="bold">$150</span></div><br><br>
+                            <div class="col-xs-12 col-sm-3 no-margin">
+                                <div class="quantity">
+                                    <div class="le-quantity">
+                                        <a class="minus" onclick="minusFromCart('${machine.productId}')"></a>
+                                        <input name="quantity" readonly="readonly" type="text"
+                                               class="count${machine.productId}"/>
+                                        <a class="plus" onclick="plusToCart('${machine.productId}')"></a>
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                    <ul id="total-price" class="tabled-data inverse-bold no-border">
-                        <li>
-                            <label><spring:message code="cart.orderTotal"/></label>
-                            <div class="value pull-right">$<span class="cart-total"></span></div>
-                        </li>
-                    </ul>
-                </div>
-            </div><!-- /.widget -->
-        </div><!-- /.sidebar -->
 
-        <!-- ========================================= SIDEBAR : END ========================================= -->
-    </div>
-</section>
+                            <div class="col-xs-12 col-sm-3 no-margin">
+                                <div class="price"
+                                     <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                                    $${machine.price}
+                                </div>
+                                <a class="close-btn" onclick="removeFromCart('${machine.productId}');goToCart()"></a>
+                            </div>
+                        </div>
+                        <!-- /.cart-item -->
+                    </c:forEach>
 
-<!-- ============================================================= FOOTER ============================================================= -->
-<%@include file="insertions/footer.jsp" %>
-<!-- ============================================================= FOOTER : END ============================================================= -->	</div><!-- /.wrapper -->
+                    <div <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                        <h2 class="border right"><spring:message code="cart.cartTotal"/></h2>
+                        <div class="value pull-right">$<span class="cart-total"></span></div>
+                    </div>
+
+                    <br><br>
+
+                    <a class="le-button huge" onclick="goToProposal()"><spring:message
+                            code="cart.getCommercialProposal"/> (PDF)</a>&nbsp;&nbsp;&nbsp;
+                    <a class="le-button huge" onclick="goToCheckout()"><spring:message
+                            code="common.checkout"/></a><br><br>
+                    <a class="simple-link block" onclick="goToHmc()"><spring:message code="cart.continueShopping"/></a>
+
+                </c:if>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================= FOOTER ============================================================= -->
+    <%@include file="insertions/footer.jsp" %>
+    <!-- ============================================================= FOOTER : END ============================================================= -->
+</div>
+<!-- /.wrapper -->
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
 <script src="../resources/js/jquery-1.10.2.min.js"></script>

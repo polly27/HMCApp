@@ -4,7 +4,7 @@
             <img class="img-responsive" src="../resources/images/blank.gif"
                  data-echo="../resources/images/products/${machine.photo1}">
         </td>
-        <td colspan="8" rowspan="2" width="66.6665%">
+        <td colspan="8" <c:if test="${!empty machine.photo2}">rowspan="2"</c:if> width="66.6665%">
             <br>
 
             <h3>${machine.model}</h3><br>
@@ -17,6 +17,7 @@
             </h4>
         </td>
     </tr>
+    <c:if test="${!empty machine.photo2}">
     <tr>
         <td colspan="2" width="16.6665%">
             <img class="img-responsive" src="../resources/images/blank.gif"
@@ -27,6 +28,7 @@
                  data-echo="../resources/images/products/${machine.photo3}">
         </td>
     </tr>
+    </c:if>
     <tr>
         <td colspan="3" width="25%"><spring:message code="machine.systemCnc"/></td>
         <td colspan="3" width="25%">${machine.fullSystemCNC}</td>

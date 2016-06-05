@@ -47,7 +47,7 @@
 
                     <div class="basket">
 
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="basket-item-count">
                                 <span class="count" id="cart-count"></span>
                                 <img src="../../resources/images/icon-cart.png"/>
@@ -87,7 +87,8 @@
                                             <a class="le-button" onclick="goToCart()"><spring:message code="common.viewCart"/></a>
                                         </div>
                                         <div class="col-xs-12 col-sm-6">
-                                            <a onclick="goToCheckout()" class="le-button"><spring:message code="common.checkout"/></a>
+                                            <a onclick="goToCheckout()" class="checkout-btn le-button"><spring:message code="common.checkout"/></a>
+                                            <span class="checkout-btn-inverse le-button inverse" style="cursor: auto"><spring:message code="common.checkout"/></span>
                                         </div>
                                     </div>
                                 </div>

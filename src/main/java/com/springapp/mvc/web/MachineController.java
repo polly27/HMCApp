@@ -39,8 +39,8 @@ public class MachineController {
 
     @RequestMapping(value = "/hmc/authentication", method = RequestMethod.GET)
     public void authentication(@RequestParam(value = "error", required = false) String error,
-                                 @RequestParam(value = "logout", required = false) String logout,
-                                 Map<String,Object> map) {
+                               @RequestParam(value = "logout", required = false) String logout,
+                               Map<String, Object> map) {
         if (error != null) {
             map.put("error", "Invalid username or password!");
         }
@@ -53,17 +53,9 @@ public class MachineController {
     public void createNewAccount(@RequestParam(value = "username") String username,
                                  @RequestParam(value = "password") String password,
                                  @RequestParam(value = "email") String email,
-                                 Map<String,Object> map) {
+                                 Map<String, Object> map) {
         userService.createNewAccount(username, password, email, "ROLE_USER");
         map.put("msg", "You've been registered successfully.");
-    }
-
-    @RequestMapping(value = "/hmc", method = RequestMethod.GET)
-    public void productsList(@RequestParam(value = "perPage", required = false) String perPage, Map<String, Object> map) {
-        List<Machine> machineList = machineService.listMachine();
-        map.put("machineList", machineList);
-        putPagesInfo(map, perPage, machineList.size());
-        putFilters(map);
     }
 
     private void putPagesInfo(Map<String, Object> map, String perPage, int itemsNum) {
@@ -84,21 +76,35 @@ public class MachineController {
         map.put("slidersList", filtersService.listSlidersFilter());
     }
 
-    @RequestMapping(value = "/hmc", method = RequestMethod.POST)
-    public void productsListFiltered(@RequestParam(value = "perPage", required = false) String perPage,
-                                     @RequestParam(value = "brand", required = false) String brands,
-                                     @RequestParam(value = "yearRange", required = false) String yearRange,
-                                     @RequestParam(value = "priceRange", required = false) String priceRange,
-                                     @RequestParam(value = "location", required = false) String locations,
-                                     @RequestParam(value = "cnc", required = false) String cncs,
-                                     @RequestParam(value = "xMotionRange", required = false) String xMotionRange,
-                                     @RequestParam(value = "yMotionRange", required = false) String yMotionRange,
-                                     @RequestParam(value = "zMotionRange", required = false) String zMotionRange,
-                                     @RequestParam(value = "xTableRange", required = false) String xTableRange,
-                                     @RequestParam(value = "yTableRange", required = false) String yTableRange,
-                                     Map<String, Object> map) {
-        List<Machine> machineList = machineService.listFiltered(brands, yearRange, priceRange, locations, cncs,
-                xMotionRange, yMotionRange, zMotionRange, xTableRange, yTableRange);
+    @RequestMapping(value = "/hmc", method = RequestMethod.GET)
+    public void hmc(Map<String, Object> map) {
+        List<Machine> machineList = machineService.listMachine();
+        map.put("machineList", machineList);
+        putPagesInfo(map, null, machineList.size());
+        putFilters(map);
+    }
+
+    @RequestMapping(value = "/hmc", method = RequestMethod.GET, params = {"perPage"})
+    public void hmcFiltered(@RequestParam(value = "perPage") String perPage,
+                            @RequestParam(value = "brand", required = false) String brands,
+                            @RequestParam(value = "location", required = false) String locations,
+                            @RequestParam(value = "cnc", required = false) String cncs,
+                            @RequestParam(value = "productionYear", required = false) String yearRange,
+                            @RequestParam(value = "price", required = false) String priceRange,
+                            @RequestParam(value = "xMotion", required = false) String xMotionRange,
+                            @RequestParam(value = "yMotion", required = false) String yMotionRange,
+                            @RequestParam(value = "zMotion", required = false) String zMotionRange,
+                            @RequestParam(value = "xTableSize", required = false) String xTableSizeRange,
+                            @RequestParam(value = "yTableSize", required = false) String yTableSizeRange,
+                            Map<String, Object> map) {
+        List<Machine> machineList;
+        if (brands == null && locations == null && cncs == null && yearRange == null && priceRange == null && xMotionRange == null
+                && yMotionRange == null && zMotionRange == null && xTableSizeRange == null && yTableSizeRange == null) {
+            machineList = machineService.listMachine();
+        } else {
+            machineList = machineService.listFiltered(brands, yearRange, priceRange, locations, cncs, xMotionRange,
+                    yMotionRange, zMotionRange, xTableSizeRange, yTableSizeRange);
+        }
         map.put("machineList", machineList);
         putPagesInfo(map, perPage, machineList.size());
         putFilters(map);
@@ -172,22 +178,22 @@ public class MachineController {
 
     @RequestMapping(value = "/hmc/checkout", method = RequestMethod.POST)
     public String checkoutOrder(@RequestParam("firstName") String firstName,
-                              @RequestParam("lastName") String lastName,
-                              @RequestParam(value = "company", required = false) String company,
-                              @RequestParam("address") String address,
-                              @RequestParam("postcode") String postcode,
-                              @RequestParam("email") String email,
-                              @RequestParam("phone") String phone,
-                              @RequestParam("orderList") String orderList,
-                              @RequestParam("total") String total,
-                              @RequestParam("payment") String payment,
-                              Map<String,Object> map) {
+                                @RequestParam("lastName") String lastName,
+                                @RequestParam(value = "company", required = false) String company,
+                                @RequestParam("address") String address,
+                                @RequestParam("postcode") String postcode,
+                                @RequestParam("email") String email,
+                                @RequestParam("phone") String phone,
+                                @RequestParam("orderList") String orderList,
+                                @RequestParam("total") String total,
+                                @RequestParam("payment") String payment,
+                                Map<String, Object> map) {
         MachineOrder machineOrder = machineOrderService.addMachineOrder(firstName, lastName, company, address,
                 postcode, email, phone, orderList, total, payment);
         emailService.sendNewOrderEmailToCustomer(email, machineOrder);
         emailService.sendNewOrderEmailToAdmin(machineOrder);
         map.put("message", "The order is successfully made. Check your e-mail for information about the ordering.");
-        map.put("orderId",machineOrder.getOrderId());
+        map.put("orderId", machineOrder.getOrderId());
         map.put("emptyTheCart", "yes");
         return "redirect:/hmc/trackYourOrder";
     }
@@ -196,14 +202,14 @@ public class MachineController {
     public void trackYourOrder(@RequestParam(value = "message", required = false) String message,
                                @RequestParam(value = "orderId", required = false) String orderId,
                                @RequestParam(value = "emptyTheCart", required = false) String emptyTheCart,
-                               Map<String,Object> map) {
+                               Map<String, Object> map) {
         map.put("message", message);
         map.put("orderId", orderId);
         map.put("emptyTheCart", emptyTheCart);
     }
 
     @RequestMapping(value = "/hmc/trackYourOrder", method = RequestMethod.POST)
-    public void trackOrder(@RequestParam("orderId") String orderId, Map<String,Object> map) {
+    public void trackOrder(@RequestParam("orderId") String orderId, Map<String, Object> map) {
         String status = machineOrderService.getMachineOrderStatus(orderId);
         map.put("message", "Status: " + status);
     }

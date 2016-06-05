@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/javascript; charset=UTF-8" pageEncoding="UTF-8"%>
 
-        var currentPage = 1;
+        var currentPage ;
 
         $(document).ready(function () {
+            currentPage = parseInt(sessionStorage.page);
             toggleItems(currentPage);
             toggleCurrentClassPage(currentPage);
             setSpanFromTo();
@@ -26,7 +27,8 @@
         }
 
         function toggleItems(page) {
-            for (i = (page - 1) * sessionStorage.itemsPerPage + 1; i <= itemsNum && i <= page * sessionStorage.itemsPerPage; i++) {
+            var perPage = sessionStorage.perPageUrl.split('=')[1];
+            for (i = (page - 1) * perPage + 1; i <= itemsNum && i <= page * perPage; i++) {
                 $('.item' + i).toggleClass('hidden');
             }
         }
@@ -36,8 +38,9 @@
         }
 
         function setSpanFromTo() {
-            var from = (currentPage - 1) * sessionStorage.itemsPerPage + 1;
-            var to = currentPage * sessionStorage.itemsPerPage;
+            var perPage = sessionStorage.perPageUrl.split('=')[1];
+            var from = (currentPage - 1) * perPage + 1;
+            var to = currentPage * perPage;
             if (to > itemsNum) {
                 to = itemsNum;
             }
@@ -49,5 +52,4 @@
             $('#of').text(function () {
                 return itemsNum.toString();
             });
-
         }

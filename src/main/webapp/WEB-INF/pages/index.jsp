@@ -97,7 +97,7 @@
 
                     <div class="basket">
 
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="basket-item-count">
                                 <span class="count" id="cart-count"></span>
                                 <img src="resources/images/icon-cart.png"/>
@@ -210,42 +210,15 @@
         </div><!-- /.sidemenu-holder -->
 
 		<div class="col-xs-12 col-sm-8 col-md-9 homebanner-holder">
-			<!-- ========================================== SECTION – HERO ========================================= -->
+<!-- ========================================== SECTION – HERO ========================================= -->
 <div id="hero">
-    <iframe width="853" height="480" src="https://www.youtube.com/embed/yzZXBudVT_Y" frameborder="0" allowfullscreen></iframe>
-	<%--<div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">--%>
-		<%----%>
-		<%--<div class="item" style="background-image: url(resources/images/back1.jpg);">--%>
-			<%--<div class="container-fluid">--%>
-				<%--<div class="caption vertical-center text-left">--%>
-					<%--<div class="big-text fadeInDown-1">--%>
-						<%--Choose machines--%>
-					<%--</div>--%>
-					<%--<div class="excerpt fadeInDown-2">--%>
-						<%--and be happy--%>
-					<%--</div>--%>
-				<%--</div><!-- /.caption -->--%>
-			<%--</div><!-- /.container-fluid -->--%>
-		<%--</div><!-- /.item -->--%>
-
-		<%--<div class="item" style="background-image: url(resources/images/back2.jpg);">--%>
-			<%--<div class="container-fluid">--%>
-				<%--<div class="caption vertical-center text-left">--%>
-					<%--<div class="big-text fadeInDown-1">--%>
-						<%--Being happy--%>
-					<%--</div>--%>
-					<%--<div class="excerpt fadeInDown-2">--%>
-						<%--while shopping--%>
-					<%--</div>--%>
-				<%--</div><!-- /.caption -->--%>
-			<%--</div><!-- /.container-fluid -->--%>
-		<%--</div><!-- /.item -->--%>
-
-	<%--</div><!-- /.owl-carousel -->--%>
+    <div class="video-container">
+        <iframe width="853" height="480" src="https://www.youtube.com/embed/yzZXBudVT_Y" frameborder="0" allowfullscreen></iframe>
+    </div>
 </div>
-			
-<!-- ========================================= SECTION – HERO : END ========================================= -->			
-		</div><!-- /.homebanner-holder -->
+<!-- ========================================= SECTION – HERO : END ========================================= -->
+
+        </div><!-- /.homebanner-holder -->
 
 	</div><!-- /.container -->
 </div><!-- /#top-banner-and-menu -->
