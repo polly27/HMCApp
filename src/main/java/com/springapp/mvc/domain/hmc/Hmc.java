@@ -1,11 +1,11 @@
-    package com.springapp.mvc.domain;
+    package com.springapp.mvc.domain.hmc;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="machines")
-public class Machine implements Serializable{
+@Table(name="machines", schema = "", catalog = "hmc")
+public class Hmc implements Serializable{
     @Id
     @Column(name = "productId")
     private String productId;

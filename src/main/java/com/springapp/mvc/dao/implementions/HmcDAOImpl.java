@@ -1,10 +1,11 @@
 package com.springapp.mvc.dao.implementions;
 
-import com.springapp.mvc.dao.interfaces.MachineDAO;
-import com.springapp.mvc.domain.Machine;
+import com.springapp.mvc.dao.interfaces.HmcDAO;
+import com.springapp.mvc.domain.hmc.Hmc;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,37 +13,37 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class MachineDAOImpl implements MachineDAO {
+public class HmcDAOImpl implements HmcDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
     @SuppressWarnings("unchecked")
-    public List<Machine> listMachine() {
-        return sessionFactory.getCurrentSession().createQuery("from Machine").list();
+    public List<Hmc> listMachine() {
+        return sessionFactory.getCurrentSession().createQuery("from Hmc").list();
     }
 
     @SuppressWarnings("unchecked")
     public List<String[]> listMachineForSiteMap() {
-        Query query = sessionFactory.getCurrentSession().createQuery("select productId, machineTypeEn, model from Machine");
+        Query query = sessionFactory.getCurrentSession().createQuery("select productId, machineTypeEn, model from Hmc");
         return (List<String[]>) query.list();
     }
 
     @SuppressWarnings("unchecked")
-    public Machine getMachine(String productId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Machine where productId='" + productId + "'");
-        return (Machine) query.uniqueResult();
+    public Hmc getMachine(String productId) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Hmc where productId='" + productId + "'");
+        return (Hmc) query.uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
-    public void addMachine(Machine machine) {
+    public void addMachine(Hmc machine) {
         sessionFactory.getCurrentSession().saveOrUpdate(machine);
     }
 
     @SuppressWarnings("unchecked")
-    public List<Machine> listFiltered(String[] brandArr, int[] yearRangeArr, int[] priceRangeArr,
+    public List<Hmc> listFiltered(String[] brandArr, int[] yearRangeArr, int[] priceRangeArr,
                                       String[] locationArr, String[] cncArr, int[] xMotionRangeArr, int[] yMotionRangeArr,
                                       int[] zMotionRangeArr, int[] xTableSizeRangeArr, int[] yTableSizeRangeArr) {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Machine.class);
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Hmc.class);
         if (brandArr != null) {
             criteria.add(Restrictions.in("brand", brandArr));
         }
@@ -77,7 +78,20 @@ public class MachineDAOImpl implements MachineDAO {
     }
 
     @SuppressWarnings("unchecked")
-    public void editMachine(Machine machine) {
+    public void editMachine(Hmc machine) {
         sessionFactory.getCurrentSession().update(machine);
     }
+
+    @SuppressWarnings("unchecked")
+    public List<Hmc> randomListMachine() {
+        return sessionFactory.getCurrentSession().createQuery("from Hmc order by rand()").setMaxResults(4).list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Hmc> newArrivalsList() {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Hmc.class);
+        criteria.addOrder(Order.desc("productId")).setMaxResults(4);
+        return criteria.list();
+    }
+
 }

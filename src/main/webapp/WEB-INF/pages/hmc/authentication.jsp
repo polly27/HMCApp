@@ -49,7 +49,9 @@
                             <a href="/"><spring:message code="common.home"/></a>
                         </li>
                         <li class="breadcrumb-item current">
-                            <a onclick="window.location.reload(true);"><spring:message code="authentication.authentication"/></a>
+                            <a onclick="window.location.reload(true);">
+                                <h1 class="h2 department-h1"><spring:message code="authentication.authentication"/></h1>
+                            </a>
                         </li>
                     </ul>
                 </li><!-- /.breadcrumb-nav-holder -->

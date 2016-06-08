@@ -58,7 +58,7 @@
         <!-- breadcrumbs -->
         <div class="breadcrumbs">
             <ul>
-                <li class="home"><a href="/admin/machines">Machines</a></li>
+                <li class="home"><a href="/admin/hmc">HMC</a></li>
                 <li class="home">&nbsp;|&nbsp;</li>
                 <li class="home"><a href="/admin/gallery">Gallery</a></li>
                 <li class="home">&nbsp;|&nbsp;</li>

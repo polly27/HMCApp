@@ -5,12 +5,26 @@
 
 <hibernate-configuration>
     <session-factory>
-        <mapping class="com.springapp.mvc.domain.MachineLocationFilter"/>
-        <mapping class="com.springapp.mvc.domain.Machine"/>
+        <property name="connection.url">jdbc:mysql://localhost:3306</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">Jaabutnmqaz1010</property>
+        <mapping class="com.springapp.mvc.domain.hmc.MachineLocationFilter"/>
+        <mapping class="com.springapp.mvc.domain.hmc.Hmc"/>
+        <mapping class="com.springapp.mvc.domain.hmc.SlidersFilter"/>
+        <mapping class="com.springapp.mvc.domain.hmc.SystemCNCFilter"/>
+        <mapping class="com.springapp.mvc.domain.hmc.BrandFilter"/>
+
         <mapping class="com.springapp.mvc.domain.MachineOrder"/>
-        <mapping class="com.springapp.mvc.domain.BrandFilter"/>
-        <mapping class="com.springapp.mvc.domain.SlidersFilter"/>
-        <mapping class="com.springapp.mvc.domain.SystemCNCFilter"/>
         <mapping class="com.springapp.mvc.domain.User"/>
+
+        <mapping class="com.springapp.mvc.domain.lathe.LatheBrandFilterEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheFullEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheFullTranslateEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheTranslateEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheMachineLocationFilterEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheSlidersFilterEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheSystemCncFilterEntity"/>
     </session-factory>
 </hibernate-configuration>

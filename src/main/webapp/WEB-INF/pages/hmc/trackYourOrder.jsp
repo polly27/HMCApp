@@ -59,7 +59,9 @@
                                 <a href="/"><spring:message code="common.home"/></a>
                             </li>
                             <li class="breadcrumb-item current gray">
-                                <a onclick="window.location.reload(true);"><spring:message code="trackOrder.trackYourOrder"/></a>
+                                <a onclick="window.location.reload(true);">
+                                    <h1 class="h2 department-h1"><spring:message code="trackOrder.trackYourOrder"/></h1>
+                                </a>
                             </li>
                         </ul>
                     </li>

@@ -1,10 +1,10 @@
-package com.springapp.mvc.domain;
+package com.springapp.mvc.domain.hmc;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="brand_filter")
+@Table(name="brand_filter", schema = "", catalog = "hmc")
 public class BrandFilter implements Serializable{
     @Id
     @Column(name = "brand")

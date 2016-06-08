@@ -41,6 +41,17 @@ Table of Contents
 /*===================================================================================*/
 /*  Helper
 /*===================================================================================*/
+.department-h1 {
+    margin: 0;
+    color: #59b210;
+    display: inline-block;
+    padding: 0;
+    position: relative;
+    font-size: 15px !important;
+    line-height: inherit !important;
+    font-weight: normal !important;
+}
+
 a {
     cursor: pointer;
 }
@@ -311,14 +322,14 @@ h1.border {
     line-height: 50px;
 }
 
-h2 {
+h2, .h2 {
     font-size: 18px;
     line-height: 37px;
     letter-spacing: -1px;
     text-transform: capitalize;
 }
 
-h2.border {
+h2.border, .h2.border {
     border-bottom: 1px solid #e0e0e0;
     line-height: 50px;
 }
@@ -479,11 +490,7 @@ a:focus {
     text-transform: uppercase;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
+h1, h2, h3, h4, h5 {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600 !important;
@@ -1342,7 +1349,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
     padding: 10px 20px;
 }
 
-.megamenu-vertical .yamm-content h2 {
+.megamenu-vertical .yamm-content h2, .megamenu-vertical .yamm-content .h2 {
     font-size: 18px;
     line-height: 24px;
     margin: 20px 0;
@@ -1696,7 +1703,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
     margin: 30px 0;
 }
 
-.section h2 {
+.section h2, section .h2 {
     color: #434343;
     font-size: 28px;
     line-height: 36px;
@@ -2309,7 +2316,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
     line-height: 40px;
 }
 
-.carousel-holder .title-nav h2 {
+.carousel-holder .title-nav h2, .carousel-holder .title-nav .h2 {
     font-size: 28px;
     line-height: 35px;
 }
@@ -2960,7 +2967,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 
 .product-grid-holder .product-item-holder {
     background-color: #fff;
-    min-height: 401px;
+    min-height: 430px;
     border: 1px solid #ececec;
     border-right: 0;
     position: relative;
@@ -3108,6 +3115,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
     line-height: 21px;
     color: #3d3d3d;
     margin: 6px 0 12px 0;
+    text-transform: none;
 }
 
 .product-grid-holder.medium .product-item-holder .prices {
@@ -3224,7 +3232,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 }
 
 .grid-list-products .product-grid-holder .product-item-holder {
-    min-height: 470px;
+    min-height: 500px;
     border: 1px solid #ececec;
     border-top: 0;
     border-left: 0;
@@ -3928,7 +3936,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 }
 
 #single-product-tab .tab-pane {
-    padding: 35px;
+    padding: 25px;
 }
 
 #single-product-tab .tab-pane p {
@@ -3952,7 +3960,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
     margin-bottom: 36px;
 }
 
-#single-product-tab .new-review-form h2 {
+#single-product-tab .new-review-form h2, #single-product-tab .new-review-form .h2 {
     font-size: 22px;
     line-height: 36px;
     text-transform: capitalize;
@@ -4013,10 +4021,9 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 }
 
 .tabled-data li label {
-    margin: 0;
-    min-width: 300px;
+    margin: 0 15px 0 0;
+    width: 300px;
     font-weight: 700;
-    text-transform: capitalize;
     display: inline-block;
     vertical-align: top;
 }
@@ -5281,7 +5288,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 /*===================================================================================*/
 /*  404 Page
 /*===================================================================================*/
-.info-404 h2 {
+.info-404 h2, .info-404 .h2 {
     font-size: 200px;
     font-weight: 700 !important;
     line-height: 200px;
@@ -5514,7 +5521,8 @@ header .top-cart-row .top-cart-holder .total-price-basket {
     line-height: 20px;
 }
 
-.sidebar .widget .category-filter h2, .sidebar .widget .price-filter h2 {
+.sidebar .widget .category-filter h2, .sidebar .widget .price-filter h2,
+.sidebar .widget .category-filter .h2, .sidebar .widget .price-filter .h2{
     text-transform: none;
 }
 

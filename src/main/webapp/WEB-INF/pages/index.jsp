@@ -3,7 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +11,10 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="keywords" content='<spring:message code="common.keywords"/>'>
+    <meta name="description" content='<spring:message code="common.description"/>'>
 
-    <title>HMC</title>
+    <title><spring:message code="common.hmcTitle"/></title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css" media="screen"/>
@@ -34,10 +36,17 @@
     <link rel="shortcut icon" href="resources/images/favicon.ico">
 
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-75911811-4', 'auto');
         ga('send', 'pageview');
@@ -48,7 +57,7 @@
 <body>
 
 <div class="wrapper">
-    <%@include file="hmc/insertions/navigation.jsp" %>
+<%@include file="hmc/insertions/navigation.jsp" %>
 <!-- ================================================ HEADER ======================================================= -->
 <header>
     <div class="container no-padding">
@@ -71,6 +80,7 @@
                     <i class="fa fa-phone"></i> <spring:message code="common.usa"/>: <span class="le-color">+1 203 556-50-69</span><br>
                 </div>
                 <br>
+
                 <div class="contact inline">
                     <i class="fa fa-envelope"></i> contact@<span class="le-color">hmccnc.com</span>
                 </div>
@@ -87,7 +97,8 @@
                                 id="wishList-value"></span> </a>
                     </div>
                     <div class="compare">
-                        <a onclick="goToComparison()"><i class="fa fa-exchange"></i> <spring:message code="common.comparison"/> <span
+                        <a onclick="goToComparison()"><i class="fa fa-exchange"></i> <spring:message
+                                code="common.comparison"/> <span
                                 id="compare-value"></span> </a>
                     </div>
                 </div>
@@ -105,7 +116,8 @@
 
                             <div class="total-price-basket">
                                 <span class="lbl"><spring:message code="common.cart"/></span>
-                                <span class="total-price" <c:if test='${pageContext.request.userPrincipal.name == null}'>style="display: none"</c:if>>
+                                <span class="total-price"
+                                      <c:if test='${pageContext.request.userPrincipal.name == null}'>style="display: none"</c:if>>
                                     <span class="sign">$</span><span class="value cart-total">0</span>
                                 </span>
                             </div>
@@ -122,7 +134,8 @@
                                         </div>
                                         <div class="col-xs-8 col-sm-8 no-margin">
                                             <div class="title"></div>
-                                            <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
+                                            <div class="price"
+                                                 <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
                                         </div>
                                     </div>
                                     <a class="close-btn" onclick="window.location.reload(true);"></a>
@@ -138,7 +151,8 @@
                                         </div>
                                         <div class="col-xs-8 col-sm-8 no-margin">
                                             <div class="title"></div>
-                                            <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
+                                            <div class="price"
+                                                 <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
                                         </div>
                                     </div>
                                     <a class="close-btn" onclick="window.location.reload(true);"></a>
@@ -154,7 +168,8 @@
                                         </div>
                                         <div class="col-xs-8 col-sm-8 no-margin">
                                             <div class="title"></div>
-                                            <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
+                                            <div class="price"
+                                                 <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
                                         </div>
                                     </div>
                                     <a class="close-btn" onclick="window.location.reload(true);"></a>
@@ -164,10 +179,12 @@
                                 <div class="basket-item">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6">
-                                            <a class="le-button" onclick="goToCart()"><spring:message code="common.viewCart"/></a>
+                                            <a class="le-button" onclick="goToCart()"><spring:message
+                                                    code="common.viewCart"/></a>
                                         </div>
                                         <div class="col-xs-12 col-sm-6">
-                                            <a onclick="goToCheckout()" class="le-button"><spring:message code="common.checkout"/></a>
+                                            <a onclick="goToCheckout()" class="le-button"><spring:message
+                                                    code="common.checkout"/></a>
                                         </div>
                                     </div>
                                 </div>
@@ -188,43 +205,209 @@
     <!-- /.container -->
 </header>
 <!-- =============================================== HEADER : END ================================================ -->
-<div class="container">
-    <div class="col-xs-12 col-sm-12">
-        <br><br><br>
-    </div>
-		<div class="col-xs-12 col-sm-4 col-md-3 sidemenu-holder">
-			<!-- ================================== TOP NAVIGATION ================================== -->
+
+<div id="top-banner-and-menu">
+    <div class="container">
+        <br><br>
+        <div class="col-xs-12 col-sm-4 col-md-3 sidemenu-holder">
             <div class="side-menu animate-dropdown">
-                <div class="head"><i class="fa fa-list"></i><spring:message code="index.allDepartments"/></div>
+                <div class="head">
+                    <i class="fa fa-list"></i><spring:message code="index.allDepartments"/>
+                </div>
                 <nav class="yamm megamenu-horizontal" role="navigation">
                     <ul class="nav">
                         <li class="dropdown menu-item">
-                            <a onclick="goToHmc()"><spring:message code="common.hmc"/></a>
+                            <a onclick="goToHmc()">
+                                <h1 class="h2 no-margin" style="font-size: 15px; line-height: 26px; letter-spacing: normal; text-transform: none;">
+                                    <spring:message code="common.hmc"/>
+                                </h1>
+                            </a>
                             <a href="http://vmccnc.com/vmc" target="_blank"><spring:message code="common.vmc"/></a>
                             <a href="http://vmccnc.com/lathes" target="_blank"><spring:message code="common.lathe"/></a>
                         </li>
-                    </ul><!-- /.nav -->
-                </nav><!-- /.megamenu-horizontal -->
-            </div><!-- /.side-menu -->
-            <!-- ================================== TOP NAVIGATION : END ================================== -->
-        </div><!-- /.sidemenu-holder -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
 
-		<div class="col-xs-12 col-sm-8 col-md-9 homebanner-holder">
-<!-- ========================================== SECTION – HERO ========================================= -->
-<div id="hero">
-    <div class="video-container">
-        <iframe width="853" height="480" src="https://www.youtube.com/embed/yzZXBudVT_Y" frameborder="0" allowfullscreen></iframe>
+        <div class="col-xs-12 col-sm-8 col-md-9 homebanner-holder">
+            <div id="hero">
+                <div class="video-container">
+                    <iframe width="853" height="480" src="https://www.youtube.com/embed/yzZXBudVT_Y" frameborder="0"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<!-- ========================================= SECTION – HERO : END ========================================= -->
+<!-- /.container -->
 
-        </div><!-- /.homebanner-holder -->
+<!-- /.Featured machines and new arrivals -->
+<c:if test="${!empty randomMachineList}">
+    <div id="products-tab" class="wow fadeInUp">
+        <div class="container">
+            <div class="tab-holder">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#featured" data-toggle="tab"><spring:message
+                            code="common.featuredMachines"/></a></li>
+                    <li><a href="#new-arrivals" data-toggle="tab"><spring:message code="common.newArrivals"/></a></li>
+                </ul>
 
-	</div><!-- /.container -->
-</div><!-- /#top-banner-and-menu -->
+                <!-- Tab panes -->
+                <div class="tab-content">
 
-<br><br><br><br><br><br>
-<!-- ========================================= MAIN : END ========================================= -->		<!-- ============================================================= FOOTER ============================================================= -->
+                    <div class="tab-pane active" id="featured">
+                        <div class="product-grid-holder">
+                            <c:forEach items="${randomMachineList}" var="machine">
+                                <div class="col-sm-4 col-md-3  no-margin product-item-holder hover">
+                                    <div class="product-item">
+                                        <div class="image">
+                                            <img alt="${machine.machineTypeEn} - ${machine.productId}"
+                                                 src="../resources/images/blank.gif"
+                                                 data-echo="../resources/images/products/${machine.photo1}"/>
+                                            <span class="photo${machine.productId} hidden">${machine.photo1}</span>
+                                        </div>
+                                        <div class="body">
+                                            <div class="title">
+                                                <a href="/hmc${machine.productId}">
+                                                        ${machine.machineTypeEn}<br>
+                                                    <span class="model${machine.productId}">${machine.model}</span>
+                                                </a>
+                                            </div>
+                                            <div class="brand">
+                                                <span class="brand${machine.productId}">${machine.brand}</span>, ${machine.productionYear}, ${machine.producingCountryEn}<br>
+                                                <spring:message code="machine.machineCondition"/>: ${machine.machineConditionEn}<br>
+                                                <spring:message code="machine.location"/>: ${machine.machineLocationEn}<br>
+                                            </div>
+                                        </div>
+                                        <div class="prices"
+                                             <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                                            <div class="price-current pull-right">
+                                                $<span class="price${machine.productId}">${machine.price}</span>
+                                            </div>
+                                            <br>
+                                        </div>
+
+                                        <div class="hover-area">
+                                            <div class="add-cart-button">
+                                                <a class="cart${machine.productId} le-button"
+                                                   onclick="addToCart('${machine.productId}')">
+                                                    <spring:message code="common.addToCart"/>
+                                                </a>
+                                                <a class="cart${machine.productId} le-button in-cart hidden"
+                                                   onclick="removeFromCart('${machine.productId}')">
+                                                    <spring:message code="common.inCart"/>
+                                                </a>
+                                            </div>
+                                            <div class="wish-compare">
+                            <span class="wishList${machine.productId} btn-add-to-wishlist"
+                                  onclick="addToWishList('${machine.productId}')">
+                                <spring:message code="common.addToWishList"/>
+                            </span>
+                            <span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"
+                                  onclick="removeFromWishList('${machine.productId}')">
+                                <spring:message code="common.removeFromWishList"/>
+                            </span>
+                                                <br>
+                            <span class="compare${machine.productId} btn-add-to-compare"
+                                  onclick="addToComparison('${machine.productId}')">
+                                <spring:message code="common.addToComparison"/>
+                            </span>
+                            <span class="compare${machine.productId} btn-add-to-compare btn-green hidden"
+                                  onclick="removeFromComparison('${machine.productId}')">
+                                <spring:message code="common.removeFromComparison"/>
+                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="new-arrivals">
+                        <div class="product-grid-holder">
+                            <c:forEach items="${newArrivalsList}" var="machine">
+                                <div class="col-sm-4 col-md-3  no-margin product-item-holder hover">
+                                    <div class="product-item">
+                                        <div class="image">
+                                            <img alt="${machine.machineTypeEn} - ${machine.productId}"
+                                                 src="../resources/images/blank.gif"
+                                                 data-echo="../resources/images/products/${machine.photo1}"/>
+                                            <span class="photo${machine.productId} hidden">${machine.photo1}</span>
+                                        </div>
+                                        <div class="body">
+                                            <div class="title">
+                                                <a href="/hmc${machine.productId}">
+                                                        ${machine.machineTypeEn}<br>
+                                                    <span class="model${machine.productId}">${machine.model}</span>
+                                                </a>
+                                            </div>
+                                            <div class="brand">
+                                                <span class="brand${machine.productId}">${machine.brand}</span>, ${machine.productionYear}, ${machine.producingCountryEn}<br>
+                                                <spring:message code="machine.machineCondition"/>: ${machine.machineConditionEn}<br>
+                                                <spring:message code="machine.location"/>: ${machine.machineLocationEn}<br>
+                                            </div>
+                                        </div>
+                                        <div class="prices"
+                                             <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                                            <div class="price-current pull-right">
+                                                $<span class="price${machine.productId}">${machine.price}</span>
+                                            </div>
+                                            <br>
+                                        </div>
+
+                                        <div class="hover-area">
+                                            <div class="add-cart-button">
+                                                <a class="cart${machine.productId} le-button"
+                                                   onclick="addToCart('${machine.productId}')">
+                                                    <spring:message code="common.addToCart"/>
+                                                </a>
+                                                <a class="cart${machine.productId} le-button in-cart hidden"
+                                                   onclick="removeFromCart('${machine.productId}')">
+                                                    <spring:message code="common.inCart"/>
+                                                </a>
+                                            </div>
+                                            <div class="wish-compare">
+                            <span class="wishList${machine.productId} btn-add-to-wishlist"
+                                  onclick="addToWishList('${machine.productId}')">
+                                <spring:message code="common.addToWishList"/>
+                            </span>
+                            <span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"
+                                  onclick="removeFromWishList('${machine.productId}')">
+                                <spring:message code="common.removeFromWishList"/>
+                            </span>
+                                                <br>
+                            <span class="compare${machine.productId} btn-add-to-compare"
+                                  onclick="addToComparison('${machine.productId}')">
+                                <spring:message code="common.addToComparison"/>
+                            </span>
+                            <span class="compare${machine.productId} btn-add-to-compare btn-green hidden"
+                                  onclick="removeFromComparison('${machine.productId}')">
+                                <spring:message code="common.removeFromComparison"/>
+                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
+<!-- /.Featured machines and new arrivals - end -->
+
+</div>
+<!-- /#top-banner-and-menu -->
+
+<br><br><br><br>
+<!-- ========================================= MAIN : END ========================================= -->
+<!-- ============================================================= FOOTER ============================================================= -->
 <%@include file="hmc/insertions/footer.jsp" %>
 <!-- ============================================================= FOOTER : END ============================================================= -->
 </div>

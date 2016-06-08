@@ -11,7 +11,7 @@
     <meta name='robots' content='all, follow'/>
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
-    <title>Admin. Machine catalog</title>
+    <title>Admin. HMC catalog</title>
     <link href="../resources/admin/css/default.css" rel="stylesheet" type="text/css" media="screen"/>
     <link href="../resources/admin/css/gray.css" rel="stylesheet" type="text/css" media="screen"/>
     <!-- color skin: blue / red / green / dark -->
@@ -62,7 +62,7 @@
 <!-- breadcrumbs -->
 <div class="breadcrumbs">
     <ul>
-        <li class="home"><a href="/admin/machines" style="font-weight: bold; color: #008B00">Machines</a></li>
+        <li class="home"><a href="/admin/hmc" style="font-weight: bold; color: #008B00">HMC</a></li>
         <li class="home">&nbsp;|&nbsp;</li>
         <li class="home"><a href="/admin/gallery">Gallery</a></li>
         <li class="home">&nbsp;|&nbsp;</li>

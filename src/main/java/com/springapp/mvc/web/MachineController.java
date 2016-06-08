@@ -1,6 +1,6 @@
 package com.springapp.mvc.web;
 
-import com.springapp.mvc.domain.Machine;
+import com.springapp.mvc.domain.hmc.Hmc;
 import com.springapp.mvc.domain.MachineOrder;
 import com.springapp.mvc.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.Map;
 @RequestMapping()
 public class MachineController {
     @Autowired
-    private MachineService machineService;
+    private HmcService hmcService;
 
     @Autowired
     private FiltersService filtersService;
@@ -36,6 +36,12 @@ public class MachineController {
 
     @Autowired
     private UserService userService;
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView home(Map<String,Object> map) {
+        putMachinesForBlocks(map);
+        return new ModelAndView("index", map);
+    }
 
     @RequestMapping(value = "/hmc/authentication", method = RequestMethod.GET)
     public void authentication(@RequestParam(value = "error", required = false) String error,
@@ -76,9 +82,14 @@ public class MachineController {
         map.put("slidersList", filtersService.listSlidersFilter());
     }
 
+    private void putMachinesForBlocks(Map<String, Object> map) {
+        map.put("randomMachineList", hmcService.randomListMachine());
+        map.put("newArrivalsList", hmcService.newArrivalsList());
+    }
+
     @RequestMapping(value = "/hmc", method = RequestMethod.GET)
     public void hmc(Map<String, Object> map) {
-        List<Machine> machineList = machineService.listMachine();
+        List<Hmc> machineList = hmcService.listMachine();
         map.put("machineList", machineList);
         putPagesInfo(map, null, machineList.size());
         putFilters(map);
@@ -97,12 +108,12 @@ public class MachineController {
                             @RequestParam(value = "xTableSize", required = false) String xTableSizeRange,
                             @RequestParam(value = "yTableSize", required = false) String yTableSizeRange,
                             Map<String, Object> map) {
-        List<Machine> machineList;
+        List<Hmc> machineList;
         if (brands == null && locations == null && cncs == null && yearRange == null && priceRange == null && xMotionRange == null
                 && yMotionRange == null && zMotionRange == null && xTableSizeRange == null && yTableSizeRange == null) {
-            machineList = machineService.listMachine();
+            machineList = hmcService.listMachine();
         } else {
-            machineList = machineService.listFiltered(brands, yearRange, priceRange, locations, cncs, xMotionRange,
+            machineList = hmcService.listFiltered(brands, yearRange, priceRange, locations, cncs, xMotionRange,
                     yMotionRange, zMotionRange, xTableSizeRange, yTableSizeRange);
         }
         map.put("machineList", machineList);
@@ -112,35 +123,39 @@ public class MachineController {
 
     @RequestMapping(value = "/hmc{productId}", method = RequestMethod.GET)
     public ModelAndView machineItem(@PathVariable("productId") String productId, Map<String, Object> map) {
-        map.put("machine", machineService.getMachine(productId));
+        Hmc machine = hmcService.getMachine(productId);
+        if (machine == null) {
+            return new ModelAndView("error404");
+        }
+        map.put("machine", machine);
         return new ModelAndView("hmc/machine", map);
     }
 
     @RequestMapping(value = "/hmc/compare", method = RequestMethod.GET)
     public void comparison(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
-            map.put("comparisonList", machineService.getMachinesList(itemsId.split(",")));
+            map.put("comparisonList", hmcService.getMachinesList(itemsId.split(",")));
         }
     }
 
     @RequestMapping(value = "/hmc/wishList", method = RequestMethod.GET)
     public void wishList(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
-            map.put("wishList", machineService.getMachinesList(itemsId.split(",")));
+            map.put("wishList", hmcService.getMachinesList(itemsId.split(",")));
         }
     }
 
     @RequestMapping(value = "/hmc/cart", method = RequestMethod.GET)
     public void cart(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
-            map.put("cartList", machineService.getMachinesList(itemsId.split(",")));
+            map.put("cartList", hmcService.getMachinesList(itemsId.split(",")));
         }
     }
 
     @RequestMapping(value = "/hmc/proposal", method = RequestMethod.GET)
     public void proposal(@RequestParam(required = true) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
-            map.put("proposalList", machineService.getMachinesList(itemsId.split(",")));
+            map.put("proposalList", hmcService.getMachinesList(itemsId.split(",")));
         }
     }
 
@@ -156,7 +171,7 @@ public class MachineController {
 
     @RequestMapping(value = "/hmc/proposalSingle", method = RequestMethod.GET)
     public void proposalSingle(@RequestParam(required = true) String productId, Map<String, Object> map) {
-        map.put("machine", machineService.getMachine(productId));
+        map.put("machine", hmcService.getMachine(productId));
     }
 
     @RequestMapping(value = "/hmc/proposalSingle", method = RequestMethod.POST)
@@ -172,7 +187,7 @@ public class MachineController {
     @RequestMapping(value = "/hmc/checkout", method = RequestMethod.GET)
     public void checkout(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
-            map.put("checkoutList", machineService.getMachinesList(itemsId.split(",")));
+            map.put("checkoutList", hmcService.getMachinesList(itemsId.split(",")));
         }
     }
 

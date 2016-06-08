@@ -66,7 +66,9 @@
                                 <a onclick="window.history.back()">${machine.machineTypeEn} - ${machine.productId}</a>
                             </li>
                             <li class="breadcrumb-item current">
-                                <a onclick="window.location.reload(true);"><spring:message code="proposal.commercialProposal"/></a>
+                                <a onclick="window.location.reload(true);">
+                                    <h1 class="h2 department-h1"><spring:message code="proposal.commercialProposal"/></h1>
+                                </a>
                             </li>
                         </ul>
                     </li><!-- /.breadcrumb-nav-holder -->

@@ -1,8 +1,8 @@
 package com.springapp.mvc.service.implementions;
 
-import com.springapp.mvc.dao.interfaces.MachineDAO;
-import com.springapp.mvc.domain.Machine;
-import com.springapp.mvc.service.interfaces.MachineService;
+import com.springapp.mvc.dao.interfaces.HmcDAO;
+import com.springapp.mvc.domain.hmc.Hmc;
+import com.springapp.mvc.service.interfaces.HmcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,27 +11,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MachineServiceImpl implements MachineService {
+public class HmcServiceImpl implements HmcService {
+
     @Autowired
-    private MachineDAO machineDAO;
+    private HmcDAO hmcDAO;
 
     @Transactional
-    public List<Machine> listMachine() {
-        return machineDAO.listMachine();
+    public List<Hmc> listMachine() {
+        return hmcDAO.listMachine();
     }
 
     @Transactional
     public List<String[]> listMachineForSiteMap(){
-        return machineDAO.listMachineForSiteMap();
+        return hmcDAO.listMachineForSiteMap();
     }
 
     @Transactional
-    public Machine getMachine(String productId) {
-        return machineDAO.getMachine(productId);
+    public Hmc getMachine(String productId) {
+        return hmcDAO.getMachine(productId);
     }
 
     @Transactional
-    public List<Machine> listFiltered(String brands, String yearRange, String priceRange,
+    public List<Hmc> listFiltered(String brands, String yearRange, String priceRange,
                                       String locations, String cncs, String xMotionRange, String yMotionRange,
                                       String zMotionRange, String xTableSizeRange, String yTableSizeRange) {
         String[] brandArr = (brands != null) ? brands.split(",") : null;
@@ -44,7 +45,7 @@ public class MachineServiceImpl implements MachineService {
         int[] zMotionRangeArr = (zMotionRange != null) ? getRangeArr(zMotionRange) : null;
         int[] xTableSizeRangeArr = (xTableSizeRange != null) ? getRangeArr(xTableSizeRange) : null;
         int[] yTableSizeRangeArr = (yTableSizeRange != null) ? getRangeArr(yTableSizeRange) : null;
-        return machineDAO.listFiltered(brandArr, yearRangeArr, priceRangeArr, locationArr,
+        return hmcDAO.listFiltered(brandArr, yearRangeArr, priceRangeArr, locationArr,
                 cncArr, xMotionRangeArr, yMotionRangeArr, zMotionRangeArr, xTableSizeRangeArr, yTableSizeRangeArr);
     }
 
@@ -53,16 +54,27 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Transactional
-    public List<Machine> getMachinesList(String[] productIdArr) {
-        List<Machine> list = new ArrayList<Machine>();
+    public List<Hmc> getMachinesList(String[] productIdArr) {
+        List<Hmc> list = new ArrayList<Hmc>();
         for (String productId : productIdArr) {
-            list.add(machineDAO.getMachine(productId));
+            list.add(hmcDAO.getMachine(productId));
         }
         return list;
     }
 
     @Transactional
-    public void editMachine(Machine machine) {
-        machineDAO.editMachine(machine);
+    public void editMachine(Hmc machine) {
+        hmcDAO.editMachine(machine);
     }
+
+    @Transactional
+    public List<Hmc> randomListMachine() {
+        return hmcDAO.randomListMachine();
+    }
+
+    @Transactional
+    public List<Hmc> newArrivalsList() {
+        return hmcDAO.newArrivalsList();
+    }
+
 }

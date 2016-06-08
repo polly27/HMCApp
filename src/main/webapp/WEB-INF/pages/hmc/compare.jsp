@@ -63,7 +63,9 @@
                                 <a onclick="goToHmc()"><spring:message code="common.hmc"/></a>
                             </li>
                             <li class="breadcrumb-item current">
-                                <a onclick="window.location.reload(true);"><spring:message code="comparison.comparison"/></a>
+                                <a onclick="window.location.reload(true);">
+                                    <h1 class="h2 department-h1"><spring:message code="comparison.comparison"/></h1>
+                                </a>
                             </li>
                         </ul>
                     </li><!-- /.breadcrumb-nav-holder -->

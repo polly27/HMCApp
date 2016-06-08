@@ -1,6 +1,6 @@
 package com.springapp.mvc.util;
 
-import com.springapp.mvc.domain.Machine;
+import com.springapp.mvc.domain.hmc.Hmc;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
@@ -25,14 +25,14 @@ public class ReadExcelUtil {
         return workbook;
     }
 
-    public static Machine readMachine(File file) throws IOException{
+    public static Hmc readMachine(File file) throws IOException{
         FileInputStream fis = new FileInputStream(file);
         Workbook workbook = getWorkbook(fis,file.getPath());
         Sheet firstSheet = workbook.getSheetAt(0);
         Iterator<Row> rowIterator = firstSheet.iterator();
         DataFormatter df = new DataFormatter();
 
-        Machine machine = new Machine();
+        Hmc machine = new Hmc();
         machine.setProductId(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         Row tmp = rowIterator.next();
         machine.setMachineTypeEn(df.formatCellValue(tmp.getCell(1)).trim());

@@ -1,6 +1,6 @@
 package com.springapp.mvc.web;
 
-import com.springapp.mvc.domain.Machine;
+import com.springapp.mvc.domain.hmc.Hmc;
 import com.springapp.mvc.domain.MachineOrder;
 import com.springapp.mvc.domain.User;
 import com.springapp.mvc.service.interfaces.*;
@@ -20,7 +20,7 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
-    private MachineService machineService;
+    private HmcService hmcService;
 
     @Autowired
     private FiltersService filtersService;
@@ -68,9 +68,9 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    @RequestMapping(value="/machines", method = RequestMethod.GET)
+    @RequestMapping(value="/hmc", method = RequestMethod.GET)
     public void machines(Map<String,Object> map) {
-        List<Machine> machineList = machineService.listMachine();
+        List<Hmc> machineList = hmcService.listMachine();
         map.put("machineList", machineList);
         putPagesInfo(map, machineList.size(), 10);
     }
@@ -85,25 +85,25 @@ public class AdminController {
         map.put("pagesNum", pagesNum);
     }
 
-    @RequestMapping(value = "/machines/edit", method = RequestMethod.POST)
-    public String editMachine(@ModelAttribute("machine") Machine machine){
-        machineService.editMachine(machine);
+    @RequestMapping(value = "/hmc/edit", method = RequestMethod.POST)
+    public String editMachine(@ModelAttribute("machine") Hmc machine){
+        hmcService.editMachine(machine);
         return "redirect:/admin/machines";
     }
 
-    @RequestMapping(value = "/machines/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/hmc/upload", method = RequestMethod.POST)
     public String adminUploadMachinesFromFiles(@RequestParam("textFile") MultipartFile[] machines, HttpServletRequest request){
         if (machines != null && machines.length > 0) {
             String path = request.getServletContext().getRealPath("") + "/resources/";
             workWithFilesService.uploadMachines(path, machines);
         }
-        return "redirect:/admin/machines";
+        return "redirect:/admin/hmc";
     }
 
-    @RequestMapping(value = "/machines/renewFilters", method = RequestMethod.POST)
+    @RequestMapping(value = "/hmc/renewFilters", method = RequestMethod.POST)
     public String renewFilters(){
         filtersService.renewFilters();
-        return "redirect:/admin/machines";
+        return "redirect:/admin/hmc";
     }
 
     @RequestMapping(value = "/gallery", method = RequestMethod.GET)

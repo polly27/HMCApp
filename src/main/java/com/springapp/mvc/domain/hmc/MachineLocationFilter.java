@@ -1,10 +1,10 @@
-package com.springapp.mvc.domain;
+package com.springapp.mvc.domain.hmc;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="machine_location_filter")
+@Table(name="machine_location_filter", schema = "", catalog = "hmc")
 public class MachineLocationFilter implements Serializable {
     @Id
     @Column(name = "machineLocation")

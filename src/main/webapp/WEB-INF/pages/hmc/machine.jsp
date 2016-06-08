@@ -68,8 +68,9 @@
                             <a onclick="goToHmc()"><spring:message code="common.hmc"/></a>
                         </li>
                         <li class="breadcrumb-item current">
-                            <a onclick="window.location.reload(true);">${machine.machineTypeEn}
-                                - ${machine.productId}</a>
+                            <a onclick="window.location.reload(true);">
+                                <h1 class="h2 department-h1">${machine.machineTypeEn} - ${machine.productId}</h1>
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -225,6 +226,7 @@
                        onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
                     <a class="cart${machine.productId} le-button huge in-cart hidden"
                        onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
+                    &nbsp;&nbsp;
                     <a class="le-button huge" href="/hmc/proposalSingle?productId=${machine.productId}"><spring:message
                             code="cart.getCommercialProposal"/> (PDF)</a>
                 </div>
@@ -247,35 +249,36 @@
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane active" id="description">
-
-                    <c:if test="${machine.video1!=''}">
-                        <div class="video-container">
-                            <iframe width="560" height="315" src="${machine.video1}" frameborder="0"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <br><br>
-                    </c:if>
-                    <c:if test="${machine.video2!=''}">
-                        <div class="video-container">
-                            <iframe width="560" height="315" src="${machine.video2}" frameborder="0"
-                                    allowfullscreen></iframe>
-                        </div>
-                        <br><br>
-                    </c:if>
-                    <c:if test="${machine.video3!=''}">
-                        <div class="video-container">
-                            <iframe width="560" height="315" src="${machine.video3}" frameborder="0"
-                                    allowfullscreen></iframe>
-                        </div>
-                    </c:if>
-                    <c:if test="${machine.video1=='' && machine.video2=='' && machine.video3==''}">
-                        <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/0YSScR4PbLw"
-                                    frameborder="0"
-                                    allowfullscreen></iframe>
-                        </div>
-                    </c:if>
+                <div class="tab-pane active container-fluid no-padding" id="description">
+                    <div class="col-xs-12 col-md-7 no-padding">
+                        <c:if test="${machine.video1!=''}">
+                            <div class="video-container">
+                                <iframe width="560" height="315" src="${machine.video1}" frameborder="0"
+                                        allowfullscreen></iframe>
+                            </div>
+                            <br><br>
+                        </c:if>
+                        <c:if test="${machine.video2!=''}">
+                            <div class="video-container">
+                                <iframe width="560" height="315" src="${machine.video2}" frameborder="0"
+                                        allowfullscreen></iframe>
+                            </div>
+                            <br><br>
+                        </c:if>
+                        <c:if test="${machine.video3!=''}">
+                            <div class="video-container">
+                                <iframe width="560" height="315" src="${machine.video3}" frameborder="0"
+                                        allowfullscreen></iframe>
+                            </div>
+                        </c:if>
+                        <c:if test="${machine.video1=='' && machine.video2=='' && machine.video3==''}">
+                            <div class="video-container">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/0YSScR4PbLw"
+                                        frameborder="0"
+                                        allowfullscreen></iframe>
+                            </div>
+                        </c:if>
+                    </div>
                 </div>
 
                 <div class="tab-pane" id="additional-info">

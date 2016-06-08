@@ -11,7 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <title><spring:message code="common.hmc"/></title>
+    <title>Lathe</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="../resources/css/bootstrap.min.css" type="text/css" media="screen"/>
@@ -258,51 +258,12 @@
 
 <div class="grid-list-products">
 
-<div class="control-bar">
-    <%--<div id="popularity-sort" class="le-select" >--%>
-    <%--<select data-placeholder="sort by popularity">--%>
-    <%--<option value="1"><spring:message code="hmc.withoutSorting"/></option>--%>
-    <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>
-    <%--<option value="2"><spring:message code="hmc.priceHighToLow"/></option>--%>
-    <%--</c:if>--%>
-    <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>
-    <%--<option value="3"><spring:message code="hmc.priceLowToHigh"/></option>--%>
-    <%--</c:if>--%>
-    <%--</select>--%>
-    <%--</div>--%>
-
-    <div id="item-count" class="le-select">
-        <select id="selectPerPage">
-            <c:set var="perPageNums">3;9;18;36;72</c:set>
-            <c:forTokens items="${perPageNums}" delims=";" var="perPage">
-                <option value="${perPage}" <c:if test="${perPage == itemsPerPage}">selected</c:if>>${perPage}
-                    <spring:message code="hmc.perPage"/></option>
-            </c:forTokens>
-        </select>
-    </div>
-
-    <div class="grid-list-buttons">
-        <ul>
-            <li class="grid-list-button-item active">
-                <a data-toggle="tab" href="#grid-view" onclick="sessionStorage.view = 'grid'">
-                    <i class="fa fa-th-large"></i> <spring:message code="hmc.grid"/>
-                </a>
-            </li>
-            <li class="grid-list-button-item">
-                <a data-toggle="tab" href="#list-view" onclick="sessionStorage.view = 'list'">
-                    <i class="fa fa-th-list"></i> <spring:message code="hmc.list"/>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-<!-- /.control-bar -->
 
 <div class="tab-content">
 
     <div id="grid-view" class="products-grid fade tab-pane in active">
         <div class="product-grid-holder">
-            <c:if test="${!empty machineList}">
+            <c:if test="${!empty listLathe && !empty listLatheTranslate}">
                 <div class="row no-margin">
                     <c:forEach items="${machineList}" var="machine" varStatus="loop">
                         <div class="item${loop.index + 1} col-xs-12 col-sm-4 no-margin product-item-holder hover hidden">

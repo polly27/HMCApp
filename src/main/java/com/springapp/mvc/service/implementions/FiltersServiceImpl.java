@@ -1,10 +1,10 @@
 package com.springapp.mvc.service.implementions;
 
 import com.springapp.mvc.dao.interfaces.FiltersDAO;
-import com.springapp.mvc.domain.BrandFilter;
-import com.springapp.mvc.domain.MachineLocationFilter;
-import com.springapp.mvc.domain.SlidersFilter;
-import com.springapp.mvc.domain.SystemCNCFilter;
+import com.springapp.mvc.domain.hmc.BrandFilter;
+import com.springapp.mvc.domain.hmc.MachineLocationFilter;
+import com.springapp.mvc.domain.hmc.SlidersFilter;
+import com.springapp.mvc.domain.hmc.SystemCNCFilter;
 import com.springapp.mvc.service.interfaces.FiltersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

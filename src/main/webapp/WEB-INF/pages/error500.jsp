@@ -47,7 +47,7 @@
                 <div class="info-404 text-center">
                     <h2 class="primary-color inner-bottom-xs">500</h2>
 
-                    <p class="lead"><spring:message code="error.full500"/></p>
+                    <h1 class="lead"><spring:message code="error.full500"/></h1>
 
                     <div class="text-center">
                         <a href="/" class="btn-lg huge"><i class="fa fa-home"></i> <spring:message

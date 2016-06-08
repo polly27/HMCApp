@@ -47,7 +47,7 @@
                 <div class="info-404 text-center">
                     <h2 class="primary-color inner-bottom-xs">403</h2>
 
-                    <p class="lead"><spring:message code="error.full403"/></p>
+                    <h1 class="lead"><spring:message code="error.full403"/></h1>
 
                     <div class="text-center">
                         <a href="/admin/adminEntry" class="btn-lg huge"><i class="fa fa-key"></i> <spring:message

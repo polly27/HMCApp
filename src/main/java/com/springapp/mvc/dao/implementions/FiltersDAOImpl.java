@@ -1,10 +1,10 @@
 package com.springapp.mvc.dao.implementions;
 
 import com.springapp.mvc.dao.interfaces.FiltersDAO;
-import com.springapp.mvc.domain.MachineLocationFilter;
-import com.springapp.mvc.domain.BrandFilter;
-import com.springapp.mvc.domain.SlidersFilter;
-import com.springapp.mvc.domain.SystemCNCFilter;
+import com.springapp.mvc.domain.hmc.MachineLocationFilter;
+import com.springapp.mvc.domain.hmc.BrandFilter;
+import com.springapp.mvc.domain.hmc.SlidersFilter;
+import com.springapp.mvc.domain.hmc.SystemCNCFilter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +56,7 @@ public class FiltersDAOImpl implements FiltersDAO {
     private void renew(String className, String checkBoxName) {
         Session session = sessionFactory.getCurrentSession();
         session.createQuery("delete from " + className).executeUpdate();
-        List<String> list = session.createQuery("select M." + checkBoxName + " from Machine M").list();
+        List<String> list = session.createQuery("select M." + checkBoxName + " from Hmc M").list();
         for (int i = 0; i < list.size(); i++) {
             list.set(i, list.get(i).toLowerCase());
         }
@@ -104,13 +104,13 @@ public class FiltersDAOImpl implements FiltersDAO {
     public void renewSlidersFilter() {
         Session session = sessionFactory.getCurrentSession();
         session.createQuery("delete from SlidersFilter").executeUpdate();
-        List<Integer> listProductionYear = session.createQuery("select M.productionYear from Machine M").list();
-        List<Integer> listPrice = session.createQuery("select M.price from Machine M").list();
-        List<Integer> listXMotion = session.createQuery("select M.xMotion from Machine M").list();
-        List<Integer> listYMotion = session.createQuery("select M.yMotion from Machine M").list();
-        List<Integer> listZMotion = session.createQuery("select M.zMotion from Machine M").list();
-        List<Integer> listXTableSize = session.createQuery("select M.xTableSize from Machine M").list();
-        List<Integer> listYTableSize = session.createQuery("select M.yTableSize from Machine M").list();
+        List<Integer> listProductionYear = session.createQuery("select M.productionYear from Hmc M").list();
+        List<Integer> listPrice = session.createQuery("select M.price from Hmc M").list();
+        List<Integer> listXMotion = session.createQuery("select M.xMotion from Hmc M").list();
+        List<Integer> listYMotion = session.createQuery("select M.yMotion from Hmc M").list();
+        List<Integer> listZMotion = session.createQuery("select M.zMotion from Hmc M").list();
+        List<Integer> listXTableSize = session.createQuery("select M.xTableSize from Hmc M").list();
+        List<Integer> listYTableSize = session.createQuery("select M.yTableSize from Hmc M").list();
         int[] minMaxProductionYear = getMinMax(listProductionYear);
         int[] minMaxPrice = roundToNum(getMinMax(listPrice), 500);
         int[] minMaxXMotion = roundToNum(getMinMax(listXMotion), 100);

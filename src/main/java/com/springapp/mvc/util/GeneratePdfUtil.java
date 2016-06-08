@@ -4,7 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.springapp.mvc.domain.Machine;
+import com.springapp.mvc.domain.hmc.Hmc;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -80,7 +80,7 @@ public class GeneratePdfUtil {
         document.add(paragraph);
     }
 
-    private static PdfPTable getOrderTable(String products, Machine[] machines) throws DocumentException {
+    private static PdfPTable getOrderTable(String products, Hmc[] machines) throws DocumentException {
         PdfPTable orderTable = new PdfPTable(6);
         orderTable.setWidthPercentage(100);
         orderTable.setSpacingBefore(20f);
@@ -141,7 +141,7 @@ public class GeneratePdfUtil {
         return orderTable;
     }
 
-    private static PdfPTable getOrderTableWithoutPrices(String products, Machine[] machines) throws DocumentException {
+    private static PdfPTable getOrderTableWithoutPrices(String products, Hmc[] machines) throws DocumentException {
         PdfPTable orderTable = new PdfPTable(4);
         orderTable.setWidthPercentage(100);
         orderTable.setSpacingBefore(20f);
@@ -184,7 +184,7 @@ public class GeneratePdfUtil {
     }
 
 
-    private static PdfPTable getItemTable(String path, Machine machine, boolean showPrice) throws DocumentException, IOException {
+    private static PdfPTable getItemTable(String path, Hmc machine, boolean showPrice) throws DocumentException, IOException {
         PdfPTable itemTable = new PdfPTable(4);
         itemTable.setWidthPercentage(100);
         itemTable.setSpacingBefore(20f);
@@ -353,7 +353,7 @@ public class GeneratePdfUtil {
         return paragraph;
     }
 
-    public static String createPDF(String path, String products, Machine[] machines, String company, String director, boolean showPrice) throws Exception {
+    public static String createPDF(String path, String products, Hmc[] machines, String company, String director, boolean showPrice) throws Exception {
         Document document = new Document(PageSize.A4,50,50,50,50);
         String pathPdf = path + "/offer.pdf";
         PdfWriter.getInstance(document, new FileOutputStream(pathPdf));
@@ -366,7 +366,7 @@ public class GeneratePdfUtil {
         } else {
             document.add(getOrderTable(products, machines));
         }
-        for(Machine machine : machines) {
+        for(Hmc machine : machines) {
             document.add(getItemTable(path, machine, showPrice));
         }
         document.add(getFooterParagraph());
@@ -375,7 +375,7 @@ public class GeneratePdfUtil {
         return pathPdf;
     }
 
-    public static String createPDFSingle(String path, Machine machine, String company, String director, boolean showPrice) throws Exception {
+    public static String createPDFSingle(String path, Hmc machine, String company, String director, boolean showPrice) throws Exception {
         Document document = new Document(PageSize.A4,50,50,50,50);
         String pathPdf = path + "/offer-single.pdf";
         PdfWriter.getInstance(document, new FileOutputStream(pathPdf));

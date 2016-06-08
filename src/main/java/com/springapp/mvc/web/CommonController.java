@@ -1,11 +1,10 @@
 package com.springapp.mvc.web;
 
-import com.springapp.mvc.service.interfaces.MachineService;
+import com.springapp.mvc.service.interfaces.HmcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -13,12 +12,7 @@ import java.util.Map;
 public class CommonController {
 
     @Autowired
-    private MachineService machineService;
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView home() {
-        return new ModelAndView("index");
-    }
+    private HmcService hmcService;
 
     @RequestMapping(value = "/error403", method = RequestMethod.GET)
     public void error403() { }
@@ -41,7 +35,7 @@ public class CommonController {
 
     @RequestMapping(value = "/siteMap", method = RequestMethod.GET)
     public void siteMap(Map<String, Object> map) {
-        map.put("shortMachineList",machineService.listMachineForSiteMap());
+        map.put("shortMachineList", hmcService.listMachineForSiteMap());
     }
 
 

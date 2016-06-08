@@ -1,7 +1,7 @@
 package com.springapp.mvc.service.implementions;
 
-import com.springapp.mvc.dao.interfaces.MachineDAO;
-import com.springapp.mvc.domain.Machine;
+import com.springapp.mvc.dao.interfaces.HmcDAO;
+import com.springapp.mvc.domain.hmc.Hmc;
 import com.springapp.mvc.service.interfaces.WorkWithFilesService;
 import com.springapp.mvc.util.GeneratePdfUtil;
 import com.springapp.mvc.util.ImageUtil;
@@ -23,14 +23,14 @@ import java.io.IOException;
 @Service
 public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     @Autowired
-    private MachineDAO machineDAO;
+    private HmcDAO hmcDAO;
 
     @Transactional
     public ResponseEntity<byte[]> getPDFOffer(String path, String products, String company, String director, boolean showPrice) throws Exception {
         String[] productsArr = products.split(";");
-        Machine[] machines = new Machine[productsArr.length];
+        Hmc[] machines = new Hmc[productsArr.length];
         for (int i = 0; i < machines.length; i++) {
-            machines[i] = machineDAO.getMachine(productsArr[i].split(",")[0]);
+            machines[i] = hmcDAO.getMachine(productsArr[i].split(",")[0]);
         }
 
         String pathPdf = GeneratePdfUtil.createPDF(path, products, machines, company, director, showPrice);
@@ -49,7 +49,7 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
 
     @Transactional
     public ResponseEntity<byte[]> getPDFOfferSingle(String path, String productId, String company, String director, boolean showPrice) throws Exception {
-        Machine machine = machineDAO.getMachine(productId);
+        Hmc machine = hmcDAO.getMachine(productId);
 
         String pathPdf = GeneratePdfUtil.createPDFSingle(path, machine, company, director, showPrice);
 
@@ -70,8 +70,8 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
         for (int i = 0; i < machines.length; i++) {
             try {
                 File machineFile = UploadMultipartFileUtil.uploadMachineFile(path, machines[i]);
-                Machine machine = ReadExcelUtil.readMachine(machineFile);
-                machineDAO.addMachine(machine);
+                Hmc machine = ReadExcelUtil.readMachine(machineFile);
+                hmcDAO.addMachine(machine);
                 machineFile.delete();
                 System.out.println("Successfully uploaded machine: " + machines[i].getOriginalFilename());
             } catch (IOException e) {

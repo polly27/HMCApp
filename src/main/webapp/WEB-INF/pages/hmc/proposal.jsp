@@ -66,8 +66,9 @@
                                 <a onclick="goToCart()"><spring:message code="cart.shoppingCart"/></a>
                             </li>
                             <li class="breadcrumb-item current">
-                                <a onclick="window.location.reload(true);"><spring:message
-                                        code="proposal.commercialProposal"/></a>
+                                <a onclick="window.location.reload(true);">
+                                    <h1 class="h2 department-h1"><spring:message code="proposal.commercialProposal"/></h1>
+                                </a>
                             </li>
                         </ul>
                     </li>

@@ -1,9 +1,9 @@
 package com.springapp.mvc.service.interfaces;
 
-import com.springapp.mvc.domain.BrandFilter;
-import com.springapp.mvc.domain.MachineLocationFilter;
-import com.springapp.mvc.domain.SlidersFilter;
-import com.springapp.mvc.domain.SystemCNCFilter;
+import com.springapp.mvc.domain.hmc.BrandFilter;
+import com.springapp.mvc.domain.hmc.MachineLocationFilter;
+import com.springapp.mvc.domain.hmc.SlidersFilter;
+import com.springapp.mvc.domain.hmc.SystemCNCFilter;
 
 import java.util.List;
 
