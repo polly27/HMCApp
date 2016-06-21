@@ -3,7 +3,7 @@ package com.springapp.mvc.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name="machine_order")
+@Table(name="machine_order", schema = "", catalog = "hmc")
 public class MachineOrder {
     @Id
     @Column(name = "orderId")

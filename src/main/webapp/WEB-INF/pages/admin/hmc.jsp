@@ -64,6 +64,8 @@
     <ul>
         <li class="home"><a href="/admin/hmc" style="font-weight: bold; color: #008B00">HMC</a></li>
         <li class="home">&nbsp;|&nbsp;</li>
+        <li class="home"><a href="/admin/lathe">Lathe</a></li>
+        <li class="home">&nbsp;|&nbsp;</li>
         <li class="home"><a href="/admin/gallery">Gallery</a></li>
         <li class="home">&nbsp;|&nbsp;</li>
         <li class="home"><a href="/admin/orders">Orders</a></li>
@@ -105,7 +107,7 @@
                 </div>
             </div>
         </div>
-        <form:form id="form${machine.productId}" class="hidden formBox" modelAttribute="machine" action="machines/edit" method="post">
+        <form:form id="form${machine.productId}" class="hidden formBox" modelAttribute="machine" action="hmc/edit" method="post">
             <hr>
             <input type="hidden" name="productId" value="${machine.productId}"/>
             <table class="table table-bordered table-condensed table-machine">
@@ -340,7 +342,7 @@
 </div>
 
 <div id="upload">
-    <form:form class="formBox" method="post" action="machines/upload"
+    <form:form class="formBox" method="post" action="hmc/upload"
                enctype="multipart/form-data">
 
         <fieldset>
@@ -365,7 +367,7 @@
 </div>
 
 <div id="filters">
-    <form:form class="formBox" method="post" action="machines/renewFilters">
+    <form:form class="formBox" method="post" action="hmc/renewFilters">
 
         <fieldset>
             Renewing filters means forming new filter parameters according to existing DB with Machines.

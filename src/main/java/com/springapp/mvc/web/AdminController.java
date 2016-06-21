@@ -3,6 +3,8 @@ package com.springapp.mvc.web;
 import com.springapp.mvc.domain.hmc.Hmc;
 import com.springapp.mvc.domain.MachineOrder;
 import com.springapp.mvc.domain.User;
+import com.springapp.mvc.domain.lathe.LatheLangFullEntity;
+import com.springapp.mvc.domain.lathe.LatheLangShortEntity;
 import com.springapp.mvc.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class AdminController {
     private HmcService hmcService;
 
     @Autowired
+    private LatheService latheService;
+
+    @Autowired
     private FiltersService filtersService;
 
     @Autowired
@@ -37,7 +42,7 @@ public class AdminController {
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String admin(HttpServletRequest request) {
         if(request.isUserInRole("ROLE_ADMIN")){
-            return "redirect:/admin/machines";
+            return "redirect:/admin/hmc";
         }
         return "redirect:/admin/adminEntry";
     }
@@ -69,10 +74,15 @@ public class AdminController {
     }
 
     @RequestMapping(value="/hmc", method = RequestMethod.GET)
-    public void machines(Map<String,Object> map) {
+    public void hmc(Map<String,Object> map) {
         List<Hmc> machineList = hmcService.listMachine();
         map.put("machineList", machineList);
         putPagesInfo(map, machineList.size(), 10);
+    }
+
+    @RequestMapping(value="/lathe", method = RequestMethod.GET)
+    public void lathe(Map<String,Object> map) {
+
     }
 
     private void putPagesInfo(Map<String, Object> map, int itemsNum, int itemsPerPage) {
@@ -88,16 +98,25 @@ public class AdminController {
     @RequestMapping(value = "/hmc/edit", method = RequestMethod.POST)
     public String editMachine(@ModelAttribute("machine") Hmc machine){
         hmcService.editMachine(machine);
-        return "redirect:/admin/machines";
+        return "redirect:/admin/hmc";
     }
 
     @RequestMapping(value = "/hmc/upload", method = RequestMethod.POST)
-    public String adminUploadMachinesFromFiles(@RequestParam("textFile") MultipartFile[] machines, HttpServletRequest request){
+    public String adminUploadHmcFromFiles(@RequestParam("textFile") MultipartFile[] machines, HttpServletRequest request){
         if (machines != null && machines.length > 0) {
             String path = request.getServletContext().getRealPath("") + "/resources/";
             workWithFilesService.uploadMachines(path, machines);
         }
         return "redirect:/admin/hmc";
+    }
+
+    @RequestMapping(value = "/lathe/upload", method = RequestMethod.POST)
+    public String adminUploadLatheFromFiles(@RequestParam("textFile") MultipartFile[] lathes, HttpServletRequest request){
+        if (lathes != null && lathes.length > 0) {
+            String path = request.getServletContext().getRealPath("") + "/resources/";
+            workWithFilesService.uploadLathes(path, lathes);
+        }
+        return "redirect:/admin/lathe";
     }
 
     @RequestMapping(value = "/hmc/renewFilters", method = RequestMethod.POST)

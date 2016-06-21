@@ -8,7 +8,9 @@
         <property name="connection.url">jdbc:mysql://localhost:3306</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">Jaabutnmqaz1010</property>
+        <property name="connection.password">1111</property>
+        <property name="show_sql">true</property>
+
         <mapping class="com.springapp.mvc.domain.hmc.MachineLocationFilter"/>
         <mapping class="com.springapp.mvc.domain.hmc.Hmc"/>
         <mapping class="com.springapp.mvc.domain.hmc.SlidersFilter"/>
@@ -18,13 +20,16 @@
         <mapping class="com.springapp.mvc.domain.MachineOrder"/>
         <mapping class="com.springapp.mvc.domain.User"/>
 
-        <mapping class="com.springapp.mvc.domain.lathe.LatheBrandFilterEntity"/>
-        <mapping class="com.springapp.mvc.domain.lathe.LatheEntity"/>
+        <mapping class="com.springapp.mvc.domain.common.LanguageEntity"/>
+
+        <mapping class="com.springapp.mvc.domain.lathe.BrandLatheFilterEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.MachineLocationLatheFilterEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.SlidersLatheFilterEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.SystemCncLatheFilterEntity"/>
         <mapping class="com.springapp.mvc.domain.lathe.LatheFullEntity"/>
-        <mapping class="com.springapp.mvc.domain.lathe.LatheFullTranslateEntity"/>
-        <mapping class="com.springapp.mvc.domain.lathe.LatheTranslateEntity"/>
-        <mapping class="com.springapp.mvc.domain.lathe.LatheMachineLocationFilterEntity"/>
-        <mapping class="com.springapp.mvc.domain.lathe.LatheSlidersFilterEntity"/>
-        <mapping class="com.springapp.mvc.domain.lathe.LatheSystemCncFilterEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheLangFullEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheLangShortEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheShortEntity"/>
+
     </session-factory>
 </hibernate-configuration>

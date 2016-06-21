@@ -14,7 +14,10 @@ public class UploadMultipartFileUtil {
         return file;
     }
 
-    public static File uploadMachineFile(String path, MultipartFile multipartFile) throws IOException{
+    public static File uploadFile(String path, MultipartFile multipartFile) throws IOException{
+        if(multipartFile.getOriginalFilename().endsWith("xls")){
+            return upload(path + "/machines.xls", multipartFile);
+        }
         return upload(path + "/machines.xlsx", multipartFile);
     }
 

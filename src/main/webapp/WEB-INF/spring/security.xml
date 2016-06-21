@@ -36,7 +36,7 @@ http://www.springframework.org/schema/security/spring-security-4.0.xsd">
                 login-page="/admin/adminEntry"
                 authentication-failure-url="/admin/adminEntry?error=true"
                 login-processing-url="/admin/j_spring_security_check"
-                default-target-url="/admin/machines"
+                default-target-url="/admin/hmc"
                 username-parameter="username"
                 password-parameter="password"/>
         <logout

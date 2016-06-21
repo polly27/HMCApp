@@ -1,28 +1,39 @@
 package com.springapp.mvc.domain.lathe;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
-@javax.persistence.Table(name = "lathe_full", schema = "", catalog = "lathe")
+@Table(name = "lathe_full", schema = "", catalog = "lathe")
 public class LatheFullEntity {
-    private int id;
-
-    @Id
-    @javax.persistence.Column(name = "id", nullable = false, insertable = true, updatable = true)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     private String productId;
+    private String fullSystemCnc;
+    private String spindleRotationFreq;
+    private String spindlePower;
+    private String counterSpindleRotationFreq;
+    private String drivenToolsCount;
+    private String nonDrivenToolsCount;
+    private String processingDiameterMm;
+    private String processingDiameterInch;
+    private String rodPassageDiameterMm;
+    private String rodPassageDiameterInch;
+    private String spindleHoleDiameterMm;
+    private String spindleHoleDiameterInch;
+    private String positionRepositionPrecisionMm;
+    private String positionRepositionPrecisionInch;
+    private String positionPrecision;
+    private String spindleLife;
+    private String machineLaunchingTime;
+    private String photo2;
+    private String photo3;
+    private String photo4;
+    private String photo5;
+    private String video1;
+    private String video2;
+    private String video3;
 
     @Id
-    @javax.persistence.Column(name = "productId", nullable = false, insertable = true, updatable = true, length = 255)
+    @Column(name = "productId", nullable = false, insertable = true, updatable = true, length = 255)
     public String getProductId() {
         return productId;
     }
@@ -31,34 +42,18 @@ public class LatheFullEntity {
         this.productId = productId;
     }
 
-    private String processingDiameter;
+    @Basic
+    @Column(name = "fullSystemCNC", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getFullSystemCnc() {
+        return fullSystemCnc;
+    }
+
+    public void setFullSystemCnc(String fullSystemCnc) {
+        this.fullSystemCnc = fullSystemCnc;
+    }
 
     @Basic
-    @javax.persistence.Column(name = "processingDiameter", nullable = true, insertable = true, updatable = true, length = 255)
-    public String getProcessingDiameter() {
-        return processingDiameter;
-    }
-
-    public void setProcessingDiameter(String processingDiameter) {
-        this.processingDiameter = processingDiameter;
-    }
-
-    private String rodPassageDiameter;
-
-    @Basic
-    @javax.persistence.Column(name = "rodPassageDiameter", nullable = true, insertable = true, updatable = true, length = 255)
-    public String getRodPassageDiameter() {
-        return rodPassageDiameter;
-    }
-
-    public void setRodPassageDiameter(String rodPassageDiameter) {
-        this.rodPassageDiameter = rodPassageDiameter;
-    }
-
-    private String spindleRotationFreq;
-
-    @Basic
-    @javax.persistence.Column(name = "spindleRotationFreq", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "spindleRotationFreq", nullable = true, insertable = true, updatable = true, length = 255)
     public String getSpindleRotationFreq() {
         return spindleRotationFreq;
     }
@@ -67,10 +62,8 @@ public class LatheFullEntity {
         this.spindleRotationFreq = spindleRotationFreq;
     }
 
-    private String spindlePower;
-
     @Basic
-    @javax.persistence.Column(name = "spindlePower", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "spindlePower", nullable = true, insertable = true, updatable = true, length = 255)
     public String getSpindlePower() {
         return spindlePower;
     }
@@ -79,22 +72,8 @@ public class LatheFullEntity {
         this.spindlePower = spindlePower;
     }
 
-    private String spindleHoleDiameter;
-
     @Basic
-    @javax.persistence.Column(name = "spindleHoleDiameter", nullable = true, insertable = true, updatable = true, length = 255)
-    public String getSpindleHoleDiameter() {
-        return spindleHoleDiameter;
-    }
-
-    public void setSpindleHoleDiameter(String spindleHoleDiameter) {
-        this.spindleHoleDiameter = spindleHoleDiameter;
-    }
-
-    private String counterSpindleRotationFreq;
-
-    @Basic
-    @javax.persistence.Column(name = "counterSpindleRotationFreq", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "counterSpindleRotationFreq", nullable = true, insertable = true, updatable = true, length = 255)
     public String getCounterSpindleRotationFreq() {
         return counterSpindleRotationFreq;
     }
@@ -103,10 +82,8 @@ public class LatheFullEntity {
         this.counterSpindleRotationFreq = counterSpindleRotationFreq;
     }
 
-    private String drivenToolsCount;
-
     @Basic
-    @javax.persistence.Column(name = "drivenToolsCount", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "drivenToolsCount", nullable = true, insertable = true, updatable = true, length = 255)
     public String getDrivenToolsCount() {
         return drivenToolsCount;
     }
@@ -115,10 +92,8 @@ public class LatheFullEntity {
         this.drivenToolsCount = drivenToolsCount;
     }
 
-    private String nonDrivenToolsCount;
-
     @Basic
-    @javax.persistence.Column(name = "nonDrivenToolsCount", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "nonDrivenToolsCount", nullable = true, insertable = true, updatable = true, length = 255)
     public String getNonDrivenToolsCount() {
         return nonDrivenToolsCount;
     }
@@ -127,22 +102,88 @@ public class LatheFullEntity {
         this.nonDrivenToolsCount = nonDrivenToolsCount;
     }
 
-    private String positionRepositionPrecision;
-
     @Basic
-    @javax.persistence.Column(name = "positionRepositionPrecision", nullable = true, insertable = true, updatable = true, length = 255)
-    public String getPositionRepositionPrecision() {
-        return positionRepositionPrecision;
+    @Column(name = "processingDiameterMm", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getProcessingDiameterMm() {
+        return processingDiameterMm;
     }
 
-    public void setPositionRepositionPrecision(String positionRepositionPrecision) {
-        this.positionRepositionPrecision = positionRepositionPrecision;
+    public void setProcessingDiameterMm(String processingDiameterMm) {
+        this.processingDiameterMm = processingDiameterMm;
     }
 
-    private String positionPrecision;
+    @Basic
+    @Column(name = "processingDiameterInch", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getProcessingDiameterInch() {
+        return processingDiameterInch;
+    }
+
+    public void setProcessingDiameterInch(String processingDiameterInch) {
+        this.processingDiameterInch = processingDiameterInch;
+    }
 
     @Basic
-    @javax.persistence.Column(name = "positionPrecision", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "rodPassageDiameterMm", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getRodPassageDiameterMm() {
+        return rodPassageDiameterMm;
+    }
+
+    public void setRodPassageDiameterMm(String rodPassageDiameterMm) {
+        this.rodPassageDiameterMm = rodPassageDiameterMm;
+    }
+
+    @Basic
+    @Column(name = "rodPassageDiameterInch", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getRodPassageDiameterInch() {
+        return rodPassageDiameterInch;
+    }
+
+    public void setRodPassageDiameterInch(String rodPassageDiameterInch) {
+        this.rodPassageDiameterInch = rodPassageDiameterInch;
+    }
+
+    @Basic
+    @Column(name = "spindleHoleDiameterMm", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getSpindleHoleDiameterMm() {
+        return spindleHoleDiameterMm;
+    }
+
+    public void setSpindleHoleDiameterMm(String spindleHoleDiameterMm) {
+        this.spindleHoleDiameterMm = spindleHoleDiameterMm;
+    }
+
+    @Basic
+    @Column(name = "spindleHoleDiameterInch", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getSpindleHoleDiameterInch() {
+        return spindleHoleDiameterInch;
+    }
+
+    public void setSpindleHoleDiameterInch(String spindleHoleDiameterInch) {
+        this.spindleHoleDiameterInch = spindleHoleDiameterInch;
+    }
+
+    @Basic
+    @Column(name = "positionRepositionPrecisionMm", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getPositionRepositionPrecisionMm() {
+        return positionRepositionPrecisionMm;
+    }
+
+    public void setPositionRepositionPrecisionMm(String positionRepositionPrecisionMm) {
+        this.positionRepositionPrecisionMm = positionRepositionPrecisionMm;
+    }
+
+    @Basic
+    @Column(name = "positionRepositionPrecisionInch", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getPositionRepositionPrecisionInch() {
+        return positionRepositionPrecisionInch;
+    }
+
+    public void setPositionRepositionPrecisionInch(String positionRepositionPrecisionInch) {
+        this.positionRepositionPrecisionInch = positionRepositionPrecisionInch;
+    }
+
+    @Basic
+    @Column(name = "positionPrecision", nullable = true, insertable = true, updatable = true, length = 255)
     public String getPositionPrecision() {
         return positionPrecision;
     }
@@ -151,10 +192,8 @@ public class LatheFullEntity {
         this.positionPrecision = positionPrecision;
     }
 
-    private String spindleLife;
-
     @Basic
-    @javax.persistence.Column(name = "spindleLife", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "spindleLife", nullable = true, insertable = true, updatable = true, length = 255)
     public String getSpindleLife() {
         return spindleLife;
     }
@@ -163,10 +202,8 @@ public class LatheFullEntity {
         this.spindleLife = spindleLife;
     }
 
-    private String machineLaunchingTime;
-
     @Basic
-    @javax.persistence.Column(name = "machineLaunchingTime", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "machineLaunchingTime", nullable = true, insertable = true, updatable = true, length = 255)
     public String getMachineLaunchingTime() {
         return machineLaunchingTime;
     }
@@ -175,10 +212,8 @@ public class LatheFullEntity {
         this.machineLaunchingTime = machineLaunchingTime;
     }
 
-    private String photo2;
-
     @Basic
-    @javax.persistence.Column(name = "photo2", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "photo2", nullable = true, insertable = true, updatable = true, length = 255)
     public String getPhoto2() {
         return photo2;
     }
@@ -187,10 +222,8 @@ public class LatheFullEntity {
         this.photo2 = photo2;
     }
 
-    private String photo3;
-
     @Basic
-    @javax.persistence.Column(name = "photo3", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "photo3", nullable = true, insertable = true, updatable = true, length = 255)
     public String getPhoto3() {
         return photo3;
     }
@@ -199,10 +232,8 @@ public class LatheFullEntity {
         this.photo3 = photo3;
     }
 
-    private String photo4;
-
     @Basic
-    @javax.persistence.Column(name = "photo4", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "photo4", nullable = true, insertable = true, updatable = true, length = 255)
     public String getPhoto4() {
         return photo4;
     }
@@ -211,10 +242,8 @@ public class LatheFullEntity {
         this.photo4 = photo4;
     }
 
-    private String photo5;
-
     @Basic
-    @javax.persistence.Column(name = "photo5", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "photo5", nullable = true, insertable = true, updatable = true, length = 255)
     public String getPhoto5() {
         return photo5;
     }
@@ -223,10 +252,8 @@ public class LatheFullEntity {
         this.photo5 = photo5;
     }
 
-    private String video1;
-
     @Basic
-    @javax.persistence.Column(name = "video1", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "video1", nullable = true, insertable = true, updatable = true, length = 255)
     public String getVideo1() {
         return video1;
     }
@@ -235,10 +262,8 @@ public class LatheFullEntity {
         this.video1 = video1;
     }
 
-    private String video2;
-
     @Basic
-    @javax.persistence.Column(name = "video2", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "video2", nullable = true, insertable = true, updatable = true, length = 255)
     public String getVideo2() {
         return video2;
     }
@@ -247,40 +272,14 @@ public class LatheFullEntity {
         this.video2 = video2;
     }
 
-    private String video3;
-
     @Basic
-    @javax.persistence.Column(name = "video3", nullable = true, insertable = true, updatable = true, length = 255)
+    @Column(name = "video3", nullable = true, insertable = true, updatable = true, length = 255)
     public String getVideo3() {
         return video3;
     }
 
     public void setVideo3(String video3) {
         this.video3 = video3;
-    }
-
-    private int latheFullTranslateId;
-
-    @Id
-    @javax.persistence.Column(name = "lathe_full_translate_id", nullable = false, insertable = true, updatable = true)
-    public int getLatheFullTranslateId() {
-        return latheFullTranslateId;
-    }
-
-    public void setLatheFullTranslateId(int latheFullTranslateId) {
-        this.latheFullTranslateId = latheFullTranslateId;
-    }
-
-    private String latheFullTranslateProductId;
-
-    @Id
-    @javax.persistence.Column(name = "lathe_full_translate_productId", nullable = false, insertable = true, updatable = true, length = 255)
-    public String getLatheFullTranslateProductId() {
-        return latheFullTranslateProductId;
-    }
-
-    public void setLatheFullTranslateProductId(String latheFullTranslateProductId) {
-        this.latheFullTranslateProductId = latheFullTranslateProductId;
     }
 
     @Override
@@ -290,13 +289,11 @@ public class LatheFullEntity {
 
         LatheFullEntity that = (LatheFullEntity) o;
 
-        if (id != that.id) return false;
-        if (latheFullTranslateId != that.latheFullTranslateId) return false;
         if (counterSpindleRotationFreq != null ? !counterSpindleRotationFreq.equals(that.counterSpindleRotationFreq) : that.counterSpindleRotationFreq != null)
             return false;
         if (drivenToolsCount != null ? !drivenToolsCount.equals(that.drivenToolsCount) : that.drivenToolsCount != null)
             return false;
-        if (latheFullTranslateProductId != null ? !latheFullTranslateProductId.equals(that.latheFullTranslateProductId) : that.latheFullTranslateProductId != null)
+        if (fullSystemCnc != null ? !fullSystemCnc.equals(that.fullSystemCnc) : that.fullSystemCnc != null)
             return false;
         if (machineLaunchingTime != null ? !machineLaunchingTime.equals(that.machineLaunchingTime) : that.machineLaunchingTime != null)
             return false;
@@ -308,14 +305,22 @@ public class LatheFullEntity {
         if (photo5 != null ? !photo5.equals(that.photo5) : that.photo5 != null) return false;
         if (positionPrecision != null ? !positionPrecision.equals(that.positionPrecision) : that.positionPrecision != null)
             return false;
-        if (positionRepositionPrecision != null ? !positionRepositionPrecision.equals(that.positionRepositionPrecision) : that.positionRepositionPrecision != null)
+        if (positionRepositionPrecisionInch != null ? !positionRepositionPrecisionInch.equals(that.positionRepositionPrecisionInch) : that.positionRepositionPrecisionInch != null)
             return false;
-        if (processingDiameter != null ? !processingDiameter.equals(that.processingDiameter) : that.processingDiameter != null)
+        if (positionRepositionPrecisionMm != null ? !positionRepositionPrecisionMm.equals(that.positionRepositionPrecisionMm) : that.positionRepositionPrecisionMm != null)
+            return false;
+        if (processingDiameterInch != null ? !processingDiameterInch.equals(that.processingDiameterInch) : that.processingDiameterInch != null)
+            return false;
+        if (processingDiameterMm != null ? !processingDiameterMm.equals(that.processingDiameterMm) : that.processingDiameterMm != null)
             return false;
         if (productId != null ? !productId.equals(that.productId) : that.productId != null) return false;
-        if (rodPassageDiameter != null ? !rodPassageDiameter.equals(that.rodPassageDiameter) : that.rodPassageDiameter != null)
+        if (rodPassageDiameterInch != null ? !rodPassageDiameterInch.equals(that.rodPassageDiameterInch) : that.rodPassageDiameterInch != null)
             return false;
-        if (spindleHoleDiameter != null ? !spindleHoleDiameter.equals(that.spindleHoleDiameter) : that.spindleHoleDiameter != null)
+        if (rodPassageDiameterMm != null ? !rodPassageDiameterMm.equals(that.rodPassageDiameterMm) : that.rodPassageDiameterMm != null)
+            return false;
+        if (spindleHoleDiameterInch != null ? !spindleHoleDiameterInch.equals(that.spindleHoleDiameterInch) : that.spindleHoleDiameterInch != null)
+            return false;
+        if (spindleHoleDiameterMm != null ? !spindleHoleDiameterMm.equals(that.spindleHoleDiameterMm) : that.spindleHoleDiameterMm != null)
             return false;
         if (spindleLife != null ? !spindleLife.equals(that.spindleLife) : that.spindleLife != null) return false;
         if (spindlePower != null ? !spindlePower.equals(that.spindlePower) : that.spindlePower != null) return false;
@@ -330,17 +335,21 @@ public class LatheFullEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (productId != null ? productId.hashCode() : 0);
-        result = 31 * result + (processingDiameter != null ? processingDiameter.hashCode() : 0);
-        result = 31 * result + (rodPassageDiameter != null ? rodPassageDiameter.hashCode() : 0);
+        int result = productId != null ? productId.hashCode() : 0;
+        result = 31 * result + (fullSystemCnc != null ? fullSystemCnc.hashCode() : 0);
         result = 31 * result + (spindleRotationFreq != null ? spindleRotationFreq.hashCode() : 0);
         result = 31 * result + (spindlePower != null ? spindlePower.hashCode() : 0);
-        result = 31 * result + (spindleHoleDiameter != null ? spindleHoleDiameter.hashCode() : 0);
         result = 31 * result + (counterSpindleRotationFreq != null ? counterSpindleRotationFreq.hashCode() : 0);
         result = 31 * result + (drivenToolsCount != null ? drivenToolsCount.hashCode() : 0);
         result = 31 * result + (nonDrivenToolsCount != null ? nonDrivenToolsCount.hashCode() : 0);
-        result = 31 * result + (positionRepositionPrecision != null ? positionRepositionPrecision.hashCode() : 0);
+        result = 31 * result + (processingDiameterMm != null ? processingDiameterMm.hashCode() : 0);
+        result = 31 * result + (processingDiameterInch != null ? processingDiameterInch.hashCode() : 0);
+        result = 31 * result + (rodPassageDiameterMm != null ? rodPassageDiameterMm.hashCode() : 0);
+        result = 31 * result + (rodPassageDiameterInch != null ? rodPassageDiameterInch.hashCode() : 0);
+        result = 31 * result + (spindleHoleDiameterMm != null ? spindleHoleDiameterMm.hashCode() : 0);
+        result = 31 * result + (spindleHoleDiameterInch != null ? spindleHoleDiameterInch.hashCode() : 0);
+        result = 31 * result + (positionRepositionPrecisionMm != null ? positionRepositionPrecisionMm.hashCode() : 0);
+        result = 31 * result + (positionRepositionPrecisionInch != null ? positionRepositionPrecisionInch.hashCode() : 0);
         result = 31 * result + (positionPrecision != null ? positionPrecision.hashCode() : 0);
         result = 31 * result + (spindleLife != null ? spindleLife.hashCode() : 0);
         result = 31 * result + (machineLaunchingTime != null ? machineLaunchingTime.hashCode() : 0);
@@ -351,8 +360,7 @@ public class LatheFullEntity {
         result = 31 * result + (video1 != null ? video1.hashCode() : 0);
         result = 31 * result + (video2 != null ? video2.hashCode() : 0);
         result = 31 * result + (video3 != null ? video3.hashCode() : 0);
-        result = 31 * result + latheFullTranslateId;
-        result = 31 * result + (latheFullTranslateProductId != null ? latheFullTranslateProductId.hashCode() : 0);
         return result;
     }
+
 }

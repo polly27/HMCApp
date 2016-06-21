@@ -65,6 +65,8 @@
             <ul>
                 <li class="home"><a href="/admin/hmc">HMC</a></li>
                 <li class="home">&nbsp;|&nbsp;</li>
+                <li class="home"><a href="/admin/lathe">Lathe</a></li>
+                <li class="home">&nbsp;|&nbsp;</li>
                 <li class="home"><a href="/admin/gallery">Gallery</a></li>
                 <li class="home">&nbsp;|&nbsp;</li>
                 <li class="home"><a href="/admin/orders" style="font-weight: bold; color: #008B00">Orders</a></li>
