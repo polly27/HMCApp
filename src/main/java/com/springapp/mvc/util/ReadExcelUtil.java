@@ -203,9 +203,9 @@ public class ReadExcelUtil {
 
         rowIterator.next();
 
-        latheShort.setManufacturer(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        latheShort.setManufacturer(df.formatCellValue(rowIterator.next().getCell(1)).trim().toLowerCase());
         latheShort.setProductionYear((int) rowIterator.next().getCell(1).getNumericCellValue());
-        latheShort.setSystemCnc(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        latheShort.setSystemCNC(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         latheFull.setFullSystemCnc(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         latheFull.setSpindleRotationFreq(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         latheFull.setSpindlePower(df.formatCellValue(rowIterator.next().getCell(1)).trim());

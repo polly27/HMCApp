@@ -11,7 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <title>Lathe</title>
+    <title><spring:message code="common.latheTitle"/></title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="../resources/css/bootstrap.min.css" type="text/css" media="screen"/>
@@ -68,7 +68,7 @@
                         </li>
                         <li class="breadcrumb-item current">
                             <a onclick="window.location.reload(true);">
-                                <h1 class="h2 department-h1"><spring:message code="common.hmc"/></h1>
+                                <h1 class="h2 department-h1"><spring:message code="common.lathe"/></h1>
                             </a>
                         </li>
                     </ul>

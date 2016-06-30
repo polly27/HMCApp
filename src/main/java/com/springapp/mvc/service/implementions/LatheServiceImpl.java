@@ -16,4 +16,15 @@ public class LatheServiceImpl implements LatheService {
     @Autowired
     private LatheDAO latheDAO;
 
+    @Transactional
+    public List<LatheLangShortEntity> listLatheLangShort(String lang) {
+        return latheDAO.listLatheLangShort(lang);
+    }
+
+    @Transactional
+    public List<LatheLangFullEntity> listLatheLangFull(String lang) {
+        return latheDAO.listLatheLangFull(lang);
+    }
+
+
 }

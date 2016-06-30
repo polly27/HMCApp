@@ -5,7 +5,10 @@ import com.springapp.mvc.domain.lathe.LatheFullEntity;
 import com.springapp.mvc.domain.lathe.LatheLangFullEntity;
 import com.springapp.mvc.domain.lathe.LatheLangShortEntity;
 import com.springapp.mvc.domain.lathe.LatheShortEntity;
+import org.apache.xmlbeans.impl.xb.xsdschema.RestrictionDocument;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -36,4 +39,17 @@ public class LatheDAOImpl implements LatheDAO {
         sessionFactory.getCurrentSession().saveOrUpdate(latheLangFullEntity);
     }
 
+    @SuppressWarnings("unchecked")
+    public List<LatheLangShortEntity> listLatheLangShort(String lang) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(LatheLangShortEntity.class);
+        criteria.add(Restrictions.eq("language",lang));
+        return criteria.list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<LatheLangFullEntity> listLatheLangFull(String lang) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(LatheLangFullEntity.class);
+        criteria.add(Restrictions.eq("language",lang));
+        return criteria.list();
+    }
 }

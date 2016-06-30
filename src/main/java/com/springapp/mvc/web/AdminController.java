@@ -31,6 +31,9 @@ public class AdminController {
     private FiltersService filtersService;
 
     @Autowired
+    private LatheFiltersService latheFiltersService;
+
+    @Autowired
     private UserService userService;
 
     @Autowired
@@ -123,6 +126,12 @@ public class AdminController {
     public String renewFilters(){
         filtersService.renewFilters();
         return "redirect:/admin/hmc";
+    }
+
+    @RequestMapping(value = "/lathe/renewFilters", method = RequestMethod.POST)
+    public String renewLatheFilters(){
+        latheFiltersService.renewFilters();
+        return "redirect:/admin/lathe";
     }
 
     @RequestMapping(value = "/gallery", method = RequestMethod.GET)

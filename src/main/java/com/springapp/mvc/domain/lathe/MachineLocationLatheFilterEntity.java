@@ -8,6 +8,13 @@ public class MachineLocationLatheFilterEntity {
     private String machineLocation;
     private Integer num;
 
+    public MachineLocationLatheFilterEntity() {}
+
+    public MachineLocationLatheFilterEntity(String machineLocation, Integer num) {
+        this.machineLocation = machineLocation;
+        this.num = num;
+    }
+
     @Id
     @Column(name = "machineLocation", nullable = false, insertable = true, updatable = true, length = 255)
     public String getMachineLocation() {

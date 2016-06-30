@@ -8,7 +8,7 @@ public class LatheShortEntity {
     private String productId;
     private String model;
     private String manufacturer;
-    private String systemCnc;
+    private String systemCNC;
     private int productionYear;
     private int maxProcessingDiameterMm;
     private float maxProcessingDiameterInch;
@@ -56,12 +56,12 @@ public class LatheShortEntity {
 
     @Basic
     @Column(name = "systemCNC", nullable = false, insertable = true, updatable = true, length = 255)
-    public String getSystemCnc() {
-        return systemCnc;
+    public String getSystemCNC() {
+        return systemCNC;
     }
 
-    public void setSystemCnc(String systemCnc) {
-        this.systemCnc = systemCnc;
+    public void setSystemCNC(String systemCnc) {
+        this.systemCNC = systemCnc;
     }
 
     @Basic
@@ -228,7 +228,7 @@ public class LatheShortEntity {
         if (model != null ? !model.equals(that.model) : that.model != null) return false;
         if (photo1 != null ? !photo1.equals(that.photo1) : that.photo1 != null) return false;
         if (productId != null ? !productId.equals(that.productId) : that.productId != null) return false;
-        if (systemCnc != null ? !systemCnc.equals(that.systemCnc) : that.systemCnc != null) return false;
+        if (systemCNC != null ? !systemCNC.equals(that.systemCNC) : that.systemCNC != null) return false;
 
         return true;
     }
@@ -238,7 +238,7 @@ public class LatheShortEntity {
         int result = productId != null ? productId.hashCode() : 0;
         result = 31 * result + (model != null ? model.hashCode() : 0);
         result = 31 * result + (manufacturer != null ? manufacturer.hashCode() : 0);
-        result = 31 * result + (systemCnc != null ? systemCnc.hashCode() : 0);
+        result = 31 * result + (systemCNC != null ? systemCNC.hashCode() : 0);
         result = 31 * result + productionYear;
         result = 31 * result + maxProcessingDiameterMm;
         result = 31 * result + (maxProcessingDiameterInch != +0.0f ? Float.floatToIntBits(maxProcessingDiameterInch) : 0);

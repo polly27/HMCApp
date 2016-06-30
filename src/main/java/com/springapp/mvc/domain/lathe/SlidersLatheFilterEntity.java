@@ -19,6 +19,10 @@ public class SlidersLatheFilterEntity {
     private String maxProcessingDiameterInch;
     private String maxProcessingLengthInch;
 
+    public SlidersLatheFilterEntity() {
+        setId(1);
+    }
+
     @Id
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
     public int getId() {

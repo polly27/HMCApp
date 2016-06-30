@@ -8,6 +8,13 @@ public class SystemCncLatheFilterEntity {
     private String systemCnc;
     private Integer num;
 
+    public SystemCncLatheFilterEntity() {}
+
+    public SystemCncLatheFilterEntity(String systemCnc, Integer num) {
+        this.systemCnc = systemCnc;
+        this.num = num;
+    }
+
     @Id
     @Column(name = "systemCNC", nullable = false, insertable = true, updatable = true, length = 255)
     public String getSystemCnc() {

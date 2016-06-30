@@ -8,6 +8,13 @@ public class BrandLatheFilterEntity {
     private String brand;
     private Integer num;
 
+    public BrandLatheFilterEntity(){}
+
+    public BrandLatheFilterEntity(String field, Integer num) {
+        this.brand = field;
+        this.num = num;
+    }
+
     @Id
     @Column(name = "brand", nullable = false, insertable = true, updatable = true, length = 255)
     public String getBrand() {
