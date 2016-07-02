@@ -5,24 +5,24 @@ import javax.persistence.*;
 @Entity
 @Table(name = "system_cnc_filter", schema = "", catalog = "lathe")
 public class SystemCncLatheFilterEntity {
-    private String systemCnc;
+    private String systemCNC;
     private Integer num;
 
     public SystemCncLatheFilterEntity() {}
 
-    public SystemCncLatheFilterEntity(String systemCnc, Integer num) {
-        this.systemCnc = systemCnc;
+    public SystemCncLatheFilterEntity(String systemCNC, Integer num) {
+        this.systemCNC = systemCNC;
         this.num = num;
     }
 
     @Id
     @Column(name = "systemCNC", nullable = false, insertable = true, updatable = true, length = 255)
-    public String getSystemCnc() {
-        return systemCnc;
+    public String getSystemCNC() {
+        return systemCNC;
     }
 
-    public void setSystemCnc(String systemCnc) {
-        this.systemCnc = systemCnc;
+    public void setSystemCNC(String systemCnc) {
+        this.systemCNC = systemCnc;
     }
 
     @Basic
@@ -43,14 +43,14 @@ public class SystemCncLatheFilterEntity {
         SystemCncLatheFilterEntity that = (SystemCncLatheFilterEntity) o;
 
         if (num != null ? !num.equals(that.num) : that.num != null) return false;
-        if (systemCnc != null ? !systemCnc.equals(that.systemCnc) : that.systemCnc != null) return false;
+        if (systemCNC != null ? !systemCNC.equals(that.systemCNC) : that.systemCNC != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = systemCnc != null ? systemCnc.hashCode() : 0;
+        int result = systemCNC != null ? systemCNC.hashCode() : 0;
         result = 31 * result + (num != null ? num.hashCode() : 0);
         return result;
     }

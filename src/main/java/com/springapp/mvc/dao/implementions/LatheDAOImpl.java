@@ -42,7 +42,7 @@ public class LatheDAOImpl implements LatheDAO {
     @SuppressWarnings("unchecked")
     public List<LatheLangShortEntity> listLatheLangShort(String lang) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(LatheLangShortEntity.class);
-        criteria.add(Restrictions.eq("language",lang));
+        criteria.add(Restrictions.eq("latheLangShortEntityPK.language.lang",lang));
         return criteria.list();
     }
 

@@ -90,7 +90,7 @@
 <div class="col-xs-12 col-sm-3 no-margin sidebar narrow">
     <!-- ========================================= PRODUCT FILTER ========================================= -->
     <div class="widget">
-        <h2 style="font-size: 28px; line-height: 52px; color: #3d3d3d"><spring:message code="hmc.productFilters"/></h2>
+        <h2 style="font-size: 28px; line-height: 52px; color: #3d3d3d"><spring:message code="productFilters"/></h2>
 
         <div class="body bordered" id="filterForm">
 
@@ -521,9 +521,23 @@
 <script src="../resources/js/wow.min.js"></script>
 <script src="../resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
-<script src="../resources/js/filters.jsp"></script>
 <script src="../resources/js/comparison,wishlist,cart,common.jsp"></script>
+<script type="text/javascript">
+    var checkboxesNames = ['brand','location','cnc'];
 
+    var slidersNames = ['productionYear','price','xMotion','yMotion','zMotion','xTableSize','yTableSize'];
+
+    var specificSlidersNames = ['productionYear','price'];
+
+    // step for slider
+    var specificSliders = {
+        'productionYear' : 1,
+        'price' : 500
+    };
+
+    var commonStep = 100;
+</script>
+<script src="../resources/js/filters.jsp"></script>
 <script type="text/javascript">
     // global variables, will be used in file 'filters'
     var slidersDefaultRange = {

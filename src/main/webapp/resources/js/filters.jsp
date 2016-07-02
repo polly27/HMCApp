@@ -1,19 +1,5 @@
 <%@ page language="java" contentType="text/javascript; charset=UTF-8" pageEncoding="UTF-8"%>
 
-        var checkboxesNames = ['brand','location','cnc'];
-
-        var slidersNames = ['productionYear','price','xMotion','yMotion','zMotion','xTableSize','yTableSize'];
-
-        var specificSlidersNames = ['productionYear','price'];
-
-        // step for slider
-        var specificSliders = {
-            'productionYear' : 1,
-            'price' : 500
-        };
-
-        var commonStep = 100;
-
         $(document).ready(function () {
             if (sessionStorage.slidersUrl != null && sessionStorage.slidersUrl != "") {
                 loadFilterSlidersParams();

@@ -223,7 +223,7 @@
                                 </h1>
                             </a>
                             <a href="http://vmccnc.com/vmc" target="_blank"><spring:message code="common.vmc"/></a>
-                            <a href="http://vmccnc.com/lathes" target="_blank"><spring:message code="common.lathe"/></a>
+                            <a href="/lathe" target="_blank"><spring:message code="common.lathe"/></a>
                         </li>
                     </ul>
                 </nav>

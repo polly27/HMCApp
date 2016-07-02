@@ -35,8 +35,8 @@ public class LatheFiltersServiceImpl implements LatheFiltersService {
 
     @Transactional
     @SuppressWarnings("unchecked")
-    public List<SlidersLatheFilterEntity> listSlidersLatheFilter() {
-        return (List<SlidersLatheFilterEntity>)latheFiltersDAO.listFilter(SlidersLatheFilterEntity.class);
+    public SlidersLatheFilterEntity getSlidersLatheFilter() {
+        return (SlidersLatheFilterEntity)latheFiltersDAO.listFilter(SlidersLatheFilterEntity.class).get(0);
     }
 
     @Transactional

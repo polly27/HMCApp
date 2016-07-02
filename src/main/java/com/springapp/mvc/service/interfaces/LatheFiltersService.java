@@ -11,6 +11,6 @@ public interface LatheFiltersService {
     public List<BrandLatheFilterEntity> listBrandLatheFilter();
     public List<SystemCncLatheFilterEntity> listSystemCncLatheFilter();
     public List<MachineLocationLatheFilterEntity> listMachineLocationLatheFilter();
-    public List<SlidersLatheFilterEntity> listSlidersLatheFilter();
+    public SlidersLatheFilterEntity getSlidersLatheFilter();
     public void renewFilters();
 }

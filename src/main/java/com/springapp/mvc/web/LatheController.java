@@ -2,6 +2,7 @@ package com.springapp.mvc.web;
 
 import com.springapp.mvc.domain.hmc.Hmc;
 import com.springapp.mvc.domain.lathe.LatheLangShortEntity;
+import com.springapp.mvc.domain.lathe.SlidersLatheFilterEntity;
 import com.springapp.mvc.service.interfaces.LatheFiltersService;
 import com.springapp.mvc.service.interfaces.LatheService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class LatheController {
 
     @RequestMapping(value = "/lathe", method = RequestMethod.GET)
     public void lathe(Map<String, Object> map, Locale locale) {
-        List<LatheLangShortEntity> latheShortList = latheService.listLatheLangShort(locale.getDisplayLanguage());
+        List<LatheLangShortEntity> latheShortList = latheService.listLatheLangShort(locale.getLanguage());
         map.put("latheShortList", latheShortList);
         putPagesInfo(map, null, latheShortList.size());
         putFilters(map);
@@ -46,7 +47,7 @@ public class LatheController {
         map.put("brandList", latheFiltersService.listBrandLatheFilter());
         map.put("machineLocationList", latheFiltersService.listMachineLocationLatheFilter());
         map.put("cncList", latheFiltersService.listSystemCncLatheFilter());
-        map.put("slidersList", latheFiltersService.listSlidersLatheFilter());
+        map.put("sliders", latheFiltersService.getSlidersLatheFilter());
     }
 
 
